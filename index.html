@@ -60,10 +60,10 @@ const {useState,useEffect,useMemo,useCallback} = React;
    ═══════════════════════════════════════════════════════════════ */
 
 const SHEET_URLS = {
-  senate:    "https://docs.google.com/spreadsheets/d/e/2PACX-1vRRD4NzFmxxPMxqIIYrHWeLO7zHJGxtWyCf8y8wL463uDCxzIz6dIxVthmRBN7NYDIvtjTfEXSKLBoy/pub?gid=1277439295&single=true&output=csv",
-  house:     "https://docs.google.com/spreadsheets/d/e/2PACX-1vRRD4NzFmxxPMxqIIYrHWeLO7zHJGxtWyCf8y8wL463uDCxzIz6dIxVthmRBN7NYDIvtjTfEXSKLBoy/pub?gid=38670283&single=true&output=csv",
-  governors: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRRD4NzFmxxPMxqIIYrHWeLO7zHJGxtWyCf8y8wL463uDCxzIz6dIxVthmRBN7NYDIvtjTfEXSKLBoy/pub?gid=19101283&single=true&output=csv",
-  stateLeg:  "https://docs.google.com/spreadsheets/d/e/2PACX-1vRRD4NzFmxxPMxqIIYrHWeLO7zHJGxtWyCf8y8wL463uDCxzIz6dIxVthmRBN7NYDIvtjTfEXSKLBoy/pub?gid=664038301&single=true&output=csv",
+  senate:    "https://docs.google.com/spreadsheets/d/e/2PACX-1vRRD4NzFmxxPMxqIIYrHWeL07zHJGxtWyCf8y8wL463uDCxzIz6dIxVthmRBN7NYDIvtjTfEXSKLBoy/pub?gid=1277439295&single=true&output=csv",
+  house:     "https://docs.google.com/spreadsheets/d/e/2PACX-1vRRD4NzFmxxPMxqIIYrHWeL07zHJGxtWyCf8y8wL463uDCxzIz6dIxVthmRBN7NYDIvtjTfEXSKLBoy/pub?gid=38670283&single=true&output=csv",
+  governors: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRRD4NzFmxxPMxqIIYrHWeL07zHJGxtWyCf8y8wL463uDCxzIz6dIxVthmRBN7NYDIvtjTfEXSKLBoy/pub?gid=19101283&single=true&output=csv",
+  stateLeg:  "https://docs.google.com/spreadsheets/d/e/2PACX-1vRRD4NzFmxxPMxqIIYrHWeL07zHJGxtWyCf8y8wL463uDCxzIz6dIxVthmRBN7NYDIvtjTfEXSKLBoy/pub?gid=664038301&single=true&output=csv",
 };
 
 /* ═══════════════════════════════════════════════════════════════
@@ -286,7 +286,8 @@ function SchematicMap({senate, governors, mapMode}) {
 
   return (
     <div style={{position:"relative"}}>
-      <svg viewBox={`0 0 ${W} ${H}`} style={{width:"100%",maxWidth:520,display:"block",margin:"0 auto"}}>
+      <svg viewBox={`0 0 ${W} ${H}`} style={{width:"100%",maxWidth:520,display:"block",margin:"0 auto",background:"#fff",borderRadius:8}}>
+        <rect x={0} y={0} width={W} height={H} fill="#fff"/>
         {Object.entries(STATE_GRID).map(([st,[col,row]]) => {
           const rating = stateRatings[st];
           const fill = rating ? MAP_COLORS[rating] : MAP_COLORS["default"];
@@ -348,21 +349,21 @@ function parseSenateSheet(rows) {
   return rows.map(r => ({
     state:(r.State||"").trim(), incumbent:(r.Incumbent||"").trim(), party:(r.Party||"").trim(),
     rating:(r.Rating||"Solid R").trim(), open:String(r.Open||"").toLowerCase()==="true"||r.Open===true,
-    note:(r.Note||"").trim(), challenger:(r.Challenger||"").trim(),
+    note:(r.Note||r.Notes||"").trim(), challenger:(r.Challenger||"").trim(),
   })).filter(r=>r.state);
 }
 function parseHouseSheet(rows) {
   return rows.map(r => ({
     state:(r.State||"").trim(), district:String(r.District||"").trim().padStart(2,"0"),
     incumbent:(r.Incumbent||"").trim(), party:(r.Party||"").trim(),
-    rating:(r.Rating||"Solid R").trim(), note:(r.Note||"").trim(),
+    rating:(r.Rating||"Solid R").trim(), note:(r.Note||r.Notes||"").trim(),
   })).filter(r=>r.state);
 }
 function parseGovSheet(rows) {
   return rows.map(r => ({
     state:(r.State||"").trim(), incumbent:(r.Incumbent||"").trim(), party:(r.Party||"").trim(),
     rating:(r.Rating||"Solid R").trim(), open:String(r.Open||"").toLowerCase()==="true"||r.Open===true,
-    note:(r.Note||"").trim(),
+    note:(r.Note||r.Notes||"").trim(),
   })).filter(r=>r.state);
 }
 function parseStateLegSheet(rows) {
