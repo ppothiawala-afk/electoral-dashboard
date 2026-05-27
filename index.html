@@ -60,10 +60,10 @@ const {useState,useEffect,useMemo,useCallback} = React;
    ═══════════════════════════════════════════════════════════════ */
 
 const SHEET_URLS = {
-  senate:    "https://docs.google.com/spreadsheets/d/e/2PACX-1vRRD4NzFmxxPMxqIIYrHWeL07zHJGxtWyCf8y8wL463uDCxzIz6dIxVthmRBN7NYDIvtjTfEXSKLBoy/pub?gid=1277439295&single=true&output=csv",
-  house:     "https://docs.google.com/spreadsheets/d/e/2PACX-1vRRD4NzFmxxPMxqIIYrHWeL07zHJGxtWyCf8y8wL463uDCxzIz6dIxVthmRBN7NYDIvtjTfEXSKLBoy/pub?gid=38670283&single=true&output=csv",
-  governors: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRRD4NzFmxxPMxqIIYrHWeL07zHJGxtWyCf8y8wL463uDCxzIz6dIxVthmRBN7NYDIvtjTfEXSKLBoy/pub?gid=19101283&single=true&output=csv",
-  stateLeg:  "https://docs.google.com/spreadsheets/d/e/2PACX-1vRRD4NzFmxxPMxqIIYrHWeL07zHJGxtWyCf8y8wL463uDCxzIz6dIxVthmRBN7NYDIvtjTfEXSKLBoy/pub?gid=664038301&single=true&output=csv",
+  senate:    "https://docs.google.com/spreadsheets/d/e/2PACX-1vRRD4NzFmxxPMxqIIYrHWeLO7zHJGxtWyCf8y8wL463uDCxzIz6dIxVthmRBN7NYDIvtjTfEXSKLBoy/pub?gid=1277439295&single=true&output=csv",
+  house:     "https://docs.google.com/spreadsheets/d/e/2PACX-1vRRD4NzFmxxPMxqIIYrHWeLO7zHJGxtWyCf8y8wL463uDCxzIz6dIxVthmRBN7NYDIvtjTfEXSKLBoy/pub?gid=38670283&single=true&output=csv",
+  governors: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRRD4NzFmxxPMxqIIYrHWeLO7zHJGxtWyCf8y8wL463uDCxzIz6dIxVthmRBN7NYDIvtjTfEXSKLBoy/pub?gid=19101283&single=true&output=csv",
+  stateLeg:  "https://docs.google.com/spreadsheets/d/e/2PACX-1vRRD4NzFmxxPMxqIIYrHWeLO7zHJGxtWyCf8y8wL463uDCxzIz6dIxVthmRBN7NYDIvtjTfEXSKLBoy/pub?gid=664038301&single=true&output=csv",
 };
 
 /* ═══════════════════════════════════════════════════════════════
@@ -348,9 +348,10 @@ async function fetchSheetData(url) {
 function parseSenateSheet(rows) {
   return rows.map(r => ({
     state:(r.State||"").trim(), incumbent:(r.Incumbent||"").trim(), party:(r.Party||"").trim(),
-    rating:(r.Rating||"Solid R").trim(), open:String(r.Open||"").toLowerCase()==="true"||r.Open===true,
+    rating:(r.Rating||"").trim(), open:String(r.Open||"").toLowerCase()==="true"||r.Open===true,
     note:(r.Note||r.Notes||"").trim(), challenger:(r.Challenger||"").trim(),
-  })).filter(r=>r.state);
+    upIn2026:(r["Up in 2026"]||"").trim().toUpperCase(),
+  })).filter(r=>r.state && r.upIn2026==="YES" && RATINGS.includes(r.rating));
 }
 function parseHouseSheet(rows) {
   return rows.map(r => ({
@@ -362,9 +363,16 @@ function parseHouseSheet(rows) {
 function parseGovSheet(rows) {
   return rows.map(r => ({
     state:(r.State||"").trim(), incumbent:(r.Incumbent||"").trim(), party:(r.Party||"").trim(),
-    rating:(r.Rating||"Solid R").trim(), open:String(r.Open||"").toLowerCase()==="true"||r.Open===true,
+    rating:(r.Rating||"").trim(), open:String(r.Open||"").toLowerCase()==="true"||r.Open===true,
     note:(r.Note||r.Notes||"").trim(),
-  })).filter(r=>r.state);
+    election2026:(r["Election 2026"]||r["Up in 2026"]||"").trim().toUpperCase(),
+  })).filter(r => {
+    if (!r.state) return false;
+    // If the sheet has an Election 2026 / Up in 2026 column, use it to filter
+    if (r.election2026 && r.election2026 !== "" && r.election2026 !== "YES") return false;
+    // Only include rows with a valid rating
+    return RATINGS.includes(r.rating);
+  });
 }
 function parseStateLegSheet(rows) {
   return rows.map(r => ({
