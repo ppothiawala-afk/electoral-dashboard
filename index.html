@@ -147,6 +147,7 @@ const DEFAULT_HOUSE = [
   {state:"CA",district:"47",incumbent:"Dave Min",party:"D",rating:"Likely D",note:""},
   {state:"CO",district:"08",incumbent:"Gabe Evans",party:"R",rating:"Toss-up",note:""},
   {state:"FL",district:"13",incumbent:"Anna Paulina Luna",party:"R",rating:"Likely R",note:""},
+  {state:"FL",district:"20",incumbent:"Vacant (Cherfilus-McCormick resigned)",party:"D",rating:"Solid D",note:"D+22 seat; redistricting may eliminate district"},
   {state:"FL",district:"27",incumbent:"Maria Elvira Salazar",party:"R",rating:"Lean R",note:""},
   {state:"IA",district:"01",incumbent:"Mariannette Miller-Meeks",party:"R",rating:"Toss-up",note:""},
   {state:"IA",district:"02",incumbent:"Open",party:"R",rating:"Lean R",note:"Open seat"},
@@ -437,6 +438,52 @@ function StatBox({label,value,color,sub,delay=0}) {
   </div>;
 }
 
+function HouseBalanceBox({r, d, ind, vacant, delay=0}) {
+  const total = 435;
+  const rPct   = (r / total) * 100;
+  const dPct   = (d / total) * 100;
+  const iPct   = (ind / total) * 100;
+  const vPct   = (vacant / total) * 100;
+  const majPct = (218 / total) * 100;
+  return (
+    <div className="fade-up hover-lift" style={{
+      background:"#fff", borderRadius:12, padding:"18px 20px",
+      borderLeft:"3px solid #ef4444", flex:1, minWidth:160,
+      animationDelay:`${delay}s`, boxShadow:"0 1px 4px rgba(0,0,0,.06)",
+    }}>
+      <div style={{fontSize:10,color:"#9ca3af",textTransform:"uppercase",letterSpacing:"1px",marginBottom:6,fontWeight:600}}>House Balance</div>
+      {/* Big numbers */}
+      <div style={{display:"flex",alignItems:"baseline",gap:6,marginBottom:10}}>
+        <span style={{fontSize:22,fontWeight:800,color:"#b91c1c",fontFamily:"'JetBrains Mono',monospace",lineHeight:1}}>{r}<span style={{fontSize:11,fontWeight:600,marginLeft:2}}>R</span></span>
+        <span style={{fontSize:14,color:"#d1d5db",fontWeight:400}}>·</span>
+        <span style={{fontSize:22,fontWeight:800,color:"#1d4ed8",fontFamily:"'JetBrains Mono',monospace",lineHeight:1}}>{d}<span style={{fontSize:11,fontWeight:600,marginLeft:2}}>D</span></span>
+        <span style={{fontSize:14,color:"#d1d5db",fontWeight:400}}>·</span>
+        <span style={{fontSize:18,fontWeight:800,color:"#7c3aed",fontFamily:"'JetBrains Mono',monospace",lineHeight:1}}>{ind}<span style={{fontSize:11,fontWeight:600,marginLeft:2}}>I</span></span>
+        <span style={{fontSize:14,color:"#d1d5db",fontWeight:400}}>·</span>
+        <span style={{fontSize:15,fontWeight:700,color:"#9ca3af",fontFamily:"'JetBrains Mono',monospace",lineHeight:1}}>{vacant}<span style={{fontSize:10,fontWeight:500,marginLeft:2}}>vac</span></span>
+      </div>
+      {/* Segmented bar */}
+      <div style={{position:"relative",height:14,borderRadius:6,overflow:"hidden",background:"#f3f4f6",display:"flex"}}>
+        <div style={{width:`${rPct}%`,background:"linear-gradient(90deg,#ef4444,#b91c1c)",transition:"width .8s ease"}}/>
+        <div style={{width:`${iPct}%`,background:"#7c3aed",transition:"width .8s ease"}}/>
+        <div style={{width:`${vPct}%`,background:"#e5e7eb",borderLeft:"1px dashed #d1d5db",transition:"width .8s ease"}}/>
+        <div style={{width:`${dPct}%`,background:"linear-gradient(90deg,#3b82f6,#1d4ed8)",transition:"width .8s ease",marginLeft:"auto"}}/>
+        {/* Majority line */}
+        <div style={{position:"absolute",left:`${majPct}%`,top:0,bottom:0,width:"2px",
+          background:"#d97706",boxShadow:"0 0 4px rgba(217,119,6,.6)",zIndex:2}}/>
+      </div>
+      <div style={{display:"flex",justifyContent:"space-between",marginTop:5,fontSize:9,color:"#9ca3af"}}>
+        <span>← R majority</span>
+        <span style={{color:"#d97706",fontWeight:700}}>218 needed</span>
+        <span>D majority →</span>
+      </div>
+      <div style={{fontSize:10,color:"#9ca3af",marginTop:4}}>
+        Kiley (CA-03) caucuses R · {vacant} seats vacant
+      </div>
+    </div>
+  );
+}
+
 function BarChart({d_count,r_count,total,label,majorityLine}) {
   const dPct = (d_count/total)*100;
   const rPct = (r_count/total)*100;
@@ -551,9 +598,11 @@ function App() {
   const triD = TRIFECTAS.filter(t=>t.control==="D").length;
   const triDiv = TRIFECTAS.filter(t=>t.control==="Divided").length;
 
-  // Current chamber balance (seats not up in 2026 + projected holds)
+  // Current chamber balance — verified May 2026
+  // Source: pressgallery.house.gov + web search for post-Feb departures
+  // Kiley (CA-03) switched to Independent Mar 9; 5 vacancies as of late Apr 2026
   const SENATE_CURRENT_D = 47, SENATE_CURRENT_R = 53;
-  const HOUSE_CURRENT_D = 215, HOUSE_CURRENT_R = 220;
+  const HOUSE_CURRENT_D = 212, HOUSE_CURRENT_R = 217, HOUSE_CURRENT_I = 1, HOUSE_VACANCIES = 5;
 
   // ── Dynamic spotlight: top flip candidates from actual data ─────
   const spotlightRaces = useMemo(() => {
@@ -609,7 +658,7 @@ function App() {
           <span>·</span>
           <span>Senate {SENATE_CURRENT_R}R–{SENATE_CURRENT_D}D</span>
           <span>·</span>
-          <span>House {HOUSE_CURRENT_R}R–{HOUSE_CURRENT_D}D</span>
+          <span>House {HOUSE_CURRENT_R}R–{HOUSE_CURRENT_D}D–{HOUSE_CURRENT_I}I · {HOUSE_VACANCIES} vacant</span>
           <span>·</span>
           <span>{senate.length} Senate seats up · {senate.filter(r=>r.open).length} open</span>
           {lastUpdated && <><span>·</span><span>Sheet synced: {lastUpdated}</span></>}
@@ -657,7 +706,7 @@ function App() {
         <div className="stat-row fade-up" style={{display:"flex",gap:10,flexWrap:"wrap",marginBottom:20}}>
           <StatBox label="Senate Seats Up" value={senate.length} color="#d97706" sub={`${senateR}R · ${senateD}D up`} delay={0}/>
           <StatBox label="D Senate Target" value="+4" color="#1d4ed8" sub="Net gain for majority" delay={.05}/>
-          <StatBox label="House Balance" value={`${HOUSE_CURRENT_R}–${HOUSE_CURRENT_D}`} color="#ef4444" sub="R control · D need +3" delay={.1}/>
+          <HouseBalanceBox r={HOUSE_CURRENT_R} d={HOUSE_CURRENT_D} ind={HOUSE_CURRENT_I} vacant={HOUSE_VACANCIES} delay={.1}/>
           <StatBox label="Governor Races" value={govs.length} color="#7c3aed" sub={`${govs.filter(g=>g.open).length} open seats`} delay={.15}/>
         </div>
 
@@ -712,11 +761,14 @@ function App() {
         <div className="two-col" style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16,marginBottom:16}}>
           <div className="fade-up stagger-2" style={{...cardStyle}}>
             <h3 style={sectionLabel}>HOUSE LANDSCAPE</h3>
-            <BarChart d_count={HOUSE_CURRENT_D} r_count={HOUSE_CURRENT_R} total={435} label="435 Seats" majorityLine={218}/>
+            <BarChart d_count={HOUSE_CURRENT_D} r_count={HOUSE_CURRENT_R} total={435} label={`435 Seats (${HOUSE_VACANCIES} vacant)`} majorityLine={218}/>
             <div style={{fontSize:12,color:"#6b7280",marginTop:8,lineHeight:1.8}}>
               <span style={{color:"#d97706",fontWeight:700}}>{houseTossup}</span> Toss-ups &nbsp;·&nbsp;
               <span style={{color:"#1d4ed8",fontWeight:700}}>{house.filter(r=>ratingIndex(r.rating)<=2).length}</span> Lean/Likely D &nbsp;·&nbsp;
               <span style={{color:"#b91c1c",fontWeight:700}}>{house.filter(r=>ratingIndex(r.rating)>=4).length}</span> Lean/Likely R
+            </div>
+            <div style={{fontSize:10,color:"#9ca3af",marginTop:6,fontStyle:"italic"}}>
+              Includes 1 Independent (Kiley, CA-03, caucuses R) · {HOUSE_VACANCIES} vacancies (FL-20, CA-01, GA-14, TX-23, CA-14) · Majority = 218
             </div>
           </div>
           <div className="fade-up stagger-3" style={{...cardStyle}}>
@@ -780,8 +832,8 @@ function App() {
         <div className="stat-row" style={{display:"flex",gap:10,flexWrap:"wrap",marginBottom:18}}>
           <StatBox label="Competitive Tracked" value={house.length} color="#d97706" delay={0}/>
           <StatBox label="Toss-ups" value={houseTossup} color="#d97706" delay={.05}/>
-          <StatBox label="D Need Net" value="+3" color="#1d4ed8" sub="For 218 majority" delay={.1}/>
-          <StatBox label="Current" value={`${HOUSE_CURRENT_R}R–${HOUSE_CURRENT_D}D`} color="#ef4444" delay={.15}/>
+          <StatBox label="D Need Net" value="+6" color="#1d4ed8" sub="For 218 majority" delay={.1}/>
+          <StatBox label="Current" value={`${HOUSE_CURRENT_R}R–${HOUSE_CURRENT_D}D`} color="#ef4444" sub={`+${HOUSE_CURRENT_I}I · ${HOUSE_VACANCIES} vacant`} delay={.15}/>
         </div>
         <div style={{fontSize:11,color:"#9ca3af",marginBottom:12,fontStyle:"italic"}}>
           Showing competitive races only. 435 total seats; safe seats omitted.
