@@ -290,24 +290,31 @@ function SchematicMap({senate, governors, mapMode}) {
         <rect x={0} y={0} width={W} height={H} fill="#fff"/>
         {Object.entries(STATE_GRID).map(([st,[col,row]]) => {
           const rating = stateRatings[st];
-          const fill = rating ? MAP_COLORS[rating] : MAP_COLORS["default"];
+          const notOnBallot = !rating;
+          const fill = rating ? MAP_COLORS[rating] : "#f0f0f5";
           const x = pad + col*(cellW+pad);
           const y = pad + row*(cellH+pad);
           const isCompetitive = rating && ["Lean D","Toss-up","Lean R"].includes(rating);
+          const textColor = notOnBallot ? "#9ca3af"
+            : rating === "Lean D" ? "#1e3a8a"
+            : rating === "Lean R" ? "#7f1d1d"
+            : ["Solid D","Likely D","Toss-up","Likely R","Solid R"].includes(rating) ? "#fff"
+            : "#4b5563";
           return (
             <g key={st}
-              onMouseEnter={e => setTooltip({st, rating: rating||"N/A", x: col, y: row})}
+              onMouseEnter={() => setTooltip({st, rating: rating||null, notOnBallot})}
               onMouseLeave={() => setTooltip(null)}
               style={{cursor:"default"}}
             >
               <rect x={x} y={y} width={cellW} height={cellH} rx={5}
                 fill={fill}
-                stroke={isCompetitive ? "#92400e" : "#fff"}
+                stroke={isCompetitive ? "#92400e" : notOnBallot ? "#e0e0e8" : "#fff"}
                 strokeWidth={isCompetitive ? 2 : 1}
+                opacity={notOnBallot ? 0.5 : 1}
               />
               <text x={x+cellW/2} y={y+cellH/2+4} textAnchor="middle"
-                style={{fontSize:"10px",fontWeight:"700",fontFamily:"Inter,sans-serif",
-                  fill: rating && ["Solid D","Likely D","Solid R","Likely R","Toss-up"].includes(rating) ? "#fff" : "#1a1a2e",
+                style={{fontSize:"10px",fontWeight: notOnBallot ? "400" : "700",fontFamily:"Inter,sans-serif",
+                  fill: textColor,
                   pointerEvents:"none", userSelect:"none"}}
               >{st}</text>
             </g>
@@ -317,11 +324,14 @@ function SchematicMap({senate, governors, mapMode}) {
       {tooltip && (
         <div style={{position:"absolute",top:8,right:8,background:"#1a1a2e",color:"#fff",
           borderRadius:8,padding:"8px 12px",fontSize:11,fontWeight:600,pointerEvents:"none",
-          boxShadow:"0 4px 16px rgba(0,0,0,.2)",zIndex:10}}>
+          boxShadow:"0 4px 16px rgba(0,0,0,.2)",zIndex:10,maxWidth:160}}>
           <div style={{fontSize:13,fontWeight:800}}>{STATE_NAMES[tooltip.st]||tooltip.st}</div>
-          <div style={{marginTop:2,color: tooltip.rating ? (RATING_COLORS[tooltip.rating]?.bg||"#888") : "#888"}}>
-            {tooltip.rating}
-          </div>
+          {tooltip.notOnBallot
+            ? <div style={{marginTop:2,color:"#9ca3af",fontWeight:400}}>Not up in 2026</div>
+            : <div style={{marginTop:2,color: RATING_COLORS[tooltip.rating]?.bg||"#888"}}>
+                {tooltip.rating}
+              </div>
+          }
         </div>
       )}
     </div>
@@ -675,6 +685,10 @@ function App() {
                   {r}
                 </div>
               ))}
+              <div style={{display:"flex",alignItems:"center",gap:4,fontSize:9,color:"#9ca3af"}}>
+                <div style={{width:10,height:10,borderRadius:2,background:"#f0f0f5",border:"1px solid #e0e0e8"}}/>
+                Not up in 2026
+              </div>
             </div>
           </div>
 
