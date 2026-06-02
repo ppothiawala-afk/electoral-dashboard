@@ -64,7 +64,10 @@ const SHEET_URLS = {
   house:     "https://docs.google.com/spreadsheets/d/e/2PACX-1vRRD4NzFmxxPMxqIIYrHWeLO7zHJGxtWyCf8y8wL463uDCxzIz6dIxVthmRBN7NYDIvtjTfEXSKLBoy/pub?gid=38670283&single=true&output=csv",
   governors: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRRD4NzFmxxPMxqIIYrHWeLO7zHJGxtWyCf8y8wL463uDCxzIz6dIxVthmRBN7NYDIvtjTfEXSKLBoy/pub?gid=19101283&single=true&output=csv",
   stateLeg:  "https://docs.google.com/spreadsheets/d/e/2PACX-1vRRD4NzFmxxPMxqIIYrHWeLO7zHJGxtWyCf8y8wL463uDCxzIz6dIxVthmRBN7NYDIvtjTfEXSKLBoy/pub?gid=664038301&single=true&output=csv",
-  constants: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRRD4NzFmxxPMxqIIYrHWeLO7zHJGxtWyCf8y8wL463uDCxzIz6dIxVthmRBN7NYDIvtjTfEXSKLBoy/pub?gid=1270424294&single=true&output=csv",
+  // ⚠️ PASTE YOUR CONSTANTS TAB CSV URL HERE after running setup_constants_tab.py
+  constants: "",
+  // ⚠️ PASTE YOUR NEWS TAB CSV URL HERE after the Monday agent creates the News tab
+  news: "",
 };
 
 /* ═══════════════════════════════════════════════════════════════
@@ -554,6 +557,373 @@ function RaceRow({race, showDistrict, idx=0}) {
 }
 
 /* ═══════════════════════════════════════════════════════════════
+   NEWS / FLIP INTELLIGENCE — Demo data (replaced by sheet on Monday)
+   ═══════════════════════════════════════════════════════════════ */
+
+// Sheet tab: "News"
+// Columns: State, RaceType, Sentiment, SentimentScore, SentimentSummary,
+//          PollNote, Headline1, URL1, Source1, Date1, Headline2, URL2, Source2, Date2,
+//          Headline3, URL3, Source3, Date3, OnDeck, OnDeckNote, LastUpdated
+
+const DEMO_NEWS = [
+  {
+    state:"ME", raceType:"Senate", sentiment:"Lean D Flip", sentimentScore:62,
+    sentimentSummary:"Coverage leans toward a Democratic pickup. Multiple outlets cite Collins's vulnerability in a state Trump lost. Polling mentions are consistent with a tight race trending D.",
+    pollNote:"3 polls in last 30 days: Collins trails by avg 2.1pts",
+    articles:[
+      {headline:"Collins faces toughest reelection yet as Maine shifts left", url:"https://www.politico.com", source:"Politico", date:"Jun 1, 2026"},
+      {headline:"New poll shows Democratic challenger within margin in Maine Senate race", url:"https://www.thehill.com", source:"The Hill", date:"May 29, 2026"},
+      {headline:"Outside groups pour $8M into Maine Senate ahead of summer", url:"https://www.axios.com", source:"Axios", date:"May 27, 2026"},
+    ],
+    onDeck:false, onDeckNote:"", lastUpdated:"2026-06-02",
+  },
+  {
+    state:"OH", raceType:"Senate", sentiment:"Mixed", sentimentScore:50,
+    sentimentSummary:"Ohio is a genuine toss-up. Coverage splits evenly between optimism for both parties. Husted's name ID advantage offset by Brown's strong grassroots organizing.",
+    pollNote:"2 polls: tied within MOE",
+    articles:[
+      {headline:"Ohio Senate a true toss-up as Husted and Brown ramp up", url:"https://www.nytimes.com", source:"NYT", date:"May 31, 2026"},
+      {headline:"Brown banking on labor coalition to overcome Ohio's rightward shift", url:"https://www.washingtonpost.com", source:"WaPo", date:"May 28, 2026"},
+      {headline:"Husted outraises Brown in Q1 but enthusiasm gap persists", url:"https://www.axios.com", source:"Axios", date:"May 25, 2026"},
+    ],
+    onDeck:false, onDeckNote:"", lastUpdated:"2026-06-02",
+  },
+  {
+    state:"MI", raceType:"Senate", sentiment:"Mixed", sentimentScore:48,
+    sentimentSummary:"Open seat with no clear frontrunner in either primary. Coverage focused on the primary contest rather than general election dynamics. Expect sentiment to sharpen post-primary.",
+    pollNote:"No general election polls yet — primary still unsettled",
+    articles:[
+      {headline:"Michigan Senate primary heats up as filing deadline passes", url:"https://www.mlive.com", source:"MLive", date:"Jun 2, 2026"},
+      {headline:"Peters retirement opens door for both parties in Michigan", url:"https://www.politico.com", source:"Politico", date:"May 30, 2026"},
+      {headline:"How Michigan's Senate race could decide chamber control", url:"https://www.cnn.com", source:"CNN", date:"May 26, 2026"},
+    ],
+    onDeck:false, onDeckNote:"", lastUpdated:"2026-06-02",
+  },
+  {
+    state:"NC", raceType:"Senate", sentiment:"Lean D Flip", sentimentScore:65,
+    sentimentSummary:"Roy Cooper's entry transformed this race. Coverage strongly favors a Democratic pickup — Cooper's 8-year track record as governor gives him crossover appeal in a state Trump carried narrowly.",
+    pollNote:"1 poll: Cooper +4 in hypothetical matchup",
+    articles:[
+      {headline:"Roy Cooper enters NC Senate race, instantly becomes frontrunner", url:"https://www.newsobserver.com", source:"News & Observer", date:"Jun 1, 2026"},
+      {headline:"NC Senate: How Cooper's brand could outperform the ticket", url:"https://www.politico.com", source:"Politico", date:"May 29, 2026"},
+      {headline:"Republicans scramble to recruit top-tier candidate as Tillis exits", url:"https://www.thehill.com", source:"The Hill", date:"May 24, 2026"},
+    ],
+    onDeck:false, onDeckNote:"", lastUpdated:"2026-06-02",
+  },
+  {
+    state:"GA", raceType:"Senate", sentiment:"Lean D Flip", sentimentScore:58,
+    sentimentSummary:"Ossoff's incumbency advantage and strong fundraising dominate coverage. Georgia's suburban shift continues to trend Democratic. Republican primary still unsettled, adding uncertainty.",
+    pollNote:"2 polls: Ossoff +3 to +5",
+    articles:[
+      {headline:"Ossoff builds formidable war chest as Georgia Senate race takes shape", url:"https://www.ajc.com", source:"AJC", date:"May 31, 2026"},
+      {headline:"Georgia Senate: Can Republicans find a top-tier challenger for Ossoff?", url:"https://www.politico.com", source:"Politico", date:"May 27, 2026"},
+      {headline:"Suburban Atlanta voters remain key to Georgia Senate outcome", url:"https://www.washingtonpost.com", source:"WaPo", date:"May 23, 2026"},
+    ],
+    onDeck:false, onDeckNote:"", lastUpdated:"2026-06-02",
+  },
+  {
+    state:"NV", raceType:"Governor", sentiment:"Mixed", sentimentScore:52,
+    sentimentSummary:"Lombardo vs. Ford rematch is generating significant coverage but no clear lean. Lombardo's incumbency balanced against Nevada's competitive fundamentals and Ford's strong name ID.",
+    pollNote:"1 poll: tied at 44-44",
+    articles:[
+      {headline:"Nevada governor's race set for Lombardo-Ford rematch", url:"https://www.reviewjournal.com", source:"Las Vegas RJ", date:"Jun 1, 2026"},
+      {headline:"Ford launches aggressive ad campaign targeting Lombardo on education", url:"https://www.politico.com", source:"Politico", date:"May 28, 2026"},
+      {headline:"Nevada once again a premier battleground as both parties invest early", url:"https://www.axios.com", source:"Axios", date:"May 25, 2026"},
+    ],
+    onDeck:false, onDeckNote:"", lastUpdated:"2026-06-02",
+  },
+  // On Deck entries
+  {
+    state:"TX", raceType:"Senate", sentiment:"Lean R Hold", sentimentScore:35,
+    sentimentSummary:"Cornyn faces an unusually well-funded Democratic challenger. Early coverage suggests this race is drawing more attention than 2020. Not yet competitive but flagged for volume spike.",
+    pollNote:"No polls yet",
+    articles:[
+      {headline:"Texas Senate draws surprise fundraising from national Democrats", url:"https://www.texastribune.org", source:"Texas Tribune", date:"May 30, 2026"},
+    ],
+    onDeck:true, onDeckNote:"Fundraising spike + early D investment elevating coverage", lastUpdated:"2026-06-02",
+  },
+  {
+    state:"IA", raceType:"Senate", sentiment:"Lean R Flip", sentimentScore:58,
+    sentimentSummary:"Ernst retirement created an open seat that both sides are watching closely. Coverage volume spiked after multiple strong D candidates entered.",
+    pollNote:"1 early poll: R+3",
+    articles:[
+      {headline:"Iowa open Senate seat draws crowded field after Ernst exit", url:"https://www.desmoinesregister.com", source:"Des Moines Register", date:"Jun 1, 2026"},
+    ],
+    onDeck:true, onDeckNote:"Ernst retirement triggering heavy early coverage — could move to Toss-up", lastUpdated:"2026-06-02",
+  },
+  {
+    state:"WI", raceType:"Governor", sentiment:"Mixed", sentimentScore:50,
+    sentimentSummary:"Fully open seat with Evers retiring. Wisconsin's perennial swing-state status making this a top-watched governor's race nationally.",
+    pollNote:"No polls yet",
+    articles:[
+      {headline:"Wisconsin governor's race wide open with Evers retirement", url:"https://www.jsonline.com", source:"Milwaukee Journal Sentinel", date:"May 29, 2026"},
+    ],
+    onDeck:true, onDeckNote:"High news volume for open swing-state governorship", lastUpdated:"2026-06-02",
+  },
+];
+
+function parseNewsSheet(rows) {
+  if (!rows || !rows.length) return DEMO_NEWS;
+  return rows.map(r => ({
+    state:(r.State||"").trim(),
+    raceType:(r.RaceType||"").trim(),
+    sentiment:(r.Sentiment||"Mixed").trim(),
+    sentimentScore: Number(r.SentimentScore)||50,
+    sentimentSummary:(r.SentimentSummary||"").trim(),
+    pollNote:(r.PollNote||"").trim(),
+    articles:[
+      r.Headline1 ? {headline:r.Headline1, url:r.URL1||"#", source:r.Source1||"", date:r.Date1||""} : null,
+      r.Headline2 ? {headline:r.Headline2, url:r.URL2||"#", source:r.Source2||"", date:r.Date2||""} : null,
+      r.Headline3 ? {headline:r.Headline3, url:r.URL3||"#", source:r.Source3||"", date:r.Date3||""} : null,
+    ].filter(Boolean),
+    onDeck: String(r.OnDeck||"").toLowerCase()==="true",
+    onDeckNote:(r.OnDeckNote||"").trim(),
+    lastUpdated:(r.LastUpdated||"").trim(),
+  })).filter(r=>r.state);
+}
+
+// Sentiment color/label helpers
+function sentimentColor(score) {
+  if (score >= 60) return "#1d4ed8";
+  if (score >= 55) return "#3b82f6";
+  if (score >= 45) return "#d97706";
+  if (score >= 40) return "#ef4444";
+  return "#b91c1c";
+}
+function sentimentLabel(sentiment) {
+  if (!sentiment) return "Mixed";
+  return sentiment;
+}
+
+/* ── Flip Detail Side Panel ──────────────────────────────────────── */
+function FlipDetailPanel({race, newsData, onClose}) {
+  const news = newsData.find(n => n.state === race.state && n.raceType.toLowerCase().includes(race.type?.toLowerCase()||"")) || newsData.find(n => n.state === race.state);
+  const flipColor = race.flipTo === "D" ? "#1d4ed8" : "#b91c1c";
+  const sentScore = news?.sentimentScore || 50;
+  const dPct = Math.min(100, Math.max(0, sentScore));
+  const rPct = 100 - dPct;
+
+  React.useEffect(() => {
+    const handler = (e) => { if(e.key==="Escape") onClose(); };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [onClose]);
+
+  return (
+    <>
+      {/* Backdrop */}
+      <div onClick={onClose} style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.25)",zIndex:200,backdropFilter:"blur(2px)"}}/>
+      {/* Panel */}
+      <div style={{
+        position:"fixed",top:0,right:0,bottom:0,width:"min(480px,95vw)",
+        background:"#fff",zIndex:201,overflowY:"auto",
+        boxShadow:"-4px 0 32px rgba(0,0,0,0.15)",
+        animation:"slideInRight .25s ease",
+      }}>
+        <style>{`@keyframes slideInRight{from{transform:translateX(100%)}to{transform:translateX(0)}}`}</style>
+
+        {/* Header */}
+        <div style={{
+          background: race.flipTo==="D" ? "linear-gradient(135deg,#1e3a8a,#2563eb)" : "linear-gradient(135deg,#7f1d1d,#dc2626)",
+          padding:"24px 24px 20px", color:"#fff", position:"sticky", top:0, zIndex:10,
+        }}>
+          <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start"}}>
+            <div>
+              <div style={{fontSize:11,opacity:0.7,fontWeight:600,letterSpacing:"1px",textTransform:"uppercase",marginBottom:4}}>
+                {race.type} · Likely Flip
+              </div>
+              <div style={{fontSize:26,fontWeight:800,letterSpacing:"-0.5px"}}>
+                {STATE_NAMES[race.state]||race.state}
+              </div>
+              <div style={{display:"flex",gap:8,alignItems:"center",marginTop:8}}>
+                <RatingBadge rating={race.rating}/>
+                <span style={{fontSize:12,background:"rgba(255,255,255,0.2)",padding:"3px 10px",borderRadius:4,fontWeight:700}}>
+                  → {race.flipTo} flip
+                </span>
+              </div>
+            </div>
+            <button onClick={onClose} style={{
+              background:"rgba(255,255,255,0.15)",border:"none",color:"#fff",
+              width:32,height:32,borderRadius:"50%",fontSize:18,cursor:"pointer",
+              display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,
+            }}>×</button>
+          </div>
+        </div>
+
+        <div style={{padding:"20px 24px",display:"flex",flexDirection:"column",gap:20}}>
+
+          {/* 1. Race Snapshot */}
+          <div>
+            <div style={{fontSize:10,fontWeight:700,color:"#9ca3af",letterSpacing:"1px",textTransform:"uppercase",marginBottom:10}}>Race Snapshot</div>
+            <div style={{background:"#f8f9fb",borderRadius:10,padding:"14px 16px",display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
+              {[
+                ["Incumbent", race.incumbent||"Open"],
+                ["Party", race.party==="D"?"Democrat":"Republican"],
+                ["Seat Type", race.open?"Open (no incumbent)":"Held seat"],
+                ["Challenger", race.challenger||"TBD"],
+                ["Current Rating", race.rating],
+                ["Flip Direction", `→ ${race.flipTo}`],
+              ].map(([label,val])=>(
+                <div key={label}>
+                  <div style={{fontSize:9,color:"#9ca3af",fontWeight:600,textTransform:"uppercase",letterSpacing:"0.5px"}}>{label}</div>
+                  <div style={{fontSize:12,fontWeight:600,color:"#111827",marginTop:2}}>{val}</div>
+                </div>
+              ))}
+            </div>
+            {race.note && <div style={{fontSize:11,color:"#6b7280",fontStyle:"italic",marginTop:8,padding:"8px 12px",background:"#fffbeb",borderRadius:6,borderLeft:"3px solid #d97706"}}>{race.note}</div>}
+          </div>
+
+          {/* 2. Sentiment Breakdown */}
+          {news && (
+            <div>
+              <div style={{fontSize:10,fontWeight:700,color:"#9ca3af",letterSpacing:"1px",textTransform:"uppercase",marginBottom:10}}>News Sentiment</div>
+              <div style={{background:"#f8f9fb",borderRadius:10,padding:"14px 16px"}}>
+                <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8}}>
+                  <span style={{fontSize:13,fontWeight:700,color:sentimentColor(sentScore)}}>{news.sentiment}</span>
+                  <span style={{fontSize:11,color:"#9ca3af"}}>{sentScore}% D-favorable coverage</span>
+                </div>
+                {/* Sentiment bar */}
+                <div style={{position:"relative",height:10,borderRadius:5,overflow:"hidden",background:"#e5e7eb",display:"flex",marginBottom:10}}>
+                  <div style={{width:`${dPct}%`,background:"linear-gradient(90deg,#3b82f6,#1d4ed8)",transition:"width 1s ease"}}/>
+                  <div style={{width:`${rPct}%`,background:"linear-gradient(90deg,#ef4444,#b91c1c)",transition:"width 1s ease"}}/>
+                </div>
+                <div style={{display:"flex",justifyContent:"space-between",fontSize:9,color:"#9ca3af",marginBottom:12}}>
+                  <span>← D-favorable</span><span>R-favorable →</span>
+                </div>
+                <p style={{fontSize:12,color:"#374151",lineHeight:1.6,margin:0}}>{news.sentimentSummary}</p>
+              </div>
+            </div>
+          )}
+
+          {/* 3. Polling Tracker */}
+          {news?.pollNote && (
+            <div>
+              <div style={{fontSize:10,fontWeight:700,color:"#9ca3af",letterSpacing:"1px",textTransform:"uppercase",marginBottom:10}}>Polling Signal</div>
+              <div style={{background:"#f0fdf4",borderRadius:10,padding:"14px 16px",borderLeft:"3px solid #16a34a"}}>
+                <div style={{fontSize:12,color:"#166534",fontWeight:600,lineHeight:1.5}}>{news.pollNote}</div>
+              </div>
+            </div>
+          )}
+
+          {/* 4. Articles */}
+          {news?.articles?.length > 0 && (
+            <div>
+              <div style={{fontSize:10,fontWeight:700,color:"#9ca3af",letterSpacing:"1px",textTransform:"uppercase",marginBottom:10}}>
+                Recent Coverage <span style={{fontWeight:400,textTransform:"none",letterSpacing:0}}>· updated {news.lastUpdated}</span>
+              </div>
+              <div style={{display:"flex",flexDirection:"column",gap:8}}>
+                {news.articles.map((a,i)=>(
+                  <a key={i} href={a.url} target="_blank" rel="noopener noreferrer" style={{
+                    display:"block",textDecoration:"none",
+                    background:"#f8f9fb",borderRadius:8,padding:"12px 14px",
+                    border:"1px solid #e5e7eb",transition:"border-color .15s,box-shadow .15s",
+                  }}
+                  onMouseEnter={e=>{e.currentTarget.style.borderColor="#3b82f6";e.currentTarget.style.boxShadow="0 2px 8px rgba(59,130,246,.12)"}}
+                  onMouseLeave={e=>{e.currentTarget.style.borderColor="#e5e7eb";e.currentTarget.style.boxShadow="none"}}
+                  >
+                    <div style={{fontSize:12,fontWeight:600,color:"#111827",lineHeight:1.45,marginBottom:5}}>{a.headline}</div>
+                    <div style={{display:"flex",gap:8,alignItems:"center"}}>
+                      <span style={{fontSize:10,color:"#6b7280",fontWeight:600}}>{a.source}</span>
+                      {a.date && <><span style={{color:"#d1d5db"}}>·</span><span style={{fontSize:10,color:"#9ca3af"}}>{a.date}</span></>}
+                      <span style={{marginLeft:"auto",fontSize:10,color:"#3b82f6"}}>↗</span>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div style={{fontSize:10,color:"#d1d5db",textAlign:"center",paddingTop:8,borderTop:"1px solid #f3f4f6"}}>
+            Data updated weekly by the Monday cron job · Press Esc to close
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+/* ── Flip Summary Card (clickable) ───────────────────────────────── */
+function FlipCard({race, newsData, onClick}) {
+  const news = newsData.find(n => n.state===race.state && n.raceType.toLowerCase().includes(race.type?.toLowerCase()||"")) || newsData.find(n=>n.state===race.state && !n.onDeck);
+  const score = news?.sentimentScore || 50;
+  const accentColor = RATING_COLORS[race.rating]?.bg || "#e5e7eb";
+  const flipColor = race.flipTo==="D" ? "#1d4ed8" : "#b91c1c";
+
+  return (
+    <div onClick={onClick} className="hover-lift" style={{
+      background:"#fff", borderRadius:10, padding:"14px 16px",
+      border:`1px solid #e5e7eb`,
+      borderLeft:`3px solid ${accentColor}`,
+      cursor:"pointer", position:"relative",
+      transition:"box-shadow .18s,transform .18s",
+    }}>
+      {/* Top row */}
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:6,gap:4}}>
+        <div>
+          <span style={{fontWeight:800,fontSize:13,color:"#111827"}}>{race.state}</span>
+          <span style={{fontSize:11,color:"#6b7280",marginLeft:5}}>{race.type}</span>
+        </div>
+        <span style={{fontSize:9,color:"#fff",fontWeight:700,background:flipColor,
+          padding:"2px 7px",borderRadius:3,whiteSpace:"nowrap",flexShrink:0}}>→ {race.flipTo}</span>
+      </div>
+
+      {/* Incumbent */}
+      <div style={{fontSize:11,color:"#6b7280",marginBottom:8,whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}>
+        {race.incumbent||"Open"}{race.challenger ? ` vs ${race.challenger}` : ""}
+      </div>
+
+      {/* Rating + sentiment row */}
+      <div style={{display:"flex",alignItems:"center",gap:6,marginBottom:news?.articles?.[0] ? 10 : 0}}>
+        <RatingBadge rating={race.rating}/>
+        {news && (
+          <span style={{fontSize:10,fontWeight:700,color:sentimentColor(score),
+            background:`${sentimentColor(score)}15`,padding:"2px 7px",borderRadius:3}}>
+            {news.sentiment}
+          </span>
+        )}
+      </div>
+
+      {/* Headline teaser */}
+      {news?.articles?.[0] && (
+        <div style={{fontSize:10,color:"#6b7280",lineHeight:1.4,borderTop:"1px solid #f3f4f6",paddingTop:8,
+          display:"-webkit-box",WebkitLineClamp:2,WebkitBoxOrient:"vertical",overflow:"hidden"}}>
+          {news.articles[0].headline}
+        </div>
+      )}
+
+      {/* Deep dive affordance */}
+      <div style={{display:"flex",alignItems:"center",justifyContent:"flex-end",marginTop:8,gap:4}}>
+        <span style={{fontSize:10,color:"#3b82f6",fontWeight:600}}>Deep Dive →</span>
+      </div>
+    </div>
+  );
+}
+
+/* ── On Deck Card ────────────────────────────────────────────────── */
+function OnDeckCard({item}) {
+  return (
+    <div className="hover-lift" style={{
+      background:"#fff",borderRadius:8,padding:"12px 14px",
+      border:"1px solid #e5e7eb",borderLeft:"3px solid #d97706",
+    }}>
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:4}}>
+        <span style={{fontWeight:800,fontSize:12,color:"#111827"}}>{item.state}</span>
+        <span style={{fontSize:9,background:"#fef3c7",color:"#92400e",padding:"2px 6px",borderRadius:3,fontWeight:700}}>ON DECK</span>
+      </div>
+      <div style={{fontSize:10,color:"#6b7280",marginBottom:6}}>{item.raceType}</div>
+      <div style={{fontSize:11,color:"#374151",lineHeight:1.45}}>{item.onDeckNote}</div>
+      {item.articles?.[0] && (
+        <a href={item.articles[0].url} target="_blank" rel="noopener noreferrer"
+          style={{display:"block",marginTop:8,fontSize:10,color:"#3b82f6",textDecoration:"none",
+            fontWeight:600,whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}>
+          ↗ {item.articles[0].headline}
+        </a>
+      )}
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════
    MAIN APP
    ═══════════════════════════════════════════════════════════════ */
 
@@ -572,6 +942,8 @@ function App() {
   const [govs, setGovs] = useState(DEFAULT_GOVS);
   const [stLeg, setStLeg] = useState(DEFAULT_STATELEG);
   const [sheetConstants, setSheetConstants] = useState({});
+  const [newsData, setNewsData] = useState(DEMO_NEWS);
+  const [selectedFlip, setSelectedFlip] = useState(null);
 
   useEffect(() => {
     async function loadSheets() {
@@ -587,6 +959,10 @@ function App() {
       if(SHEET_URLS.constants){
         const cd = await fetchSheetData(SHEET_URLS.constants);
         if(cd){setSheetConstants(parseConstantsSheet(cd));anyLoaded=true;}
+      }
+      if(SHEET_URLS.news){
+        const nd = await fetchSheetData(SHEET_URLS.news);
+        if(nd && nd.length){ setNewsData(parseNewsSheet(nd)); }
       }
       if(anyLoaded){setDataSource("google-sheets");setLastUpdated(new Date().toLocaleString());}
     }
@@ -804,32 +1180,45 @@ function App() {
           </div>
         </div>
 
-        {/* Dynamic Spotlight */}
+        {/* Likely Flips — clickable cards */}
         <div className="fade-up stagger-3" style={{...cardStyle,border:"1px solid #fef3c7",background:"#fffdf5"}}>
-          <h3 style={{...sectionLabel,color:"#92400e",marginBottom:14}}>
-            🔥 SPOTLIGHT — MOST LIKELY FLIPS <span style={{fontSize:9,fontWeight:500,color:"#9ca3af",marginLeft:8}}>auto-generated from current ratings</span>
-          </h3>
+          <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:14}}>
+            <h3 style={{...sectionLabel,color:"#92400e",margin:0}}>
+              🔥 MOST LIKELY FLIPS
+            </h3>
+            <span style={{fontSize:10,color:"#9ca3af"}}>Click any race for deep dive</span>
+          </div>
           <div className="three-col" style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:10}}>
             {spotlightRaces.length === 0 && <div style={{color:"#9ca3af",fontSize:12,gridColumn:"1/-1"}}>No flip candidates found in current data.</div>}
             {spotlightRaces.map((s,i)=>(
-              <div key={i} className="hover-lift" style={{
-                background:"#fff",borderRadius:8,padding:"12px 14px",
-                border:`1px solid ${RATING_COLORS[s.rating]?.bg||"#e5e7eb"}22`,
-                borderLeft:`3px solid ${RATING_COLORS[s.rating]?.bg||"#e5e7eb"}`
-              }}>
-                <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:5,gap:4}}>
-                  <span style={{fontWeight:700,fontSize:12,color:"#111827"}}>{s.state} {s.type}</span>
-                  <span style={{fontSize:9,color:"#fff",fontWeight:700,
-                    background:s.flipTo==="D"?"#1d4ed8":"#b91c1c",
-                    padding:"2px 6px",borderRadius:3,whiteSpace:"nowrap"}}>→ {s.flipTo}</span>
-                </div>
-                <div style={{fontSize:10,color:"#6b7280",marginBottom:6}}>{s.incumbent}</div>
-                {s.challenger && <div style={{fontSize:10,color:"#2563eb",marginBottom:6}}>vs {s.challenger}</div>}
-                <RatingBadge rating={s.rating}/>
-              </div>
+              <FlipCard key={i} race={s} newsData={newsData} onClick={()=>setSelectedFlip(s)}/>
             ))}
           </div>
         </div>
+
+        {/* On Deck */}
+        {newsData.filter(n=>n.onDeck).length > 0 && (
+          <div className="fade-up stagger-4" style={{...cardStyle,border:"1px solid #fef9c3",background:"#fefce8"}}>
+            <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:14}}>
+              <h3 style={{...sectionLabel,color:"#713f12",margin:0}}>📡 ON DECK</h3>
+              <span style={{fontSize:10,color:"#9ca3af"}}>Races heating up based on news volume this week</span>
+            </div>
+            <div className="three-col" style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:10}}>
+              {newsData.filter(n=>n.onDeck).map((item,i)=>(
+                <OnDeckCard key={i} item={item}/>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Flip detail panel */}
+        {selectedFlip && (
+          <FlipDetailPanel
+            race={selectedFlip}
+            newsData={newsData}
+            onClose={()=>setSelectedFlip(null)}
+          />
+        )}
       </div>}
 
       {/* ══════════ SENATE ══════════ */}
