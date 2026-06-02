@@ -64,6 +64,7 @@ const SHEET_URLS = {
   house:     "https://docs.google.com/spreadsheets/d/e/2PACX-1vRRD4NzFmxxPMxqIIYrHWeLO7zHJGxtWyCf8y8wL463uDCxzIz6dIxVthmRBN7NYDIvtjTfEXSKLBoy/pub?gid=38670283&single=true&output=csv",
   governors: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRRD4NzFmxxPMxqIIYrHWeLO7zHJGxtWyCf8y8wL463uDCxzIz6dIxVthmRBN7NYDIvtjTfEXSKLBoy/pub?gid=19101283&single=true&output=csv",
   stateLeg:  "https://docs.google.com/spreadsheets/d/e/2PACX-1vRRD4NzFmxxPMxqIIYrHWeLO7zHJGxtWyCf8y8wL463uDCxzIz6dIxVthmRBN7NYDIvtjTfEXSKLBoy/pub?gid=664038301&single=true&output=csv",
+  constants: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRRD4NzFmxxPMxqIIYrHWeLO7zHJGxtWyCf8y8wL463uDCxzIz6dIxVthmRBN7NYDIvtjTfEXSKLBoy/pub?gid=1270424294&single=true&output=csv",
 };
 
 /* ═══════════════════════════════════════════════════════════════
@@ -385,6 +386,18 @@ function parseGovSheet(rows) {
     return RATINGS.includes(r.rating);
   });
 }
+function parseConstantsSheet(rows) {
+  // Constants tab has columns: Key, Value, Notes
+  // Returns a flat object: {HOUSE_R: 217, HOUSE_D: 212, ...}
+  const result = {};
+  rows.forEach(r => {
+    const key = (r.Key || r.key || Object.values(r)[0] || "").trim();
+    const val = (r.Value !== undefined ? r.Value : Object.values(r)[1]);
+    if (key) result[key] = val;
+  });
+  return result;
+}
+
 function parseStateLegSheet(rows) {
   return rows.map(r => ({
     state:(r.State||"").trim(), senateControl:(r.SenateControl||"").trim(),
@@ -558,6 +571,7 @@ function App() {
   const [house, setHouse] = useState(DEFAULT_HOUSE);
   const [govs, setGovs] = useState(DEFAULT_GOVS);
   const [stLeg, setStLeg] = useState(DEFAULT_STATELEG);
+  const [sheetConstants, setSheetConstants] = useState({});
 
   useEffect(() => {
     async function loadSheets() {
@@ -570,6 +584,10 @@ function App() {
       if(gd){setGovs(parseGovSheet(gd));anyLoaded=true;}
       const ld = await fetchSheetData(SHEET_URLS.stateLeg);
       if(ld){setStLeg(parseStateLegSheet(ld));anyLoaded=true;}
+      if(SHEET_URLS.constants){
+        const cd = await fetchSheetData(SHEET_URLS.constants);
+        if(cd){setSheetConstants(parseConstantsSheet(cd));anyLoaded=true;}
+      }
       if(anyLoaded){setDataSource("google-sheets");setLastUpdated(new Date().toLocaleString());}
     }
     loadSheets();
@@ -598,11 +616,15 @@ function App() {
   const triD = TRIFECTAS.filter(t=>t.control==="D").length;
   const triDiv = TRIFECTAS.filter(t=>t.control==="Divided").length;
 
-  // Current chamber balance — verified May 2026
-  // Source: pressgallery.house.gov + web search for post-Feb departures
-  // Kiley (CA-03) switched to Independent Mar 9; 5 vacancies as of late Apr 2026
-  const SENATE_CURRENT_D = 47, SENATE_CURRENT_R = 53;
-  const HOUSE_CURRENT_D = 212, HOUSE_CURRENT_R = 217, HOUSE_CURRENT_I = 1, HOUSE_VACANCIES = 5;
+  // Chamber balance — live from Constants tab if connected, else hardcoded fallback
+  // Fallback values verified June 2026 via pressgallery.house.gov
+  const SENATE_CURRENT_R = Number(sheetConstants.SENATE_R) || 53;
+  const SENATE_CURRENT_D = Number(sheetConstants.SENATE_D) || 47;
+  const HOUSE_CURRENT_R  = Number(sheetConstants.HOUSE_R)  || 217;
+  const HOUSE_CURRENT_D  = Number(sheetConstants.HOUSE_D)  || 212;
+  const HOUSE_CURRENT_I  = Number(sheetConstants.HOUSE_I)  || 1;
+  const HOUSE_VACANCIES  = Number(sheetConstants.HOUSE_VACANCIES) || 5;
+  const constantsLastUpdated = sheetConstants.LAST_UPDATED || null;
 
   // ── Dynamic spotlight: top flip candidates from actual data ─────
   const spotlightRaces = useMemo(() => {
@@ -658,7 +680,7 @@ function App() {
           <span>·</span>
           <span>Senate {SENATE_CURRENT_R}R–{SENATE_CURRENT_D}D</span>
           <span>·</span>
-          <span>House {HOUSE_CURRENT_R}R–{HOUSE_CURRENT_D}D–{HOUSE_CURRENT_I}I · {HOUSE_VACANCIES} vacant</span>
+          <span>House {HOUSE_CURRENT_R}R–{HOUSE_CURRENT_D}D–{HOUSE_CURRENT_I}I · {HOUSE_VACANCIES} vacant{constantsLastUpdated ? ` (as of ${constantsLastUpdated})` : ""}</span>
           <span>·</span>
           <span>{senate.length} Senate seats up · {senate.filter(r=>r.open).length} open</span>
           {lastUpdated && <><span>·</span><span>Sheet synced: {lastUpdated}</span></>}
