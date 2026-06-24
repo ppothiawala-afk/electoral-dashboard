@@ -458,7 +458,7 @@ function StatBox({label,value,color,sub,delay=0}) {
   return <div className="fade-up hover-lift" style={{
     background:"#fff",borderRadius:12,padding:"18px 20px",
     borderLeft:`3px solid ${color}`,flex:1,minWidth:140,animationDelay:`${delay}s`,
-    boxShadow:"0 1px 4px rgba(0,0,0,.06)",
+    boxShadow:"0 1px 4px rgba(0,0,0,.06)",display:"flex",flexDirection:"column",justifyContent:"center",
   }}>
     <div style={{fontSize:10,color:"#9ca3af",textTransform:"uppercase",letterSpacing:"1px",marginBottom:6,fontWeight:600}}>{label}</div>
     <div style={{fontSize:28,fontWeight:800,color,fontFamily:"'JetBrains Mono',monospace",lineHeight:1}}>{value}</div>
@@ -478,6 +478,7 @@ function HouseBalanceBox({r, d, ind, vacant, delay=0}) {
       background:"#fff", borderRadius:12, padding:"18px 20px",
       borderLeft:"3px solid #ef4444", flex:1, minWidth:160,
       animationDelay:`${delay}s`, boxShadow:"0 1px 4px rgba(0,0,0,.06)",
+      display:"flex", flexDirection:"column", justifyContent:"center",
     }}>
       <div style={{fontSize:10,color:"#9ca3af",textTransform:"uppercase",letterSpacing:"1px",marginBottom:6,fontWeight:600}}>House Balance</div>
       {/* Big numbers */}
@@ -1112,17 +1113,41 @@ function App() {
 
       {/* ══════════ OVERVIEW ══════════ */}
       {tab==="Overview" && <div>
-        {/* Stat row */}
-        <div className="stat-row fade-up" style={{display:"flex",gap:10,flexWrap:"wrap",marginBottom:20,alignItems:"stretch"}}>
-          <StatBox label="Senate Seats Up" value={senate.length} color="#d97706" sub={`${senateR}R · ${senateD}D up`} delay={0}/>
-          <StatBox label="D Senate Target" value="+4" color="#1d4ed8" sub="Net gain for majority" delay={.05}/>
-          <HouseBalanceBox r={HOUSE_CURRENT_R} d={HOUSE_CURRENT_D} ind={HOUSE_CURRENT_I} vacant={HOUSE_VACANCIES} delay={.1}/>
-          <StatBox label="Governor Races" value={govs.length} color="#7c3aed" sub={`${govs.filter(g=>g.open).length} open seats`} delay={.15}/>
+
+        {/* ROW 1: Senate Landscape + House Landscape side by side */}
+        <div className="two-col fade-up" style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16,marginBottom:16}}>
+          <div style={{...cardStyle}}>
+            <h3 style={{...sectionLabel,fontSize:14,letterSpacing:"0.5px",color:"#1a1a2e"}}>CURRENT SENATE LANDSCAPE</h3>
+            <BarChart d_count={SENATE_CURRENT_D} r_count={SENATE_CURRENT_R} total={100} label="100 Seats" majorityLine={50}/>
+            <div style={{fontSize:11,color:"#6b7280",marginBottom:12}}>2026 seats on the ballot</div>
+            <BarChart d_count={senate.filter(r=>ratingIndex(r.rating)<=2).length}
+              r_count={senate.filter(r=>ratingIndex(r.rating)>=4).length}
+              total={senate.length} label={`${senate.length} Seats Up`}/>
+            <div style={{display:"flex",gap:5,flexWrap:"wrap",marginTop:8}}>
+              {RATINGS.map(r=>{const c=senate.filter(s=>s.rating===r).length;
+                return c?<span key={r} style={{fontSize:10,color:RATING_COLORS[r]?.text,background:RATING_COLORS[r]?.bg,
+                  padding:"2px 7px",borderRadius:4,fontWeight:700}}>{r}: {c}</span>:null;
+              })}
+            </div>
+          </div>
+          <div style={{...cardStyle}}>
+            <h3 style={{...sectionLabel,fontSize:14,letterSpacing:"0.5px",color:"#1a1a2e"}}>HOUSE LANDSCAPE</h3>
+            <BarChart d_count={HOUSE_CURRENT_D} r_count={HOUSE_CURRENT_R} total={435} label={`435 Seats (${HOUSE_VACANCIES} vacant)`} majorityLine={218}/>
+            <div style={{fontSize:12,color:"#6b7280",marginTop:8,lineHeight:1.8}}>
+              <span style={{color:"#d97706",fontWeight:700}}>{houseTossup}</span> Toss-ups &nbsp;·&nbsp;
+              <span style={{color:"#1d4ed8",fontWeight:700}}>{house.filter(r=>ratingIndex(r.rating)<=2).length}</span> Lean/Likely D &nbsp;·&nbsp;
+              <span style={{color:"#b91c1c",fontWeight:700}}>{house.filter(r=>ratingIndex(r.rating)>=4).length}</span> Lean/Likely R
+            </div>
+            <div style={{fontSize:10,color:"#9ca3af",marginTop:6,fontStyle:"italic"}}>
+              Includes 1 Independent (Kiley, CA-03, caucuses R) · {HOUSE_VACANCIES} vacancies (FL-20, CA-01, GA-14, TX-23, CA-14) · Majority = 218
+            </div>
+          </div>
         </div>
 
-        {/* Map + Senate projection */}
-        <div className="two-col" style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16,marginBottom:16}}>
-          <div className="fade-up stagger-1 map-wrap" style={{...cardStyle}}>
+        {/* ROW 2: Race Map (left) + 4 stat boxes stacked (right) */}
+        <div className="two-col fade-up stagger-1" style={{display:"grid",gridTemplateColumns:"1fr 340px",gap:16,marginBottom:16,alignItems:"stretch"}}>
+          {/* Race Map */}
+          <div className="map-wrap" style={{...cardStyle}}>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:14}}>
               <h3 style={sectionLabel}>RACE MAP</h3>
               <div style={{display:"flex",gap:4}}>
@@ -1136,7 +1161,6 @@ function App() {
               </div>
             </div>
             <SchematicMap senate={senate} governors={govs} house={house} mapMode={mapMode}/>
-            {/* Legend */}
             <div style={{display:"flex",flexWrap:"wrap",gap:6,marginTop:12,justifyContent:"center"}}>
               {RATINGS.map(r=>(
                 <div key={r} style={{display:"flex",alignItems:"center",gap:4,fontSize:9,color:"#6b7280"}}>
@@ -1151,33 +1175,12 @@ function App() {
             </div>
           </div>
 
-          <div className="fade-up stagger-2" style={{...cardStyle}}>
-            <h3 style={{...sectionLabel,fontSize:14,letterSpacing:"0.5px",color:"#1a1a2e"}}>CURRENT SENATE LANDSCAPE</h3>
-            <BarChart d_count={SENATE_CURRENT_D} r_count={SENATE_CURRENT_R} total={100} label="100 Seats" majorityLine={50}/>
-            <div style={{fontSize:11,color:"#6b7280",marginBottom:12}}>2026 seats on the ballot</div>
-            <BarChart d_count={senate.filter(r=>ratingIndex(r.rating)<=2).length}
-              r_count={senate.filter(r=>ratingIndex(r.rating)>=4).length}
-              total={senate.length} label={`${senate.length} Seats Up`}/>
-            <div style={{display:"flex",gap:5,flexWrap:"wrap",marginTop:8}}>
-              {RATINGS.map(r=>{const c=senate.filter(s=>s.rating===r).length;
-                return c?<span key={r} style={{fontSize:10,color:RATING_COLORS[r]?.text,background:RATING_COLORS[r]?.bg,
-                  padding:"2px 7px",borderRadius:4,fontWeight:700}}>{r}: {c}</span>:null;
-              })}
-            </div>
-          </div>
-        </div>
-
-        {/* House Landscape — full row */}
-        <div className="fade-up stagger-2" style={{...cardStyle,marginBottom:16}}>
-          <h3 style={sectionLabel}>HOUSE LANDSCAPE</h3>
-          <BarChart d_count={HOUSE_CURRENT_D} r_count={HOUSE_CURRENT_R} total={435} label={`435 Seats (${HOUSE_VACANCIES} vacant)`} majorityLine={218}/>
-          <div style={{fontSize:12,color:"#6b7280",marginTop:8,lineHeight:1.8}}>
-            <span style={{color:"#d97706",fontWeight:700}}>{houseTossup}</span> Toss-ups &nbsp;·&nbsp;
-            <span style={{color:"#1d4ed8",fontWeight:700}}>{house.filter(r=>ratingIndex(r.rating)<=2).length}</span> Lean/Likely D &nbsp;·&nbsp;
-            <span style={{color:"#b91c1c",fontWeight:700}}>{house.filter(r=>ratingIndex(r.rating)>=4).length}</span> Lean/Likely R
-          </div>
-          <div style={{fontSize:10,color:"#9ca3af",marginTop:6,fontStyle:"italic"}}>
-            Includes 1 Independent (Kiley, CA-03, caucuses R) · {HOUSE_VACANCIES} vacancies (FL-20, CA-01, GA-14, TX-23, CA-14) · Majority = 218
+          {/* 4 stat boxes stacked vertically */}
+          <div style={{display:"flex",flexDirection:"column",gap:10}}>
+            <StatBox label="Senate Seats Up" value={senate.length} color="#d97706" sub={`${senateR}R · ${senateD}D up`} delay={0}/>
+            <StatBox label="D Senate Target" value="+4" color="#1d4ed8" sub="Net gain for majority" delay={.05}/>
+            <HouseBalanceBox r={HOUSE_CURRENT_R} d={HOUSE_CURRENT_D} ind={HOUSE_CURRENT_I} vacant={HOUSE_VACANCIES} delay={.1}/>
+            <StatBox label="Governor Races" value={govs.length} color="#7c3aed" sub={`${govs.filter(g=>g.open).length} open seats`} delay={.15}/>
           </div>
         </div>
 
