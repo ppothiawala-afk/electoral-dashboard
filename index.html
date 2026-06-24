@@ -274,15 +274,27 @@ const STATE_GRID = {
   FL:[8,6],
 };
 
-function SchematicMap({senate, governors, mapMode}) {
+function SchematicMap({senate, governors, house, mapMode}) {
   const [tooltip, setTooltip] = React.useState(null);
 
   const stateRatings = useMemo(() => {
     const map = {};
-    const source = mapMode === "senate" ? senate : governors;
-    source.forEach(r => { map[r.state] = r.rating; });
+    if (mapMode === "senate") {
+      senate.forEach(r => { map[r.state] = r.rating; });
+    } else if (mapMode === "governors") {
+      governors.forEach(r => { map[r.state] = r.rating; });
+    } else if (mapMode === "house") {
+      // For House map, use the most competitive rating per state
+      const priority = ["Toss-up","Lean D","Lean R","Likely D","Likely R","Solid D","Solid R"];
+      house.forEach(r => {
+        const existing = map[r.state];
+        if (!existing || priority.indexOf(r.rating) < priority.indexOf(existing)) {
+          map[r.state] = r.rating;
+        }
+      });
+    }
     return map;
-  }, [senate, governors, mapMode]);
+  }, [senate, governors, house, mapMode]);
 
   const cellW = 38, cellH = 38, pad = 4;
   const cols = 12, rows = 8;
@@ -1101,7 +1113,7 @@ function App() {
       {/* ══════════ OVERVIEW ══════════ */}
       {tab==="Overview" && <div>
         {/* Stat row */}
-        <div className="stat-row fade-up" style={{display:"flex",gap:10,flexWrap:"wrap",marginBottom:20}}>
+        <div className="stat-row fade-up" style={{display:"flex",gap:10,flexWrap:"wrap",marginBottom:20,alignItems:"stretch"}}>
           <StatBox label="Senate Seats Up" value={senate.length} color="#d97706" sub={`${senateR}R · ${senateD}D up`} delay={0}/>
           <StatBox label="D Senate Target" value="+4" color="#1d4ed8" sub="Net gain for majority" delay={.05}/>
           <HouseBalanceBox r={HOUSE_CURRENT_R} d={HOUSE_CURRENT_D} ind={HOUSE_CURRENT_I} vacant={HOUSE_VACANCIES} delay={.1}/>
@@ -1114,16 +1126,16 @@ function App() {
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:14}}>
               <h3 style={sectionLabel}>RACE MAP</h3>
               <div style={{display:"flex",gap:4}}>
-                {["senate","governors"].map(m=>(
+                {[["senate","Senate"],["house","House"],["governors","Govs"]].map(([m,label])=>(
                   <button key={m} onClick={()=>setMapMode(m)} style={{
                     fontSize:10,fontWeight:700,padding:"3px 10px",borderRadius:12,border:"1px solid #e5e7eb",
                     background:mapMode===m?"#1a1a2e":"#fff",color:mapMode===m?"#fff":"#6b7280",
                     cursor:"pointer",textTransform:"capitalize"
-                  }}>{m==="senate"?"Senate":"Govs"}</button>
+                  }}>{label}</button>
                 ))}
               </div>
             </div>
-            <SchematicMap senate={senate} governors={govs} mapMode={mapMode}/>
+            <SchematicMap senate={senate} governors={govs} house={house} mapMode={mapMode}/>
             {/* Legend */}
             <div style={{display:"flex",flexWrap:"wrap",gap:6,marginTop:12,justifyContent:"center"}}>
               {RATINGS.map(r=>(
@@ -1140,7 +1152,7 @@ function App() {
           </div>
 
           <div className="fade-up stagger-2" style={{...cardStyle}}>
-            <h3 style={sectionLabel}>SENATE PROJECTION</h3>
+            <h3 style={{...sectionLabel,fontSize:14,letterSpacing:"0.5px",color:"#1a1a2e"}}>CURRENT SENATE LANDSCAPE</h3>
             <BarChart d_count={SENATE_CURRENT_D} r_count={SENATE_CURRENT_R} total={100} label="100 Seats" majorityLine={50}/>
             <div style={{fontSize:11,color:"#6b7280",marginBottom:12}}>2026 seats on the ballot</div>
             <BarChart d_count={senate.filter(r=>ratingIndex(r.rating)<=2).length}
@@ -1155,28 +1167,41 @@ function App() {
           </div>
         </div>
 
-        {/* House + Trifecta */}
-        <div className="two-col" style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16,marginBottom:16}}>
-          <div className="fade-up stagger-2" style={{...cardStyle}}>
-            <h3 style={sectionLabel}>HOUSE LANDSCAPE</h3>
-            <BarChart d_count={HOUSE_CURRENT_D} r_count={HOUSE_CURRENT_R} total={435} label={`435 Seats (${HOUSE_VACANCIES} vacant)`} majorityLine={218}/>
-            <div style={{fontSize:12,color:"#6b7280",marginTop:8,lineHeight:1.8}}>
-              <span style={{color:"#d97706",fontWeight:700}}>{houseTossup}</span> Toss-ups &nbsp;·&nbsp;
-              <span style={{color:"#1d4ed8",fontWeight:700}}>{house.filter(r=>ratingIndex(r.rating)<=2).length}</span> Lean/Likely D &nbsp;·&nbsp;
-              <span style={{color:"#b91c1c",fontWeight:700}}>{house.filter(r=>ratingIndex(r.rating)>=4).length}</span> Lean/Likely R
-            </div>
-            <div style={{fontSize:10,color:"#9ca3af",marginTop:6,fontStyle:"italic"}}>
-              Includes 1 Independent (Kiley, CA-03, caucuses R) · {HOUSE_VACANCIES} vacancies (FL-20, CA-01, GA-14, TX-23, CA-14) · Majority = 218
-            </div>
+        {/* House Landscape — full row */}
+        <div className="fade-up stagger-2" style={{...cardStyle,marginBottom:16}}>
+          <h3 style={sectionLabel}>HOUSE LANDSCAPE</h3>
+          <BarChart d_count={HOUSE_CURRENT_D} r_count={HOUSE_CURRENT_R} total={435} label={`435 Seats (${HOUSE_VACANCIES} vacant)`} majorityLine={218}/>
+          <div style={{fontSize:12,color:"#6b7280",marginTop:8,lineHeight:1.8}}>
+            <span style={{color:"#d97706",fontWeight:700}}>{houseTossup}</span> Toss-ups &nbsp;·&nbsp;
+            <span style={{color:"#1d4ed8",fontWeight:700}}>{house.filter(r=>ratingIndex(r.rating)<=2).length}</span> Lean/Likely D &nbsp;·&nbsp;
+            <span style={{color:"#b91c1c",fontWeight:700}}>{house.filter(r=>ratingIndex(r.rating)>=4).length}</span> Lean/Likely R
           </div>
-          <div className="fade-up stagger-3" style={{...cardStyle}}>
-            <h3 style={sectionLabel}>TRIFECTA SNAPSHOT</h3>
-            <div style={{display:"flex",gap:20,marginBottom:10}}>
-              <div><span style={{fontSize:26,fontWeight:800,color:"#ef4444",fontFamily:"'JetBrains Mono',monospace"}}>{triR}</span><div style={{fontSize:10,color:"#9ca3af",marginTop:2}}>R Trifectas</div></div>
-              <div><span style={{fontSize:26,fontWeight:800,color:"#1d4ed8",fontFamily:"'JetBrains Mono',monospace"}}>{triD}</span><div style={{fontSize:10,color:"#9ca3af",marginTop:2}}>D Trifectas</div></div>
-              <div><span style={{fontSize:26,fontWeight:800,color:"#7c3aed",fontFamily:"'JetBrains Mono',monospace"}}>{triDiv}</span><div style={{fontSize:10,color:"#9ca3af",marginTop:2}}>Divided</div></div>
+          <div style={{fontSize:10,color:"#9ca3af",marginTop:6,fontStyle:"italic"}}>
+            Includes 1 Independent (Kiley, CA-03, caucuses R) · {HOUSE_VACANCIES} vacancies (FL-20, CA-01, GA-14, TX-23, CA-14) · Majority = 218
+          </div>
+        </div>
+
+        {/* Trifecta Snapshot — full width */}
+        <div className="fade-up stagger-3" style={{...cardStyle,marginBottom:16}}>
+          <h3 style={sectionLabel}>TRIFECTA SNAPSHOT</h3>
+          <div style={{display:"flex",alignItems:"flex-start",gap:40,marginBottom:16,flexWrap:"wrap"}}>
+            <div>
+              <span style={{fontSize:36,fontWeight:800,color:"#ef4444",fontFamily:"'JetBrains Mono',monospace",lineHeight:1}}>{triR}</span>
+              <div style={{fontSize:11,color:"#9ca3af",marginTop:4,fontWeight:600,textTransform:"uppercase",letterSpacing:"0.5px"}}>R Trifectas</div>
             </div>
-            <div style={{fontSize:11,color:"#6b7280"}}>AZ, MI, WI chambers could shift trifecta control in 2026</div>
+            <div>
+              <span style={{fontSize:36,fontWeight:800,color:"#1d4ed8",fontFamily:"'JetBrains Mono',monospace",lineHeight:1}}>{triD}</span>
+              <div style={{fontSize:11,color:"#9ca3af",marginTop:4,fontWeight:600,textTransform:"uppercase",letterSpacing:"0.5px"}}>D Trifectas</div>
+            </div>
+            <div>
+              <span style={{fontSize:36,fontWeight:800,color:"#7c3aed",fontFamily:"'JetBrains Mono',monospace",lineHeight:1}}>{triDiv}</span>
+              <div style={{fontSize:11,color:"#9ca3af",marginTop:4,fontWeight:600,textTransform:"uppercase",letterSpacing:"0.5px"}}>Divided</div>
+            </div>
+            <div style={{flex:1,minWidth:200,borderLeft:"2px solid #f3f4f6",paddingLeft:24,display:"flex",alignItems:"center"}}>
+              <div style={{fontSize:15,fontWeight:600,color:"#374151",lineHeight:1.5}}>
+                🎯 <strong>AZ, MI, WI</strong> chambers could shift trifecta control in 2026
+              </div>
+            </div>
           </div>
         </div>
 
