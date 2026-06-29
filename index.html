@@ -1117,7 +1117,7 @@ function App() {
         {/* ROW 1: Senate Landscape + House Landscape side by side */}
         <div className="two-col fade-up" style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16,marginBottom:16}}>
           <div style={{...cardStyle}}>
-            <h3 style={{...sectionLabel,fontSize:14,letterSpacing:"0.5px",color:"#1a1a2e"}}>CURRENT SENATE LANDSCAPE</h3>
+            <h3 style={{...sectionLabel,fontSize:14,letterSpacing:"0.5px",color:"#1a1a2e"}}>SENATE LANDSCAPE</h3>
             <BarChart d_count={SENATE_CURRENT_D} r_count={SENATE_CURRENT_R} total={100} label="100 Seats" majorityLine={50}/>
             <div style={{fontSize:11,color:"#6b7280",marginBottom:12}}>2026 seats on the ballot</div>
             <BarChart d_count={senate.filter(r=>ratingIndex(r.rating)<=2).length}
