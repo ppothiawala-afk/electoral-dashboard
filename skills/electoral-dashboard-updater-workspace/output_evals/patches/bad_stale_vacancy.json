@@ -1,0 +1,8 @@
+{
+  "notes": "BAD (stale-Press-Gallery vacancy trap): the Press Gallery page lagged and reported 0 vacancies, so all 435 seats were assigned to R/D/I. HOUSE_VACANCIES dropped 4 -> 0 and R was inflated. Sum is still 435 but the vacancy floor was violated (real known vacancies = 4). This patch encodes the exact June 2 regression.",
+  "updates": {
+    "HOUSE_R": 222, "HOUSE_D": 212, "HOUSE_I": 1, "HOUSE_VACANCIES": 0,
+    "SENATE_R": 53, "SENATE_D": 47, "SENATE_I": 3,
+    "LAST_UPDATED": "2026-06-29"
+  }
+}

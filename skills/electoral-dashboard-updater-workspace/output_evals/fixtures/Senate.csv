@@ -1,0 +1,9 @@
+State,Up in 2026,Senator,Party,Rating,Challenger,Notes
+AK,YES,Dan Sullivan,R,Lean R,Mary Peltola (D),
+AK,NO,Lisa Murkowski,R,,,Caucuses R; counted inside SENATE_R
+TX,YES,Ken Paxton,R,Likely R,,
+TX,NO,Ted Cruz,R,,,
+ME,YES,Susan Collins,R,Toss-up,,
+ME,NO,Angus King,I,,,Caucuses D; counted inside SENATE_D
+VT,NO,Bernie Sanders,I,,,Caucuses D; counted inside SENATE_D
+GA,YES,Jon Ossoff,D,Lean D,,

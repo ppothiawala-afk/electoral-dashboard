@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Electoral Command Center — 2026</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.9/babel.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body,#root{min-height:100vh;background:#f8f9fb}
+body{font-family:'Inter','Segoe UI',sans-serif;color:#1a1a2e;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#f0f0f5}
+::-webkit-scrollbar-thumb{background:#c8c8d8;border-radius:3px}
+button{cursor:pointer;font-family:inherit}
+input{font-family:inherit}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.fade-up{animation:fadeUp .4s ease both}
+.stagger-1{animation-delay:.05s}.stagger-2{animation-delay:.1s}.stagger-3{animation-delay:.15s}.stagger-4{animation-delay:.2s}
+.live-dot{width:8px;height:8px;border-radius:50%;background:#16a34a;animation:pulse 2s ease infinite;display:inline-block}
+.hover-lift{transition:transform .18s,box-shadow .18s}
+.hover-lift:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.08)}
+
+/* Mobile */
+@media(max-width:680px){
+  .stat-row{flex-direction:column!important}
+  .two-col{grid-template-columns:1fr!important}
+  .three-col{grid-template-columns:1fr!important}
+  .race-row-grid{grid-template-columns:44px 1fr 100px!important}
+  .race-row-district{display:none!important}
+  .race-row-note{display:none!important}
+  .header-inner{flex-direction:column!important;align-items:flex-start!important;gap:6px!important}
+  .tab-bar{overflow-x:auto;padding-bottom:4px}
+  .filter-bar{overflow-x:auto;padding-bottom:4px;flex-wrap:nowrap!important}
+  .map-wrap{display:none}
+}
+@media(max-width:900px){
+  .three-col{grid-template-columns:1fr 1fr!important}
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const {useState,useEffect,useMemo,useCallback} = React;
+
+/* ═══════════════════════════════════════════════════════════════
+   GOOGLE SHEETS CONFIGURATION
+   ═══════════════════════════════════════════════════════════════
+   HOW TO CONNECT YOUR GOOGLE SHEET:
+   1. Create a Google Sheet with tabs: Senate, House, Governors, StateLeg
+   2. Go to File → Share → Publish to Web
+   3. Select each tab, choose "CSV", click Publish
+   4. Paste each URL below
+   ═══════════════════════════════════════════════════════════════ */
+
+const SHEET_URLS = {
+  senate:    "https://docs.google.com/spreadsheets/d/e/2PACX-1vRRD4NzFmxxPMxqIIYrHWeLO7zHJGxtWyCf8y8wL463uDCxzIz6dIxVthmRBN7NYDIvtjTfEXSKLBoy/pub?gid=1277439295&single=true&output=csv",
+  house:     "https://docs.google.com/spreadsheets/d/e/2PACX-1vRRD4NzFmxxPMxqIIYrHWeLO7zHJGxtWyCf8y8wL463uDCxzIz6dIxVthmRBN7NYDIvtjTfEXSKLBoy/pub?gid=38670283&single=true&output=csv",
+  governors: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRRD4NzFmxxPMxqIIYrHWeLO7zHJGxtWyCf8y8wL463uDCxzIz6dIxVthmRBN7NYDIvtjTfEXSKLBoy/pub?gid=19101283&single=true&output=csv",
+  stateLeg:  "https://docs.google.com/spreadsheets/d/e/2PACX-1vRRD4NzFmxxPMxqIIYrHWeLO7zHJGxtWyCf8y8wL463uDCxzIz6dIxVthmRBN7NYDIvtjTfEXSKLBoy/pub?gid=664038301&single=true&output=csv",
+  // ⚠️ PASTE YOUR CONSTANTS TAB CSV URL HERE after running setup_constants_tab.py
+  constants: "",
+  // ⚠️ PASTE YOUR NEWS TAB CSV URL HERE after the Monday agent creates the News tab
+  news: "",
+};
+
+/* ═══════════════════════════════════════════════════════════════
+   CONSTANTS
+   ═══════════════════════════════════════════════════════════════ */
+
+const RATINGS = ["Solid D","Likely D","Lean D","Toss-up","Lean R","Likely R","Solid R"];
+
+const RATING_COLORS = {
+  "Solid D":   {bg:"#1d4ed8", text:"#fff"},
+  "Likely D":  {bg:"#3b82f6", text:"#fff"},
+  "Lean D":    {bg:"#93c5fd", text:"#1e3a5f"},
+  "Toss-up":   {bg:"#f59e0b", text:"#fff"},
+  "Lean R":    {bg:"#fca5a5", text:"#7f1d1d"},
+  "Likely R":  {bg:"#ef4444", text:"#fff"},
+  "Solid R":   {bg:"#b91c1c", text:"#fff"},
+};
+
+// Map fill colors (lighter for readability on SVG)
+const MAP_COLORS = {
+  "Solid D":   "#1d4ed8",
+  "Likely D":  "#60a5fa",
+  "Lean D":    "#bfdbfe",
+  "Toss-up":   "#fcd34d",
+  "Lean R":    "#fca5a5",
+  "Likely R":  "#f87171",
+  "Solid R":   "#b91c1c",
+  "default":   "#e5e7eb",
+};
+
+const STATE_NAMES = {AL:"Alabama",AK:"Alaska",AZ:"Arizona",AR:"Arkansas",CA:"California",CO:"Colorado",CT:"Connecticut",DE:"Delaware",FL:"Florida",GA:"Georgia",HI:"Hawaii",ID:"Idaho",IL:"Illinois",IN:"Indiana",IA:"Iowa",KS:"Kansas",KY:"Kentucky",LA:"Louisiana",ME:"Maine",MD:"Maryland",MA:"Massachusetts",MI:"Michigan",MN:"Minnesota",MS:"Mississippi",MO:"Missouri",MT:"Montana",NE:"Nebraska",NV:"Nevada",NH:"New Hampshire",NJ:"New Jersey",NM:"New Mexico",NY:"New York",NC:"North Carolina",ND:"North Dakota",OH:"Ohio",OK:"Oklahoma",OR:"Oregon",PA:"Pennsylvania",RI:"Rhode Island",SC:"South Carolina",SD:"South Dakota",TN:"Tennessee",TX:"Texas",UT:"Utah",VT:"Vermont",VA:"Virginia",WA:"Washington",WV:"West Virginia",WI:"Wisconsin",WY:"Wyoming"};
+
+/* ═══════════════════════════════════════════════════════════════
+   DATA — Updated May 2026
+   ═══════════════════════════════════════════════════════════════ */
+
+const DEFAULT_SENATE = [
+  {state:"AL",incumbent:"Tommy Tuberville",party:"R",rating:"Solid R",open:false,note:"",challenger:""},
+  {state:"AK",incumbent:"Dan Sullivan",party:"R",rating:"Lean R",open:false,note:"Peltola rematch expected",challenger:"Mary Peltola (D)"},
+  {state:"AZ",incumbent:"Ruben Gallego",party:"D",rating:"Lean D",open:false,note:"Won 2024, still targeted",challenger:""},
+  {state:"AR",incumbent:"Tom Cotton",party:"R",rating:"Solid R",open:false,note:"",challenger:""},
+  {state:"CO",incumbent:"Michael Bennet",party:"D",rating:"Solid D",open:false,note:"",challenger:""},
+  {state:"FL",incumbent:"Open (Rubio seat)",party:"R",rating:"Likely R",open:true,note:"Special election — Gov. DeSantis appt.",challenger:""},
+  {state:"GA",incumbent:"Jon Ossoff",party:"D",rating:"Lean D",open:false,note:"Consistently competitive",challenger:""},
+  {state:"ID",incumbent:"Open (Risch retiring)",party:"R",rating:"Solid R",open:true,note:"Risch retirement confirmed",challenger:""},
+  {state:"IL",incumbent:"Open (Durbin retiring)",party:"D",rating:"Solid D",open:true,note:"Durbin retirement confirmed",challenger:""},
+  {state:"IA",incumbent:"Open (Ernst retiring)",party:"R",rating:"Toss-up",open:true,note:"Ernst retirement — competitive open seat",challenger:""},
+  {state:"KS",incumbent:"Open (Moran retiring)",party:"R",rating:"Likely R",open:true,note:"Moran retirement confirmed",challenger:""},
+  {state:"KY",incumbent:"Open (McConnell retiring)",party:"R",rating:"Solid R",open:true,note:"McConnell seat safely R",challenger:""},
+  {state:"LA",incumbent:"Bill Cassidy",party:"R",rating:"Likely R",open:false,note:"Primary challenge possible",challenger:""},
+  {state:"ME",incumbent:"Susan Collins",party:"R",rating:"Toss-up",open:false,note:"Harris won ME-AL 2024; top D target",challenger:""},
+  {state:"MI",incumbent:"Open (Peters retiring)",party:"D",rating:"Toss-up",open:true,note:"Peters retiring; highly competitive open seat",challenger:""},
+  {state:"MN",incumbent:"Open (Smith retiring)",party:"D",rating:"Likely D",open:true,note:"Smith retirement; D-favored open seat",challenger:""},
+  {state:"MS",incumbent:"Roger Wicker",party:"R",rating:"Solid R",open:false,note:"",challenger:""},
+  {state:"MT",incumbent:"Open (Daines retiring)",party:"R",rating:"Lean R",open:true,note:"Daines not seeking re-election",challenger:""},
+  {state:"NE",incumbent:"Pete Ricketts",party:"R",rating:"Lean R",open:false,note:"Dan Osborn (I) rematch likely",challenger:"Dan Osborn (I)"},
+  {state:"NH",incumbent:"Open (Shaheen retiring)",party:"D",rating:"Lean D",open:true,note:"Shaheen retirement; D-leaning",challenger:""},
+  {state:"NJ",incumbent:"Cory Booker",party:"D",rating:"Solid D",open:false,note:"",challenger:""},
+  {state:"NM",incumbent:"Martin Heinrich",party:"D",rating:"Solid D",open:false,note:"",challenger:""},
+  {state:"NC",incumbent:"Open (Tillis retiring)",party:"R",rating:"Lean D",open:true,note:"Roy Cooper (D) vs. favored; R primary unsettled",challenger:"Roy Cooper (D)"},
+  {state:"OH",incumbent:"Open (Vance seat)",party:"R",rating:"Toss-up",open:true,note:"Husted (R) vs. Brown (D) — top battleground",challenger:"Sherrod Brown (D)"},
+  {state:"OK",incumbent:"James Lankford",party:"R",rating:"Solid R",open:false,note:"",challenger:""},
+  {state:"OR",incumbent:"Ron Wyden",party:"D",rating:"Solid D",open:false,note:"",challenger:""},
+  {state:"RI",incumbent:"Sheldon Whitehouse",party:"D",rating:"Solid D",open:false,note:"",challenger:""},
+  {state:"SC",incumbent:"Lindsey Graham",party:"R",rating:"Solid R",open:false,note:"",challenger:""},
+  {state:"SD",incumbent:"Mike Rounds",party:"R",rating:"Solid R",open:false,note:"",challenger:""},
+  {state:"TN",incumbent:"Bill Hagerty",party:"R",rating:"Solid R",open:false,note:"",challenger:""},
+  {state:"TX",incumbent:"John Cornyn",party:"R",rating:"Likely R",open:false,note:"Paxton primary challenge faded",challenger:""},
+  {state:"VA",incumbent:"Open (Warner retiring)",party:"D",rating:"Solid D",open:true,note:"Warner retirement; safely D",challenger:""},
+  {state:"VT",incumbent:"Open (Sanders seat)",party:"D",rating:"Solid D",open:false,note:"",challenger:""},
+  {state:"WV",incumbent:"Shelley Moore Capito",party:"R",rating:"Solid R",open:false,note:"",challenger:""},
+  {state:"WY",incumbent:"John Barrasso",party:"R",rating:"Solid R",open:false,note:"",challenger:""},
+];
+
+const DEFAULT_HOUSE = [
+  {state:"AZ",district:"01",incumbent:"Open",party:"R",rating:"Toss-up",note:"Open seat — Schweikert vacated"},
+  {state:"AZ",district:"06",incumbent:"Juan Ciscomani",party:"R",rating:"Toss-up",note:"Perennial swing district"},
+  {state:"CA",district:"13",incumbent:"Adam Gray",party:"D",rating:"Lean D",note:""},
+  {state:"CA",district:"22",incumbent:"David Valadao",party:"R",rating:"Toss-up",note:"Consistently competitive"},
+  {state:"CA",district:"45",incumbent:"Derek Tran",party:"D",rating:"Lean D",note:""},
+  {state:"CA",district:"47",incumbent:"Dave Min",party:"D",rating:"Likely D",note:""},
+  {state:"CO",district:"08",incumbent:"Gabe Evans",party:"R",rating:"Toss-up",note:""},
+  {state:"FL",district:"13",incumbent:"Anna Paulina Luna",party:"R",rating:"Likely R",note:""},
+  {state:"FL",district:"20",incumbent:"Vacant (Cherfilus-McCormick resigned)",party:"D",rating:"Solid D",note:"D+22 seat; redistricting may eliminate district"},
+  {state:"FL",district:"27",incumbent:"Maria Elvira Salazar",party:"R",rating:"Lean R",note:""},
+  {state:"IA",district:"01",incumbent:"Mariannette Miller-Meeks",party:"R",rating:"Toss-up",note:""},
+  {state:"IA",district:"02",incumbent:"Open",party:"R",rating:"Lean R",note:"Open seat"},
+  {state:"IA",district:"03",incumbent:"Zach Nunn",party:"R",rating:"Toss-up",note:""},
+  {state:"ME",district:"02",incumbent:"Jared Golden",party:"D",rating:"Lean D",note:""},
+  {state:"MI",district:"07",incumbent:"Tom Barrett",party:"R",rating:"Toss-up",note:""},
+  {state:"MI",district:"08",incumbent:"Kristen McDonald Rivet",party:"D",rating:"Lean D",note:""},
+  {state:"MI",district:"10",incumbent:"Open",party:"R",rating:"Lean R",note:"Open seat"},
+  {state:"MN",district:"01",incumbent:"Brad Finstad",party:"R",rating:"Lean R",note:""},
+  {state:"MN",district:"02",incumbent:"Angie Craig",party:"D",rating:"Likely D",note:""},
+  {state:"MT",district:"01",incumbent:"Ryan Zinke",party:"R",rating:"Lean R",note:""},
+  {state:"NE",district:"02",incumbent:"Open",party:"R",rating:"Lean D",note:"Biden won district 2020"},
+  {state:"NJ",district:"07",incumbent:"Thomas Kean Jr.",party:"R",rating:"Toss-up",note:""},
+  {state:"NY",district:"04",incumbent:"Laura Gillen",party:"D",rating:"Lean D",note:""},
+  {state:"NY",district:"17",incumbent:"Mike Lawler",party:"R",rating:"Toss-up",note:""},
+  {state:"NY",district:"19",incumbent:"Marc Molinaro",party:"R",rating:"Lean R",note:""},
+  {state:"NC",district:"01",incumbent:"Don Davis",party:"D",rating:"Toss-up",note:""},
+  {state:"OH",district:"01",incumbent:"Greg Landsman",party:"D",rating:"Lean D",note:""},
+  {state:"OH",district:"09",incumbent:"Open",party:"R",rating:"Lean D",note:"Redistricted, D-leaning"},
+  {state:"OH",district:"13",incumbent:"Emilia Sykes",party:"D",rating:"Likely D",note:""},
+  {state:"OR",district:"05",incumbent:"Janelle Bynum",party:"D",rating:"Lean D",note:""},
+  {state:"PA",district:"01",incumbent:"Brian Fitzpatrick",party:"R",rating:"Lean R",note:"Crossover incumbent"},
+  {state:"PA",district:"07",incumbent:"Ryan Mackenzie",party:"R",rating:"Toss-up",note:""},
+  {state:"PA",district:"08",incumbent:"Rob Bresnahan",party:"R",rating:"Toss-up",note:""},
+  {state:"PA",district:"10",incumbent:"Scott Perry",party:"R",rating:"Lean R",note:""},
+  {state:"TX",district:"15",incumbent:"Monica De La Cruz",party:"R",rating:"Lean R",note:""},
+  {state:"TX",district:"34",incumbent:"Vicente Gonzalez",party:"D",rating:"Lean D",note:""},
+  {state:"VA",district:"02",incumbent:"Jen Kiggans",party:"R",rating:"Toss-up",note:""},
+  {state:"VA",district:"07",incumbent:"Eugene Vindman",party:"D",rating:"Lean D",note:""},
+  {state:"WA",district:"03",incumbent:"Marie Gluesenkamp Perez",party:"D",rating:"Lean D",note:""},
+  {state:"WI",district:"01",incumbent:"Bryan Steil",party:"R",rating:"Lean R",note:""},
+];
+
+const DEFAULT_GOVS = [
+  {state:"AZ",incumbent:"Katie Hobbs",party:"D",rating:"Lean D",open:false,note:"Seeking re-election"},
+  {state:"GA",incumbent:"Open (Kemp term-limited)",party:"R",rating:"Toss-up",open:true,note:"Bottoms (D) vs. Jones (D) primary; R field TBD"},
+  {state:"IA",incumbent:"Open (Reynolds not running)",party:"R",rating:"Toss-up",open:true,note:"Eric Sand (D) vs. Feenstra (R)"},
+  {state:"KS",incumbent:"Open (Kelly term-limited)",party:"D",rating:"Lean R",open:true,note:"Robb Ryerse (D) vs. R nominee"},
+  {state:"ME",incumbent:"Open (Mills term-limited)",party:"D",rating:"Likely D",open:true,note:"Strong D bench"},
+  {state:"MI",incumbent:"Open (Whitmer term-limited)",party:"D",rating:"Toss-up",open:true,note:"Benson (D) frontrunner; Rinke (R) possible"},
+  {state:"MN",incumbent:"Tim Walz",party:"D",rating:"Likely D",open:false,note:"Post-VP run name ID boost"},
+  {state:"NV",incumbent:"Joe Lombardo",party:"R",rating:"Toss-up",open:false,note:"Ford (D) vs. Lombardo rematch expected"},
+  {state:"NH",incumbent:"Kelly Ayotte",party:"R",rating:"Lean R",open:false,note:"Moderate R in swing state"},
+  {state:"NM",incumbent:"Open (Lujan Grisham term-limited)",party:"D",rating:"Likely D",open:true,note:"Strong D lean"},
+  {state:"NY",incumbent:"Kathy Hochul",party:"D",rating:"Solid D",open:false,note:""},
+  {state:"OH",incumbent:"Open (DeWine term-limited)",party:"R",rating:"Lean R",open:true,note:"Ramaswamy (R) vs. Acton (D)"},
+  {state:"PA",incumbent:"Josh Shapiro",party:"D",rating:"Likely D",open:false,note:"High approval; presidential aspirant"},
+  {state:"WI",incumbent:"Open (Evers retiring)",party:"D",rating:"Toss-up",open:true,note:"Fully open; either party competitive"},
+  {state:"AL",incumbent:"Open (Ivey term-limited)",party:"R",rating:"Solid R",open:true,note:""},
+  {state:"AK",incumbent:"Mike Dunleavy",party:"R",rating:"Lean R",open:false,note:""},
+  {state:"AR",incumbent:"Sarah Huckabee Sanders",party:"R",rating:"Solid R",open:false,note:""},
+  {state:"CA",incumbent:"Open (Newsom term-limited)",party:"D",rating:"Solid D",open:true,note:""},
+  {state:"CO",incumbent:"Open (Polis term-limited)",party:"D",rating:"Solid D",open:true,note:""},
+  {state:"CT",incumbent:"Open (Lamont term-limited)",party:"D",rating:"Solid D",open:true,note:""},
+  {state:"FL",incumbent:"Open (DeSantis term-limited)",party:"R",rating:"Solid R",open:true,note:""},
+  {state:"HI",incumbent:"Josh Green",party:"D",rating:"Solid D",open:false,note:""},
+  {state:"ID",incumbent:"Brad Little",party:"R",rating:"Solid R",open:false,note:""},
+  {state:"IL",incumbent:"JB Pritzker",party:"D",rating:"Solid D",open:false,note:""},
+  {state:"MD",incumbent:"Wes Moore",party:"D",rating:"Solid D",open:false,note:""},
+  {state:"MA",incumbent:"Maura Healey",party:"D",rating:"Solid D",open:false,note:""},
+  {state:"NE",incumbent:"Open (Pillen term-limited)",party:"R",rating:"Solid R",open:true,note:""},
+  {state:"OK",incumbent:"Open (Stitt term-limited)",party:"R",rating:"Solid R",open:true,note:""},
+  {state:"OR",incumbent:"Tina Kotek",party:"D",rating:"Likely D",open:false,note:""},
+  {state:"RI",incumbent:"Dan McKee",party:"D",rating:"Solid D",open:false,note:""},
+  {state:"SC",incumbent:"Open (McMaster term-limited)",party:"R",rating:"Solid R",open:true,note:""},
+  {state:"SD",incumbent:"Open (Noem seat)",party:"R",rating:"Solid R",open:true,note:""},
+  {state:"TN",incumbent:"Open (Lee term-limited)",party:"R",rating:"Solid R",open:true,note:""},
+  {state:"TX",incumbent:"Open (Abbott term-limited)",party:"R",rating:"Solid R",open:true,note:""},
+  {state:"VT",incumbent:"Phil Scott",party:"R",rating:"Likely R",open:false,note:"Popular moderate R"},
+  {state:"WY",incumbent:"Open (Gordon term-limited)",party:"R",rating:"Solid R",open:true,note:""},
+];
+
+const DEFAULT_STATELEG = [
+  {state:"AZ",senateControl:"R",senateR:16,senateD:14,houseControl:"R",houseR:31,houseD:29,senateRating:"Toss-up",houseRating:"Toss-up"},
+  {state:"MI",senateControl:"D",senateR:18,senateD:20,houseControl:"R",houseR:56,houseD:54,senateRating:"Toss-up",houseRating:"Toss-up"},
+  {state:"MN",senateControl:"D",senateR:33,senateD:34,houseControl:"Tied",houseR:67,houseD:67,senateRating:"Likely D",houseRating:"Toss-up"},
+  {state:"NH",senateControl:"R",senateR:14,senateD:10,houseControl:"R",houseR:198,houseD:188,senateRating:"Lean R",houseRating:"Toss-up"},
+  {state:"WI",senateControl:"R",senateR:18,senateD:15,houseControl:"R",houseR:54,houseD:45,senateRating:"Toss-up",houseRating:"Toss-up"},
+  {state:"PA",senateControl:"R",senateR:28,senateD:22,houseControl:"D",houseR:101,houseD:102,senateRating:"Likely R",houseRating:"Lean D"},
+  {state:"AK",senateControl:"Coalition",senateR:9,senateD:11,houseControl:"Coalition",houseR:21,houseD:19,senateRating:"Lean R",houseRating:"Lean R"},
+  {state:"VA",senateControl:"D",senateR:18,senateD:22,houseControl:"R",houseR:52,houseD:48,senateRating:"Likely D",houseRating:"Lean R"},
+  {state:"TX",senateControl:"R",senateR:20,senateD:11,houseControl:"R",houseR:88,houseD:62,senateRating:"Solid R",houseRating:"Likely R"},
+  {state:"NC",senateControl:"R",senateR:30,senateD:20,houseControl:"R",houseR:72,houseD:48,senateRating:"Solid R",houseRating:"Solid R"},
+  {state:"GA",senateControl:"R",senateR:33,senateD:23,houseControl:"R",houseR:102,houseD:78,senateRating:"Solid R",houseRating:"Likely R"},
+  {state:"FL",senateControl:"R",senateR:28,senateD:12,houseControl:"R",houseR:85,houseD:35,senateRating:"Solid R",houseRating:"Solid R"},
+  {state:"OH",senateControl:"R",senateR:26,senateD:7,houseControl:"R",houseR:64,houseD:35,senateRating:"Solid R",houseRating:"Solid R"},
+  {state:"NY",senateControl:"D",senateR:20,senateD:43,houseControl:"D",houseR:47,houseD:103,senateRating:"Solid D",houseRating:"Solid D"},
+  {state:"CA",senateControl:"D",senateR:7,senateD:33,houseControl:"D",houseR:19,houseD:61,senateRating:"Solid D",houseRating:"Solid D"},
+  {state:"IL",senateControl:"D",senateR:18,senateD:41,houseControl:"D",houseR:40,houseD:78,senateRating:"Solid D",houseRating:"Solid D"},
+];
+
+const TRIFECTAS = [
+  {state:"AL",control:"R"},{state:"AK",control:"Divided"},{state:"AZ",control:"Divided"},{state:"AR",control:"R"},
+  {state:"CA",control:"D"},{state:"CO",control:"D"},{state:"CT",control:"D"},{state:"DE",control:"D"},
+  {state:"FL",control:"R"},{state:"GA",control:"R"},{state:"HI",control:"D"},{state:"ID",control:"R"},
+  {state:"IL",control:"D"},{state:"IN",control:"R"},{state:"IA",control:"R"},{state:"KS",control:"Divided"},
+  {state:"KY",control:"Divided"},{state:"LA",control:"R"},{state:"ME",control:"D"},{state:"MD",control:"D"},
+  {state:"MA",control:"D"},{state:"MI",control:"Divided"},{state:"MN",control:"Divided"},{state:"MS",control:"R"},
+  {state:"MO",control:"R"},{state:"MT",control:"R"},{state:"NE",control:"R"},{state:"NV",control:"Divided"},
+  {state:"NH",control:"R"},{state:"NJ",control:"D"},{state:"NM",control:"D"},{state:"NY",control:"D"},
+  {state:"NC",control:"R"},{state:"ND",control:"R"},{state:"OH",control:"R"},{state:"OK",control:"R"},
+  {state:"OR",control:"D"},{state:"PA",control:"Divided"},{state:"RI",control:"D"},{state:"SC",control:"R"},
+  {state:"SD",control:"R"},{state:"TN",control:"R"},{state:"TX",control:"R"},{state:"UT",control:"R"},
+  {state:"VT",control:"Divided"},{state:"VA",control:"Divided"},{state:"WA",control:"D"},{state:"WV",control:"R"},
+  {state:"WI",control:"Divided"},{state:"WY",control:"R"}
+];
+
+/* ═══════════════════════════════════════════════════════════════
+   US MAP — Simplified SVG path data by state abbreviation
+   ═══════════════════════════════════════════════════════════════ */
+
+// Compact state position grid for a schematic map (col, row) in a 12×8 grid
+const STATE_GRID = {
+  AK:[0,7], HI:[1,7],
+  WA:[1,0], ID:[2,1], MT:[3,0], ND:[4,0], MN:[5,0], WI:[6,1], MI:[7,1], VT:[9,0], NH:[10,0], ME:[11,0],
+  OR:[1,1], NV:[2,2], WY:[3,1], SD:[4,1], IA:[5,1], IL:[6,2], IN:[7,2], OH:[8,2], PA:[9,2], NY:[10,1], CT:[10,2], RI:[11,2],
+  CA:[1,2], UT:[2,3], CO:[3,2], NE:[4,2], MO:[5,2], KY:[7,3], WV:[8,3], VA:[9,3], MD:[10,3], DE:[11,3], NJ:[11,4],
+  AZ:[2,4], NM:[3,3], KS:[4,3], AR:[5,3], TN:[7,4], NC:[9,4],
+  TX:[3,4], OK:[4,4], LA:[5,4], MS:[6,4], AL:[7,5], GA:[8,5], SC:[9,5],
+  FL:[8,6],
+};
+
+function SchematicMap({senate, governors, house, mapMode}) {
+  const [tooltip, setTooltip] = React.useState(null);
+
+  const stateRatings = useMemo(() => {
+    const map = {};
+    if (mapMode === "senate") {
+      senate.forEach(r => { map[r.state] = r.rating; });
+    } else if (mapMode === "governors") {
+      governors.forEach(r => { map[r.state] = r.rating; });
+    } else if (mapMode === "house") {
+      // For House map, use the most competitive rating per state
+      const priority = ["Toss-up","Lean D","Lean R","Likely D","Likely R","Solid D","Solid R"];
+      house.forEach(r => {
+        const existing = map[r.state];
+        if (!existing || priority.indexOf(r.rating) < priority.indexOf(existing)) {
+          map[r.state] = r.rating;
+        }
+      });
+    }
+    return map;
+  }, [senate, governors, house, mapMode]);
+
+  const cellW = 38, cellH = 38, pad = 4;
+  const cols = 12, rows = 8;
+  const W = cols * (cellW + pad) + pad;
+  const H = rows * (cellH + pad) + pad;
+
+  return (
+    <div style={{position:"relative"}}>
+      <svg viewBox={`0 0 ${W} ${H}`} style={{width:"100%",maxWidth:520,display:"block",margin:"0 auto",background:"#fff",borderRadius:8}}>
+        <rect x={0} y={0} width={W} height={H} fill="#fff"/>
+        {Object.entries(STATE_GRID).map(([st,[col,row]]) => {
+          const rating = stateRatings[st];
+          const notOnBallot = !rating;
+          const fill = rating ? MAP_COLORS[rating] : "#f0f0f5";
+          const x = pad + col*(cellW+pad);
+          const y = pad + row*(cellH+pad);
+          const isCompetitive = rating && ["Lean D","Toss-up","Lean R"].includes(rating);
+          const textColor = notOnBallot ? "#9ca3af"
+            : rating === "Lean D" ? "#1e3a8a"
+            : rating === "Lean R" ? "#7f1d1d"
+            : ["Solid D","Likely D","Toss-up","Likely R","Solid R"].includes(rating) ? "#fff"
+            : "#4b5563";
+          return (
+            <g key={st}
+              onMouseEnter={() => setTooltip({st, rating: rating||null, notOnBallot})}
+              onMouseLeave={() => setTooltip(null)}
+              style={{cursor:"default"}}
+            >
+              <rect x={x} y={y} width={cellW} height={cellH} rx={5}
+                fill={fill}
+                stroke={isCompetitive ? "#92400e" : notOnBallot ? "#e0e0e8" : "#fff"}
+                strokeWidth={isCompetitive ? 2 : 1}
+                opacity={notOnBallot ? 0.5 : 1}
+              />
+              <text x={x+cellW/2} y={y+cellH/2+4} textAnchor="middle"
+                style={{fontSize:"10px",fontWeight: notOnBallot ? "400" : "700",fontFamily:"Inter,sans-serif",
+                  fill: textColor,
+                  pointerEvents:"none", userSelect:"none"}}
+              >{st}</text>
+            </g>
+          );
+        })}
+      </svg>
+      {tooltip && (
+        <div style={{position:"absolute",top:8,right:8,background:"#1a1a2e",color:"#fff",
+          borderRadius:8,padding:"8px 12px",fontSize:11,fontWeight:600,pointerEvents:"none",
+          boxShadow:"0 4px 16px rgba(0,0,0,.2)",zIndex:10,maxWidth:160}}>
+          <div style={{fontSize:13,fontWeight:800}}>{STATE_NAMES[tooltip.st]||tooltip.st}</div>
+          {tooltip.notOnBallot
+            ? <div style={{marginTop:2,color:"#9ca3af",fontWeight:400}}>Not up in 2026</div>
+            : <div style={{marginTop:2,color: RATING_COLORS[tooltip.rating]?.bg||"#888"}}>
+                {tooltip.rating}
+              </div>
+          }
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   GOOGLE SHEETS FETCHER
+   ═══════════════════════════════════════════════════════════════ */
+
+async function fetchSheetData(url) {
+  if (!url) return null;
+  try {
+    const resp = await fetch(url);
+    const text = await resp.text();
+    const parsed = Papa.parse(text, {header:true, skipEmptyLines:true, dynamicTyping:true});
+    return parsed.data;
+  } catch(e) {
+    console.warn("Failed to fetch sheet:", e);
+    return null;
+  }
+}
+
+function parseSenateSheet(rows) {
+  return rows.map(r => ({
+    state:(r.State||"").trim(), incumbent:(r.Incumbent||"").trim(), party:(r.Party||"").trim(),
+    rating:(r.Rating||"").trim(), open:String(r.Open||"").toLowerCase()==="true"||r.Open===true,
+    note:(r.Note||r.Notes||"").trim(), challenger:(r.Challenger||"").trim(),
+    upIn2026:(r["Up in 2026"]||"").trim().toUpperCase(),
+  })).filter(r=>r.state && r.upIn2026==="YES" && RATINGS.includes(r.rating));
+}
+function parseHouseSheet(rows) {
+  return rows.map(r => ({
+    state:(r.State||"").trim(), district:String(r.District||"").trim().padStart(2,"0"),
+    incumbent:(r.Incumbent||"").trim(), party:(r.Party||"").trim(),
+    rating:(r.Rating||"Solid R").trim(), note:(r.Note||r.Notes||"").trim(),
+  })).filter(r=>r.state);
+}
+function parseGovSheet(rows) {
+  return rows.map(r => ({
+    state:(r.State||"").trim(), incumbent:(r.Incumbent||"").trim(), party:(r.Party||"").trim(),
+    rating:(r.Rating||"").trim(), open:String(r.Open||"").toLowerCase()==="true"||r.Open===true,
+    note:(r.Note||r.Notes||"").trim(),
+    election2026:(r["Election 2026"]||r["Up in 2026"]||"").trim().toUpperCase(),
+  })).filter(r => {
+    if (!r.state) return false;
+    // If the sheet has an Election 2026 / Up in 2026 column, use it to filter
+    if (r.election2026 && r.election2026 !== "" && r.election2026 !== "YES") return false;
+    // Only include rows with a valid rating
+    return RATINGS.includes(r.rating);
+  });
+}
+function parseConstantsSheet(rows) {
+  // Constants tab has columns: Key, Value, Notes
+  // Returns a flat object: {HOUSE_R: 217, HOUSE_D: 212, ...}
+  const result = {};
+  rows.forEach(r => {
+    const key = (r.Key || r.key || Object.values(r)[0] || "").trim();
+    const val = (r.Value !== undefined ? r.Value : Object.values(r)[1]);
+    if (key) result[key] = val;
+  });
+  return result;
+}
+
+function parseStateLegSheet(rows) {
+  return rows.map(r => ({
+    state:(r.State||"").trim(), senateControl:(r.SenateControl||"").trim(),
+    senateR:Number(r.SenateR)||0, senateD:Number(r.SenateD)||0,
+    houseControl:(r.HouseControl||"").trim(), houseR:Number(r.HouseR)||0, houseD:Number(r.HouseD)||0,
+    senateRating:(r.SenateRating||"Solid R").trim(), houseRating:(r.HouseRating||"Solid R").trim(),
+  })).filter(r=>r.state);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HELPERS
+   ═══════════════════════════════════════════════════════════════ */
+
+const ratingIndex = r => RATINGS.indexOf(r);
+const isCompetitive = r => ["Lean D","Toss-up","Lean R"].includes(r);
+const couldFlip = (rating, party) => {
+  if(party==="R" && ratingIndex(rating)<=3) return "D";
+  if(party==="D" && ratingIndex(rating)>=3) return "R";
+  return null;
+};
+
+/* ═══════════════════════════════════════════════════════════════
+   UI COMPONENTS
+   ═══════════════════════════════════════════════════════════════ */
+
+function RatingBadge({rating}) {
+  const c = RATING_COLORS[rating] || {bg:"#9ca3af", text:"#fff"};
+  return <span style={{
+    display:"inline-block",padding:"3px 9px",borderRadius:"5px",fontSize:"11px",fontWeight:700,
+    letterSpacing:"0.3px",color:c.text,backgroundColor:c.bg,whiteSpace:"nowrap",
+  }}>{rating}</span>;
+}
+
+function PartyDot({party,size=10}) {
+  return <span style={{
+    display:"inline-block",width:size,height:size,borderRadius:"50%",flexShrink:0,
+    backgroundColor:party==="D"?"#3b82f6":party==="R"?"#ef4444":"#a855f7",
+    border:"1.5px solid rgba(0,0,0,0.1)",
+  }}/>;
+}
+
+function StatBox({label,value,color,sub,delay=0}) {
+  return <div className="fade-up hover-lift" style={{
+    background:"#fff",borderRadius:12,padding:"18px 20px",
+    borderLeft:`3px solid ${color}`,flex:1,minWidth:140,animationDelay:`${delay}s`,
+    boxShadow:"0 1px 4px rgba(0,0,0,.06)",display:"flex",flexDirection:"column",justifyContent:"center",
+  }}>
+    <div style={{fontSize:10,color:"#9ca3af",textTransform:"uppercase",letterSpacing:"1px",marginBottom:6,fontWeight:600}}>{label}</div>
+    <div style={{fontSize:28,fontWeight:800,color,fontFamily:"'JetBrains Mono',monospace",lineHeight:1}}>{value}</div>
+    {sub && <div style={{fontSize:11,color:"#9ca3af",marginTop:6}}>{sub}</div>}
+  </div>;
+}
+
+function HouseBalanceBox({r, d, ind, vacant, delay=0}) {
+  const total = 435;
+  const rPct   = (r / total) * 100;
+  const dPct   = (d / total) * 100;
+  const iPct   = (ind / total) * 100;
+  const vPct   = (vacant / total) * 100;
+  const majPct = (218 / total) * 100;
+  return (
+    <div className="fade-up hover-lift" style={{
+      background:"#fff", borderRadius:12, padding:"18px 20px",
+      borderLeft:"3px solid #ef4444", flex:1, minWidth:160,
+      animationDelay:`${delay}s`, boxShadow:"0 1px 4px rgba(0,0,0,.06)",
+      display:"flex", flexDirection:"column", justifyContent:"center",
+    }}>
+      <div style={{fontSize:10,color:"#9ca3af",textTransform:"uppercase",letterSpacing:"1px",marginBottom:6,fontWeight:600}}>House Balance</div>
+      {/* Big numbers */}
+      <div style={{display:"flex",alignItems:"baseline",gap:6,marginBottom:10}}>
+        <span style={{fontSize:22,fontWeight:800,color:"#b91c1c",fontFamily:"'JetBrains Mono',monospace",lineHeight:1}}>{r}<span style={{fontSize:11,fontWeight:600,marginLeft:2}}>R</span></span>
+        <span style={{fontSize:14,color:"#d1d5db",fontWeight:400}}>·</span>
+        <span style={{fontSize:22,fontWeight:800,color:"#1d4ed8",fontFamily:"'JetBrains Mono',monospace",lineHeight:1}}>{d}<span style={{fontSize:11,fontWeight:600,marginLeft:2}}>D</span></span>
+        <span style={{fontSize:14,color:"#d1d5db",fontWeight:400}}>·</span>
+        <span style={{fontSize:18,fontWeight:800,color:"#7c3aed",fontFamily:"'JetBrains Mono',monospace",lineHeight:1}}>{ind}<span style={{fontSize:11,fontWeight:600,marginLeft:2}}>I</span></span>
+        <span style={{fontSize:14,color:"#d1d5db",fontWeight:400}}>·</span>
+        <span style={{fontSize:15,fontWeight:700,color:"#9ca3af",fontFamily:"'JetBrains Mono',monospace",lineHeight:1}}>{vacant}<span style={{fontSize:10,fontWeight:500,marginLeft:2}}>vac</span></span>
+      </div>
+      {/* Segmented bar */}
+      <div style={{position:"relative",height:14,borderRadius:6,overflow:"hidden",background:"#f3f4f6",display:"flex"}}>
+        <div style={{width:`${rPct}%`,background:"linear-gradient(90deg,#ef4444,#b91c1c)",transition:"width .8s ease"}}/>
+        <div style={{width:`${iPct}%`,background:"#7c3aed",transition:"width .8s ease"}}/>
+        <div style={{width:`${vPct}%`,background:"#e5e7eb",borderLeft:"1px dashed #d1d5db",transition:"width .8s ease"}}/>
+        <div style={{width:`${dPct}%`,background:"linear-gradient(90deg,#3b82f6,#1d4ed8)",transition:"width .8s ease",marginLeft:"auto"}}/>
+        {/* Majority line */}
+        <div style={{position:"absolute",left:`${majPct}%`,top:0,bottom:0,width:"2px",
+          background:"#d97706",boxShadow:"0 0 4px rgba(217,119,6,.6)",zIndex:2}}/>
+      </div>
+      <div style={{display:"flex",justifyContent:"space-between",marginTop:5,fontSize:9,color:"#9ca3af"}}>
+        <span>← R majority</span>
+        <span style={{color:"#d97706",fontWeight:700}}>218 needed</span>
+        <span>D majority →</span>
+      </div>
+      <div style={{fontSize:10,color:"#9ca3af",marginTop:4}}>
+        Kiley (CA-03) caucuses R · {vacant} seats vacant
+      </div>
+    </div>
+  );
+}
+
+function BarChart({d_count,r_count,total,label,majorityLine}) {
+  const dPct = (d_count/total)*100;
+  const rPct = (r_count/total)*100;
+  const otherPct = Math.max(0, 100-dPct-rPct);
+  const majPct = majorityLine ? (majorityLine/total)*100 : null;
+  return <div style={{marginBottom:12}}>
+    <div style={{display:"flex",justifyContent:"space-between",fontSize:12,marginBottom:5,color:"#6b7280"}}>
+      <span style={{color:"#1d4ed8",fontWeight:700}}>D: {d_count}</span>
+      <span style={{fontWeight:600,color:"#9ca3af"}}>{label}</span>
+      <span style={{color:"#b91c1c",fontWeight:700}}>R: {r_count}</span>
+    </div>
+    <div style={{position:"relative",height:24,borderRadius:8,overflow:"hidden",background:"#f3f4f6"}}>
+      <div style={{position:"absolute",left:0,top:0,bottom:0,width:`${dPct}%`,
+        background:"linear-gradient(90deg,#1d4ed8,#3b82f6)",transition:"width .8s ease"}}/>
+      {otherPct>0 && <div style={{position:"absolute",left:`${dPct}%`,top:0,bottom:0,width:`${otherPct}%`,
+        background:"#e5e7eb"}}/>}
+      <div style={{position:"absolute",right:0,top:0,bottom:0,width:`${rPct}%`,
+        background:"linear-gradient(90deg,#ef4444,#b91c1c)",transition:"width .8s ease"}}/>
+      {majPct && <div style={{position:"absolute",left:`${majPct}%`,top:-2,bottom:-2,width:2,
+        background:"#d97706",zIndex:2,boxShadow:"0 0 6px rgba(217,119,6,.5)"}}/>}
+    </div>
+    {majorityLine && <div style={{fontSize:10,color:"#d97706",textAlign:"center",marginTop:3,fontWeight:700}}>
+      ▲ {majorityLine} needed for majority
+    </div>}
+  </div>;
+}
+
+function RaceRow({race, showDistrict, idx=0}) {
+  const flip = couldFlip(race.rating, race.party);
+  const highlight = isCompetitive(race.rating);
+  return <div className="hover-lift" style={{
+    display:"grid",
+    gridTemplateColumns:showDistrict?"52px 38px 1fr 100px 115px":"52px 1fr 100px 115px",
+    gap:8,alignItems:"center",padding:"10px 14px",
+    background:highlight?"#fffbeb":"#fff",
+    borderRadius:8,
+    borderLeft:highlight?`3px solid ${RATING_COLORS[race.rating]?.bg||"#e5e7eb"}`:"3px solid #f3f4f6",
+    marginBottom:3,fontSize:13,transition:"background .15s",
+    boxShadow:"0 1px 3px rgba(0,0,0,.04)",
+  }}>
+    <span style={{fontWeight:800,color:"#1a1a2e",fontFamily:"'JetBrains Mono',monospace",fontSize:13}}>{race.state}</span>
+    {showDistrict && <span className="race-row-district" style={{color:"#9ca3af",fontSize:11,fontFamily:"'JetBrains Mono',monospace"}}>{race.district}</span>}
+    <div style={{display:"flex",flexDirection:"column",gap:1,minWidth:0}}>
+      <span style={{color:"#374151",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis",fontWeight:500}}>{race.incumbent||"Open"}</span>
+      {race.challenger && <span style={{fontSize:10,color:"#2563eb"}}>vs {race.challenger}</span>}
+      {race.note && <span className="race-row-note" style={{fontSize:10,color:"#9ca3af",fontStyle:"italic"}}>{race.note}</span>}
+    </div>
+    <div style={{display:"flex",alignItems:"center",gap:5}}>
+      <PartyDot party={race.party}/>
+      <span style={{fontSize:11,color:"#6b7280"}}>{race.party}-held</span>
+      {race.open && <span style={{fontSize:9,padding:"1px 5px",borderRadius:3,background:"#f3f4f6",color:"#6b7280",fontWeight:700}}>OPEN</span>}
+    </div>
+    <RatingBadge rating={race.rating}/>
+  </div>;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   NEWS / FLIP INTELLIGENCE — Demo data (replaced by sheet on Monday)
+   ═══════════════════════════════════════════════════════════════ */
+
+// Sheet tab: "News"
+// Columns: State, RaceType, Sentiment, SentimentScore, SentimentSummary,
+//          PollNote, Headline1, URL1, Source1, Date1, Headline2, URL2, Source2, Date2,
+//          Headline3, URL3, Source3, Date3, OnDeck, OnDeckNote, LastUpdated
+
+const DEMO_NEWS = [
+  {
+    state:"ME", raceType:"Senate", sentiment:"Lean D Flip", sentimentScore:62,
+    sentimentSummary:"Coverage leans toward a Democratic pickup. Multiple outlets cite Collins's vulnerability in a state Trump lost. Polling mentions are consistent with a tight race trending D.",
+    pollNote:"3 polls in last 30 days: Collins trails by avg 2.1pts",
+    articles:[
+      {headline:"Collins faces toughest reelection yet as Maine shifts left", url:"https://www.politico.com", source:"Politico", date:"Jun 1, 2026"},
+      {headline:"New poll shows Democratic challenger within margin in Maine Senate race", url:"https://www.thehill.com", source:"The Hill", date:"May 29, 2026"},
+      {headline:"Outside groups pour $8M into Maine Senate ahead of summer", url:"https://www.axios.com", source:"Axios", date:"May 27, 2026"},
+    ],
+    onDeck:false, onDeckNote:"", lastUpdated:"2026-06-02",
+  },
+  {
+    state:"OH", raceType:"Senate", sentiment:"Mixed", sentimentScore:50,
+    sentimentSummary:"Ohio is a genuine toss-up. Coverage splits evenly between optimism for both parties. Husted's name ID advantage offset by Brown's strong grassroots organizing.",
+    pollNote:"2 polls: tied within MOE",
+    articles:[
+      {headline:"Ohio Senate a true toss-up as Husted and Brown ramp up", url:"https://www.nytimes.com", source:"NYT", date:"May 31, 2026"},
+      {headline:"Brown banking on labor coalition to overcome Ohio's rightward shift", url:"https://www.washingtonpost.com", source:"WaPo", date:"May 28, 2026"},
+      {headline:"Husted outraises Brown in Q1 but enthusiasm gap persists", url:"https://www.axios.com", source:"Axios", date:"May 25, 2026"},
+    ],
+    onDeck:false, onDeckNote:"", lastUpdated:"2026-06-02",
+  },
+  {
+    state:"MI", raceType:"Senate", sentiment:"Mixed", sentimentScore:48,
+    sentimentSummary:"Open seat with no clear frontrunner in either primary. Coverage focused on the primary contest rather than general election dynamics. Expect sentiment to sharpen post-primary.",
+    pollNote:"No general election polls yet — primary still unsettled",
+    articles:[
+      {headline:"Michigan Senate primary heats up as filing deadline passes", url:"https://www.mlive.com", source:"MLive", date:"Jun 2, 2026"},
+      {headline:"Peters retirement opens door for both parties in Michigan", url:"https://www.politico.com", source:"Politico", date:"May 30, 2026"},
+      {headline:"How Michigan's Senate race could decide chamber control", url:"https://www.cnn.com", source:"CNN", date:"May 26, 2026"},
+    ],
+    onDeck:false, onDeckNote:"", lastUpdated:"2026-06-02",
+  },
+  {
+    state:"NC", raceType:"Senate", sentiment:"Lean D Flip", sentimentScore:65,
+    sentimentSummary:"Roy Cooper's entry transformed this race. Coverage strongly favors a Democratic pickup — Cooper's 8-year track record as governor gives him crossover appeal in a state Trump carried narrowly.",
+    pollNote:"1 poll: Cooper +4 in hypothetical matchup",
+    articles:[
+      {headline:"Roy Cooper enters NC Senate race, instantly becomes frontrunner", url:"https://www.newsobserver.com", source:"News & Observer", date:"Jun 1, 2026"},
+      {headline:"NC Senate: How Cooper's brand could outperform the ticket", url:"https://www.politico.com", source:"Politico", date:"May 29, 2026"},
+      {headline:"Republicans scramble to recruit top-tier candidate as Tillis exits", url:"https://www.thehill.com", source:"The Hill", date:"May 24, 2026"},
+    ],
+    onDeck:false, onDeckNote:"", lastUpdated:"2026-06-02",
+  },
+  {
+    state:"GA", raceType:"Senate", sentiment:"Lean D Flip", sentimentScore:58,
+    sentimentSummary:"Ossoff's incumbency advantage and strong fundraising dominate coverage. Georgia's suburban shift continues to trend Democratic. Republican primary still unsettled, adding uncertainty.",
+    pollNote:"2 polls: Ossoff +3 to +5",
+    articles:[
+      {headline:"Ossoff builds formidable war chest as Georgia Senate race takes shape", url:"https://www.ajc.com", source:"AJC", date:"May 31, 2026"},
+      {headline:"Georgia Senate: Can Republicans find a top-tier challenger for Ossoff?", url:"https://www.politico.com", source:"Politico", date:"May 27, 2026"},
+      {headline:"Suburban Atlanta voters remain key to Georgia Senate outcome", url:"https://www.washingtonpost.com", source:"WaPo", date:"May 23, 2026"},
+    ],
+    onDeck:false, onDeckNote:"", lastUpdated:"2026-06-02",
+  },
+  {
+    state:"NV", raceType:"Governor", sentiment:"Mixed", sentimentScore:52,
+    sentimentSummary:"Lombardo vs. Ford rematch is generating significant coverage but no clear lean. Lombardo's incumbency balanced against Nevada's competitive fundamentals and Ford's strong name ID.",
+    pollNote:"1 poll: tied at 44-44",
+    articles:[
+      {headline:"Nevada governor's race set for Lombardo-Ford rematch", url:"https://www.reviewjournal.com", source:"Las Vegas RJ", date:"Jun 1, 2026"},
+      {headline:"Ford launches aggressive ad campaign targeting Lombardo on education", url:"https://www.politico.com", source:"Politico", date:"May 28, 2026"},
+      {headline:"Nevada once again a premier battleground as both parties invest early", url:"https://www.axios.com", source:"Axios", date:"May 25, 2026"},
+    ],
+    onDeck:false, onDeckNote:"", lastUpdated:"2026-06-02",
+  },
+  // On Deck entries
+  {
+    state:"TX", raceType:"Senate", sentiment:"Lean R Hold", sentimentScore:35,
+    sentimentSummary:"Cornyn faces an unusually well-funded Democratic challenger. Early coverage suggests this race is drawing more attention than 2020. Not yet competitive but flagged for volume spike.",
+    pollNote:"No polls yet",
+    articles:[
+      {headline:"Texas Senate draws surprise fundraising from national Democrats", url:"https://www.texastribune.org", source:"Texas Tribune", date:"May 30, 2026"},
+    ],
+    onDeck:true, onDeckNote:"Fundraising spike + early D investment elevating coverage", lastUpdated:"2026-06-02",
+  },
+  {
+    state:"IA", raceType:"Senate", sentiment:"Lean R Flip", sentimentScore:58,
+    sentimentSummary:"Ernst retirement created an open seat that both sides are watching closely. Coverage volume spiked after multiple strong D candidates entered.",
+    pollNote:"1 early poll: R+3",
+    articles:[
+      {headline:"Iowa open Senate seat draws crowded field after Ernst exit", url:"https://www.desmoinesregister.com", source:"Des Moines Register", date:"Jun 1, 2026"},
+    ],
+    onDeck:true, onDeckNote:"Ernst retirement triggering heavy early coverage — could move to Toss-up", lastUpdated:"2026-06-02",
+  },
+  {
+    state:"WI", raceType:"Governor", sentiment:"Mixed", sentimentScore:50,
+    sentimentSummary:"Fully open seat with Evers retiring. Wisconsin's perennial swing-state status making this a top-watched governor's race nationally.",
+    pollNote:"No polls yet",
+    articles:[
+      {headline:"Wisconsin governor's race wide open with Evers retirement", url:"https://www.jsonline.com", source:"Milwaukee Journal Sentinel", date:"May 29, 2026"},
+    ],
+    onDeck:true, onDeckNote:"High news volume for open swing-state governorship", lastUpdated:"2026-06-02",
+  },
+];
+
+function parseNewsSheet(rows) {
+  if (!rows || !rows.length) return DEMO_NEWS;
+  return rows.map(r => ({
+    state:(r.State||"").trim(),
+    raceType:(r.RaceType||"").trim(),
+    sentiment:(r.Sentiment||"Mixed").trim(),
+    sentimentScore: Number(r.SentimentScore)||50,
+    sentimentSummary:(r.SentimentSummary||"").trim(),
+    pollNote:(r.PollNote||"").trim(),
+    articles:[
+      r.Headline1 ? {headline:r.Headline1, url:r.URL1||"#", source:r.Source1||"", date:r.Date1||""} : null,
+      r.Headline2 ? {headline:r.Headline2, url:r.URL2||"#", source:r.Source2||"", date:r.Date2||""} : null,
+      r.Headline3 ? {headline:r.Headline3, url:r.URL3||"#", source:r.Source3||"", date:r.Date3||""} : null,
+    ].filter(Boolean),
+    onDeck: String(r.OnDeck||"").toLowerCase()==="true",
+    onDeckNote:(r.OnDeckNote||"").trim(),
+    lastUpdated:(r.LastUpdated||"").trim(),
+  })).filter(r=>r.state);
+}
+
+// Sentiment color/label helpers
+function sentimentColor(score) {
+  if (score >= 60) return "#1d4ed8";
+  if (score >= 55) return "#3b82f6";
+  if (score >= 45) return "#d97706";
+  if (score >= 40) return "#ef4444";
+  return "#b91c1c";
+}
+function sentimentLabel(sentiment) {
+  if (!sentiment) return "Mixed";
+  return sentiment;
+}
+
+/* ── Flip Detail Side Panel ──────────────────────────────────────── */
+function FlipDetailPanel({race, newsData, onClose}) {
+  const news = newsData.find(n => n.state === race.state && n.raceType.toLowerCase().includes(race.type?.toLowerCase()||"")) || newsData.find(n => n.state === race.state);
+  const flipColor = race.flipTo === "D" ? "#1d4ed8" : "#b91c1c";
+  const sentScore = news?.sentimentScore || 50;
+  const dPct = Math.min(100, Math.max(0, sentScore));
+  const rPct = 100 - dPct;
+
+  React.useEffect(() => {
+    const handler = (e) => { if(e.key==="Escape") onClose(); };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [onClose]);
+
+  return (
+    <>
+      {/* Backdrop */}
+      <div onClick={onClose} style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.25)",zIndex:200,backdropFilter:"blur(2px)"}}/>
+      {/* Panel */}
+      <div style={{
+        position:"fixed",top:0,right:0,bottom:0,width:"min(480px,95vw)",
+        background:"#fff",zIndex:201,overflowY:"auto",
+        boxShadow:"-4px 0 32px rgba(0,0,0,0.15)",
+        animation:"slideInRight .25s ease",
+      }}>
+        <style>{`@keyframes slideInRight{from{transform:translateX(100%)}to{transform:translateX(0)}}`}</style>
+
+        {/* Header */}
+        <div style={{
+          background: race.flipTo==="D" ? "linear-gradient(135deg,#1e3a8a,#2563eb)" : "linear-gradient(135deg,#7f1d1d,#dc2626)",
+          padding:"24px 24px 20px", color:"#fff", position:"sticky", top:0, zIndex:10,
+        }}>
+          <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start"}}>
+            <div>
+              <div style={{fontSize:11,opacity:0.7,fontWeight:600,letterSpacing:"1px",textTransform:"uppercase",marginBottom:4}}>
+                {race.type} · Likely Flip
+              </div>
+              <div style={{fontSize:26,fontWeight:800,letterSpacing:"-0.5px"}}>
+                {STATE_NAMES[race.state]||race.state}
+              </div>
+              <div style={{display:"flex",gap:8,alignItems:"center",marginTop:8}}>
+                <RatingBadge rating={race.rating}/>
+                <span style={{fontSize:12,background:"rgba(255,255,255,0.2)",padding:"3px 10px",borderRadius:4,fontWeight:700}}>
+                  → {race.flipTo} flip
+                </span>
+              </div>
+            </div>
+            <button onClick={onClose} style={{
+              background:"rgba(255,255,255,0.15)",border:"none",color:"#fff",
+              width:32,height:32,borderRadius:"50%",fontSize:18,cursor:"pointer",
+              display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,
+            }}>×</button>
+          </div>
+        </div>
+
+        <div style={{padding:"20px 24px",display:"flex",flexDirection:"column",gap:20}}>
+
+          {/* 1. Race Snapshot */}
+          <div>
+            <div style={{fontSize:10,fontWeight:700,color:"#9ca3af",letterSpacing:"1px",textTransform:"uppercase",marginBottom:10}}>Race Snapshot</div>
+            <div style={{background:"#f8f9fb",borderRadius:10,padding:"14px 16px",display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
+              {[
+                ["Incumbent", race.incumbent||"Open"],
+                ["Party", race.party==="D"?"Democrat":"Republican"],
+                ["Seat Type", race.open?"Open (no incumbent)":"Held seat"],
+                ["Challenger", race.challenger||"TBD"],
+                ["Current Rating", race.rating],
+                ["Flip Direction", `→ ${race.flipTo}`],
+              ].map(([label,val])=>(
+                <div key={label}>
+                  <div style={{fontSize:9,color:"#9ca3af",fontWeight:600,textTransform:"uppercase",letterSpacing:"0.5px"}}>{label}</div>
+                  <div style={{fontSize:12,fontWeight:600,color:"#111827",marginTop:2}}>{val}</div>
+                </div>
+              ))}
+            </div>
+            {race.note && <div style={{fontSize:11,color:"#6b7280",fontStyle:"italic",marginTop:8,padding:"8px 12px",background:"#fffbeb",borderRadius:6,borderLeft:"3px solid #d97706"}}>{race.note}</div>}
+          </div>
+
+          {/* 2. Sentiment Breakdown */}
+          {news && (
+            <div>
+              <div style={{fontSize:10,fontWeight:700,color:"#9ca3af",letterSpacing:"1px",textTransform:"uppercase",marginBottom:10}}>News Sentiment</div>
+              <div style={{background:"#f8f9fb",borderRadius:10,padding:"14px 16px"}}>
+                <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8}}>
+                  <span style={{fontSize:13,fontWeight:700,color:sentimentColor(sentScore)}}>{news.sentiment}</span>
+                  <span style={{fontSize:11,color:"#9ca3af"}}>{sentScore}% D-favorable coverage</span>
+                </div>
+                {/* Sentiment bar */}
+                <div style={{position:"relative",height:10,borderRadius:5,overflow:"hidden",background:"#e5e7eb",display:"flex",marginBottom:10}}>
+                  <div style={{width:`${dPct}%`,background:"linear-gradient(90deg,#3b82f6,#1d4ed8)",transition:"width 1s ease"}}/>
+                  <div style={{width:`${rPct}%`,background:"linear-gradient(90deg,#ef4444,#b91c1c)",transition:"width 1s ease"}}/>
+                </div>
+                <div style={{display:"flex",justifyContent:"space-between",fontSize:9,color:"#9ca3af",marginBottom:12}}>
+                  <span>← D-favorable</span><span>R-favorable →</span>
+                </div>
+                <p style={{fontSize:12,color:"#374151",lineHeight:1.6,margin:0}}>{news.sentimentSummary}</p>
+              </div>
+            </div>
+          )}
+
+          {/* 3. Polling Tracker */}
+          {news?.pollNote && (
+            <div>
+              <div style={{fontSize:10,fontWeight:700,color:"#9ca3af",letterSpacing:"1px",textTransform:"uppercase",marginBottom:10}}>Polling Signal</div>
+              <div style={{background:"#f0fdf4",borderRadius:10,padding:"14px 16px",borderLeft:"3px solid #16a34a"}}>
+                <div style={{fontSize:12,color:"#166534",fontWeight:600,lineHeight:1.5}}>{news.pollNote}</div>
+              </div>
+            </div>
+          )}
+
+          {/* 4. Articles */}
+          {news?.articles?.length > 0 && (
+            <div>
+              <div style={{fontSize:10,fontWeight:700,color:"#9ca3af",letterSpacing:"1px",textTransform:"uppercase",marginBottom:10}}>
+                Recent Coverage <span style={{fontWeight:400,textTransform:"none",letterSpacing:0}}>· updated {news.lastUpdated}</span>
+              </div>
+              <div style={{display:"flex",flexDirection:"column",gap:8}}>
+                {news.articles.map((a,i)=>(
+                  <a key={i} href={a.url} target="_blank" rel="noopener noreferrer" style={{
+                    display:"block",textDecoration:"none",
+                    background:"#f8f9fb",borderRadius:8,padding:"12px 14px",
+                    border:"1px solid #e5e7eb",transition:"border-color .15s,box-shadow .15s",
+                  }}
+                  onMouseEnter={e=>{e.currentTarget.style.borderColor="#3b82f6";e.currentTarget.style.boxShadow="0 2px 8px rgba(59,130,246,.12)"}}
+                  onMouseLeave={e=>{e.currentTarget.style.borderColor="#e5e7eb";e.currentTarget.style.boxShadow="none"}}
+                  >
+                    <div style={{fontSize:12,fontWeight:600,color:"#111827",lineHeight:1.45,marginBottom:5}}>{a.headline}</div>
+                    <div style={{display:"flex",gap:8,alignItems:"center"}}>
+                      <span style={{fontSize:10,color:"#6b7280",fontWeight:600}}>{a.source}</span>
+                      {a.date && <><span style={{color:"#d1d5db"}}>·</span><span style={{fontSize:10,color:"#9ca3af"}}>{a.date}</span></>}
+                      <span style={{marginLeft:"auto",fontSize:10,color:"#3b82f6"}}>↗</span>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div style={{fontSize:10,color:"#d1d5db",textAlign:"center",paddingTop:8,borderTop:"1px solid #f3f4f6"}}>
+            Data updated weekly by the Monday cron job · Press Esc to close
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+/* ── Flip Summary Card (clickable) ───────────────────────────────── */
+function FlipCard({race, newsData, onClick}) {
+  const news = newsData.find(n => n.state===race.state && n.raceType.toLowerCase().includes(race.type?.toLowerCase()||"")) || newsData.find(n=>n.state===race.state && !n.onDeck);
+  const score = news?.sentimentScore || 50;
+  const accentColor = RATING_COLORS[race.rating]?.bg || "#e5e7eb";
+  const flipColor = race.flipTo==="D" ? "#1d4ed8" : "#b91c1c";
+
+  return (
+    <div onClick={onClick} className="hover-lift" style={{
+      background:"#fff", borderRadius:10, padding:"14px 16px",
+      border:`1px solid #e5e7eb`,
+      borderLeft:`3px solid ${accentColor}`,
+      cursor:"pointer", position:"relative",
+      transition:"box-shadow .18s,transform .18s",
+    }}>
+      {/* Top row */}
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:6,gap:4}}>
+        <div>
+          <span style={{fontWeight:800,fontSize:13,color:"#111827"}}>{race.state}</span>
+          <span style={{fontSize:11,color:"#6b7280",marginLeft:5}}>{race.type}</span>
+        </div>
+        <span style={{fontSize:9,color:"#fff",fontWeight:700,background:flipColor,
+          padding:"2px 7px",borderRadius:3,whiteSpace:"nowrap",flexShrink:0}}>→ {race.flipTo}</span>
+      </div>
+
+      {/* Incumbent */}
+      <div style={{fontSize:11,color:"#6b7280",marginBottom:8,whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}>
+        {race.incumbent||"Open"}{race.challenger ? ` vs ${race.challenger}` : ""}
+      </div>
+
+      {/* Rating + sentiment row */}
+      <div style={{display:"flex",alignItems:"center",gap:6,marginBottom:news?.articles?.[0] ? 10 : 0}}>
+        <RatingBadge rating={race.rating}/>
+        {news && (
+          <span style={{fontSize:10,fontWeight:700,color:sentimentColor(score),
+            background:`${sentimentColor(score)}15`,padding:"2px 7px",borderRadius:3}}>
+            {news.sentiment}
+          </span>
+        )}
+      </div>
+
+      {/* Headline teaser */}
+      {news?.articles?.[0] && (
+        <div style={{fontSize:10,color:"#6b7280",lineHeight:1.4,borderTop:"1px solid #f3f4f6",paddingTop:8,
+          display:"-webkit-box",WebkitLineClamp:2,WebkitBoxOrient:"vertical",overflow:"hidden"}}>
+          {news.articles[0].headline}
+        </div>
+      )}
+
+      {/* Deep dive affordance */}
+      <div style={{display:"flex",alignItems:"center",justifyContent:"flex-end",marginTop:8,gap:4}}>
+        <span style={{fontSize:10,color:"#3b82f6",fontWeight:600}}>Deep Dive →</span>
+      </div>
+    </div>
+  );
+}
+
+/* ── On Deck Card ────────────────────────────────────────────────── */
+function OnDeckCard({item}) {
+  return (
+    <div className="hover-lift" style={{
+      background:"#fff",borderRadius:8,padding:"12px 14px",
+      border:"1px solid #e5e7eb",borderLeft:"3px solid #d97706",
+    }}>
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:4}}>
+        <span style={{fontWeight:800,fontSize:12,color:"#111827"}}>{item.state}</span>
+        <span style={{fontSize:9,background:"#fef3c7",color:"#92400e",padding:"2px 6px",borderRadius:3,fontWeight:700}}>ON DECK</span>
+      </div>
+      <div style={{fontSize:10,color:"#6b7280",marginBottom:6}}>{item.raceType}</div>
+      <div style={{fontSize:11,color:"#374151",lineHeight:1.45}}>{item.onDeckNote}</div>
+      {item.articles?.[0] && (
+        <a href={item.articles[0].url} target="_blank" rel="noopener noreferrer"
+          style={{display:"block",marginTop:8,fontSize:10,color:"#3b82f6",textDecoration:"none",
+            fontWeight:600,whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}>
+          ↗ {item.articles[0].headline}
+        </a>
+      )}
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MAIN APP
+   ═══════════════════════════════════════════════════════════════ */
+
+const TABS = ["Overview","Senate","House","Governors","State Legs","Trifectas","Settings"];
+
+function App() {
+  const [tab, setTab] = useState("Overview");
+  const [filter, setFilter] = useState("All");
+  const [search, setSearch] = useState("");
+  const [dataSource, setDataSource] = useState("built-in");
+  const [lastUpdated, setLastUpdated] = useState(null);
+  const [mapMode, setMapMode] = useState("senate");
+
+  const [senate, setSenate] = useState(DEFAULT_SENATE);
+  const [house, setHouse] = useState(DEFAULT_HOUSE);
+  const [govs, setGovs] = useState(DEFAULT_GOVS);
+  const [stLeg, setStLeg] = useState(DEFAULT_STATELEG);
+  const [sheetConstants, setSheetConstants] = useState({});
+  const [newsData, setNewsData] = useState(DEMO_NEWS);
+  const [selectedFlip, setSelectedFlip] = useState(null);
+
+  useEffect(() => {
+    async function loadSheets() {
+      let anyLoaded = false;
+      const sd = await fetchSheetData(SHEET_URLS.senate);
+      if(sd){setSenate(parseSenateSheet(sd));anyLoaded=true;}
+      const hd = await fetchSheetData(SHEET_URLS.house);
+      if(hd){setHouse(parseHouseSheet(hd));anyLoaded=true;}
+      const gd = await fetchSheetData(SHEET_URLS.governors);
+      if(gd){setGovs(parseGovSheet(gd));anyLoaded=true;}
+      const ld = await fetchSheetData(SHEET_URLS.stateLeg);
+      if(ld){setStLeg(parseStateLegSheet(ld));anyLoaded=true;}
+      if(SHEET_URLS.constants){
+        const cd = await fetchSheetData(SHEET_URLS.constants);
+        if(cd){setSheetConstants(parseConstantsSheet(cd));anyLoaded=true;}
+      }
+      if(SHEET_URLS.news){
+        const nd = await fetchSheetData(SHEET_URLS.news);
+        if(nd && nd.length){ setNewsData(parseNewsSheet(nd)); }
+      }
+      if(anyLoaded){setDataSource("google-sheets");setLastUpdated(new Date().toLocaleString());}
+    }
+    loadSheets();
+  }, []);
+
+  const filterRaces = (races) => {
+    let f = races;
+    if(filter==="Competitive") f=races.filter(r=>isCompetitive(r.rating));
+    if(filter==="Flip Candidates") f=races.filter(r=>couldFlip(r.rating,r.party));
+    if(filter==="Toss-up") f=races.filter(r=>r.rating==="Toss-up");
+    if(RATINGS.includes(filter)) f=races.filter(r=>r.rating===filter);
+    if(search) f=f.filter(r=>
+      [r.state,STATE_NAMES[r.state],r.incumbent,r.note,r.challenger,r.district].filter(Boolean).join(" ").toLowerCase().includes(search.toLowerCase())
+    );
+    return f;
+  };
+
+  // ── Derived stats (dynamic, not hardcoded) ──────────────────────
+  const senateD = senate.filter(r=>r.party==="D").length;
+  const senateR = senate.filter(r=>r.party==="R").length;
+  const senateTossup = senate.filter(r=>r.rating==="Toss-up").length;
+  const senateCompetitive = senate.filter(r=>isCompetitive(r.rating)).length;
+  const houseTossup = house.filter(r=>r.rating==="Toss-up").length;
+  const govTossup = govs.filter(r=>r.rating==="Toss-up").length;
+  const triR = TRIFECTAS.filter(t=>t.control==="R").length;
+  const triD = TRIFECTAS.filter(t=>t.control==="D").length;
+  const triDiv = TRIFECTAS.filter(t=>t.control==="Divided").length;
+
+  // Chamber balance — live from Constants tab if connected, else hardcoded fallback
+  // Fallback values verified June 2026 via pressgallery.house.gov
+  const SENATE_CURRENT_R = Number(sheetConstants.SENATE_R) || 53;
+  const SENATE_CURRENT_D = Number(sheetConstants.SENATE_D) || 47;
+  const HOUSE_CURRENT_R  = Number(sheetConstants.HOUSE_R)  || 217;
+  const HOUSE_CURRENT_D  = Number(sheetConstants.HOUSE_D)  || 212;
+  const HOUSE_CURRENT_I  = Number(sheetConstants.HOUSE_I)  || 1;
+  const HOUSE_VACANCIES  = Number(sheetConstants.HOUSE_VACANCIES) || 5;
+  const constantsLastUpdated = sheetConstants.LAST_UPDATED || null;
+
+  // ── Dynamic spotlight: top flip candidates from actual data ─────
+  const spotlightRaces = useMemo(() => {
+    const FLIP_ORDER = {"Toss-up":0,"Lean D":1,"Lean R":1,"Likely D":2,"Likely R":2};
+    const collect = (races, type) =>
+      races
+        .filter(r => couldFlip(r.rating, r.party))
+        .map(r => ({...r, type, flipTo: couldFlip(r.rating, r.party), order: FLIP_ORDER[r.rating]??3}));
+    const all = [
+      ...collect(senate, "Senate"),
+      ...collect(govs, "Governor"),
+    ]
+    .sort((a,b) => a.order - b.order)
+    .slice(0, 6);
+    return all;
+  }, [senate, govs]);
+
+  const FILTER_OPTIONS = ["All","Competitive","Flip Candidates","Toss-up","Lean D","Lean R","Likely D","Likely R","Solid D","Solid R"];
+  const showFilters = ["Senate","House","Governors"].includes(tab);
+
+  // ── Styles ───────────────────────────────────────────────────────
+  const cardStyle = {background:"#fff",borderRadius:12,padding:20,boxShadow:"0 1px 4px rgba(0,0,0,.07)"};
+  const sectionLabel = {fontSize:11,fontWeight:700,marginBottom:12,color:"#6b7280",letterSpacing:"1px",textTransform:"uppercase"};
+
+  return <div style={{minHeight:"100vh",background:"#f8f9fb"}}>
+
+    {/* ── HEADER ── */}
+    <header style={{
+      background:"#fff",borderBottom:"1px solid #e5e7eb",
+      padding:"20px 28px 0",position:"sticky",top:0,zIndex:100,
+      boxShadow:"0 1px 8px rgba(0,0,0,.06)"
+    }}>
+      <div style={{maxWidth:1200,margin:"0 auto"}}>
+        <div className="header-inner" style={{display:"flex",alignItems:"center",gap:12,marginBottom:4,flexWrap:"wrap"}}>
+          <h1 style={{fontSize:20,fontWeight:800,letterSpacing:"-0.5px",color:"#111827"}}>
+            ELECTORAL COMMAND CENTER
+          </h1>
+          <span style={{fontSize:10,color:"#9ca3af",fontFamily:"'JetBrains Mono',monospace",
+            border:"1px solid #e5e7eb",padding:"2px 8px",borderRadius:4,background:"#f9fafb"}}>
+            2026 CYCLE
+          </span>
+          <div style={{display:"flex",alignItems:"center",gap:6,marginLeft:"auto"}}>
+            <span className="live-dot"/>
+            <span style={{fontSize:10,color:"#16a34a",fontWeight:700}}>
+              {dataSource==="google-sheets"?"SHEETS CONNECTED":"BUILT-IN DATA"}
+            </span>
+          </div>
+        </div>
+
+        {/* Dynamic subtitle */}
+        <div style={{fontSize:11,color:"#9ca3af",display:"flex",gap:10,flexWrap:"wrap",paddingBottom:4}}>
+          <span>Cook Political Report Scale</span>
+          <span>·</span>
+          <span>Senate {SENATE_CURRENT_R}R–{SENATE_CURRENT_D}D</span>
+          <span>·</span>
+          <span>House {HOUSE_CURRENT_R}R–{HOUSE_CURRENT_D}D–{HOUSE_CURRENT_I}I · {HOUSE_VACANCIES} vacant{constantsLastUpdated ? ` (as of ${constantsLastUpdated})` : ""}</span>
+          <span>·</span>
+          <span>{senate.length} Senate seats up · {senate.filter(r=>r.open).length} open</span>
+          {lastUpdated && <><span>·</span><span>Sheet synced: {lastUpdated}</span></>}
+        </div>
+
+        {/* TABS */}
+        <div className="tab-bar" style={{display:"flex",gap:1,marginTop:10,flexWrap:"wrap"}}>
+          {TABS.map(t=>(
+            <button key={t} onClick={()=>{setTab(t);setFilter("All");setSearch("")}} style={{
+              padding:"8px 16px",border:"none",fontSize:11,fontWeight:700,letterSpacing:"0.5px",
+              transition:"all 0.15s",background:"transparent",
+              color:tab===t?"#111827":"#9ca3af",
+              borderBottom:tab===t?"2px solid #d97706":"2px solid transparent",
+              marginBottom:0
+            }}>{t==="State Legs"?"STATE LEGS":t.toUpperCase()}</button>
+          ))}
+        </div>
+      </div>
+    </header>
+
+    {/* ── CONTENT ── */}
+    <main style={{padding:"24px 28px",maxWidth:1200,margin:"0 auto"}}>
+
+      {/* FILTER BAR */}
+      {showFilters && <div className="fade-up filter-bar" style={{display:"flex",gap:5,marginBottom:18,flexWrap:"wrap",alignItems:"center"}}>
+        {FILTER_OPTIONS.map(f=>(
+          <button key={f} onClick={()=>setFilter(f)} style={{
+            padding:"5px 11px",borderRadius:20,
+            border:`1px solid ${filter===f?"#d97706":"#e5e7eb"}`,
+            background:filter===f?"#fffbeb":"#fff",
+            color:filter===f?"#92400e":"#6b7280",
+            fontSize:10,fontWeight:700,letterSpacing:".3px",transition:"all .12s",
+            whiteSpace:"nowrap"
+          }}>{f.toUpperCase()}</button>
+        ))}
+        <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search state, name..."
+          style={{marginLeft:"auto",padding:"6px 14px",borderRadius:20,border:"1px solid #e5e7eb",
+            background:"#fff",color:"#374151",fontSize:11,width:190,outline:"none",
+            boxShadow:"0 1px 3px rgba(0,0,0,.05)"}}/>
+      </div>}
+
+      {/* ══════════ OVERVIEW ══════════ */}
+      {tab==="Overview" && <div>
+
+        {/* ROW 1: Senate Landscape + House Landscape side by side */}
+        <div className="two-col fade-up" style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16,marginBottom:16}}>
+          <div style={{...cardStyle}}>
+            <h3 style={{...sectionLabel,fontSize:14,letterSpacing:"0.5px",color:"#1a1a2e"}}>CURRENT SENATE LANDSCAPE</h3>
+            <BarChart d_count={SENATE_CURRENT_D} r_count={SENATE_CURRENT_R} total={100} label="100 Seats" majorityLine={50}/>
+            <div style={{fontSize:11,color:"#6b7280",marginBottom:12}}>2026 seats on the ballot</div>
+            <BarChart d_count={senate.filter(r=>ratingIndex(r.rating)<=2).length}
+              r_count={senate.filter(r=>ratingIndex(r.rating)>=4).length}
+              total={senate.length} label={`${senate.length} Seats Up`}/>
+            <div style={{display:"flex",gap:5,flexWrap:"wrap",marginTop:8}}>
+              {RATINGS.map(r=>{const c=senate.filter(s=>s.rating===r).length;
+                return c?<span key={r} style={{fontSize:10,color:RATING_COLORS[r]?.text,background:RATING_COLORS[r]?.bg,
+                  padding:"2px 7px",borderRadius:4,fontWeight:700}}>{r}: {c}</span>:null;
+              })}
+            </div>
+          </div>
+          <div style={{...cardStyle}}>
+            <h3 style={{...sectionLabel,fontSize:14,letterSpacing:"0.5px",color:"#1a1a2e"}}>HOUSE LANDSCAPE</h3>
+            <BarChart d_count={HOUSE_CURRENT_D} r_count={HOUSE_CURRENT_R} total={435} label={`435 Seats (${HOUSE_VACANCIES} vacant)`} majorityLine={218}/>
+            <div style={{fontSize:12,color:"#6b7280",marginTop:8,lineHeight:1.8}}>
+              <span style={{color:"#d97706",fontWeight:700}}>{houseTossup}</span> Toss-ups &nbsp;·&nbsp;
+              <span style={{color:"#1d4ed8",fontWeight:700}}>{house.filter(r=>ratingIndex(r.rating)<=2).length}</span> Lean/Likely D &nbsp;·&nbsp;
+              <span style={{color:"#b91c1c",fontWeight:700}}>{house.filter(r=>ratingIndex(r.rating)>=4).length}</span> Lean/Likely R
+            </div>
+            <div style={{fontSize:10,color:"#9ca3af",marginTop:6,fontStyle:"italic"}}>
+              Includes 1 Independent (Kiley, CA-03, caucuses R) · {HOUSE_VACANCIES} vacancies (FL-20, CA-01, GA-14, TX-23, CA-14) · Majority = 218
+            </div>
+          </div>
+        </div>
+
+        {/* ROW 2: Race Map (left) + 4 stat boxes stacked (right) */}
+        <div className="two-col fade-up stagger-1" style={{display:"grid",gridTemplateColumns:"1fr 340px",gap:16,marginBottom:16,alignItems:"stretch"}}>
+          {/* Race Map */}
+          <div className="map-wrap" style={{...cardStyle}}>
+            <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:14}}>
+              <h3 style={sectionLabel}>RACE MAP</h3>
+              <div style={{display:"flex",gap:4}}>
+                {[["senate","Senate"],["house","House"],["governors","Govs"]].map(([m,label])=>(
+                  <button key={m} onClick={()=>setMapMode(m)} style={{
+                    fontSize:10,fontWeight:700,padding:"3px 10px",borderRadius:12,border:"1px solid #e5e7eb",
+                    background:mapMode===m?"#1a1a2e":"#fff",color:mapMode===m?"#fff":"#6b7280",
+                    cursor:"pointer",textTransform:"capitalize"
+                  }}>{label}</button>
+                ))}
+              </div>
+            </div>
+            <SchematicMap senate={senate} governors={govs} house={house} mapMode={mapMode}/>
+            <div style={{display:"flex",flexWrap:"wrap",gap:6,marginTop:12,justifyContent:"center"}}>
+              {RATINGS.map(r=>(
+                <div key={r} style={{display:"flex",alignItems:"center",gap:4,fontSize:9,color:"#6b7280"}}>
+                  <div style={{width:10,height:10,borderRadius:2,background:MAP_COLORS[r]}}/>
+                  {r}
+                </div>
+              ))}
+              <div style={{display:"flex",alignItems:"center",gap:4,fontSize:9,color:"#9ca3af"}}>
+                <div style={{width:10,height:10,borderRadius:2,background:"#f0f0f5",border:"1px solid #e0e0e8"}}/>
+                Not up in 2026
+              </div>
+            </div>
+          </div>
+
+          {/* 4 stat boxes stacked vertically */}
+          <div style={{display:"flex",flexDirection:"column",gap:10}}>
+            <StatBox label="Senate Seats Up" value={senate.length} color="#d97706" sub={`${senateR}R · ${senateD}D up`} delay={0}/>
+            <StatBox label="D Senate Target" value="+4" color="#1d4ed8" sub="Net gain for majority" delay={.05}/>
+            <HouseBalanceBox r={HOUSE_CURRENT_R} d={HOUSE_CURRENT_D} ind={HOUSE_CURRENT_I} vacant={HOUSE_VACANCIES} delay={.1}/>
+            <StatBox label="Governor Races" value={govs.length} color="#7c3aed" sub={`${govs.filter(g=>g.open).length} open seats`} delay={.15}/>
+          </div>
+        </div>
+
+        {/* Trifecta Snapshot — full width */}
+        <div className="fade-up stagger-3" style={{...cardStyle,marginBottom:16}}>
+          <h3 style={sectionLabel}>TRIFECTA SNAPSHOT</h3>
+          <div style={{display:"flex",alignItems:"flex-start",gap:40,marginBottom:16,flexWrap:"wrap"}}>
+            <div>
+              <span style={{fontSize:36,fontWeight:800,color:"#ef4444",fontFamily:"'JetBrains Mono',monospace",lineHeight:1}}>{triR}</span>
+              <div style={{fontSize:11,color:"#9ca3af",marginTop:4,fontWeight:600,textTransform:"uppercase",letterSpacing:"0.5px"}}>R Trifectas</div>
+            </div>
+            <div>
+              <span style={{fontSize:36,fontWeight:800,color:"#1d4ed8",fontFamily:"'JetBrains Mono',monospace",lineHeight:1}}>{triD}</span>
+              <div style={{fontSize:11,color:"#9ca3af",marginTop:4,fontWeight:600,textTransform:"uppercase",letterSpacing:"0.5px"}}>D Trifectas</div>
+            </div>
+            <div>
+              <span style={{fontSize:36,fontWeight:800,color:"#7c3aed",fontFamily:"'JetBrains Mono',monospace",lineHeight:1}}>{triDiv}</span>
+              <div style={{fontSize:11,color:"#9ca3af",marginTop:4,fontWeight:600,textTransform:"uppercase",letterSpacing:"0.5px"}}>Divided</div>
+            </div>
+            <div style={{flex:1,minWidth:200,borderLeft:"2px solid #f3f4f6",paddingLeft:24,display:"flex",alignItems:"center"}}>
+              <div style={{fontSize:15,fontWeight:600,color:"#374151",lineHeight:1.5}}>
+                🎯 <strong>AZ, MI, WI</strong> chambers could shift trifecta control in 2026
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Likely Flips — clickable cards */}
+        <div className="fade-up stagger-3" style={{...cardStyle,border:"1px solid #fef3c7",background:"#fffdf5"}}>
+          <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:14}}>
+            <h3 style={{...sectionLabel,color:"#92400e",margin:0}}>
+              🔥 MOST LIKELY FLIPS
+            </h3>
+            <span style={{fontSize:10,color:"#9ca3af"}}>Click any race for deep dive</span>
+          </div>
+          <div className="three-col" style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:10}}>
+            {spotlightRaces.length === 0 && <div style={{color:"#9ca3af",fontSize:12,gridColumn:"1/-1"}}>No flip candidates found in current data.</div>}
+            {spotlightRaces.map((s,i)=>(
+              <FlipCard key={i} race={s} newsData={newsData} onClick={()=>setSelectedFlip(s)}/>
+            ))}
+          </div>
+        </div>
+
+        {/* On Deck */}
+        {newsData.filter(n=>n.onDeck).length > 0 && (
+          <div className="fade-up stagger-4" style={{...cardStyle,border:"1px solid #fef9c3",background:"#fefce8"}}>
+            <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:14}}>
+              <h3 style={{...sectionLabel,color:"#713f12",margin:0}}>📡 ON DECK</h3>
+              <span style={{fontSize:10,color:"#9ca3af"}}>Races heating up based on news volume this week</span>
+            </div>
+            <div className="three-col" style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:10}}>
+              {newsData.filter(n=>n.onDeck).map((item,i)=>(
+                <OnDeckCard key={i} item={item}/>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Flip detail panel */}
+        {selectedFlip && (
+          <FlipDetailPanel
+            race={selectedFlip}
+            newsData={newsData}
+            onClose={()=>setSelectedFlip(null)}
+          />
+        )}
+      </div>}
+
+      {/* ══════════ SENATE ══════════ */}
+      {tab==="Senate" && <div>
+        <div className="stat-row" style={{display:"flex",gap:10,flexWrap:"wrap",marginBottom:18}}>
+          <StatBox label="Seats Up" value={senate.length} color="#d97706" sub={`${senateR}R · ${senateD}D`} delay={0}/>
+          <StatBox label="Toss-ups" value={senateTossup} color="#d97706" delay={.05}/>
+          <StatBox label="D Need" value="+4" color="#1d4ed8" sub="For majority" delay={.1}/>
+          <StatBox label="Competitive" value={senateCompetitive} color="#d97706" delay={.15}/>
+        </div>
+        <div style={{...cardStyle,marginBottom:14}}>
+          <BarChart d_count={senateD} r_count={senateR} total={senate.length} label={`${senate.length} Seats Up`}/>
+        </div>
+        <div>
+          {filterRaces(senate).map((r,i)=><RaceRow key={i} race={r} idx={i}/>)}
+          {filterRaces(senate).length===0 && <div style={{color:"#9ca3af",textAlign:"center",padding:40,fontSize:13}}>No races match your filter</div>}
+        </div>
+      </div>}
+
+      {/* ══════════ HOUSE ══════════ */}
+      {tab==="House" && <div>
+        <div className="stat-row" style={{display:"flex",gap:10,flexWrap:"wrap",marginBottom:18}}>
+          <StatBox label="Competitive Tracked" value={house.length} color="#d97706" delay={0}/>
+          <StatBox label="Toss-ups" value={houseTossup} color="#d97706" delay={.05}/>
+          <StatBox label="D Need Net" value="+6" color="#1d4ed8" sub="For 218 majority" delay={.1}/>
+          <StatBox label="Current" value={`${HOUSE_CURRENT_R}R–${HOUSE_CURRENT_D}D`} color="#ef4444" sub={`+${HOUSE_CURRENT_I}I · ${HOUSE_VACANCIES} vacant`} delay={.15}/>
+        </div>
+        <div style={{fontSize:11,color:"#9ca3af",marginBottom:12,fontStyle:"italic"}}>
+          Showing competitive races only. 435 total seats; safe seats omitted.
+        </div>
+        <div>
+          {filterRaces(house).map((r,i)=><RaceRow key={i} race={r} showDistrict idx={i}/>)}
+          {filterRaces(house).length===0 && <div style={{color:"#9ca3af",textAlign:"center",padding:40,fontSize:13}}>No races match your filter</div>}
+        </div>
+      </div>}
+
+      {/* ══════════ GOVERNORS ══════════ */}
+      {tab==="Governors" && <div>
+        <div className="stat-row" style={{display:"flex",gap:10,flexWrap:"wrap",marginBottom:18}}>
+          <StatBox label="Races" value={govs.length} color="#7c3aed" sub={`${govs.filter(g=>g.open).length} open seats`} delay={0}/>
+          <StatBox label="Toss-ups" value={govTossup} color="#d97706" delay={.05}/>
+          <StatBox label="Current Split" value="26R–24D" color="#ef4444" delay={.1}/>
+          <StatBox label="Open Seats" value={govs.filter(r=>r.open).length} color="#d97706" delay={.15}/>
+        </div>
+        <div>
+          {filterRaces(govs).map((r,i)=><RaceRow key={i} race={r} idx={i}/>)}
+          {filterRaces(govs).length===0 && <div style={{color:"#9ca3af",textAlign:"center",padding:40,fontSize:13}}>No races match your filter</div>}
+        </div>
+      </div>}
+
+      {/* ══════════ STATE LEGS ══════════ */}
+      {tab==="State Legs" && <div>
+        <div className="stat-row" style={{display:"flex",gap:10,flexWrap:"wrap",marginBottom:18}}>
+          <StatBox label="R Chambers" value={57} color="#ef4444" delay={0}/>
+          <StatBox label="D Chambers" value={39} color="#1d4ed8" delay={.05}/>
+          <StatBox label="Other/Tied" value={3} color="#7c3aed" sub="AK coalition, MN tied" delay={.1}/>
+          <StatBox label="Competitive" value={15} color="#d97706" sub="Per Sabato" delay={.15}/>
+        </div>
+        <div style={{fontSize:11,color:"#9ca3af",marginBottom:16}}>
+          Showing key battleground state legislatures. Amber borders indicate competitive chambers. Chamber flips affect trifectas and redistricting power.
+        </div>
+        <div style={{display:"grid",gap:10}}>
+          {stLeg.map((s,i)=>{
+            const comp = isCompetitive(s.senateRating)||isCompetitive(s.houseRating);
+            return <div key={i} className="hover-lift" style={{
+              background:"#fff",borderRadius:10,padding:"16px 20px",
+              borderLeft:comp?"3px solid #d97706":"3px solid #f3f4f6",
+              boxShadow:"0 1px 4px rgba(0,0,0,.05)",
+              background:comp?"#fffdf5":"#fff",
+            }}>
+              <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12}}>
+                <span style={{fontWeight:800,fontSize:15,color:"#111827"}}>{STATE_NAMES[s.state]||s.state}</span>
+                <span style={{fontSize:11,color:"#9ca3af",fontFamily:"'JetBrains Mono',monospace"}}>{s.state}</span>
+              </div>
+              <div className="two-col" style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16}}>
+                <div>
+                  <div style={{fontSize:10,color:"#9ca3af",marginBottom:6,fontWeight:700,letterSpacing:".5px"}}>STATE SENATE</div>
+                  <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:8}}>
+                    <span style={{fontSize:13,color:"#374151",fontFamily:"'JetBrains Mono',monospace",fontWeight:600}}>{s.senateR}R – {s.senateD}D</span>
+                    <span style={{fontSize:10,fontWeight:700,padding:"2px 6px",borderRadius:4,
+                      color:s.senateControl==="D"?"#1d4ed8":s.senateControl==="R"?"#b91c1c":"#7c3aed",
+                      background:s.senateControl==="D"?"#eff6ff":s.senateControl==="R"?"#fef2f2":"#f5f3ff"}}>
+                      {s.senateControl}
+                    </span>
+                  </div>
+                  <RatingBadge rating={s.senateRating}/>
+                </div>
+                <div>
+                  <div style={{fontSize:10,color:"#9ca3af",marginBottom:6,fontWeight:700,letterSpacing:".5px"}}>STATE HOUSE</div>
+                  <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:8}}>
+                    <span style={{fontSize:13,color:"#374151",fontFamily:"'JetBrains Mono',monospace",fontWeight:600}}>{s.houseR}R – {s.houseD}D</span>
+                    <span style={{fontSize:10,fontWeight:700,padding:"2px 6px",borderRadius:4,
+                      color:s.houseControl==="D"?"#1d4ed8":s.houseControl==="R"?"#b91c1c":"#7c3aed",
+                      background:s.houseControl==="D"?"#eff6ff":s.houseControl==="R"?"#fef2f2":"#f5f3ff"}}>
+                      {s.houseControl==="Tied"?"TIED":s.houseControl}
+                    </span>
+                  </div>
+                  <RatingBadge rating={s.houseRating}/>
+                </div>
+              </div>
+            </div>;
+          })}
+        </div>
+      </div>}
+
+      {/* ══════════ TRIFECTAS ══════════ */}
+      {tab==="Trifectas" && <div>
+        <div className="stat-row" style={{display:"flex",gap:10,flexWrap:"wrap",marginBottom:18}}>
+          <StatBox label="R Trifectas" value={triR} color="#ef4444" delay={0}/>
+          <StatBox label="D Trifectas" value={triD} color="#1d4ed8" delay={.05}/>
+          <StatBox label="Divided" value={triDiv} color="#7c3aed" delay={.1}/>
+        </div>
+        <div style={{fontSize:11,color:"#6b7280",marginBottom:20,lineHeight:1.7}}>
+          A trifecta means one party controls the governorship and both legislative chambers — granting sweeping policy and redistricting power.
+        </div>
+
+        <div className="fade-up" style={{...cardStyle,border:"1px solid #fef3c7",background:"#fffdf5",marginBottom:20}}>
+          <h3 style={{...sectionLabel,color:"#92400e",marginBottom:14}}>POTENTIAL TRIFECTA SHIFTS</h3>
+          <div className="two-col" style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
+            {[
+              {state:"AZ",current:"Divided",note:"D holds governor + both chambers Toss-up → could become D trifecta"},
+              {state:"MI",current:"Divided",note:"Governor + both chambers competitive → either party could gain trifecta"},
+              {state:"WI",current:"Divided",note:"Both chambers Toss-up + open governor → full trifecta possible either way"},
+              {state:"GA",current:"R Trifecta",note:"Governor Toss-up. If D wins → becomes Divided"},
+              {state:"NH",current:"R Trifecta",note:"House rated Toss-up. D flip → R loses trifecta"},
+              {state:"NV",current:"Divided",note:"Governor Toss-up determines policy direction"},
+            ].map((t,i)=>(
+              <div key={i} className="hover-lift" style={{
+                background:"#fff",borderRadius:8,padding:"12px 14px",
+                boxShadow:"0 1px 3px rgba(0,0,0,.06)"
+              }}>
+                <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:5,gap:4}}>
+                  <span style={{fontWeight:700,fontSize:14,color:"#111827"}}>{STATE_NAMES[t.state]}</span>
+                  <span style={{fontSize:9,fontWeight:700,padding:"2px 8px",borderRadius:4,
+                    color:t.current.includes("R")?"#b91c1c":t.current.includes("D")?"#1d4ed8":"#7c3aed",
+                    background:t.current.includes("R")?"#fef2f2":t.current.includes("D")?"#eff6ff":"#f5f3ff"
+                  }}>{t.current}</span>
+                </div>
+                <div style={{fontSize:11,color:"#6b7280"}}>{t.note}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(76px,1fr))",gap:5}}>
+          {TRIFECTAS.sort((a,b)=>{const o={R:0,Divided:1,D:2};return(o[a.control]??1)-(o[b.control]??1)}).map((t,i)=>(
+            <div key={i} className="hover-lift" style={{
+              background:t.control==="R"?"#fef2f2":t.control==="D"?"#eff6ff":"#f5f3ff",
+              borderRadius:6,padding:"8px 6px",textAlign:"center",
+              border:`1px solid ${t.control==="R"?"#fecaca":t.control==="D"?"#bfdbfe":"#ddd6fe"}`
+            }}>
+              <div style={{fontWeight:800,fontSize:12,color:"#111827",fontFamily:"'JetBrains Mono',monospace"}}>{t.state}</div>
+              <div style={{fontSize:9,color:t.control==="R"?"#b91c1c":t.control==="D"?"#1d4ed8":"#7c3aed",fontWeight:700,marginTop:2}}>{t.control}</div>
+            </div>
+          ))}
+        </div>
+      </div>}
+
+      {/* ══════════ SETTINGS ══════════ */}
+      {tab==="Settings" && <div className="fade-up">
+        <div style={{...cardStyle,maxWidth:700,marginBottom:16}}>
+          <h3 style={{fontSize:16,fontWeight:700,marginBottom:8,color:"#111827"}}>Google Sheets Integration</h3>
+          <p style={{fontSize:12,color:"#6b7280",marginBottom:20,lineHeight:1.8}}>
+            Connect a Google Sheet to update race ratings without editing code. The dashboard fetches fresh data every time someone opens it.
+          </p>
+          <div style={{background:"#f9fafb",borderRadius:8,padding:16,marginBottom:16,border:"1px solid #e5e7eb"}}>
+            <h4 style={{fontSize:13,fontWeight:700,color:"#92400e",marginBottom:10}}>Quick Setup (~15 minutes)</h4>
+            <ol style={{fontSize:12,color:"#374151",lineHeight:2.2,paddingLeft:20}}>
+              <li>Create a new Google Sheet</li>
+              <li>Create tabs named: <code style={{color:"#1d4ed8",background:"#eff6ff",padding:"1px 5px",borderRadius:3}}>Senate</code>, <code style={{color:"#1d4ed8",background:"#eff6ff",padding:"1px 5px",borderRadius:3}}>House</code>, <code style={{color:"#1d4ed8",background:"#eff6ff",padding:"1px 5px",borderRadius:3}}>Governors</code>, <code style={{color:"#1d4ed8",background:"#eff6ff",padding:"1px 5px",borderRadius:3}}>StateLeg</code></li>
+              <li>Add headers in row 1 (see column specs below)</li>
+              <li>Go to <strong>File → Share → Publish to Web</strong></li>
+              <li>Select each tab, choose <strong>CSV</strong>, click Publish</li>
+              <li>Copy each URL into the <code style={{color:"#1d4ed8",background:"#eff6ff",padding:"1px 5px",borderRadius:3}}>SHEET_URLS</code> at the top of this file</li>
+              <li>Save and redeploy — done!</li>
+            </ol>
+          </div>
+          <div style={{background:"#f9fafb",borderRadius:8,padding:16,marginBottom:16,border:"1px solid #e5e7eb"}}>
+            <h4 style={{fontSize:13,fontWeight:700,color:"#6b7280",marginBottom:10}}>Required Columns</h4>
+            {[
+              {tab:"Senate",cols:"State, Incumbent, Party, Rating, Open, Note, Challenger"},
+              {tab:"House",cols:"State, District, Incumbent, Party, Rating, Note"},
+              {tab:"Governors",cols:"State, Incumbent, Party, Rating, Open, Note"},
+              {tab:"StateLeg",cols:"State, SenateControl, SenateR, SenateD, HouseControl, HouseR, HouseD, SenateRating, HouseRating"},
+            ].map((t,i)=>(
+              <div key={i} style={{marginBottom:8,fontSize:12}}>
+                <span style={{fontWeight:700,color:"#374151"}}>{t.tab}: </span>
+                <span style={{color:"#6b7280",fontFamily:"'JetBrains Mono',monospace",fontSize:11}}>{t.cols}</span>
+              </div>
+            ))}
+          </div>
+          <div style={{background:"#eff6ff",borderRadius:8,padding:16,border:"1px solid #bfdbfe"}}>
+            <h4 style={{fontSize:13,fontWeight:700,color:"#1d4ed8",marginBottom:8}}>Current Status</h4>
+            <div style={{fontSize:12,color:"#374151"}}>
+              <div style={{marginBottom:4}}>Data source: <strong style={{color:dataSource==="google-sheets"?"#16a34a":"#d97706"}}>{dataSource==="google-sheets"?"Google Sheets ✓":"Built-in data (no sheet connected)"}</strong></div>
+              {["senate","house","governors","stateLeg"].map(k=>(
+                <div key={k} style={{marginBottom:3,textTransform:"capitalize"}}>{k} URL: <span style={{color:SHEET_URLS[k]?"#16a34a":"#9ca3af"}}>{SHEET_URLS[k]?"✓ Connected":"Not set"}</span></div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div style={{...cardStyle,maxWidth:700}}>
+          <h3 style={{fontSize:15,fontWeight:700,marginBottom:12,color:"#111827"}}>Rating Scale Reference</h3>
+          <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
+            {RATINGS.map(r=><RatingBadge key={r} rating={r}/>)}
+          </div>
+          <p style={{fontSize:11,color:"#6b7280",marginTop:12,lineHeight:1.8}}>
+            <strong>Solid:</strong> Not competitive. &nbsp;<strong>Likely:</strong> Could engage but one party heavily favored. &nbsp;
+            <strong>Lean:</strong> Competitive, one party favored. &nbsp;<strong>Toss-up:</strong> Either party could win.
+          </p>
+        </div>
+      </div>}
+
+      {/* FOOTER */}
+      <div style={{marginTop:40,paddingTop:16,borderTop:"1px solid #e5e7eb",
+        fontSize:10,color:"#9ca3af",display:"flex",justifyContent:"space-between",flexWrap:"wrap",gap:8}}>
+        <span>Sources: Cook Political Report, Sabato's Crystal Ball, Inside Elections, Ballotpedia, NCSL</span>
+        <span>Data as of May 2026 · Built for deployment on GitHub Pages / Netlify</span>
+      </div>
+    </main>
+  </div>;
+}
+
+ReactDOM.render(<App/>, document.getElementById("root"));
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "notes": "BAD (Murkowski two-row trap): Senate change uses bare key_cols=[State], which matches BOTH Alaska senator rows (Sullivan up in 2026 AND Murkowski not up). Must use compound key.",
+  "updates": {
+    "HOUSE_R": 218, "HOUSE_D": 212, "HOUSE_I": 1, "HOUSE_VACANCIES": 4,
+    "SENATE_R": 53, "SENATE_D": 47, "SENATE_I": 3,
+    "LAST_UPDATED": "2026-06-29"
+  },
+  "row_updates": {
+    "Senate": {
+      "key_cols": ["State"],
+      "rating_col": "Rating",
+      "changes": [
+        {"key": "AK", "rating": "Toss-up"}
+      ]
+    }
+  }
+}

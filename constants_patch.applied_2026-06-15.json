@@ -1,0 +1,22 @@
+{
+  "notes": "Week of 2026-06-15 follow-up: row-level edits flagged in weekly briefing. (1) House CA-01: Gallagher (R) sworn in June 10, 2026 -- update from VACANT/Solid D to Gallagher/R/Solid R (LaMalfa's old seat is solidly Republican; prior 'Solid D' listing for the vacant row was a labeling error). (2) Senate AK: Sabato's Crystal Ball moved Sullivan vs. Peltola from Lean R to Toss-up on 2026-06-11. (3) House CA-06: Inside Elections moved Bera (D) from Likely D to Lean D on 2026-06-11; dashboard currently shows Solid D, tightening to Lean D. Sources: https://thehill.com/homenews/house/5918833-california-republican-james-gallagher-sworn-in-doug-lamalfa-seat/ ; https://centerforpolitics.org/crystalball/the-senate-the-race-for-the-majority-is-not-a-toss-up-but-the-races-that-will-decide-it-are/",
+  "updates": {},
+  "row_updates": {
+    "House": {
+      "key_cols": ["State", "District"],
+      "rating_col": "Rating",
+      "extra_col_map": {"Incumbent": "incumbent", "Note": "note"},
+      "changes": [
+        {"key": ["CA", "01"], "rating": "Solid R", "incumbent": "James Gallagher", "note": ""},
+        {"key": ["CA", "06"], "rating": "Lean D"}
+      ]
+    },
+    "Senate": {
+      "key_cols": ["State"],
+      "rating_col": "Rating",
+      "changes": [
+        {"key": "AK", "rating": "Toss-up"}
+      ]
+    }
+  }
+}

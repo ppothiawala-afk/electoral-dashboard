@@ -1,0 +1,8 @@
+{
+  "notes": "BAD (Senate-sums-to-103 trap): a model 'corrected' the Senate to make R+D+I sum to 100 by lowering the caucus totals to net out the 3 independents. Result: SENATE_R + SENATE_D = 50 + 47 = 97 != 100. The independents are ALREADY inside R/D; they must not be subtracted.",
+  "updates": {
+    "HOUSE_R": 218, "HOUSE_D": 212, "HOUSE_I": 1, "HOUSE_VACANCIES": 4,
+    "SENATE_R": 50, "SENATE_D": 47, "SENATE_I": 3,
+    "LAST_UPDATED": "2026-06-29"
+  }
+}

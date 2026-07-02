@@ -1,0 +1,98 @@
+[
+  {
+    "query": "it's monday morning, run the weekly electoral dashboard update",
+    "should_trigger": true
+  },
+  {
+    "query": "time to do the weekly briefing for the dashboard",
+    "should_trigger": true
+  },
+  {
+    "query": "check if any house members resigned or died this week and update the sheet",
+    "should_trigger": true
+  },
+  {
+    "query": "what did cook and sabato move this week? update the ratings in the google sheet",
+    "should_trigger": true
+  },
+  {
+    "query": "pull the current chamber balance from the sheet and see if it's still accurate",
+    "should_trigger": true
+  },
+  {
+    "query": "write the constants_patch.json with this week's changes",
+    "should_trigger": true
+  },
+  {
+    "query": "any special elections get called or members sworn in since last monday?",
+    "should_trigger": true
+  },
+  {
+    "query": "run the electoral updater scheduled task",
+    "should_trigger": true
+  },
+  {
+    "query": "i need a summary of what changed in 2026 races this week — cook, sabato, inside elections — and flag anything stale in the sheet",
+    "should_trigger": true
+  },
+  {
+    "query": "did the texas senate race move this week? and what's the current house vacancy count?",
+    "should_trigger": true
+  },
+  {
+    "query": "can you make me a google sheet to track the 2026 elections from scratch?",
+    "should_trigger": false
+  },
+  {
+    "query": "what does cook political report say about the 2026 generic ballot right now?",
+    "should_trigger": false
+  },
+  {
+    "query": "summarize the sabato crystal ball senate forecast for 2026",
+    "should_trigger": false
+  },
+  {
+    "query": "i have a spreadsheet of poll numbers, can you clean it up and add a trendline chart?",
+    "should_trigger": false
+  },
+  {
+    "query": "who won the georgia 14 special election?",
+    "should_trigger": true
+  },
+  {
+    "query": "update my google sheet with last quarter's sales numbers",
+    "should_trigger": false
+  },
+  {
+    "query": "write a python script to scrape cook political report ratings",
+    "should_trigger": false
+  },
+  {
+    "query": "what's the current senate makeup — how many R vs D seats?",
+    "should_trigger": false
+  },
+  {
+    "query": "did any senators switch parties recently?",
+    "should_trigger": true
+  },
+  {
+    "query": "can you look at my electoral-dashboard github repo and tell me if the js is broken",
+    "should_trigger": false
+  },
+  {
+    "query": "did last week's constants patch actually get applied to the sheet?",
+    "should_trigger": true
+  },
+  {
+    "query": "why does the electoral dashboard look stale — is the pipeline stuck?",
+    "should_trigger": true
+  },
+  {
+    "query": "there's still a constants_patch.json sitting in the folder unapplied — what happened?",
+    "should_trigger": true
+  },
+  {
+    "query": "is the history.json missing last week's entry for the dashboard?",
+    "should_trigger": true
+  }
+]

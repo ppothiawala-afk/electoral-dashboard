@@ -1,0 +1,35 @@
+# ─── Secrets — NEVER commit these ───────────────────────────────────────────
+# Live Google service-account private key. If this ever lands on GitHub the
+# Sheet becomes writable by anyone. Keep it local; use the GOOGLE_CREDENTIALS
+# GitHub Actions secret in CI instead.
+service_account.json
+*credentials*.json
+*.pem
+*.key
+
+# ─── Python ─────────────────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+*.egg-info/
+
+# ─── macOS / LibreOffice cruft ──────────────────────────────────────────────
+.DS_Store
+.~lock*#
+.~lock*
+
+# ─── Vestigial local data store (real store is the Google Sheet) ────────────
+*.xlsx
+*.xls
+
+# ─── Local run artifacts ────────────────────────────────────────────────────
+update_log.txt
+
+# NOTE: constants_patch.json is intentionally NOT ignored — it is the payload
+# the weekly apply job consumes and must be committed so Actions can see it.
+# Applied archives (constants_patch.applied_*.json) and history.json are also
+# committed so the Pages history page stays in sync.

@@ -1,0 +1,9 @@
+Key,Value,Note
+HOUSE_R,218,
+HOUSE_D,212,
+HOUSE_I,1,Kiley (CA-03)
+HOUSE_VACANCIES,4,CA-14 FL-20 GA-13 TX-23
+SENATE_R,53,includes Murkowski
+SENATE_D,47,includes Sanders King
+SENATE_I,3,Sanders King Murkowski — subset of R/D
+LAST_UPDATED,2026-06-22,

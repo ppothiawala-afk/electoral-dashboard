@@ -1,0 +1,35 @@
+{
+  "notes": "GOOD sample: valid chamber balance, compound Senate/Governors keys, valid ratings.",
+  "updates": {
+    "HOUSE_R": 218, "HOUSE_D": 212, "HOUSE_I": 1, "HOUSE_VACANCIES": 4,
+    "SENATE_R": 53, "SENATE_D": 47, "SENATE_I": 3,
+    "LAST_UPDATED": "2026-06-29",
+    "NOTES": "Kiley (CA-03) is Independent but caucuses R. Vacancies (4): CA-14, FL-20, GA-13, TX-23."
+  },
+  "row_updates": {
+    "Senate": {
+      "key_cols": ["State", "Up in 2026"],
+      "rating_col": "Rating",
+      "extra_col_map": {"Challenger": "challenger"},
+      "changes": [
+        {"key": ["TX", "YES"], "rating": "Lean R", "challenger": "James Talarico (D)"}
+      ]
+    },
+    "Governors": {
+      "key_cols": ["State", "Election 2026"],
+      "rating_col": "Rating",
+      "changes": [
+        {"key": ["AZ", "YES"], "rating": "Lean D"}
+      ]
+    },
+    "House": {
+      "key_cols": ["State", "District"],
+      "rating_col": "Rating",
+      "extra_col_map": {"Note": "note"},
+      "changes": [
+        {"key": ["FL", "09"], "rating": "Likely R", "note": "Cook Jun 25"},
+        {"key": ["FL", "14"], "rating": "Lean R", "note": "Cook Jun 25"}
+      ]
+    }
+  }
+}
