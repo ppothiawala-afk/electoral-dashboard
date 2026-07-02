@@ -1,5 +1,5 @@
 {
-  "notes": "Weekly update 2026-06-29. No numeric chamber balance change this week (218R/212D/1I/4V unchanged). Key data corrections: TX Senate Challenger column needs updating (Cornyn lost runoff to Paxton; Paxton vs. Talarico-D is the general election race). Cook shifted TX Senate from Likely R to Lean R on June 26. Several House rating errors corrected (MO-05, TN-09, TX-09, TX-32 incumbents are D in Solid D seats, incorrectly labeled Solid R in sheet). FL-09 and FL-14 rating corrections per Cook June 25. Validation: 218+212+1+4=435.",
+  "notes": "Follow-up to 2026-06-29 patch (applied 2026-07-02): re-apply TX Senate Challenger/Notes fields that were silently dropped by the extra-column write bug (fixed in update_sheet.py same day). No chamber balance changes.",
   "updates": {
     "HOUSE_R": 218,
     "HOUSE_D": 212,
@@ -8,26 +8,10 @@
     "SENATE_R": 53,
     "SENATE_D": 47,
     "SENATE_I": 3,
-    "LAST_UPDATED": "2026-06-29",
+    "LAST_UPDATED": "2026-07-02",
     "NOTES": "Kiley (CA-03) is Independent but caucuses R. Vacancies (4): CA-14 (Swalwell-D resigned Apr 14, general Aug 18), FL-20 (Cherfilus-McCormick-D resigned Apr 21, special TBD), GA-13 (Scott-D died Apr 22, special Jul 28), TX-23 (Gonzales-R resigned Apr 14, special TBD)."
   },
   "row_updates": {
-    "House": {
-      "key_cols": ["State", "District"],
-      "rating_col": "Rating",
-      "extra_col_map": {"Note": "note"},
-      "changes": [
-        {"key": ["CA", "01"], "note": "James Gallagher (R) sworn in June 10 2026; LaMalfa seat filled"},
-        {"key": ["CA", "14"], "note": "VACANT — Swalwell (D) resigned Apr 14; general election Aug 18 2026"},
-        {"key": ["FL", "09"], "rating": "Likely R", "note": "Cook shifted Likely R June 25 (redistricting-driven)"},
-        {"key": ["FL", "14"], "rating": "Lean R", "note": "Cook shifted Lean R June 25"},
-        {"key": ["MO", "05"], "rating": "Solid D", "note": "Incumbent Emanuel Cleaver is D; prior Solid R label was sheet error"},
-        {"key": ["TN", "09"], "rating": "Solid D", "note": "Incumbent Steve Cohen is D; prior Solid R label was sheet error"},
-        {"key": ["TX", "09"], "rating": "Solid D", "note": "Incumbent Al Green is D; prior Solid R label was sheet error"},
-        {"key": ["TX", "32"], "rating": "Solid D", "note": "Incumbent Julie Johnson is D; prior Solid R label was sheet error"},
-        {"key": ["TX", "35"], "rating": "Solid D", "note": "Incumbent Greg Casar is D; prior Likely R label was sheet error"}
-      ]
-    },
     "Senate": {
       "key_cols": ["State", "Up in 2026"],
       "rating_col": "Rating",
@@ -35,9 +19,8 @@
       "changes": [
         {
           "key": ["TX", "YES"],
-          "rating": "Lean R",
           "challenger": "James Talarico (D)",
-          "notes": "Ken Paxton won GOP runoff May 26; Cook shifted Likely R to Lean R June 26. Paxton faces ethics baggage; Talarico has fundraising edge."
+          "notes": "Ken Paxton won GOP runoff May 26 over Cornyn; Cook shifted Likely R to Lean R June 26. Paxton faces ethics baggage; Talarico has fundraising edge."
         }
       ]
     }
