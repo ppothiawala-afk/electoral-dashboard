@@ -527,11 +527,15 @@ def update_ratings_in_tab(
                 print(f"    {tab} | {lookup_key}: {row[rating_col_idx]} → {new_rating}")
                 row[rating_col_idx] = new_rating
                 updated += 1
-            # Update extra columns
+            # Update extra columns (these count as changes too — without this,
+            # a tab with only Challenger/Notes edits and no rating change would
+            # never be written back and the edits would be silently dropped)
             for col_idx, dict_key in extra_idxs.items():
                 val = data.get(dict_key,"") if isinstance(data, dict) else ""
                 if val and col_idx < len(row) and row[col_idx] != val:
+                    print(f"    {tab} | {lookup_key}: extra col update ({dict_key})")
                     row[col_idx] = val
+                    updated += 1
 
         rows[i] = row
 
