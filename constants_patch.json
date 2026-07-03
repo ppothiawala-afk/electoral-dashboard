@@ -1,0 +1,25 @@
+{
+  "notes": "2026-07-03 corrections (user-confirmed, sourced): (1) TX Governor: Abbott is NOT term-limited — seeking a 4th term vs. Gina Hinojosa (D); prior 'Open (Abbott term-limited)' listing was an error. Rating unchanged (Solid R). Source: https://www.texastribune.org/2026/06/03/texas-governor-race-gina-hinojosa-ad-greg-abbott-nba-finals-spurs-2026-midterms/ (2) MN Governor: Walz withdrew Jan 5, 2026 amid criticism of the state's child-care fraud handling; Amy Klobuchar is the DFL-endorsed nominee. Rating unchanged (Likely D) pending forecaster moves. Sources: https://www.cbsnews.com/minnesota/news/tim-walz-drop-out-of-gubernatorial-race-2026/ ; https://en.wikipedia.org/wiki/2026_Minnesota_gubernatorial_election . No chamber balance changes.",
+  "updates": {},
+  "row_updates": {
+    "Governors": {
+      "key_cols": ["State", "Election 2026"],
+      "rating_col": "Rating",
+      "extra_col_map": {"Incumbent": "incumbent", "Open": "open", "Note": "notes", "Notes": "notes"},
+      "changes": [
+        {
+          "key": ["TX", "YES"],
+          "incumbent": "Greg Abbott",
+          "open": "FALSE",
+          "notes": "Correction: Abbott seeking 4th term (not term-limited). vs. Gina Hinojosa (D); Trump endorsed; polls Abbott +5-6; $96M war chest."
+        },
+        {
+          "key": ["MN", "YES"],
+          "incumbent": "Open (Walz withdrew Jan 5)",
+          "open": "TRUE",
+          "notes": "Walz exited over child-care fraud handling. Klobuchar (DFL-endorsed) vs. R field: Demuth won caucus straw poll, Lindell led June GOP polling."
+        }
+      ]
+    }
+  }
+}

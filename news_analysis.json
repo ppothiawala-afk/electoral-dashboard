@@ -1559,31 +1559,73 @@
         },
         {
           "type": "Governor",
-          "matchup": "Open \u2014 Walz exited the race (reported); field re-forming",
-          "sentiment": 48,
-          "summary": "Late-breaking upheaval: Fox reports Walz quit his re-election bid amid a fraud-scandal storyline, reshaping what the dashboard still lists as a Likely D hold. Single-outlet framing so far \u2014 verify and update the Governors tab next weekly cycle.",
+          "matchup": "Open (Walz withdrew Jan 5) \u2014 Amy Klobuchar (DFL-endorsed) vs. R field (Demuth, Lindell)",
+          "sentiment": 60,
+          "summary": "Walz quit Jan 5 amid criticism of the state's child-care fraud handling \u2014 confirmed across CBS, NBC, NPR, Axios. Klobuchar stepped in and took the DFL endorsement on the first ballot; the R side is unsettled (Demuth won the caucus straw poll, Lindell led June GOP polling). Klobuchar's entry keeps the D-hold tone despite the scandal backdrop.",
           "candidates": [
+            {
+              "name": "Amy Klobuchar",
+              "party": "D",
+              "mentions": 3,
+              "sentiment": 60
+            },
+            {
+              "name": "Lisa Demuth",
+              "party": "R",
+              "mentions": 1,
+              "sentiment": 50
+            },
+            {
+              "name": "Mike Lindell",
+              "party": "R",
+              "mentions": 1,
+              "sentiment": 38
+            },
             {
               "name": "Tim Walz",
               "party": "D",
-              "mentions": 1,
-              "sentiment": 30
+              "mentions": 2,
+              "sentiment": 35
             }
           ],
           "outlets": [
             {
-              "source": "Fox News",
-              "lean": 2,
-              "sentiment": 35,
+              "source": "CBS News",
+              "lean": -1,
+              "sentiment": 52,
+              "articles": 1
+            },
+            {
+              "source": "NPR",
+              "lean": -1,
+              "sentiment": 55,
+              "articles": 1
+            },
+            {
+              "source": "Axios",
+              "lean": -1,
+              "sentiment": 52,
               "articles": 1
             }
           ],
           "articles": [
             {
-              "headline": "GOP optimistic about flipping Minnesota Senate seat after Walz exit",
-              "url": "https://www.foxnews.com/politics/gop-sees-minnesota-senate-seat-play-after-walz-quits-re-election-amid-massive-fraud-scandal",
-              "source": "Fox News",
-              "date": "2026-06-20"
+              "headline": "Gov. Tim Walz drops out of 2026 Minnesota governor's race amid criticism over his handling of fraud",
+              "url": "https://www.cbsnews.com/minnesota/news/tim-walz-drop-out-of-gubernatorial-race-2026/",
+              "source": "CBS News",
+              "date": "2026-01-05"
+            },
+            {
+              "headline": "Democratic Gov. Tim Walz drops out of the race for Minnesota governor",
+              "url": "https://www.npr.org/2026/01/05/nx-s1-5667197/democratic-gov-tim-walz-drops-out-of-the-race-for-minnesota-governor",
+              "source": "NPR",
+              "date": "2026-01-05"
+            },
+            {
+              "headline": "Reshuffled Minnesota governor's race after Walz exit will pose challenges for both parties",
+              "url": "https://www.mprnews.org/story/2026/01/06/reshuffled-minnesota-governors-race-after-walz-exit-will-pose-challenges-for-both-parties",
+              "source": "MPR News",
+              "date": "2026-01-06"
             }
           ]
         }
