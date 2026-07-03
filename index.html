@@ -937,10 +937,218 @@ function OnDeckCard({item}) {
 }
 
 /* ═══════════════════════════════════════════════════════════════
+   STATE NEWS — interactive per-state sentiment analysis
+   Reads news_analysis.json (produced by the weekly Cowork routine
+   via fetch_news.py + Claude scoring). sentiment = 0-100
+   D-favorability of coverage tone. outletLean: -2 left … +2 right.
+   ═══════════════════════════════════════════════════════════════ */
+
+function StateNewsMap({analysis, selected, onSelect}) {
+  const [hover, setHover] = useState(null);
+  const cell = 44, gap = 4;
+  const cols = 12, rows = 8;
+  const has = st => !!(analysis && analysis.states && analysis.states[st]);
+  const stateScore = st => {
+    const races = analysis.states[st].races;
+    return Math.round(races.reduce((a,r)=>a+r.sentiment,0)/races.length);
+  };
+  return (
+    <svg viewBox={`0 0 ${cols*(cell+gap)} ${rows*(cell+gap)}`} style={{width:"100%",maxWidth:600}}>
+      {Object.entries(STATE_GRID).map(([st,[c,r]]) => {
+        const active = has(st);
+        const fill = active ? sentimentColor(stateScore(st)) : "#e5e7eb";
+        const isSel = selected === st;
+        return (
+          <g key={st} onClick={()=>active&&onSelect(st)}
+             onMouseEnter={()=>setHover(st)} onMouseLeave={()=>setHover(null)}
+             style={{cursor:active?"pointer":"default"}}>
+            <rect x={c*(cell+gap)} y={r*(cell+gap)} width={cell} height={cell} rx={6}
+              fill={fill} opacity={active ? (isSel||hover===st?1:0.82) : 0.45}
+              stroke={isSel?"#111827":"none"} strokeWidth={isSel?2.5:0}/>
+            <text x={c*(cell+gap)+cell/2} y={r*(cell+gap)+cell/2+4} textAnchor="middle"
+              fontSize={13} fontWeight={800}
+              fill={active?"#fff":"#9ca3af"} style={{pointerEvents:"none"}}>{st}</text>
+          </g>
+        );
+      })}
+    </svg>
+  );
+}
+
+function OutletScatter({outlets}) {
+  const rated = (outlets||[]).filter(o => o.lean !== null && o.lean !== undefined);
+  if (rated.length < 2) return (
+    <div style={{fontSize:11,color:"#9ca3af",padding:"14px 0"}}>
+      Not enough rated-outlet coverage yet for a lean-vs-sentiment plot.
+    </div>
+  );
+  const W=460, H=210, padL=36, padR=16, padT=14, padB=30;
+  const x = lean => padL + ((lean+2)/4)*(W-padL-padR);
+  const y = s => padT + (1 - s/100)*(H-padT-padB);
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} style={{width:"100%",maxWidth:W}}>
+      {/* axes */}
+      <line x1={padL} y1={y(50)} x2={W-padR} y2={y(50)} stroke="#e5e7eb" strokeDasharray="3,3"/>
+      <line x1={x(0)} y1={padT} x2={x(0)} y2={H-padB} stroke="#e5e7eb" strokeDasharray="3,3"/>
+      <line x1={padL} y1={H-padB} x2={W-padR} y2={H-padB} stroke="#d1d5db"/>
+      {[["Left",-2],["Lean L",-1],["Center",0],["Lean R",1],["Right",2]].map(([lab,v])=>(
+        <text key={v} x={x(v)} y={H-padB+16} textAnchor="middle" fontSize={9} fill="#9ca3af" fontWeight={600}>{lab}</text>
+      ))}
+      <text x={10} y={y(80)} fontSize={9} fill="#3b82f6" fontWeight={700} transform={`rotate(-90 10 ${y(80)})`} textAnchor="middle">D-fav</text>
+      <text x={10} y={y(20)} fontSize={9} fill="#ef4444" fontWeight={700} transform={`rotate(-90 10 ${y(20)})`} textAnchor="middle">R-fav</text>
+      {/* points */}
+      {rated.map((o,i)=>(
+        <g key={i}>
+          <circle cx={x(o.lean)} cy={y(o.sentiment)} r={5+Math.min(o.articles||1,4)}
+            fill={sentimentColor(o.sentiment)} opacity={0.85}/>
+          <text x={x(o.lean)} y={y(o.sentiment)-11} textAnchor="middle" fontSize={9}
+            fill="#374151" fontWeight={600}>{o.source}</text>
+        </g>
+      ))}
+    </svg>
+  );
+}
+
+function CandidateMentionRow({cand, maxMentions}) {
+  const barW = maxMentions ? Math.max(8, (cand.mentions/maxMentions)*100) : 0;
+  const pColor = cand.party==="D" ? "#1d4ed8" : cand.party==="R" ? "#b91c1c" : "#6b7280";
+  return (
+    <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:7}}>
+      <div style={{width:150,fontSize:12,fontWeight:700,color:"#111827",display:"flex",alignItems:"center",gap:6}}>
+        <PartyDot party={cand.party} size={8}/>{cand.name}
+      </div>
+      <div style={{flex:1,background:"#f3f4f6",borderRadius:4,height:14,position:"relative"}}>
+        <div style={{width:`${barW}%`,height:"100%",borderRadius:4,background:pColor,opacity:0.75}}/>
+      </div>
+      <div style={{width:60,fontSize:10,color:"#6b7280",textAlign:"right"}}>{cand.mentions} mention{cand.mentions===1?"":"s"}</div>
+      <div style={{width:52,textAlign:"center",fontSize:10,fontWeight:800,borderRadius:4,padding:"2px 0",
+        background:sentimentColor(cand.sentiment),color:"#fff"}} title="Coverage favorability toward this candidate (0-100)">
+        {cand.sentiment}
+      </div>
+    </div>
+  );
+}
+
+function SeatsUpList({state, senate, house, govs}) {
+  const rows = [];
+  senate.filter(r=>r.state===state).forEach(r=>rows.push({label:"U.S. Senate", ...r}));
+  govs.filter(r=>r.state===state).forEach(r=>rows.push({label:"Governor", ...r}));
+  house.filter(r=>r.state===state).forEach(r=>rows.push({label:`House ${r.state}-${r.district}`, ...r}));
+  if (!rows.length) return <div style={{fontSize:11,color:"#9ca3af"}}>No tracked 2026 races in this state.</div>;
+  return (
+    <div style={{display:"flex",flexDirection:"column",gap:6}}>
+      {rows.map((r,i)=>(
+        <div key={i} style={{display:"flex",alignItems:"center",gap:10,fontSize:12,padding:"6px 10px",
+          background:"#f9fafb",borderRadius:6,border:"1px solid #f3f4f6"}}>
+          <span style={{fontWeight:800,width:110,color:"#111827"}}>{r.label}</span>
+          <PartyDot party={r.party} size={8}/>
+          <span style={{flex:1,color:"#374151",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{r.incumbent}</span>
+          <RatingBadge rating={r.rating}/>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function StateNewsPanel({state, analysis, senate, house, govs}) {
+  const data = analysis.states[state];
+  const cardStyle = {background:"#fff",borderRadius:12,padding:20,boxShadow:"0 1px 4px rgba(0,0,0,.07)"};
+  const label = {fontSize:10,fontWeight:700,color:"#9ca3af",letterSpacing:"1px",textTransform:"uppercase",marginBottom:10};
+  return (
+    <div className="fade-up" style={{display:"flex",flexDirection:"column",gap:16}}>
+      <div style={cardStyle}>
+        <div style={label}>2026 Seats Up — {STATE_NAMES[state]}</div>
+        <SeatsUpList state={state} senate={senate} house={house} govs={govs}/>
+      </div>
+      {data.races.map((race,i)=>{
+        const maxM = Math.max(...(race.candidates||[]).map(c=>c.mentions), 1);
+        return (
+          <div key={i} style={cardStyle}>
+            <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:4,flexWrap:"wrap"}}>
+              <span style={{fontSize:15,fontWeight:800,color:"#111827"}}>{STATE_NAMES[state]} {race.type}</span>
+              <span style={{fontSize:10,fontWeight:800,padding:"3px 9px",borderRadius:12,color:"#fff",
+                background:sentimentColor(race.sentiment)}}
+                title="0-100 D-favorability of overall coverage tone">
+                Coverage tone: {race.sentiment}
+              </span>
+            </div>
+            <div style={{fontSize:11,color:"#6b7280",marginBottom:12}}>{race.matchup}</div>
+            <p style={{fontSize:12,color:"#374151",lineHeight:1.6,margin:"0 0 16px"}}>{race.summary}</p>
+
+            {race.candidates?.length > 0 && <>
+              <div style={label}>Candidate Mentions & Coverage Favorability</div>
+              <div style={{marginBottom:16}}>
+                {race.candidates.map((c,j)=><CandidateMentionRow key={j} cand={c} maxMentions={maxM}/>)}
+              </div>
+            </>}
+
+            <div style={label}>Sentiment by Outlet Lean</div>
+            <OutletScatter outlets={race.outlets}/>
+
+            {race.articles?.length > 0 && <>
+              <div style={{...label,marginTop:14}}>Recent Coverage</div>
+              <div style={{display:"flex",flexDirection:"column",gap:6}}>
+                {race.articles.map((a,j)=>(
+                  <a key={j} href={a.url} target="_blank" rel="noopener noreferrer"
+                    style={{fontSize:11,color:"#3b82f6",textDecoration:"none",fontWeight:600,lineHeight:1.4}}>
+                    ↗ {a.headline} <span style={{color:"#9ca3af",fontWeight:400}}>· {a.source}{a.date?` · ${a.date}`:""}</span>
+                  </a>
+                ))}
+              </div>
+            </>}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function StateNewsTab({analysis, senate, house, govs}) {
+  const [selected, setSelected] = useState(null);
+  if (!analysis || !analysis.states || !Object.keys(analysis.states).length) {
+    return <div style={{background:"#fff",borderRadius:12,padding:28,boxShadow:"0 1px 4px rgba(0,0,0,.07)",
+      fontSize:13,color:"#6b7280",lineHeight:1.6}}>
+      No news analysis data found. Run the weekly news collection (fetch_news.py + scoring) to
+      generate <code>news_analysis.json</code> alongside this page.
+    </div>;
+  }
+  const states = Object.keys(analysis.states).sort((a,b)=>STATE_NAMES[a].localeCompare(STATE_NAMES[b]));
+  return (
+    <div>
+      <div style={{background:"#fff",borderRadius:12,padding:20,boxShadow:"0 1px 4px rgba(0,0,0,.07)",marginBottom:16}}>
+        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:10,marginBottom:12}}>
+          <div>
+            <div style={{fontSize:11,fontWeight:700,color:"#6b7280",letterSpacing:"1px",textTransform:"uppercase"}}>
+              State News Sentiment
+            </div>
+            <div style={{fontSize:11,color:"#9ca3af",marginTop:2}}>
+              Click a colored state or pick from the list · colors show coverage tone (blue = D-favorable, red = R-favorable)
+              {analysis.generated ? ` · updated ${analysis.generated}` : ""}
+            </div>
+          </div>
+          <select value={selected||""} onChange={e=>setSelected(e.target.value||null)}
+            style={{padding:"8px 12px",borderRadius:8,border:"1px solid #e5e7eb",fontSize:12,fontWeight:600,
+              color:"#111827",background:"#f9fafb"}}>
+            <option value="">Select a state…</option>
+            {states.map(st=><option key={st} value={st}>{STATE_NAMES[st]}</option>)}
+          </select>
+        </div>
+        <StateNewsMap analysis={analysis} selected={selected} onSelect={setSelected}/>
+      </div>
+      {selected
+        ? <StateNewsPanel state={selected} analysis={analysis} senate={senate} house={house} govs={govs}/>
+        : <div style={{textAlign:"center",fontSize:12,color:"#9ca3af",padding:"18px 0"}}>
+            {states.length} states have news analysis this week — select one to see candidates, mentions, and outlet sentiment.
+          </div>}
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════
    MAIN APP
    ═══════════════════════════════════════════════════════════════ */
 
-const TABS = ["Overview","Senate","House","Governors","State Legs","Trifectas","Settings"];
+const TABS = ["Overview","State News","Senate","House","Governors","State Legs","Trifectas","Settings"];
 
 function App() {
   const [tab, setTab] = useState("Overview");
@@ -956,6 +1164,7 @@ function App() {
   const [stLeg, setStLeg] = useState(DEFAULT_STATELEG);
   const [sheetConstants, setSheetConstants] = useState({});
   const [newsData, setNewsData] = useState(DEMO_NEWS);
+  const [newsAnalysis, setNewsAnalysis] = useState(null);
   const [selectedFlip, setSelectedFlip] = useState(null);
 
   useEffect(() => {
@@ -978,6 +1187,11 @@ function App() {
         if(nd && nd.length){ setNewsData(parseNewsSheet(nd)); }
       }
       if(anyLoaded){setDataSource("google-sheets");setLastUpdated(new Date().toLocaleString());}
+      // State News analysis — co-located JSON, refreshed by the weekly routine
+      try {
+        const resp = await fetch("news_analysis.json", {cache:"no-store"});
+        if (resp.ok) setNewsAnalysis(await resp.json());
+      } catch(e) { /* optional file; State News tab shows guidance if absent */ }
     }
     loadSheets();
   }, []);
@@ -1250,6 +1464,10 @@ function App() {
       </div>}
 
       {/* ══════════ SENATE ══════════ */}
+      {tab==="State News" && <div className="fade-up">
+        <StateNewsTab analysis={newsAnalysis} senate={senate} house={house} govs={govs}/>
+      </div>}
+
       {tab==="Senate" && <div>
         <div className="stat-row" style={{display:"flex",gap:10,flexWrap:"wrap",marginBottom:18}}>
           <StatBox label="Seats Up" value={senate.length} color="#d97706" sub={`${senateR}R · ${senateD}D`} delay={0}/>

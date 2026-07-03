@@ -33,3 +33,4 @@ update_log.txt
 # the weekly apply job consumes and must be committed so Actions can see it.
 # Applied archives (constants_patch.applied_*.json) and history.json are also
 # committed so the Pages history page stays in sync.
+news_raw.json
