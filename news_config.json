@@ -84,8 +84,42 @@
       ]}
     ]},
     "NH": {"races": [
+      {"type": "Senate", "query": "New Hampshire senate race Pappas Sununu 2026", "candidates": [
+        {"name": "Chris Pappas", "party": "D", "aliases": ["Pappas"]},
+        {"name": "John Sununu", "party": "R", "aliases": ["Sununu"]},
+        {"name": "Scott Brown", "party": "R", "aliases": ["Scott Brown"]}
+      ]},
       {"type": "Governor", "query": "New Hampshire governor race Ayotte 2026", "candidates": [
         {"name": "Kelly Ayotte", "party": "R", "aliases": ["Ayotte"]}
+      ]}
+    ]},
+    "MN": {"races": [
+      {"type": "Senate", "query": "Minnesota senate race Flanagan Craig 2026", "candidates": [
+        {"name": "Peggy Flanagan", "party": "D", "aliases": ["Flanagan"]},
+        {"name": "Angie Craig", "party": "D", "aliases": ["Craig"]},
+        {"name": "Royce White", "party": "R", "aliases": ["Royce White"]}
+      ]},
+      {"type": "Governor", "query": "Minnesota governor race 2026 Walz exit", "candidates": [
+        {"name": "Tim Walz", "party": "D", "aliases": ["Walz"]}
+      ]}
+    ]},
+    "LA": {"races": [
+      {"type": "Senate", "query": "Louisiana senate race Letlow 2026", "candidates": [
+        {"name": "Julia Letlow", "party": "R", "aliases": ["Letlow"]},
+        {"name": "Jamie Davis", "party": "D", "aliases": ["Jamie Davis"]}
+      ]}
+    ]},
+    "FL": {"races": [
+      {"type": "Senate", "query": "Florida senate special election Moody Vindman 2026", "candidates": [
+        {"name": "Ashley Moody", "party": "R", "aliases": ["Moody"]},
+        {"name": "Alexander Vindman", "party": "D", "aliases": ["Vindman"]},
+        {"name": "Angie Nixon", "party": "D", "aliases": ["Nixon"]}
+      ]}
+    ]},
+    "CA": {"races": [
+      {"type": "Governor", "query": "California governor race Becerra Hilton 2026", "candidates": [
+        {"name": "Xavier Becerra", "party": "D", "aliases": ["Becerra"]},
+        {"name": "Steve Hilton", "party": "R", "aliases": ["Hilton"]}
       ]}
     ]},
     "KS": {"races": [
@@ -118,6 +152,10 @@
       {"type": "Senate", "query": "Texas senate race Paxton Talarico 2026", "candidates": [
         {"name": "Ken Paxton", "party": "R", "aliases": ["Paxton"]},
         {"name": "James Talarico", "party": "D", "aliases": ["Talarico"]}
+      ]},
+      {"type": "Governor", "query": "Texas governor race Abbott Hinojosa 2026", "candidates": [
+        {"name": "Greg Abbott", "party": "R", "aliases": ["Abbott"]},
+        {"name": "Gina Hinojosa", "party": "D", "aliases": ["Hinojosa"]}
       ]}
     ]}
   },

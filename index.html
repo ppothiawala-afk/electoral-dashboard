@@ -948,6 +948,7 @@ function StateNewsMap({analysis, selected, onSelect}) {
   const cell = 44, gap = 4;
   const cols = 12, rows = 8;
   const has = st => !!(analysis && analysis.states && analysis.states[st]);
+  const isBaseline = st => (analysis.states[st].races||[]).every(r=>r.baseline);
   const stateScore = st => {
     const races = analysis.states[st].races;
     return Math.round(races.reduce((a,r)=>a+r.sentiment,0)/races.length);
@@ -963,7 +964,7 @@ function StateNewsMap({analysis, selected, onSelect}) {
              onMouseEnter={()=>setHover(st)} onMouseLeave={()=>setHover(null)}
              style={{cursor:active?"pointer":"default"}}>
             <rect x={c*(cell+gap)} y={r*(cell+gap)} width={cell} height={cell} rx={6}
-              fill={fill} opacity={active ? (isSel||hover===st?1:0.82) : 0.45}
+              fill={fill} opacity={active ? (isSel||hover===st?1:(isBaseline(st)?0.5:0.85)) : 0.45}
               stroke={isSel?"#111827":"none"} strokeWidth={isSel?2.5:0}/>
             <text x={c*(cell+gap)+cell/2} y={r*(cell+gap)+cell/2+4} textAnchor="middle"
               fontSize={13} fontWeight={800}
@@ -1067,9 +1068,11 @@ function StateNewsPanel({state, analysis, senate, house, govs}) {
             <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:4,flexWrap:"wrap"}}>
               <span style={{fontSize:15,fontWeight:800,color:"#111827"}}>{STATE_NAMES[state]} {race.type}</span>
               <span style={{fontSize:10,fontWeight:800,padding:"3px 9px",borderRadius:12,color:"#fff",
-                background:sentimentColor(race.sentiment)}}
-                title="0-100 D-favorability of overall coverage tone">
-                Coverage tone: {race.sentiment}
+                background:sentimentColor(race.sentiment),opacity:race.baseline?0.65:1}}
+                title={race.baseline
+                  ? "Derived from the forecaster rating — no scored news coverage yet"
+                  : "0-100 D-favorability of overall coverage tone"}>
+                {race.baseline ? "Rating baseline" : "Coverage tone"}: {race.sentiment}
               </span>
             </div>
             <div style={{fontSize:11,color:"#6b7280",marginBottom:12}}>{race.matchup}</div>
@@ -1122,7 +1125,7 @@ function StateNewsTab({analysis, senate, house, govs}) {
               State News Sentiment
             </div>
             <div style={{fontSize:11,color:"#9ca3af",marginTop:2}}>
-              Click a colored state or pick from the list · colors show coverage tone (blue = D-favorable, red = R-favorable)
+              Click any state or pick from the list · colors show coverage tone (blue = D-favorable, red = R-favorable) · dimmed states = rating baseline only, no scored news yet
               {analysis.generated ? ` · updated ${analysis.generated}` : ""}
             </div>
           </div>
