@@ -45,6 +45,22 @@ Google Sheet, archives it, and commits the results back. If it fails you'll
 see a red run (and an email from GitHub) — the patch stays in place for a
 retry, nothing is lost.
 
+The job now ends with a **post-apply verification step**
+(`verify_dashboard.py --local --sheet`): it re-reads the Sheet, asserts the
+435/100 invariants and rating enums, and confirms the patch actually landed
+row-by-row. A red run after "Verify Sheet" means the Sheet doesn't match the
+patch — ask Claude to investigate.
+
+## About the Verification section in briefings
+
+Since July 2026 the Monday research task fact-checks itself: it spawns
+independent subagent verifiers (ratings moves, chamber membership,
+candidate matchups) that get only the claims — not the sources — and
+re-research them from scratch. The briefing's **Verification** section shows
+the result: all ✅ is normal; any ⚠️ item is something the verifiers
+contradicted or couldn't confirm, with the action taken. Give ⚠️ lines your
+attention during Step 1.
+
 ## Step 5 — Refresh State News sentiment (optional, ~5 min with Claude)
 
 The **State News** tab on the dashboard reads `news_analysis.json`, which is

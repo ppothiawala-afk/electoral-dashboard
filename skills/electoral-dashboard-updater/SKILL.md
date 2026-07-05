@@ -272,6 +272,56 @@ Use `present_files` to share the briefing and `constants_patch.json` with the us
 
 ---
 
+## CONTRACT 3.5 — VERIFICATION (independent fact-check before finalizing)
+
+The author of the briefing must not be its only checker. After drafting the briefing but
+BEFORE writing the final files, run this two-part verification:
+
+### 3.5.1 Subagent fact-check (fresh-context verifiers)
+
+Spawn up to **three** verification subagents in parallel (Agent tool, general-purpose).
+Each gets ONLY a claims list — never your sources, reasoning, or drafts — so its research
+is independent and can't inherit your anchoring:
+
+1. **Ratings verifier** — every rating move you're claiming this week, as bare claims
+   ("Cook moved OH-Sen Likely R → Lean R on <date>"). Instructions: verify each against the
+   forecaster's own site or two independent secondary sources; return per-claim
+   CONFIRMED / CONTRADICTED (with what it found instead) / UNVERIFIABLE, with URLs.
+2. **Membership & balance verifier** — claimed chamber counts, vacancies, resignations,
+   deaths, party switches, special-election results. Same protocol; prefer primary sources
+   (press gallery, clerk.house.gov, senate.gov, state SoS).
+3. **Candidate/matchup verifier** — the nominee/matchup lines in news_config.json states
+   with a primary in the past 2 weeks or next 2 weeks (this is the biggest staleness source
+   — see the Abbott term-limit and Cornyn-lost-runoff misses of 2026-07-03). Return any
+   matchup where the config or Sheet names the wrong candidates.
+
+Do NOT spawn more than three; batch claims per verifier instead. Skip a verifier entirely
+if it would receive zero claims this week.
+
+### 3.5.2 Reconcile
+
+- **CONFIRMED** → cite normally in the briefing.
+- **CONTRADICTED** → investigate yourself with the verifier's URLs. Whoever has the primary
+  source wins. Fix the patch/briefing, or if genuinely unresolved, drop the change from the
+  patch and flag it.
+- **UNVERIFIABLE** → keep the change ONLY if your own source is primary; flag it either way.
+
+### 3.5.3 Verification section (mandatory in the briefing)
+
+Add to the briefing, after Sheet Updates:
+
+```markdown
+## Verification
+- ✅ N claims confirmed by independent fact-check (3 subagents)
+- ⚠️ [claim] — CONTRADICTED: [what the verifier found] → [action taken]
+- ⚠️ [claim] — UNVERIFIABLE: kept on primary source [link] / dropped
+```
+
+An all-✅ section with zero ⚠️ items and zero dropped changes is the normal, expected result.
+If you skipped verification (e.g., zero changes this week), say so in this section explicitly.
+
+---
+
 ## CONTRACT 4 — POST-FLIGHT (machine-verify before you finish)
 
 Do NOT consider the run complete until both pass:
@@ -289,7 +339,12 @@ Do NOT consider the run complete until both pass:
    untouched (this is the step that was silently skipped on 2026-06-29). Confirm the file still
    parses as JSON.
 
-Only after both checks pass do you tell the user the weekly cycle is done.
+3. **Run the deterministic verifier.** `python3 verify_dashboard.py --local` — checks
+   news_analysis.json schema/freshness, config consistency, rating enums in the dashboard
+   fallbacks, State News wiring, pending-patch validity, and history ordering. Fix any ❌
+   before finishing. (The Actions job re-runs this plus live-Sheet checks post-apply.)
+
+Only after all three checks pass do you tell the user the weekly cycle is done.
 
 ---
 

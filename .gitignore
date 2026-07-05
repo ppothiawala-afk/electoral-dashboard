@@ -34,3 +34,4 @@ update_log.txt
 # Applied archives (constants_patch.applied_*.json) and history.json are also
 # committed so the Pages history page stays in sync.
 news_raw.json
+verification_report.json

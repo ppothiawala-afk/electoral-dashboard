@@ -73,6 +73,13 @@ jobs:
       - name: Apply pending constants patch
         run: python apply_constants_patch.py --sheet-id "$SHEET_ID"
 
+      # Post-apply verification: re-read the Sheet and assert invariants +
+      # that the just-applied patch actually landed. A FAIL reds the run so
+      # a silent partial apply can never ship quietly. --local also runs the
+      # repo-side checks (news JSON schema/freshness, rating enums, wiring).
+      - name: Verify Sheet and repo post-apply
+        run: python verify_dashboard.py --local --sheet --sheet-id "$SHEET_ID"
+
       - name: Commit applied patch, history, and briefings
         if: always()
         run: |
