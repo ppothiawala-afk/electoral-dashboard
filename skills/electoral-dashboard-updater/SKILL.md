@@ -339,12 +339,17 @@ Do NOT consider the run complete until both pass:
    untouched (this is the step that was silently skipped on 2026-06-29). Confirm the file still
    parses as JSON.
 
-3. **Run the deterministic verifier.** `python3 verify_dashboard.py --local` — checks
+3. **Append the sentiment snapshot.** After any news refresh, run
+   `python3 append_sentiment_history.py` — it records this week's scores into
+   `sentiment_history.json` (idempotent; re-running replaces the same date). Skipping this
+   step leaves a permanent hole in the trend data.
+
+4. **Run the deterministic verifier.** `python3 verify_dashboard.py --local` — checks
    news_analysis.json schema/freshness, config consistency, rating enums in the dashboard
    fallbacks, State News wiring, pending-patch validity, and history ordering. Fix any ❌
    before finishing. (The Actions job re-runs this plus live-Sheet checks post-apply.)
 
-Only after all three checks pass do you tell the user the weekly cycle is done.
+Only after all four checks pass do you tell the user the weekly cycle is done.
 
 ---
 

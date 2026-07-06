@@ -1137,6 +1137,31 @@ function StateNewsTab({analysis, senate, house, govs}) {
           </select>
         </div>
         <StateNewsMap analysis={analysis} selected={selected} onSelect={setSelected}/>
+        <details style={{marginTop:12,fontSize:11,color:"#6b7280"}}>
+          <summary style={{cursor:"pointer",fontWeight:700,color:"#9ca3af",fontSize:10,
+            letterSpacing:"0.5px",textTransform:"uppercase"}}>How these scores work (read before quoting them)</summary>
+          <div style={{lineHeight:1.65,marginTop:8,maxWidth:720}}>
+            <p style={{margin:"0 0 8px"}}>
+              <b>Coverage tone (0–100)</b> measures how favorable recent news coverage reads for
+              Democrats in that race — above 55 leans D, below 45 leans R, the middle is mixed. It is
+              an editorial judgment produced by an AI reviewing a <b>small sample of headlines</b>
+              (typically 3–8 articles per race per week), scored by a single model pass. Treat scores
+              as directional, not precise: a 58 and a 62 are the same signal.
+            </p>
+            <p style={{margin:"0 0 8px"}}>
+              <b>Candidate favorability</b> scores the tone of coverage toward that person, separate
+              from the race outlook. <b>Outlet lean</b> (the scatter's x-axis) comes from a fixed
+              AllSides-style table (−2 left … +2 right), not from this site's own analysis; unrated
+              outlets are counted in mentions but excluded from the scatter.
+            </p>
+            <p style={{margin:0}}>
+              <b>Dimmed states</b> carry a <i>rating baseline</i> only — a number derived from the
+              forecaster rating (Solid D=75 … Solid R=25) because that race isn't in the weekly news
+              collection yet. It reflects no scored coverage. Scores refresh weekly; the update date
+              is shown above.
+            </p>
+          </div>
+        </details>
       </div>
       {selected
         ? <StateNewsPanel state={selected} analysis={analysis} senate={senate} house={house} govs={govs}/>

@@ -72,8 +72,11 @@ In Cowork, say:
 Claude will: collect fresh headlines for the races in `news_config.json`
 (via web search, or `python3 fetch_news.py` if run locally where
 news.google.com is reachable), score entity sentiment per candidate and
-outlet, and rewrite `news_analysis.json`. It gets committed and deployed
-with the same push in Step 3.
+outlet, rewrite `news_analysis.json`, and run
+`python3 append_sentiment_history.py` so the week lands in the
+`sentiment_history.json` time-series (each skipped week is a hole in the
+trend data). It all gets committed and deployed with the same push in
+Step 3.
 
 After a primary resolves (MI Aug 4, KS Aug 4, WI Aug 11, AK Aug 18,
 AZ Jul 21, NH Sep 8), ask Claude to also update the candidate lists in

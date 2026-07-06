@@ -135,6 +135,21 @@ def check_local(max_age_days: int):
     else:
         record("L7-patch", "PASS", "no pending patch (nothing to validate)")
 
+    # L9 — sentiment time-series includes the current analysis snapshot
+    try:
+        sh = json.loads((HERE / "sentiment_history.json").read_text())
+        dates = [s["date"] for s in sh.get("snapshots", [])]
+        gen = na.get("generated") if na else None
+        if gen and gen in dates:
+            record("L9-timeseries", "PASS", f"{len(dates)} snapshots; current ({gen}) recorded")
+        else:
+            record("L9-timeseries", "WARN",
+                   f"snapshot for {gen} missing — run append_sentiment_history.py after each news refresh")
+    except FileNotFoundError:
+        record("L9-timeseries", "WARN", "sentiment_history.json not found — run append_sentiment_history.py")
+    except Exception as e:  # noqa: BLE001
+        record("L9-timeseries", "FAIL", f"sentiment_history.json: {e}")
+
     # L8 — history.json ordering
     try:
         hist = json.loads((HERE / "history.json").read_text())

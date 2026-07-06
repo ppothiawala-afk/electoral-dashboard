@@ -80,6 +80,12 @@ jobs:
       - name: Verify Sheet and repo post-apply
         run: python verify_dashboard.py --local --sheet --sheet-id "$SHEET_ID"
 
+      # Regenerate index.html's DEFAULT_* fallback arrays from the verified
+      # Sheet so the built-in data can never drift more than a week from the
+      # source of truth. Aborts (and reds the run) on suspicious output.
+      - name: Sync fallback arrays from Sheet
+        run: python sync_fallbacks.py --sheet-id "$SHEET_ID"
+
       - name: Commit applied patch, history, and briefings
         if: always()
         run: |
@@ -90,6 +96,7 @@ jobs:
             constants_patch.json \
             constants_patch.applied_*.json \
             history.json \
+            index.html \
             weekly_briefing_*.md 2>/dev/null || true
           if git diff --cached --quiet; then
             echo "No changes to commit."
