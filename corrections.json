@@ -1,9 +1,9 @@
 {
-  "_comment": "Public corrections log, rendered on methodology.html. Every substantive data error gets an entry when fixed — no silent corrections. Fields: date fixed, what was wrong, what it should have been, how it was caught, scope of impact.",
+  "_comment": "Public corrections log, rendered on methodology.html. Every substantive data error gets an entry when fixed \u2014 no silent corrections. Fields: date fixed, what was wrong, what it should have been, how it was caught, scope of impact.",
   "corrections": [
     {
       "date": "2026-07-03",
-      "area": "Governors — Texas",
+      "area": "Governors \u2014 Texas",
       "wrong": "Listed the TX governorship as 'Open (Abbott term-limited)'.",
       "right": "Texas has no gubernatorial term limits. Gov. Greg Abbott is seeking a fourth term against Gina Hinojosa (D).",
       "caught_by": "Independent research pass while building the State News feature; confirmed via Texas Tribune coverage of the general-election campaign.",
@@ -12,12 +12,21 @@
     },
     {
       "date": "2026-07-03",
-      "area": "Governors — Minnesota",
+      "area": "Governors \u2014 Minnesota",
       "wrong": "Listed Gov. Tim Walz as running for re-election ('Post-VP run name ID boost').",
       "right": "Walz withdrew from the race on Jan 5, 2026 amid criticism of the state's handling of child-care fraud. Amy Klobuchar is the DFL-endorsed nominee.",
       "caught_by": "News collection surfaced the exit; verified across CBS, NBC, NPR, and Axios before the fix was applied.",
-      "impact": "Governors tab incumbent/open/notes fields; rating unchanged (Likely D) pending forecaster moves. Stale for ~6 months — the class of error the weekly candidate-matchup verification (added July 2026) now targets.",
+      "impact": "Governors tab incumbent/open/notes fields; rating unchanged (Likely D) pending forecaster moves. Stale for ~6 months \u2014 the class of error the weekly candidate-matchup verification (added July 2026) now targets.",
       "source": "https://www.cbsnews.com/minnesota/news/tim-walz-drop-out-of-gubernatorial-race-2026/"
+    },
+    {
+      "date": "2026-07-06",
+      "area": "Governors \u2014 Georgia",
+      "wrong": "Notes described the GOP field as unsettled/led by Burt Jones after the May 19 primary.",
+      "right": "Rick Jackson (R) defeated Burt Jones in the June 16 GOP runoff; the general is Jackson (R) vs. Keisha Lance Bottoms (D).",
+      "caught_by": "Weekly candidate-matchup verification subagent (Contract 3.5), 2026-07-06 run \u2014 the mechanism added July 2026 after the Abbott/Walz misses.",
+      "impact": "Governors tab notes only; rating never mis-set (Toss-up throughout). Stale ~3 weeks.",
+      "source": "https://www.newsnationnow.com/politics/2026-midterm-elections/georgia-governor-primary-runoff-election-results-2026/amp/"
     }
   ]
 }

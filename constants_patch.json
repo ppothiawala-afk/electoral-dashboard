@@ -1,0 +1,61 @@
+{
+  "notes": "2026-07-06 weekly: no chamber changes. Cook moved AK Senate Lean R->Toss-up Jul 1 (sheet already Toss-up via Sabato Jun 11) - AK notes refreshed. GA Governor correction: Rick Jackson (R) won Jun 16 runoff over Burt Jones, faces Keisha Lance Bottoms (D); rating unchanged (Toss-up).",
+  "updates": {
+    "HOUSE_R": 218,
+    "HOUSE_D": 212,
+    "HOUSE_I": 1,
+    "HOUSE_VACANCIES": 4,
+    "SENATE_R": 53,
+    "SENATE_D": 47,
+    "SENATE_I": 3,
+    "LAST_UPDATED": "2026-07-06",
+    "NOTES": "Kiley (CA-03) is Independent but caucuses R. Vacancies (4): CA-14 (Swalwell-D resigned Apr 14, special general Aug 18), FL-20 (Cherfilus-McCormick-D resigned Apr 21, special TBD), GA-13 (Scott-D died Apr 22, special Jul 28), TX-23 (Gonzales-R resigned Apr 14, special TBD)."
+  },
+  "row_updates": {
+    "Senate": {
+      "key_cols": [
+        "State",
+        "Up in 2026"
+      ],
+      "rating_col": "Rating",
+      "extra_col_map": {
+        "Challenger": "challenger",
+        "Notes": "notes"
+      },
+      "changes": [
+        {
+          "key": [
+            "AK",
+            "YES"
+          ],
+          "rating": "Toss-up",
+          "challenger": "Mary Peltola (D)",
+          "notes": "Cook moved Lean R->Toss-up Jul 1 after AK Supreme Court (Jun 29) allowed second 'Dan Sullivan' on Aug 18 primary ballot; Sabato Toss-up since Jun 11; Inside Elections still Lean R."
+        }
+      ]
+    },
+    "Governors": {
+      "key_cols": [
+        "State",
+        "Election 2026"
+      ],
+      "rating_col": "Rating",
+      "extra_col_map": {
+        "Incumbent": "incumbent",
+        "Open": "open",
+        "Note": "notes",
+        "Notes": "notes"
+      },
+      "changes": [
+        {
+          "key": [
+            "GA",
+            "YES"
+          ],
+          "rating": "Toss-up",
+          "notes": "Rick Jackson (R) def. Burt Jones in Jun 16 GOP runoff; faces Keisha Lance Bottoms (D). IE moved Tilt R->Toss-up Jun 25."
+        }
+      ]
+    }
+  }
+}

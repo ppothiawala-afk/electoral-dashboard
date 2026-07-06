@@ -3,171 +3,731 @@
   "max_articles_per_race": 20,
   "lookback_days": 21,
   "states": {
-    "ME": {"races": [
-      {"type": "Senate", "query": "Maine senate race Collins Platner 2026", "candidates": [
-        {"name": "Susan Collins", "party": "R", "aliases": ["Collins"]},
-        {"name": "Graham Platner", "party": "D", "aliases": ["Platner"]}
-      ]},
-      {"type": "Governor", "query": "Maine governor race Pingree Charles Bennett 2026", "candidates": [
-        {"name": "Hannah Pingree", "party": "D", "aliases": ["Pingree"]},
-        {"name": "Bobby Charles", "party": "R", "aliases": ["Bobby Charles"]},
-        {"name": "Rick Bennett", "party": "I", "aliases": ["Bennett"]}
-      ]}
-    ]},
-    "MI": {"races": [
-      {"type": "Senate", "query": "Michigan senate race 2026 McMorrow El-Sayed Stevens Rogers", "candidates": [
-        {"name": "Mallory McMorrow", "party": "D", "aliases": ["McMorrow"]},
-        {"name": "Abdul El-Sayed", "party": "D", "aliases": ["El-Sayed"]},
-        {"name": "Haley Stevens", "party": "D", "aliases": ["Stevens"]},
-        {"name": "Mike Rogers", "party": "R", "aliases": ["Rogers"]}
-      ]},
-      {"type": "Governor", "query": "Michigan governor race Benson James 2026", "candidates": [
-        {"name": "Jocelyn Benson", "party": "D", "aliases": ["Benson"]},
-        {"name": "John James", "party": "R", "aliases": ["John James"]}
-      ]}
-    ]},
-    "OH": {"races": [
-      {"type": "Senate", "query": "Ohio senate race Husted Brown 2026", "candidates": [
-        {"name": "Jon Husted", "party": "R", "aliases": ["Husted"]},
-        {"name": "Sherrod Brown", "party": "D", "aliases": ["Sherrod Brown", "Brown"]}
-      ]},
-      {"type": "Governor", "query": "Ohio governor race Ramaswamy Acton 2026", "candidates": [
-        {"name": "Vivek Ramaswamy", "party": "R", "aliases": ["Ramaswamy"]},
-        {"name": "Amy Acton", "party": "D", "aliases": ["Acton"]}
-      ]}
-    ]},
-    "NC": {"races": [
-      {"type": "Senate", "query": "North Carolina senate race Cooper Whatley 2026", "candidates": [
-        {"name": "Roy Cooper", "party": "D", "aliases": ["Cooper"]},
-        {"name": "Michael Whatley", "party": "R", "aliases": ["Whatley"]}
-      ]}
-    ]},
-    "GA": {"races": [
-      {"type": "Senate", "query": "Georgia senate race Ossoff Mike Collins 2026", "candidates": [
-        {"name": "Jon Ossoff", "party": "D", "aliases": ["Ossoff"]},
-        {"name": "Mike Collins", "party": "R", "aliases": ["Mike Collins"]}
-      ]},
-      {"type": "Governor", "query": "Georgia governor race 2026 Burt Jones Bottoms", "candidates": [
-        {"name": "Burt Jones", "party": "R", "aliases": ["Burt Jones"]},
-        {"name": "Rick Jackson", "party": "R", "aliases": ["Rick Jackson"]},
-        {"name": "Keisha Lance Bottoms", "party": "D", "aliases": ["Bottoms"]}
-      ]}
-    ]},
-    "IA": {"races": [
-      {"type": "Senate", "query": "Iowa senate race Hinson Turek 2026", "candidates": [
-        {"name": "Ashley Hinson", "party": "R", "aliases": ["Hinson"]},
-        {"name": "Josh Turek", "party": "D", "aliases": ["Turek"]}
-      ]},
-      {"type": "Governor", "query": "Iowa governor race Sand Lahn 2026", "candidates": [
-        {"name": "Rob Sand", "party": "D", "aliases": ["Sand"]},
-        {"name": "Zach Lahn", "party": "R", "aliases": ["Lahn"]}
-      ]}
-    ]},
-    "NV": {"races": [
-      {"type": "Governor", "query": "Nevada governor race Lombardo Ford 2026", "candidates": [
-        {"name": "Joe Lombardo", "party": "R", "aliases": ["Lombardo"]},
-        {"name": "Aaron Ford", "party": "D", "aliases": ["Aaron Ford", "Ford"]}
-      ]}
-    ]},
-    "WI": {"races": [
-      {"type": "Governor", "query": "Wisconsin governor race 2026 Barnes Hong Tiffany", "candidates": [
-        {"name": "Mandela Barnes", "party": "D", "aliases": ["Barnes"]},
-        {"name": "Francesca Hong", "party": "D", "aliases": ["Hong"]},
-        {"name": "Tom Tiffany", "party": "R", "aliases": ["Tiffany"]}
-      ]}
-    ]},
-    "AZ": {"races": [
-      {"type": "Governor", "query": "Arizona governor race Hobbs Biggs 2026", "candidates": [
-        {"name": "Katie Hobbs", "party": "D", "aliases": ["Hobbs"]},
-        {"name": "Andy Biggs", "party": "R", "aliases": ["Biggs"]},
-        {"name": "David Schweikert", "party": "R", "aliases": ["Schweikert"]}
-      ]}
-    ]},
-    "NH": {"races": [
-      {"type": "Senate", "query": "New Hampshire senate race Pappas Sununu 2026", "candidates": [
-        {"name": "Chris Pappas", "party": "D", "aliases": ["Pappas"]},
-        {"name": "John Sununu", "party": "R", "aliases": ["Sununu"]},
-        {"name": "Scott Brown", "party": "R", "aliases": ["Scott Brown"]}
-      ]},
-      {"type": "Governor", "query": "New Hampshire governor race Ayotte 2026", "candidates": [
-        {"name": "Kelly Ayotte", "party": "R", "aliases": ["Ayotte"]}
-      ]}
-    ]},
-    "MN": {"races": [
-      {"type": "Senate", "query": "Minnesota senate race Flanagan Craig 2026", "candidates": [
-        {"name": "Peggy Flanagan", "party": "D", "aliases": ["Flanagan"]},
-        {"name": "Angie Craig", "party": "D", "aliases": ["Craig"]},
-        {"name": "Royce White", "party": "R", "aliases": ["Royce White"]}
-      ]},
-      {"type": "Governor", "query": "Minnesota governor race 2026 Walz exit", "candidates": [
-        {"name": "Tim Walz", "party": "D", "aliases": ["Walz"]}
-      ]}
-    ]},
-    "LA": {"races": [
-      {"type": "Senate", "query": "Louisiana senate race Letlow 2026", "candidates": [
-        {"name": "Julia Letlow", "party": "R", "aliases": ["Letlow"]},
-        {"name": "Jamie Davis", "party": "D", "aliases": ["Jamie Davis"]}
-      ]}
-    ]},
-    "FL": {"races": [
-      {"type": "Senate", "query": "Florida senate special election Moody Vindman 2026", "candidates": [
-        {"name": "Ashley Moody", "party": "R", "aliases": ["Moody"]},
-        {"name": "Alexander Vindman", "party": "D", "aliases": ["Vindman"]},
-        {"name": "Angie Nixon", "party": "D", "aliases": ["Nixon"]}
-      ]}
-    ]},
-    "CA": {"races": [
-      {"type": "Governor", "query": "California governor race Becerra Hilton 2026", "candidates": [
-        {"name": "Xavier Becerra", "party": "D", "aliases": ["Becerra"]},
-        {"name": "Steve Hilton", "party": "R", "aliases": ["Hilton"]}
-      ]}
-    ]},
-    "KS": {"races": [
-      {"type": "Governor", "query": "Kansas governor race 2026 Masterson", "candidates": [
-        {"name": "Ty Masterson", "party": "R", "aliases": ["Masterson"]},
-        {"name": "Scott Schwab", "party": "R", "aliases": ["Schwab"]},
-        {"name": "Cindy Holscher", "party": "D", "aliases": ["Holscher"]}
-      ]}
-    ]},
-    "MT": {"races": [
-      {"type": "Senate", "query": "Montana senate race Alme Bankhead Bodnar 2026", "candidates": [
-        {"name": "Kurt Alme", "party": "R", "aliases": ["Alme"]},
-        {"name": "Alani Bankhead", "party": "D", "aliases": ["Bankhead"]},
-        {"name": "Seth Bodnar", "party": "I", "aliases": ["Bodnar"]}
-      ]}
-    ]},
-    "AK": {"races": [
-      {"type": "Senate", "query": "Alaska senate race Sullivan Peltola 2026", "candidates": [
-        {"name": "Dan Sullivan", "party": "R", "aliases": ["Sullivan"]},
-        {"name": "Mary Peltola", "party": "D", "aliases": ["Peltola"]}
-      ]}
-    ]},
-    "NE": {"races": [
-      {"type": "Senate", "query": "Nebraska senate race Ricketts Osborn 2026", "candidates": [
-        {"name": "Pete Ricketts", "party": "R", "aliases": ["Ricketts"]},
-        {"name": "Dan Osborn", "party": "I", "aliases": ["Osborn"]}
-      ]}
-    ]},
-    "TX": {"races": [
-      {"type": "Senate", "query": "Texas senate race Paxton Talarico 2026", "candidates": [
-        {"name": "Ken Paxton", "party": "R", "aliases": ["Paxton"]},
-        {"name": "James Talarico", "party": "D", "aliases": ["Talarico"]}
-      ]},
-      {"type": "Governor", "query": "Texas governor race Abbott Hinojosa 2026", "candidates": [
-        {"name": "Greg Abbott", "party": "R", "aliases": ["Abbott"]},
-        {"name": "Gina Hinojosa", "party": "D", "aliases": ["Hinojosa"]}
-      ]}
-    ]}
+    "ME": {
+      "races": [
+        {
+          "type": "Senate",
+          "query": "Maine senate race Collins Platner 2026",
+          "candidates": [
+            {
+              "name": "Susan Collins",
+              "party": "R",
+              "aliases": [
+                "Collins"
+              ]
+            },
+            {
+              "name": "Graham Platner",
+              "party": "D",
+              "aliases": [
+                "Platner"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Governor",
+          "query": "Maine governor race Pingree Charles Bennett 2026",
+          "candidates": [
+            {
+              "name": "Hannah Pingree",
+              "party": "D",
+              "aliases": [
+                "Pingree"
+              ]
+            },
+            {
+              "name": "Bobby Charles",
+              "party": "R",
+              "aliases": [
+                "Bobby Charles"
+              ]
+            },
+            {
+              "name": "Rick Bennett",
+              "party": "I",
+              "aliases": [
+                "Bennett"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "MI": {
+      "races": [
+        {
+          "type": "Senate",
+          "query": "Michigan senate race 2026 McMorrow El-Sayed Stevens Rogers",
+          "candidates": [
+            {
+              "name": "Mallory McMorrow",
+              "party": "D",
+              "aliases": [
+                "McMorrow"
+              ]
+            },
+            {
+              "name": "Abdul El-Sayed",
+              "party": "D",
+              "aliases": [
+                "El-Sayed"
+              ]
+            },
+            {
+              "name": "Haley Stevens",
+              "party": "D",
+              "aliases": [
+                "Stevens"
+              ]
+            },
+            {
+              "name": "Mike Rogers",
+              "party": "R",
+              "aliases": [
+                "Rogers"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Governor",
+          "query": "Michigan governor race Benson James 2026",
+          "candidates": [
+            {
+              "name": "Jocelyn Benson",
+              "party": "D",
+              "aliases": [
+                "Benson"
+              ]
+            },
+            {
+              "name": "John James",
+              "party": "R",
+              "aliases": [
+                "John James"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "OH": {
+      "races": [
+        {
+          "type": "Senate",
+          "query": "Ohio senate race Husted Brown 2026",
+          "candidates": [
+            {
+              "name": "Jon Husted",
+              "party": "R",
+              "aliases": [
+                "Husted"
+              ]
+            },
+            {
+              "name": "Sherrod Brown",
+              "party": "D",
+              "aliases": [
+                "Sherrod Brown",
+                "Brown"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Governor",
+          "query": "Ohio governor race Ramaswamy Acton 2026",
+          "candidates": [
+            {
+              "name": "Vivek Ramaswamy",
+              "party": "R",
+              "aliases": [
+                "Ramaswamy"
+              ]
+            },
+            {
+              "name": "Amy Acton",
+              "party": "D",
+              "aliases": [
+                "Acton"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "NC": {
+      "races": [
+        {
+          "type": "Senate",
+          "query": "North Carolina senate race Cooper Whatley 2026",
+          "candidates": [
+            {
+              "name": "Roy Cooper",
+              "party": "D",
+              "aliases": [
+                "Cooper"
+              ]
+            },
+            {
+              "name": "Michael Whatley",
+              "party": "R",
+              "aliases": [
+                "Whatley"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "GA": {
+      "races": [
+        {
+          "type": "Senate",
+          "query": "Georgia senate race Ossoff Mike Collins 2026",
+          "candidates": [
+            {
+              "name": "Jon Ossoff",
+              "party": "D",
+              "aliases": [
+                "Ossoff"
+              ]
+            },
+            {
+              "name": "Mike Collins",
+              "party": "R",
+              "aliases": [
+                "Mike Collins"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Governor",
+          "query": "Georgia governor race Jackson Bottoms 2026",
+          "candidates": [
+            {
+              "name": "Rick Jackson",
+              "party": "R",
+              "aliases": [
+                "Rick Jackson"
+              ]
+            },
+            {
+              "name": "Keisha Lance Bottoms",
+              "party": "D",
+              "aliases": [
+                "Bottoms"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "IA": {
+      "races": [
+        {
+          "type": "Senate",
+          "query": "Iowa senate race Hinson Turek 2026",
+          "candidates": [
+            {
+              "name": "Ashley Hinson",
+              "party": "R",
+              "aliases": [
+                "Hinson"
+              ]
+            },
+            {
+              "name": "Josh Turek",
+              "party": "D",
+              "aliases": [
+                "Turek"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Governor",
+          "query": "Iowa governor race Sand Lahn 2026",
+          "candidates": [
+            {
+              "name": "Rob Sand",
+              "party": "D",
+              "aliases": [
+                "Sand"
+              ]
+            },
+            {
+              "name": "Zach Lahn",
+              "party": "R",
+              "aliases": [
+                "Lahn"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "NV": {
+      "races": [
+        {
+          "type": "Governor",
+          "query": "Nevada governor race Lombardo Ford 2026",
+          "candidates": [
+            {
+              "name": "Joe Lombardo",
+              "party": "R",
+              "aliases": [
+                "Lombardo"
+              ]
+            },
+            {
+              "name": "Aaron Ford",
+              "party": "D",
+              "aliases": [
+                "Aaron Ford",
+                "Ford"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "WI": {
+      "races": [
+        {
+          "type": "Governor",
+          "query": "Wisconsin governor race 2026 Barnes Hong Tiffany",
+          "candidates": [
+            {
+              "name": "Mandela Barnes",
+              "party": "D",
+              "aliases": [
+                "Barnes"
+              ]
+            },
+            {
+              "name": "Francesca Hong",
+              "party": "D",
+              "aliases": [
+                "Hong"
+              ]
+            },
+            {
+              "name": "Tom Tiffany",
+              "party": "R",
+              "aliases": [
+                "Tiffany"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "AZ": {
+      "races": [
+        {
+          "type": "Governor",
+          "query": "Arizona governor race Hobbs Biggs 2026",
+          "candidates": [
+            {
+              "name": "Katie Hobbs",
+              "party": "D",
+              "aliases": [
+                "Hobbs"
+              ]
+            },
+            {
+              "name": "Andy Biggs",
+              "party": "R",
+              "aliases": [
+                "Biggs"
+              ]
+            },
+            {
+              "name": "David Schweikert",
+              "party": "R",
+              "aliases": [
+                "Schweikert"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "NH": {
+      "races": [
+        {
+          "type": "Senate",
+          "query": "New Hampshire senate race Pappas Sununu 2026",
+          "candidates": [
+            {
+              "name": "Chris Pappas",
+              "party": "D",
+              "aliases": [
+                "Pappas"
+              ]
+            },
+            {
+              "name": "John Sununu",
+              "party": "R",
+              "aliases": [
+                "Sununu"
+              ]
+            },
+            {
+              "name": "Scott Brown",
+              "party": "R",
+              "aliases": [
+                "Scott Brown"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Governor",
+          "query": "New Hampshire governor race Ayotte 2026",
+          "candidates": [
+            {
+              "name": "Kelly Ayotte",
+              "party": "R",
+              "aliases": [
+                "Ayotte"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "MN": {
+      "races": [
+        {
+          "type": "Senate",
+          "query": "Minnesota senate race Flanagan Craig 2026",
+          "candidates": [
+            {
+              "name": "Peggy Flanagan",
+              "party": "D",
+              "aliases": [
+                "Flanagan"
+              ]
+            },
+            {
+              "name": "Angie Craig",
+              "party": "D",
+              "aliases": [
+                "Craig"
+              ]
+            },
+            {
+              "name": "Royce White",
+              "party": "R",
+              "aliases": [
+                "Royce White"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Governor",
+          "query": "Minnesota governor race 2026 Walz exit",
+          "candidates": [
+            {
+              "name": "Tim Walz",
+              "party": "D",
+              "aliases": [
+                "Walz"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "LA": {
+      "races": [
+        {
+          "type": "Senate",
+          "query": "Louisiana senate race Letlow 2026",
+          "candidates": [
+            {
+              "name": "Julia Letlow",
+              "party": "R",
+              "aliases": [
+                "Letlow"
+              ]
+            },
+            {
+              "name": "Jamie Davis",
+              "party": "D",
+              "aliases": [
+                "Jamie Davis"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "FL": {
+      "races": [
+        {
+          "type": "Senate",
+          "query": "Florida senate special election Moody Vindman 2026",
+          "candidates": [
+            {
+              "name": "Ashley Moody",
+              "party": "R",
+              "aliases": [
+                "Moody"
+              ]
+            },
+            {
+              "name": "Alexander Vindman",
+              "party": "D",
+              "aliases": [
+                "Vindman"
+              ]
+            },
+            {
+              "name": "Angie Nixon",
+              "party": "D",
+              "aliases": [
+                "Nixon"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "CA": {
+      "races": [
+        {
+          "type": "Governor",
+          "query": "California governor race Becerra Hilton 2026",
+          "candidates": [
+            {
+              "name": "Xavier Becerra",
+              "party": "D",
+              "aliases": [
+                "Becerra"
+              ]
+            },
+            {
+              "name": "Steve Hilton",
+              "party": "R",
+              "aliases": [
+                "Hilton"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "KS": {
+      "races": [
+        {
+          "type": "Governor",
+          "query": "Kansas governor race 2026 Masterson",
+          "candidates": [
+            {
+              "name": "Ty Masterson",
+              "party": "R",
+              "aliases": [
+                "Masterson"
+              ]
+            },
+            {
+              "name": "Scott Schwab",
+              "party": "R",
+              "aliases": [
+                "Schwab"
+              ]
+            },
+            {
+              "name": "Cindy Holscher",
+              "party": "D",
+              "aliases": [
+                "Holscher"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "MT": {
+      "races": [
+        {
+          "type": "Senate",
+          "query": "Montana senate race Alme Bankhead Bodnar 2026",
+          "candidates": [
+            {
+              "name": "Kurt Alme",
+              "party": "R",
+              "aliases": [
+                "Alme"
+              ]
+            },
+            {
+              "name": "Alani Bankhead",
+              "party": "D",
+              "aliases": [
+                "Bankhead"
+              ]
+            },
+            {
+              "name": "Seth Bodnar",
+              "party": "I",
+              "aliases": [
+                "Bodnar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "AK": {
+      "races": [
+        {
+          "type": "Senate",
+          "query": "Alaska senate race Sullivan Peltola 2026",
+          "candidates": [
+            {
+              "name": "Dan Sullivan",
+              "party": "R",
+              "aliases": [
+                "Sullivan"
+              ]
+            },
+            {
+              "name": "Mary Peltola",
+              "party": "D",
+              "aliases": [
+                "Peltola"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "NE": {
+      "races": [
+        {
+          "type": "Senate",
+          "query": "Nebraska senate race Ricketts Osborn 2026",
+          "candidates": [
+            {
+              "name": "Pete Ricketts",
+              "party": "R",
+              "aliases": [
+                "Ricketts"
+              ]
+            },
+            {
+              "name": "Dan Osborn",
+              "party": "I",
+              "aliases": [
+                "Osborn"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "TX": {
+      "races": [
+        {
+          "type": "Senate",
+          "query": "Texas senate race Paxton Talarico 2026",
+          "candidates": [
+            {
+              "name": "Ken Paxton",
+              "party": "R",
+              "aliases": [
+                "Paxton"
+              ]
+            },
+            {
+              "name": "James Talarico",
+              "party": "D",
+              "aliases": [
+                "Talarico"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Governor",
+          "query": "Texas governor race Abbott Hinojosa 2026",
+          "candidates": [
+            {
+              "name": "Greg Abbott",
+              "party": "R",
+              "aliases": [
+                "Abbott"
+              ]
+            },
+            {
+              "name": "Gina Hinojosa",
+              "party": "D",
+              "aliases": [
+                "Hinojosa"
+              ]
+            }
+          ]
+        }
+      ]
+    }
   },
   "outlet_lean": {
-    "MSNBC": -2, "HuffPost": -2, "Mother Jones": -2, "The New Republic": -2, "Daily Beast": -2, "Salon": -2, "Vox": -2,
-    "The New York Times": -1, "New York Times": -1, "The Washington Post": -1, "Washington Post": -1,
-    "CNN": -1, "NPR": -1, "Politico": -1, "The Atlantic": -1, "ABC News": -1, "CBS News": -1, "NBC News": -1,
-    "The Guardian": -1, "Time": -1, "Bloomberg": -1, "Axios": -1,
-    "Reuters": 0, "Associated Press": 0, "AP News": 0, "The Hill": 0, "Newsweek": 0, "USA Today": 0,
-    "BBC": 0, "BBC News": 0, "Forbes": 0, "C-SPAN": 0, "RealClearPolitics": 0, "CNBC": 0, "NewsNation": 0,
-    "The Wall Street Journal": 1, "Wall Street Journal": 1, "New York Post": 1, "Washington Examiner": 1,
-    "National Review": 1, "The Dispatch": 1, "Fox Business": 1,
-    "Fox News": 2, "Breitbart": 2, "The Daily Wire": 2, "Daily Caller": 2, "Newsmax": 2, "The Federalist": 2, "OAN": 2, "Washington Times": 2
+    "MSNBC": -2,
+    "HuffPost": -2,
+    "Mother Jones": -2,
+    "The New Republic": -2,
+    "Daily Beast": -2,
+    "Salon": -2,
+    "Vox": -2,
+    "The New York Times": -1,
+    "New York Times": -1,
+    "The Washington Post": -1,
+    "Washington Post": -1,
+    "CNN": -1,
+    "NPR": -1,
+    "Politico": -1,
+    "The Atlantic": -1,
+    "ABC News": -1,
+    "CBS News": -1,
+    "NBC News": -1,
+    "The Guardian": -1,
+    "Time": -1,
+    "Bloomberg": -1,
+    "Axios": -1,
+    "Reuters": 0,
+    "Associated Press": 0,
+    "AP News": 0,
+    "The Hill": 0,
+    "Newsweek": 0,
+    "USA Today": 0,
+    "BBC": 0,
+    "BBC News": 0,
+    "Forbes": 0,
+    "C-SPAN": 0,
+    "RealClearPolitics": 0,
+    "CNBC": 0,
+    "NewsNation": 0,
+    "The Wall Street Journal": 1,
+    "Wall Street Journal": 1,
+    "New York Post": 1,
+    "Washington Examiner": 1,
+    "National Review": 1,
+    "The Dispatch": 1,
+    "Fox Business": 1,
+    "Fox News": 2,
+    "Breitbart": 2,
+    "The Daily Wire": 2,
+    "Daily Caller": 2,
+    "Newsmax": 2,
+    "The Federalist": 2,
+    "OAN": 2,
+    "Washington Times": 2
   }
 }
