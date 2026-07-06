@@ -1158,7 +1158,8 @@ function StateNewsTab({analysis, senate, house, govs}) {
               <b>Dimmed states</b> carry a <i>rating baseline</i> only — a number derived from the
               forecaster rating (Solid D=75 … Solid R=25) because that race isn't in the weekly news
               collection yet. It reflects no scored coverage. Scores refresh weekly; the update date
-              is shown above.
+              is shown above. Full details, verification chain, and the public corrections log:
+              {" "}<a href="methodology.html" style={{color:"#3b82f6"}}>Methodology</a>.
             </p>
           </div>
         </details>
@@ -1315,6 +1316,8 @@ function App() {
           <span>·</span>
           <span>{senate.length} Senate seats up · {senate.filter(r=>r.open).length} open</span>
           {lastUpdated && <><span>·</span><span>Sheet synced: {lastUpdated}</span></>}
+          <span>·</span>
+          <a href="methodology.html" style={{color:"#3b82f6",textDecoration:"none",fontWeight:600}}>Methodology &amp; corrections</a>
         </div>
 
         {/* TABS */}

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Methodology — 2026 Midterm Electoral Command Center</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Inter',system-ui,sans-serif; background:#f8f9fb; color:#111827; line-height:1.7; }
+  header { background:#fff; border-bottom:1px solid #e5e7eb; padding:20px 28px; box-shadow:0 1px 8px rgba(0,0,0,.06); }
+  .wrap { max-width:860px; margin:0 auto; }
+  header h1 { font-size:20px; font-weight:800; letter-spacing:-0.5px; }
+  header a { font-size:12px; color:#3b82f6; text-decoration:none; font-weight:600; }
+  main { padding:32px 28px 64px; }
+  .card { background:#fff; border-radius:12px; padding:28px; box-shadow:0 1px 4px rgba(0,0,0,.07); margin-bottom:20px; }
+  h2 { font-size:15px; font-weight:800; margin-bottom:12px; letter-spacing:-0.2px; }
+  h3 { font-size:13px; font-weight:700; margin:18px 0 6px; }
+  p, li { font-size:13.5px; color:#374151; margin-bottom:10px; }
+  ul { padding-left:22px; margin-bottom:10px; }
+  .label { font-size:10px; font-weight:700; color:#9ca3af; letter-spacing:1px; text-transform:uppercase; margin-bottom:6px; }
+  code, .mono { font-family:'JetBrains Mono',monospace; font-size:12px; background:#f3f4f6; padding:1px 5px; border-radius:4px; }
+  table { width:100%; border-collapse:collapse; font-size:12.5px; margin:10px 0; }
+  th, td { text-align:left; padding:8px 10px; border-bottom:1px solid #f3f4f6; vertical-align:top; }
+  th { font-size:10px; font-weight:700; color:#9ca3af; letter-spacing:0.5px; text-transform:uppercase; }
+  .correction { border-left:3px solid #d97706; background:#fffbeb; border-radius:6px; padding:14px 16px; margin-bottom:12px; }
+  .correction .cdate { font-family:'JetBrains Mono',monospace; font-size:11px; color:#92400e; font-weight:700; }
+  .correction p { font-size:12.5px; margin-bottom:6px; }
+  a { color:#3b82f6; }
+  .callout { background:#f0f9ff; border-left:3px solid #3b82f6; border-radius:6px; padding:14px 16px; font-size:13px; color:#1e3a5f; margin:12px 0; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap" style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;">
+    <h1>Methodology &amp; Corrections</h1>
+    <a href="index.html">← Back to the dashboard</a>
+  </div>
+</header>
+<main class="wrap">
+
+  <div class="card">
+    <div class="label">What this is</div>
+    <p>The 2026 Midterm Electoral Command Center tracks U.S. Senate, House, and Governor races
+    on the standard 7-point competitive scale, along with live congressional chamber balance and
+    per-state news sentiment. It is an independent project — not affiliated with any campaign,
+    party, or forecaster — built and operated by one person with substantial AI assistance,
+    updated on a fixed weekly cycle with a public audit trail. This page explains exactly how
+    every number is produced, verified, and corrected.</p>
+  </div>
+
+  <div class="card">
+    <div class="label">Data sources</div>
+    <h3>Race ratings</h3>
+    <p>Ratings follow the 7-point scale (Solid D · Likely D · Lean D · Toss-up · Lean R ·
+    Likely R · Solid R) and are <b>aggregated from professional forecasters</b> — primarily the
+    Cook Political Report, Sabato's Crystal Ball, and Inside Elections. This site does not run
+    its own ratings model; when forecasters move a race, the dashboard follows, with the move
+    and its source recorded in the weekly briefing.</p>
+    <h3>Chamber balance</h3>
+    <p>Current House and Senate composition comes from primary sources (House Press Gallery,
+    Senate.gov, official clerk records), including vacancies and pending special elections.</p>
+    <h3>News &amp; sentiment</h3>
+    <p>Headlines are collected weekly per competitive race via news search. Outlet political
+    lean uses a fixed AllSides-style lookup (−2 left … +2 right) maintained in the open in
+    <span class="mono">news_config.json</span> — it is an external classification, not this
+    site's judgment of any outlet.</p>
+  </div>
+
+  <div class="card">
+    <div class="label">Sentiment scoring — how and by what</div>
+    <p><b>Scores are produced by an AI model</b> (Anthropic's Claude), which reads each week's
+    collected headlines and scores two things: <b>coverage tone</b> per race (0–100, where
+    higher reads more favorable for Democrats; 45–55 is mixed) and <b>candidate favorability</b>
+    (0–100 tone of coverage toward that person). A human reviews the output weekly before it
+    publishes.</p>
+    <div class="callout"><b>Read scores as directional, not precise.</b> Weekly samples are
+    small — typically 3–8 articles per race — and scoring is a single model pass, not an
+    averaged panel. A 58 and a 62 are the same signal. Scores are most useful in comparison:
+    across outlets on the same race, across states, and (as the time-series accumulates)
+    across weeks.</div>
+    <p>States without scored coverage display a <b>rating baseline</b> — a number derived
+    mechanically from the forecaster rating (Solid D=75 … Solid R=25), shown dimmed and
+    labeled. Baselines contain no news signal.</p>
+    <h3>Known limitations</h3>
+    <ul>
+      <li>Small weekly samples; a single big story can swing a race's tone score.</li>
+      <li>One scorer (the model) — no inter-rater reliability measurement yet.</li>
+      <li>Coverage tone is not a prediction. Favorable coverage ≠ winning.</li>
+      <li>The outlet-lean table is static and coarse; local outlets are mostly unrated and
+      excluded from lean-based charts (they still count toward mentions).</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="label">Verification chain</div>
+    <p>Every weekly update passes through four independent layers before it reaches the page:</p>
+    <table>
+      <tr><th>Layer</th><th>What it does</th><th>Runs</th></tr>
+      <tr><td><b>1 · Independent AI fact-check</b></td>
+          <td>Up to three verification agents receive the week's claims — stripped of the
+          sources and reasoning that produced them — and re-research each from scratch
+          (forecaster sites, official records). Contradictions block publication until
+          resolved by a primary source.</td>
+          <td>Weekly, before human review</td></tr>
+      <tr><td><b>2 · Human review</b></td>
+          <td>Every change ships in a briefing with inline source links and a verification
+          section; a human approves before anything is applied.</td>
+          <td>Weekly</td></tr>
+      <tr><td><b>3 · Deterministic validation</b></td>
+          <td>Machine checks: the 435-seat House partition, Senate=100, the 7-point rating
+          enum, schema and key integrity. Invalid changes cannot be applied.</td>
+          <td>Every change, automated</td></tr>
+      <tr><td><b>4 · Post-publish assertion</b></td>
+          <td>After data is written, an automated job re-reads the live source and asserts the
+          published values match the approved change set, row by row. Mismatches fail loudly
+          and publicly (the pipeline run goes red).</td>
+          <td>Every apply, automated</td></tr>
+    </table>
+    <p>No AI system writes directly to the published data. All writes go through validated,
+    deterministic code, and the full pipeline — code, weekly briefings, change history — is
+    public in the <a href="https://github.com/ppothiawala-afk/electoral-dashboard">GitHub
+    repository</a>.</p>
+  </div>
+
+  <div class="card">
+    <div class="label">Accountability — graded in public</div>
+    <p>This site will grade itself after the election, using rules announced <b>before</b>
+    results are known:</p>
+    <ul>
+      <li>A final pre-election snapshot of all ratings and sentiment scores will be frozen and
+      committed publicly before polls open on November 3, 2026.</li>
+      <li>Ratings will be graded on bucket accuracy (did Solid/Likely/Lean/Toss-up calls match
+      outcomes and margins) with a Brier-style score.</li>
+      <li>The sentiment signal will be graded on directional accuracy versus outcomes, and
+      compared against the forecaster ratings — did coverage tone add information or just
+      echo the ratings?</li>
+      <li>The full scorecard publishes regardless of how it looks.</li>
+    </ul>
+    <p>Exact scoring formulas will be finalized and posted on this page by <b>September 1,
+    2026</b>. The weekly sentiment time-series that feeds this grading has been accumulating
+    since July 2026.</p>
+  </div>
+
+  <div class="card">
+    <div class="label">Corrections policy</div>
+    <p>Substantive data errors are fixed promptly and logged here permanently — no silent
+    corrections. Each entry records what was wrong, what's right, how it was caught, and what
+    it affected. An empty log would be a red flag, not a badge: this project publishes
+    hundreds of data points weekly, and honest operations surface mistakes.</p>
+    <div id="corrections-list"><p style="color:#9ca3af">Loading corrections…</p></div>
+  </div>
+
+  <div class="card">
+    <div class="label">Cadence &amp; contact</div>
+    <p>Updates land Mondays by ~1:15 PM PT. Mid-week corrections happen when news warrants
+    (see the log above). Questions, errors, or suggestions: open an issue on the
+    <a href="https://github.com/ppothiawala-afk/electoral-dashboard/issues">GitHub repo</a>.</p>
+  </div>
+
+</main>
+<script>
+fetch("corrections.json", {cache:"no-store"})
+  .then(r => r.json())
+  .then(data => {
+    const el = document.getElementById("corrections-list");
+    const items = (data.corrections || []).slice().reverse();
+    if (!items.length) { el.innerHTML = "<p>No corrections logged yet.</p>"; return; }
+    el.innerHTML = items.map(c => `
+      <div class="correction">
+        <div class="cdate">${c.date} · ${c.area}</div>
+        <p><b>Was:</b> ${c.wrong}</p>
+        <p><b>Now:</b> ${c.right}</p>
+        <p><b>Caught by:</b> ${c.caught_by} <b>Impact:</b> ${c.impact}
+        ${c.source ? ` <a href="${c.source}" target="_blank" rel="noopener">source ↗</a>` : ""}</p>
+      </div>`).join("");
+  })
+  .catch(() => {
+    document.getElementById("corrections-list").innerHTML =
+      "<p style='color:#9ca3af'>Corrections log unavailable.</p>";
+  });
+</script>
+</body>
+</html>

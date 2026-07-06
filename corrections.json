@@ -1,0 +1,23 @@
+{
+  "_comment": "Public corrections log, rendered on methodology.html. Every substantive data error gets an entry when fixed — no silent corrections. Fields: date fixed, what was wrong, what it should have been, how it was caught, scope of impact.",
+  "corrections": [
+    {
+      "date": "2026-07-03",
+      "area": "Governors — Texas",
+      "wrong": "Listed the TX governorship as 'Open (Abbott term-limited)'.",
+      "right": "Texas has no gubernatorial term limits. Gov. Greg Abbott is seeking a fourth term against Gina Hinojosa (D).",
+      "caught_by": "Independent research pass while building the State News feature; confirmed via Texas Tribune coverage of the general-election campaign.",
+      "impact": "Governors tab incumbent/open fields; race was never mis-rated (Solid R throughout).",
+      "source": "https://www.texastribune.org/2026/06/03/texas-governor-race-gina-hinojosa-ad-greg-abbott-nba-finals-spurs-2026-midterms/"
+    },
+    {
+      "date": "2026-07-03",
+      "area": "Governors — Minnesota",
+      "wrong": "Listed Gov. Tim Walz as running for re-election ('Post-VP run name ID boost').",
+      "right": "Walz withdrew from the race on Jan 5, 2026 amid criticism of the state's handling of child-care fraud. Amy Klobuchar is the DFL-endorsed nominee.",
+      "caught_by": "News collection surfaced the exit; verified across CBS, NBC, NPR, and Axios before the fix was applied.",
+      "impact": "Governors tab incumbent/open/notes fields; rating unchanged (Likely D) pending forecaster moves. Stale for ~6 months — the class of error the weekly candidate-matchup verification (added July 2026) now targets.",
+      "source": "https://www.cbsnews.com/minnesota/news/tim-walz-drop-out-of-gubernatorial-race-2026/"
+    }
+  ]
+}

@@ -306,6 +306,11 @@ if it would receive zero claims this week.
   patch and flag it.
 - **UNVERIFIABLE** → keep the change ONLY if your own source is primary; flag it either way.
 
+**Corrections log duty:** if this week's work FIXES a substantive error that was previously
+published on the dashboard (wrong incumbent, wrong matchup, wrong rating, wrong count),
+append an entry to `corrections.json` (date, area, wrong, right, caught_by, impact, source).
+Rendered publicly on methodology.html — no silent corrections, ever.
+
 ### 3.5.3 Verification section (mandatory in the briefing)
 
 Add to the briefing, after Sheet Updates:
