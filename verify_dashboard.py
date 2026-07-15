@@ -231,6 +231,12 @@ def check_sheet(sheet_id: str, max_age_days: int):
     label = Path(applied[-1]).name
     mismatches = []
     for k, v in patch.get("updates", {}).items():
+        if k == "LAST_UPDATED":
+            # update_sheet.py stamps LAST_UPDATED with the APPLY date (by design;
+            # this fixed the old staleness-display bug). The patch carries the
+            # research date, so comparing them yields a false S4 failure whenever
+            # a patch is applied on a later day than it was written.
+            continue
         actual = str(consts.get(k, "")).strip()
         if actual != str(v).strip():
             mismatches.append(f"Constants.{k}: patch={v!r} sheet={actual!r}")
