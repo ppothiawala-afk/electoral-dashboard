@@ -1573,7 +1573,7 @@ function StateNewsTab({analysis, senate, house, govs}) {
    MAIN APP
    ═══════════════════════════════════════════════════════════════ */
 
-const TABS = ["Overview","State News","Senate","House","Governors","State Legs","Trifectas","Settings"];
+const TABS = ["Overview","State News","Senate","House","Governors","State Legs","Trifectas"];
 
 function App() {
   const [tab, setTab] = useState("Overview");
@@ -2047,61 +2047,6 @@ function App() {
               <div style={{fontSize:9,color:t.control==="R"?"#b91c1c":t.control==="D"?"#1d4ed8":"#7c3aed",fontWeight:700,marginTop:2}}>{t.control}</div>
             </div>
           ))}
-        </div>
-      </div>}
-
-      {/* ══════════ SETTINGS ══════════ */}
-      {tab==="Settings" && <div className="fade-up">
-        <div style={{...cardStyle,maxWidth:700,marginBottom:16}}>
-          <h3 style={{fontSize:16,fontWeight:700,marginBottom:8,color:"#111827"}}>Google Sheets Integration</h3>
-          <p style={{fontSize:12,color:"#6b7280",marginBottom:20,lineHeight:1.8}}>
-            Connect a Google Sheet to update race ratings without editing code. The dashboard fetches fresh data every time someone opens it.
-          </p>
-          <div style={{background:"#f9fafb",borderRadius:8,padding:16,marginBottom:16,border:"1px solid #e5e7eb"}}>
-            <h4 style={{fontSize:13,fontWeight:700,color:"#92400e",marginBottom:10}}>Quick Setup (~15 minutes)</h4>
-            <ol style={{fontSize:12,color:"#374151",lineHeight:2.2,paddingLeft:20}}>
-              <li>Create a new Google Sheet</li>
-              <li>Create tabs named: <code style={{color:"#1d4ed8",background:"#eff6ff",padding:"1px 5px",borderRadius:3}}>Senate</code>, <code style={{color:"#1d4ed8",background:"#eff6ff",padding:"1px 5px",borderRadius:3}}>House</code>, <code style={{color:"#1d4ed8",background:"#eff6ff",padding:"1px 5px",borderRadius:3}}>Governors</code>, <code style={{color:"#1d4ed8",background:"#eff6ff",padding:"1px 5px",borderRadius:3}}>StateLeg</code></li>
-              <li>Add headers in row 1 (see column specs below)</li>
-              <li>Go to <strong>File → Share → Publish to Web</strong></li>
-              <li>Select each tab, choose <strong>CSV</strong>, click Publish</li>
-              <li>Copy each URL into the <code style={{color:"#1d4ed8",background:"#eff6ff",padding:"1px 5px",borderRadius:3}}>SHEET_URLS</code> at the top of this file</li>
-              <li>Save and redeploy — done!</li>
-            </ol>
-          </div>
-          <div style={{background:"#f9fafb",borderRadius:8,padding:16,marginBottom:16,border:"1px solid #e5e7eb"}}>
-            <h4 style={{fontSize:13,fontWeight:700,color:"#6b7280",marginBottom:10}}>Required Columns</h4>
-            {[
-              {tab:"Senate",cols:"State, Incumbent, Party, Rating, Open, Note, Challenger"},
-              {tab:"House",cols:"State, District, Incumbent, Party, Rating, Note"},
-              {tab:"Governors",cols:"State, Incumbent, Party, Rating, Open, Note"},
-              {tab:"StateLeg",cols:"State, SenateControl, SenateR, SenateD, HouseControl, HouseR, HouseD, SenateRating, HouseRating"},
-            ].map((t,i)=>(
-              <div key={i} style={{marginBottom:8,fontSize:12}}>
-                <span style={{fontWeight:700,color:"#374151"}}>{t.tab}: </span>
-                <span style={{color:"#6b7280",fontFamily:"'JetBrains Mono',monospace",fontSize:11}}>{t.cols}</span>
-              </div>
-            ))}
-          </div>
-          <div style={{background:"#eff6ff",borderRadius:8,padding:16,border:"1px solid #bfdbfe"}}>
-            <h4 style={{fontSize:13,fontWeight:700,color:"#1d4ed8",marginBottom:8}}>Current Status</h4>
-            <div style={{fontSize:12,color:"#374151"}}>
-              <div style={{marginBottom:4}}>Data source: <strong style={{color:dataSource==="google-sheets"?"#16a34a":"#d97706"}}>{dataSource==="google-sheets"?"Google Sheets ✓":"Built-in data (no sheet connected)"}</strong></div>
-              {["senate","house","governors","stateLeg"].map(k=>(
-                <div key={k} style={{marginBottom:3,textTransform:"capitalize"}}>{k} URL: <span style={{color:SHEET_URLS[k]?"#16a34a":"#9ca3af"}}>{SHEET_URLS[k]?"✓ Connected":"Not set"}</span></div>
-              ))}
-            </div>
-          </div>
-        </div>
-        <div style={{...cardStyle,maxWidth:700}}>
-          <h3 style={{fontSize:15,fontWeight:700,marginBottom:12,color:"#111827"}}>Rating Scale Reference</h3>
-          <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
-            {RATINGS.map(r=><RatingBadge key={r} rating={r}/>)}
-          </div>
-          <p style={{fontSize:11,color:"#6b7280",marginTop:12,lineHeight:1.8}}>
-            <strong>Solid:</strong> Not competitive. &nbsp;<strong>Likely:</strong> Could engage but one party heavily favored. &nbsp;
-            <strong>Lean:</strong> Competitive, one party favored. &nbsp;<strong>Toss-up:</strong> Either party could win.
-          </p>
         </div>
       </div>}
 
