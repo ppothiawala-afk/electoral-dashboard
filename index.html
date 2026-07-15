@@ -862,53 +862,6 @@ function StatBox({label,value,color,sub,delay=0}) {
   </div>;
 }
 
-function HouseBalanceBox({r, d, ind, vacant, delay=0}) {
-  const total = 435;
-  const rPct   = (r / total) * 100;
-  const dPct   = (d / total) * 100;
-  const iPct   = (ind / total) * 100;
-  const vPct   = (vacant / total) * 100;
-  const majPct = (218 / total) * 100;
-  return (
-    <div className="fade-up hover-lift" style={{
-      background:"#fff", borderRadius:12, padding:"18px 20px",
-      borderLeft:"3px solid #ef4444", flex:1, minWidth:160,
-      animationDelay:`${delay}s`, boxShadow:"0 1px 4px rgba(0,0,0,.06)",
-      display:"flex", flexDirection:"column", justifyContent:"center",
-    }}>
-      <div style={{fontSize:10,color:"#9ca3af",textTransform:"uppercase",letterSpacing:"1px",marginBottom:6,fontWeight:600}}>House Balance</div>
-      {/* Big numbers */}
-      <div style={{display:"flex",alignItems:"baseline",gap:6,marginBottom:10}}>
-        <span style={{fontSize:22,fontWeight:800,color:"#b91c1c",fontFamily:"'JetBrains Mono',monospace",lineHeight:1}}>{r}<span style={{fontSize:11,fontWeight:600,marginLeft:2}}>R</span></span>
-        <span style={{fontSize:14,color:"#d1d5db",fontWeight:400}}>·</span>
-        <span style={{fontSize:22,fontWeight:800,color:"#1d4ed8",fontFamily:"'JetBrains Mono',monospace",lineHeight:1}}>{d}<span style={{fontSize:11,fontWeight:600,marginLeft:2}}>D</span></span>
-        <span style={{fontSize:14,color:"#d1d5db",fontWeight:400}}>·</span>
-        <span style={{fontSize:18,fontWeight:800,color:"#7c3aed",fontFamily:"'JetBrains Mono',monospace",lineHeight:1}}>{ind}<span style={{fontSize:11,fontWeight:600,marginLeft:2}}>I</span></span>
-        <span style={{fontSize:14,color:"#d1d5db",fontWeight:400}}>·</span>
-        <span style={{fontSize:15,fontWeight:700,color:"#9ca3af",fontFamily:"'JetBrains Mono',monospace",lineHeight:1}}>{vacant}<span style={{fontSize:10,fontWeight:500,marginLeft:2}}>vac</span></span>
-      </div>
-      {/* Segmented bar */}
-      <div style={{position:"relative",height:14,borderRadius:6,overflow:"hidden",background:"#f3f4f6",display:"flex"}}>
-        <div style={{width:`${rPct}%`,background:"linear-gradient(90deg,#ef4444,#b91c1c)",transition:"width .8s ease"}}/>
-        <div style={{width:`${iPct}%`,background:"#7c3aed",transition:"width .8s ease"}}/>
-        <div style={{width:`${vPct}%`,background:"#e5e7eb",borderLeft:"1px dashed #d1d5db",transition:"width .8s ease"}}/>
-        <div style={{width:`${dPct}%`,background:"linear-gradient(90deg,#3b82f6,#1d4ed8)",transition:"width .8s ease",marginLeft:"auto"}}/>
-        {/* Majority line */}
-        <div style={{position:"absolute",left:`${majPct}%`,top:0,bottom:0,width:"2px",
-          background:"#d97706",boxShadow:"0 0 4px rgba(217,119,6,.6)",zIndex:2}}/>
-      </div>
-      <div style={{display:"flex",justifyContent:"space-between",marginTop:5,fontSize:9,color:"#9ca3af"}}>
-        <span>← R majority</span>
-        <span style={{color:"#d97706",fontWeight:700}}>218 needed</span>
-        <span>D majority →</span>
-      </div>
-      <div style={{fontSize:10,color:"#9ca3af",marginTop:4}}>
-        Kiley (CA-03) caucuses R · {vacant} seats vacant
-      </div>
-    </div>
-  );
-}
-
 function BarChart({d_count,r_count,total,label,majorityLine}) {
   const dPct = (d_count/total)*100;
   const rPct = (r_count/total)*100;
@@ -1773,7 +1726,39 @@ function App() {
           </div>
           <div style={{...cardStyle}}>
             <h3 style={{...sectionLabel,fontSize:14,letterSpacing:"0.5px",color:"#1a1a2e"}}>HOUSE LANDSCAPE</h3>
-            <BarChart d_count={HOUSE_CURRENT_D} r_count={HOUSE_CURRENT_R} total={435} label={`435 Seats (${HOUSE_VACANCIES} vacant)`} majorityLine={218}/>
+            {/* Big numbers */}
+            <div style={{display:"flex",alignItems:"baseline",gap:6,marginBottom:10}}>
+              <span style={{fontSize:22,fontWeight:800,color:"#b91c1c",fontFamily:"'JetBrains Mono',monospace",lineHeight:1}}>{HOUSE_CURRENT_R}<span style={{fontSize:11,fontWeight:600,marginLeft:2}}>R</span></span>
+              <span style={{fontSize:14,color:"#d1d5db",fontWeight:400}}>·</span>
+              <span style={{fontSize:22,fontWeight:800,color:"#1d4ed8",fontFamily:"'JetBrains Mono',monospace",lineHeight:1}}>{HOUSE_CURRENT_D}<span style={{fontSize:11,fontWeight:600,marginLeft:2}}>D</span></span>
+              <span style={{fontSize:14,color:"#d1d5db",fontWeight:400}}>·</span>
+              <span style={{fontSize:18,fontWeight:800,color:"#7c3aed",fontFamily:"'JetBrains Mono',monospace",lineHeight:1}}>{HOUSE_CURRENT_I}<span style={{fontSize:11,fontWeight:600,marginLeft:2}}>I</span></span>
+              <span style={{fontSize:14,color:"#d1d5db",fontWeight:400}}>·</span>
+              <span style={{fontSize:15,fontWeight:700,color:"#9ca3af",fontFamily:"'JetBrains Mono',monospace",lineHeight:1}}>{HOUSE_VACANCIES}<span style={{fontSize:10,fontWeight:500,marginLeft:2}}>vac</span></span>
+            </div>
+            {/* Segmented bar */}
+            <div style={{position:"relative",height:14,borderRadius:6,overflow:"hidden",background:"#f3f4f6",display:"flex"}}>
+              <div style={{width:`${(HOUSE_CURRENT_R/435)*100}%`,background:"linear-gradient(90deg,#ef4444,#b91c1c)",transition:"width .8s ease"}}/>
+              <div style={{width:`${(HOUSE_CURRENT_I/435)*100}%`,background:"#7c3aed",transition:"width .8s ease"}}/>
+              <div style={{width:`${(HOUSE_VACANCIES/435)*100}%`,background:"#e5e7eb",borderLeft:"1px dashed #d1d5db",transition:"width .8s ease"}}/>
+              <div style={{width:`${(HOUSE_CURRENT_D/435)*100}%`,background:"linear-gradient(90deg,#3b82f6,#1d4ed8)",transition:"width .8s ease",marginLeft:"auto"}}/>
+              {/* Majority line */}
+              <div style={{position:"absolute",left:`${(218/435)*100}%`,top:0,bottom:0,width:"2px",
+                background:"#d97706",boxShadow:"0 0 4px rgba(217,119,6,.6)",zIndex:2}}/>
+            </div>
+            <div style={{display:"flex",justifyContent:"space-between",marginTop:5,fontSize:9,color:"#9ca3af"}}>
+              <span>← R majority</span>
+              <span style={{color:"#d97706",fontWeight:700}}>218 needed</span>
+              <span>D majority →</span>
+            </div>
+            <div style={{fontSize:10,color:"#9ca3af",marginTop:4}}>
+              Kiley (CA-03) caucuses R · {HOUSE_VACANCIES} seats vacant
+            </div>
+            <div style={{borderTop:"1px solid #f3f4f6",margin:"16px 0 12px"}}/>
+            <div style={{fontSize:11,color:"#6b7280",marginBottom:12}}>2026 seats on the ballot</div>
+            <BarChart d_count={house.filter(r=>ratingIndex(r.rating)<=2).length}
+              r_count={house.filter(r=>ratingIndex(r.rating)>=4).length}
+              total={house.length} label={`${house.length} Seats Up`}/>
             <div style={{fontSize:12,color:"#6b7280",marginTop:8,lineHeight:1.8}}>
               <span style={{color:"#d97706",fontWeight:700}}>{houseTossup}</span> Toss-ups &nbsp;·&nbsp;
               <span style={{color:"#1d4ed8",fontWeight:700}}>{house.filter(r=>ratingIndex(r.rating)<=2).length}</span> Lean/Likely D &nbsp;·&nbsp;
@@ -1785,7 +1770,7 @@ function App() {
           </div>
         </div>
 
-        {/* ROW 2: Race Map (left) + 4 stat boxes stacked (right) */}
+        {/* ROW 2: Race Map (left) + 3 stat boxes stacked (right) */}
         <div className="two-col fade-up stagger-1" style={{display:"grid",gridTemplateColumns:"1fr 340px",gap:16,marginBottom:16,alignItems:"stretch"}}>
           {/* Race Map */}
           <div className="map-wrap" style={{...cardStyle}}>
@@ -1816,12 +1801,11 @@ function App() {
             </div>
           </div>
 
-          {/* 4 stat boxes stacked vertically */}
+          {/* 3 stat boxes stacked vertically */}
           <div style={{display:"flex",flexDirection:"column",gap:10}}>
             <StatBox label="Senate Seats Up" value={senate.length} color="#d97706" sub={`${senateR}R · ${senateD}D up`} delay={0}/>
-            <StatBox label="D Senate Target" value="+4" color="#1d4ed8" sub="Net gain for majority" delay={.05}/>
-            <HouseBalanceBox r={HOUSE_CURRENT_R} d={HOUSE_CURRENT_D} ind={HOUSE_CURRENT_I} vacant={HOUSE_VACANCIES} delay={.1}/>
-            <StatBox label="Governor Races" value={govs.length} color="#7c3aed" sub={`${govs.filter(g=>g.open).length} open seats`} delay={.15}/>
+            <StatBox label="House Seats Up" value={435} color="#1d4ed8" sub={`${HOUSE_CURRENT_R}R · ${HOUSE_CURRENT_D}D up`} delay={.05}/>
+            <StatBox label="Governor Races" value={govs.length} color="#7c3aed" sub={`${govs.filter(g=>g.open).length} open seats`} delay={.1}/>
           </div>
         </div>
 
