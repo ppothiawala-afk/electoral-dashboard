@@ -92,12 +92,19 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           # Stage the files that the apply step may have changed/created.
-          git add -A \
+          # NOTE: staged one path at a time — a single `git add` with multiple
+          # pathspecs stages NOTHING (exit 128) if any one pathspec matches no
+          # files, e.g. when constants_patch.json is absent because the patch
+          # was already archived (this silently dropped the index.html fallback
+          # sync on the 2026-07-15 re-run).
+          for p in \
             constants_patch.json \
             constants_patch.applied_*.json \
             history.json \
             index.html \
-            weekly_briefing_*.md 2>/dev/null || true
+            weekly_briefing_*.md; do
+            git add -A -- "$p" 2>/dev/null || true
+          done
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
