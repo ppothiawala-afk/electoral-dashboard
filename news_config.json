@@ -1,5 +1,5 @@
 {
-  "_comment": "Config for fetch_news.py. States = competitive/flip states shown on the dashboard. Candidates verified 2026-07-03 via web search; update as primaries resolve (MI Aug 4, KS Aug 4, WI Aug 11, AK Aug 18, AZ Jul 21, NH Sep 8). outlet_lean: -2 left, -1 lean left, 0 center, +1 lean right, +2 right (AllSides-style). Unknown outlets are kept for mention counts but excluded from the lean scatter.",
+  "_comment": "Config for fetch_news.py. States = competitive/flip states shown on the dashboard. Candidates verified 2026-07-14 via web search; update as primaries resolve (MI Aug 4, KS Aug 4, WI Aug 11, AK Aug 18, AZ Jul 21, NH Sep 8). outlet_lean: -2 left, -1 lean left, 0 center, +1 lean right, +2 right (AllSides-style). Unknown outlets are kept for mention counts but excluded from the lean scatter. ME Senate: Platner withdrew Jul 10; Dem replacement nominee due by Jul 27 convention - update names once chosen. SC Senate: GOP special primary Aug 11 for Graham's seat (not yet a tracked state).",
   "max_articles_per_race": 20,
   "lookback_days": 21,
   "states": {
@@ -7,7 +7,7 @@
       "races": [
         {
           "type": "Senate",
-          "query": "Maine senate race Collins Platner 2026",
+          "query": "Maine senate race Collins 2026 Democratic nominee convention",
           "candidates": [
             {
               "name": "Susan Collins",
@@ -17,10 +17,13 @@
               ]
             },
             {
-              "name": "Graham Platner",
+              "name": "Democratic nominee TBD",
               "party": "D",
               "aliases": [
-                "Platner"
+                "Troy Jackson",
+                "Nirav Shah",
+                "Shenna Bellows",
+                "Dan Kleban"
               ]
             }
           ]

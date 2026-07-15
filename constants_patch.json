@@ -1,0 +1,77 @@
+{
+  "notes": "2026-07-14 weekly: Graham (R-SC) died Jul 11; sister Darline Graham Nordone sworn in Jul 14 - Senate stays 53R/47D. Cook moved 5 governor ratings Jul 10 (AZ->Lean D, OH->Toss-up, ME/NM->Solid D, OR->Likely D). ME Senate challenger corrected: Platner (not Mills) won Jun 9 primary, withdrew Jul 10; Dem nominee TBD by Jul 27 convention.",
+  "updates": {
+    "HOUSE_R": 218,
+    "HOUSE_D": 212,
+    "HOUSE_I": 1,
+    "HOUSE_VACANCIES": 4,
+    "SENATE_R": 53,
+    "SENATE_D": 47,
+    "SENATE_I": 3,
+    "LAST_UPDATED": "2026-07-14",
+    "NOTES": "Kiley (CA-03) is Independent but caucuses R. Vacancies (4): CA-14 (Swalwell-D resigned Apr 14, special general Aug 18), FL-20 (Cherfilus-McCormick-D resigned Apr 21, special TBD), GA-13 (Scott-D died Apr 22, special Jul 28), TX-23 (Gonzales-R resigned Apr 14, special TBD). Senate: Graham (R-SC) died Jul 11; Darline Graham Nordone (R) sworn in Jul 14 - 53R/47D unchanged."
+  },
+  "row_updates": {
+    "Senate": {
+      "key_cols": ["State", "Up in 2026"],
+      "rating_col": "Rating",
+      "extra_col_map": {
+        "Incumbent": "incumbent",
+        "Open": "open",
+        "Challenger": "challenger",
+        "Notes": "notes"
+      },
+      "changes": [
+        {
+          "key": ["SC", "YES"],
+          "rating": "Solid R",
+          "incumbent": "Darline Graham Nordone",
+          "open": "true",
+          "challenger": "Annie Andrews (D)",
+          "notes": "Graham died Jul 11; sister Nordone (interim, not running) sworn in Jul 14. GOP nominee via special primary Aug 11 (runoff Aug 25); winner faces Andrews Nov 3. IE rates Likely R (Apr 23) and calls race competitive - watch for moves."
+        },
+        {
+          "key": ["ME", "YES"],
+          "rating": "Toss-up",
+          "challenger": "TBD (D convention by Jul 27)",
+          "notes": "Platner (won Jun 9 primary; Mills suspended Apr 30) withdrew Jul 10; ME Dems pick replacement nominee by Jul 27 convention. Contenders incl. Jackson, Shah, Bellows, Kleban."
+        }
+      ]
+    },
+    "Governors": {
+      "key_cols": ["State", "Election 2026"],
+      "rating_col": "Rating",
+      "extra_col_map": {
+        "Note": "notes",
+        "Notes": "notes"
+      },
+      "changes": [
+        {
+          "key": ["AZ", "YES"],
+          "rating": "Lean D",
+          "notes": "Cook moved Toss-up->Lean D Jul 10 (Hobbs fundraising edge over Biggs); GOP primary Jul 21."
+        },
+        {
+          "key": ["OH", "YES"],
+          "rating": "Toss-up",
+          "notes": "Cook moved Lean R->Toss-up Jul 10; NYT/Siena Jun 15-28 has Acton 47 - Ramaswamy 47. IE Lean R since Jun 25."
+        },
+        {
+          "key": ["ME", "YES"],
+          "rating": "Solid D",
+          "notes": "Cook moved Likely D->Solid D Jul 10; off the competitive map."
+        },
+        {
+          "key": ["NM", "YES"],
+          "rating": "Solid D",
+          "notes": "Cook moved Likely D->Solid D Jul 10; Haaland heavy favorite."
+        },
+        {
+          "key": ["OR", "YES"],
+          "rating": "Likely D",
+          "notes": "Cook moved Solid D->Likely D Jul 10 (only R-direction move; Kotek approval sag)."
+        }
+      ]
+    }
+  }
+}

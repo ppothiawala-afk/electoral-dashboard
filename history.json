@@ -18,28 +18,28 @@
       "rating_changes": [
         {
           "tab": "Senate",
-          "race": "GA \u2014 Ossoff (D) vs Carter (R)",
+          "race": "GA — Ossoff (D) vs Carter (R)",
           "from": "Toss-up",
           "to": "Lean D",
           "source": "Sabato, Apr 13"
         },
         {
           "tab": "Senate",
-          "race": "NC \u2014 Open (Cooper D vs Whatley R)",
+          "race": "NC — Open (Cooper D vs Whatley R)",
           "from": "Toss-up",
           "to": "Lean D",
           "source": "Sabato, Apr 13"
         },
         {
           "tab": "Senate",
-          "race": "OH Special \u2014 Husted (R) vs Brown (D)",
+          "race": "OH Special — Husted (R) vs Brown (D)",
           "from": "Lean R",
           "to": "Toss-up",
           "source": "Sabato, Apr 13"
         },
         {
           "tab": "Governors",
-          "race": "MI \u2014 Open (Whitmer term-limited)",
+          "race": "MI — Open (Whitmer term-limited)",
           "from": "Toss-up",
           "to": "Lean D",
           "source": "Cook, May 21"
@@ -140,28 +140,28 @@
       "rating_changes": [
         {
           "tab": "Senate",
-          "race": "IA \u2014 Ernst open (Hinson R vs Turek D)",
+          "race": "IA — Ernst open (Hinson R vs Turek D)",
           "from": "Likely R",
           "to": "Lean R",
           "source": "Cook & Sabato, Jun 2"
         },
         {
           "tab": "Senate",
-          "race": "TX \u2014 Cornyn\u2192Paxton (R) vs Talarico (D)",
+          "race": "TX — Cornyn→Paxton (R) vs Talarico (D)",
           "from": "Likely R",
           "to": "Lean R",
           "source": "Cook, Jun 5"
         },
         {
           "tab": "House",
-          "race": "FL-23 \u2014 Moskowitz (D)",
+          "race": "FL-23 — Moskowitz (D)",
           "from": "Likely D",
           "to": "Solid D",
           "source": "Cook, Jun 3"
         },
         {
           "tab": "House",
-          "race": "IA-02 \u2014 Hinson (R)",
+          "race": "IA-02 — Hinson (R)",
           "from": "Likely R",
           "to": "Lean R",
           "source": "Sabato, Jun 2"
@@ -262,21 +262,21 @@
       "rating_changes": [
         {
           "tab": "Senate",
-          "race": "AK \u2014 Sullivan (R) vs Peltola (D)",
+          "race": "AK — Sullivan (R) vs Peltola (D)",
           "from": "Lean R",
           "to": "Toss-up",
           "source": "Sabato, Jun 11"
         },
         {
           "tab": "Senate",
-          "race": "NC \u2014 Open (Cooper D vs Whatley R)",
+          "race": "NC — Open (Cooper D vs Whatley R)",
           "from": "Toss-up",
           "to": "Lean D",
           "source": "Sabato, Jun 11"
         },
         {
           "tab": "House",
-          "race": "CA-06 \u2014 Bera (D)",
+          "race": "CA-06 — Bera (D)",
           "from": "Likely D",
           "to": "Lean D",
           "source": "Inside Elections, Jun 11"
@@ -377,49 +377,49 @@
       "rating_changes": [
         {
           "tab": "Senate",
-          "race": "OH Special \u2014 Husted (R) vs Brown (D)",
+          "race": "OH Special — Husted (R) vs Brown (D)",
           "from": "Lean R",
           "to": "Toss-up",
           "source": "Sabato, Jun 11"
         },
         {
           "tab": "Senate",
-          "race": "IA \u2014 Ernst open (Hinson R vs Turek D)",
+          "race": "IA — Ernst open (Hinson R vs Turek D)",
           "from": "Likely R",
           "to": "Lean R",
           "source": "Sabato, Jun 2"
         },
         {
           "tab": "House",
-          "race": "MI-08 \u2014 McDonald Rivet (D)",
+          "race": "MI-08 — McDonald Rivet (D)",
           "from": "Lean D",
           "to": "Likely D",
           "source": "Inside Elections, Jun 11"
         },
         {
           "tab": "House",
-          "race": "NC-11 \u2014 Edwards (R)",
+          "race": "NC-11 — Edwards (R)",
           "from": "Likely R",
           "to": "Lean R",
           "source": "Inside Elections, Jun 11"
         },
         {
           "tab": "House",
-          "race": "NJ-07 \u2014 Kean (R)",
+          "race": "NJ-07 — Kean (R)",
           "from": "Toss-up",
           "to": "Lean D",
           "source": "Inside Elections, Jun 11"
         },
         {
           "tab": "House",
-          "race": "FL-09 \u2014 Soto (D, redistricted)",
+          "race": "FL-09 — Soto (D, redistricted)",
           "from": "Solid D",
           "to": "Likely R",
           "source": "Cook, Jun 18"
         },
         {
           "tab": "House",
-          "race": "FL-14 \u2014 Castor (D, redistricted)",
+          "race": "FL-14 — Castor (D, redistricted)",
           "from": "Solid D",
           "to": "Lean R",
           "source": "Cook, Jun 18"
@@ -520,21 +520,21 @@
       "rating_changes": [
         {
           "tab": "Senate",
-          "race": "TX \u2014 Paxton (R) vs Talarico (D)",
+          "race": "TX — Paxton (R) vs Talarico (D)",
           "from": "Likely R",
           "to": "Lean R",
           "source": "Cook, Jun 26"
         },
         {
           "tab": "House",
-          "race": "FL-09 \u2014 Soto (D, redistricted)",
+          "race": "FL-09 — Soto (D, redistricted)",
           "from": "Solid D",
           "to": "Likely R",
           "source": "Cook, Jun 25"
         },
         {
           "tab": "House",
-          "race": "FL-14 \u2014 Castor (D, redistricted)",
+          "race": "FL-14 — Castor (D, redistricted)",
           "from": "Solid D",
           "to": "Lean R",
           "source": "Cook, Jun 25"
@@ -559,10 +559,63 @@
       "rating_changes": [
         {
           "tab": "Senate",
-          "race": "AK \u2014 Sullivan (R) vs Peltola (D)",
+          "race": "AK — Sullivan (R) vs Peltola (D)",
           "from": "Lean R",
           "to": "Toss-up",
           "source": "Cook, Jul 1"
+        }
+      ],
+      "snapshot": {}
+    },
+    {
+      "date": "2026-07-14",
+      "label": "Jul 14",
+      "briefing": "weekly_briefing_2026-07-14.md",
+      "chamber": {
+        "house_r": 218,
+        "house_d": 212,
+        "house_i": 1,
+        "house_vacancies": 4,
+        "senate_r": 53,
+        "senate_d": 47,
+        "senate_i": 3,
+        "notes": "Graham (R-SC) died Jul 11; sister Darline Graham Nordone (R) appointed by McMaster, sworn in Jul 14 - Senate stays 53R/47D. House unchanged; 4 vacancies: CA-14, FL-20, GA-13, TX-23. ME Senate challenger corrected (Platner won Jun 9 primary, withdrew Jul 10; Dem nominee TBD by Jul 27)."
+      },
+      "rating_changes": [
+        {
+          "tab": "Governors",
+          "race": "AZ — Hobbs (D) incumbent",
+          "from": "Toss-up",
+          "to": "Lean D",
+          "source": "Cook Political Report, Jul 10"
+        },
+        {
+          "tab": "Governors",
+          "race": "OH — open (DeWine term-limited)",
+          "from": "Lean R",
+          "to": "Toss-up",
+          "source": "Cook Political Report, Jul 10"
+        },
+        {
+          "tab": "Governors",
+          "race": "ME — open (Mills term-limited)",
+          "from": "Likely D",
+          "to": "Solid D",
+          "source": "Cook Political Report, Jul 10"
+        },
+        {
+          "tab": "Governors",
+          "race": "NM — open (Lujan Grisham term-limited)",
+          "from": "Likely D",
+          "to": "Solid D",
+          "source": "Cook Political Report, Jul 10"
+        },
+        {
+          "tab": "Governors",
+          "race": "OR — Kotek (D) incumbent",
+          "from": "Solid D",
+          "to": "Likely D",
+          "source": "Cook Political Report, Jul 10"
         }
       ],
       "snapshot": {}
