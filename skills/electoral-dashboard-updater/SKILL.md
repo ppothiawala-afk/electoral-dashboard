@@ -290,7 +290,10 @@ is independent and can't inherit your anchoring:
 2. **Membership & balance verifier** — claimed chamber counts, vacancies, resignations,
    deaths, party switches, special-election results. Same protocol; prefer primary sources
    (press gallery, clerk.house.gov, senate.gov, state SoS).
-3. **Candidate/matchup verifier** — the nominee/matchup lines in news_config.json states
+3. **Candidate/matchup verifier** — the nominee/matchup lines in news_config.json states,
+   PLUS the entries in `election_calendar.json`: confirm upcoming event dates are correct,
+   add newly-scheduled events (runoffs, conventions, specials), and update the notes of
+   events that just resolved (winner names). Bump the file's `updated` field.
    with a primary in the past 2 weeks or next 2 weeks (this is the biggest staleness source
    — see the Abbott term-limit and Cornyn-lost-runoff misses of 2026-07-03). Return any
    matchup where the config or Sheet names the wrong candidates.

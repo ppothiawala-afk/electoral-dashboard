@@ -1455,8 +1455,8 @@ function StateNewsPanel({state, analysis, senate, house, govs}) {
   );
 }
 
-function StateNewsTab({analysis, senate, house, govs}) {
-  const [selected, setSelected] = useState(null);
+function StateNewsTab({analysis, senate, house, govs, selected, onSelect}) {
+  const setSelected = onSelect;
   if (!analysis || !analysis.states || !Object.keys(analysis.states).length) {
     return <div style={{background:"#fff",borderRadius:12,padding:28,boxShadow:"0 1px 4px rgba(0,0,0,.07)",
       fontSize:13,color:"#6b7280",lineHeight:1.6}}>
@@ -1526,6 +1526,78 @@ function StateNewsTab({analysis, senate, house, govs}) {
    MAIN APP
    ═══════════════════════════════════════════════════════════════ */
 
+/* ── Election Calendar (Overview card) ───────────────────────────
+   Reads election_calendar.json (maintained by the weekly routine).
+   Auto-hides past events; clicking a state event jumps to its
+   State News analysis. */
+const CAL_KIND = {
+  primary:    {label:"PRIMARY",    bg:"#fef3c7", fg:"#92400e"},
+  runoff:     {label:"RUNOFF",     bg:"#fde68a", fg:"#78350f"},
+  special:    {label:"SPECIAL",    bg:"#e0e7ff", fg:"#3730a3"},
+  convention: {label:"CONVENTION", bg:"#f3e8ff", fg:"#6b21a8"},
+  general:    {label:"ELECTION DAY", bg:"#dcfce7", fg:"#166534"},
+};
+function daysUntil(iso) {
+  const d = new Date(iso + "T00:00:00");
+  const now = new Date(); now.setHours(0,0,0,0);
+  return Math.round((d - now) / 86400000);
+}
+function ElectionCalendar({calendar, newsAnalysis, onSelectState}) {
+  if (!calendar || !calendar.events) return null;
+  const upcoming = calendar.events
+    .filter(e => daysUntil(e.date) >= 0)
+    .sort((a,b) => a.date.localeCompare(b.date))
+    .slice(0, 8);
+  if (!upcoming.length) return null;
+  return (
+    <div className="fade-up" style={{background:"#fff",borderRadius:12,padding:20,boxShadow:"0 1px 4px rgba(0,0,0,.07)",marginTop:18}}>
+      <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:14,flexWrap:"wrap"}}>
+        <h3 style={{fontSize:11,fontWeight:700,color:"#6b7280",letterSpacing:"1px",textTransform:"uppercase",margin:0}}>
+          🗓 Election Calendar
+        </h3>
+        <span style={{fontSize:10,color:"#9ca3af"}}>What's next on the road to Nov 3 · click a state for its news analysis</span>
+      </div>
+      <div style={{display:"flex",flexDirection:"column",gap:8}}>
+        {upcoming.map((e,i) => {
+          const days = daysUntil(e.date);
+          const kind = CAL_KIND[e.kind] || CAL_KIND.primary;
+          const hasNews = e.state !== "US" && newsAnalysis?.states?.[e.state];
+          const dt = new Date(e.date + "T00:00:00");
+          return (
+            <div key={i} onClick={() => hasNews && onSelectState(e.state)}
+              className={hasNews ? "hover-lift" : ""}
+              style={{display:"flex",alignItems:"center",gap:12,padding:"9px 12px",
+                background: days <= 7 ? "#fffbeb" : "#f9fafb", borderRadius:8,
+                border:"1px solid " + (days <= 7 ? "#fde68a" : "#f3f4f6"),
+                cursor: hasNews ? "pointer" : "default"}}>
+              <div style={{textAlign:"center",minWidth:44}}>
+                <div style={{fontSize:9,fontWeight:700,color:"#9ca3af",textTransform:"uppercase"}}>
+                  {dt.toLocaleDateString("en-US",{month:"short"})}
+                </div>
+                <div style={{fontSize:17,fontWeight:800,color:"#111827",lineHeight:1}}>
+                  {dt.getDate()}
+                </div>
+              </div>
+              <span style={{fontSize:9,fontWeight:800,padding:"3px 8px",borderRadius:10,
+                background:kind.bg,color:kind.fg,letterSpacing:".5px",whiteSpace:"nowrap"}}>{kind.label}</span>
+              <div style={{flex:1,minWidth:0}}>
+                <div style={{fontSize:12,fontWeight:700,color:"#111827"}}>
+                  {e.title}{hasNews && <span style={{color:"#3b82f6",fontWeight:600,fontSize:10}}> · view {e.state} news →</span>}
+                </div>
+                {e.note && <div style={{fontSize:10.5,color:"#6b7280",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{e.note}</div>}
+              </div>
+              <span style={{fontSize:10,fontWeight:700,whiteSpace:"nowrap",
+                color: days === 0 ? "#b91c1c" : days <= 7 ? "#d97706" : "#9ca3af"}}>
+                {days === 0 ? "TODAY" : days === 1 ? "tomorrow" : `in ${days} days`}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 const TABS = ["Overview","State News","Senate","House","Governors","State Legs","Trifectas"];
 
 function App() {
@@ -1543,6 +1615,8 @@ function App() {
   const [sheetConstants, setSheetConstants] = useState({});
   const [newsData, setNewsData] = useState(DEMO_NEWS);
   const [newsAnalysis, setNewsAnalysis] = useState(null);
+  const [calendar, setCalendar] = useState(null);
+  const [newsState, setNewsState] = useState(null);
   const [selectedFlip, setSelectedFlip] = useState(null);
 
   useEffect(() => {
@@ -1570,6 +1644,10 @@ function App() {
         const resp = await fetch("news_analysis.json", {cache:"no-store"});
         if (resp.ok) setNewsAnalysis(await resp.json());
       } catch(e) { /* optional file; State News tab shows guidance if absent */ }
+      try {
+        const cal = await fetch("election_calendar.json", {cache:"no-store"});
+        if (cal.ok) setCalendar(await cal.json());
+      } catch(e) { /* optional file; calendar card simply hidden if absent */ }
     }
     loadSheets();
   }, []);
@@ -1888,6 +1966,9 @@ function App() {
           </div>
         )}
 
+        <ElectionCalendar calendar={calendar} newsAnalysis={newsAnalysis}
+          onSelectState={(st)=>{ setNewsState(st); setTab("State News"); window.scrollTo({top:0,behavior:"smooth"}); }}/>
+
         {/* Flip detail panel */}
         {selectedFlip && (
           <FlipDetailPanel
@@ -1900,7 +1981,8 @@ function App() {
 
       {/* ══════════ SENATE ══════════ */}
       {tab==="State News" && <div className="fade-up">
-        <StateNewsTab analysis={newsAnalysis} senate={senate} house={house} govs={govs}/>
+        <StateNewsTab analysis={newsAnalysis} senate={senate} house={house} govs={govs}
+          selected={newsState} onSelect={setNewsState}/>
       </div>}
 
       {tab==="Senate" && <div>
