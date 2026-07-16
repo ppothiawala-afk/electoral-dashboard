@@ -218,6 +218,14 @@ never a publisher homepage or section front. `https://www.politico.com` is a bro
 If you cannot recover the exact article URL, find a different source you can deep-link — do not
 substitute the homepage. (`verify_dashboard.py --local` fails on homepage-only URLs: L10-links.)
 
+### State News refresh (mandatory, every run — added 2026-07-16)
+
+Before post-flight: web-search each race query in `news_config.json` (last ~14 days), rescore
+into `news_analysis.json` (existing schema; update `generated`; deep links only — L10-links
+fails otherwise), resync the `DEMO_NEWS` article blocks in `index.html`, and update
+`news_config.json` candidate lists if a primary resolved. Then run
+`python3 append_sentiment_history.py`. See the canonical skill's CONTRACT 3.9 for full detail.
+
 ### Required sections (template)
 
 ```markdown

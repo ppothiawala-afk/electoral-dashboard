@@ -61,22 +61,18 @@ the result: all ✅ is normal; any ⚠️ item is something the verifiers
 contradicted or couldn't confirm, with the action taken. Give ⚠️ lines your
 attention during Step 1.
 
-## Step 5 — Refresh State News sentiment (optional, ~5 min with Claude)
+## Step 5 — State News sentiment (automatic since 2026-07-16)
 
-The **State News** tab on the dashboard reads `news_analysis.json`, which is
-refreshed weekly in Cowork (not by Actions — the scoring is Claude's job).
-In Cowork, say:
-
-**"Refresh the state news sentiment analysis."**
-
-Claude will: collect fresh headlines for the races in `news_config.json`
-(via web search, or `python3 fetch_news.py` if run locally where
-news.google.com is reachable), score entity sentiment per candidate and
-outlet, rewrite `news_analysis.json`, and run
-`python3 append_sentiment_history.py` so the week lands in the
-`sentiment_history.json` time-series (each skipped week is a hole in the
-trend data). It all gets committed and deployed with the same push in
-Step 3.
+The **State News** tab reads `news_analysis.json`. As of 2026-07-16 the
+Monday scheduled task refreshes it on every run (skill CONTRACT 3.9):
+fresh headlines per `news_config.json` race via web search, Claude
+rescores sentiment, rewrites `news_analysis.json`, resyncs the On Deck
+fallback articles in `index.html`, and runs
+`python3 append_sentiment_history.py`. You no longer need to ask — just
+make sure `news_analysis.json`, `sentiment_history.json`, and
+`index.html` are in your Step 3 push (the briefing's git block will list
+them). If the briefing has no State News note or the verifier warns on
+L2-freshness, the refresh was skipped — ask Claude to run it.
 
 After a primary resolves (MI Aug 4, KS Aug 4, WI Aug 11, AK Aug 18,
 AZ Jul 21, NH Sep 8), ask Claude to also update the candidate lists in

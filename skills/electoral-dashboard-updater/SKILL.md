@@ -337,6 +337,31 @@ If you skipped verification (e.g., zero changes this week), say so in this secti
 
 ---
 
+## CONTRACT 3.9 — STATE NEWS REFRESH (mandatory, every run)
+
+Added 2026-07-16 (previously the optional Step 5 of WEEKLY_ROUTINE.md — it kept getting skipped,
+leaving `news_analysis.json` stale and the State News tab flagged by L2-freshness).
+
+1. For every race in `news_config.json` (`states` → `races`), web-search its `query` for
+   coverage from the last ~14 days (the config's `lookback_days` is the outer bound).
+2. Rescore each race into `news_analysis.json` using the existing schema and semantics
+   (`sentiment` = 0-100 D-favorability of coverage tone; `candidates[].sentiment` = personal
+   coverage favorability; outlet `lean` from the config's `outlet_lean` map, null if unrated).
+   Update `generated` to today. Leave baseline/non-config states untouched.
+3. **Deep links only** — every article URL must point to the specific article
+   (L10-links fails the run otherwise). Skip junk aggregators; prefer outlets in the lean map
+   or credible state outlets.
+4. Resync the `DEMO_NEWS` article blocks in `index.html` for the states/races present there,
+   so the On Deck cards and flip panels cite the same fresh articles (regex-replace each
+   `articles:[...]` block; verify the babel script still parses afterwards).
+5. If a primary resolved since last run (AZ Jul 21, MI/KS Aug 4, WI/MN Aug 11, AK Aug 18,
+   NH Sep 8), update the affected candidate lists and queries in `news_config.json` and flag
+   the change in the briefing.
+
+Then Contract 4's steps 3-4 (sentiment snapshot + verifier) confirm the refresh landed.
+
+---
+
 ## CONTRACT 4 — POST-FLIGHT (machine-verify before you finish)
 
 Do NOT consider the run complete until both pass:
@@ -354,7 +379,7 @@ Do NOT consider the run complete until both pass:
    untouched (this is the step that was silently skipped on 2026-06-29). Confirm the file still
    parses as JSON.
 
-3. **Append the sentiment snapshot.** After any news refresh, run
+3. **Append the sentiment snapshot.** After the Contract 3.9 news refresh, run
    `python3 append_sentiment_history.py` — it records this week's scores into
    `sentiment_history.json` (idempotent; re-running replaces the same date). Skipping this
    step leaves a permanent hole in the trend data.
