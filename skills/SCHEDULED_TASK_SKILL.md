@@ -211,6 +211,13 @@ Format: `([Publication, Date](url))`
 Cite at the first sentence of a paragraph / first bullet of a same-source list; cite each bullet
 if sources differ. Do not defer sources to a footer.
 
+**Deep-link rule (mandatory):** every URL — in briefings, `news_analysis.json` articles, News
+tab columns, or anywhere else — must link directly to the specific article/page being cited,
+never a publisher homepage or section front. `https://www.politico.com` is a broken citation;
+`https://www.politico.com/news/2026/07/06/maine-senate-collins-platner-00123456` is a citation.
+If you cannot recover the exact article URL, find a different source you can deep-link — do not
+substitute the homepage. (`verify_dashboard.py --local` fails on homepage-only URLs: L10-links.)
+
 ### Required sections (template)
 
 ```markdown
