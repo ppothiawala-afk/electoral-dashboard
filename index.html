@@ -1712,16 +1712,40 @@ function App() {
         <div className="two-col fade-up" style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16,marginBottom:16}}>
           <div style={{...cardStyle}}>
             <h3 style={{...sectionLabel,fontSize:14,letterSpacing:"0.5px",color:"#1a1a2e"}}>SENATE LANDSCAPE</h3>
-            <BarChart d_count={SENATE_CURRENT_D} r_count={SENATE_CURRENT_R} total={100} label="100 Seats" majorityLine={50}/>
+            {/* Big numbers */}
+            <div style={{display:"flex",alignItems:"baseline",gap:6,marginBottom:10}}>
+              <span style={{fontSize:22,fontWeight:800,color:"#b91c1c",fontFamily:"'JetBrains Mono',monospace",lineHeight:1}}>{SENATE_CURRENT_R}<span style={{fontSize:11,fontWeight:600,marginLeft:2}}>R</span></span>
+              <span style={{fontSize:14,color:"#d1d5db",fontWeight:400}}>·</span>
+              <span style={{fontSize:22,fontWeight:800,color:"#1d4ed8",fontFamily:"'JetBrains Mono',monospace",lineHeight:1}}>{SENATE_CURRENT_D}<span style={{fontSize:11,fontWeight:600,marginLeft:2}}>D</span></span>
+            </div>
+            {/* Segmented bar */}
+            <div style={{position:"relative",height:14,borderRadius:6,overflow:"hidden",background:"#f3f4f6",display:"flex"}}>
+              <div style={{width:`${SENATE_CURRENT_R}%`,background:"linear-gradient(90deg,#ef4444,#b91c1c)",transition:"width .8s ease"}}/>
+              <div style={{width:`${SENATE_CURRENT_D}%`,background:"linear-gradient(90deg,#3b82f6,#1d4ed8)",transition:"width .8s ease",marginLeft:"auto"}}/>
+              {/* Majority line */}
+              <div style={{position:"absolute",left:"51%",top:0,bottom:0,width:"2px",
+                background:"#d97706",boxShadow:"0 0 4px rgba(217,119,6,.6)",zIndex:2}}/>
+            </div>
+            <div style={{display:"flex",justifyContent:"space-between",marginTop:5,fontSize:9,color:"#9ca3af"}}>
+              <span>← R majority</span>
+              <span style={{color:"#d97706",fontWeight:700}}>51 needed</span>
+              <span>D majority →</span>
+            </div>
+            <div style={{fontSize:10,color:"#9ca3af",marginTop:4}}>
+              King (ME) & Sanders (VT) caucus D · 0 seats vacant
+            </div>
+            <div style={{borderTop:"1px solid #f3f4f6",margin:"16px 0 12px"}}/>
             <div style={{fontSize:11,color:"#6b7280",marginBottom:12}}>2026 seats on the ballot</div>
             <BarChart d_count={senate.filter(r=>ratingIndex(r.rating)<=2).length}
               r_count={senate.filter(r=>ratingIndex(r.rating)>=4).length}
               total={senate.length} label={`${senate.length} Seats Up`}/>
-            <div style={{display:"flex",gap:5,flexWrap:"wrap",marginTop:8}}>
-              {RATINGS.map(r=>{const c=senate.filter(s=>s.rating===r).length;
-                return c?<span key={r} style={{fontSize:10,color:RATING_COLORS[r]?.text,background:RATING_COLORS[r]?.bg,
-                  padding:"2px 7px",borderRadius:4,fontWeight:700}}>{r}: {c}</span>:null;
-              })}
+            <div style={{fontSize:12,color:"#6b7280",marginTop:8,lineHeight:1.8}}>
+              <span style={{color:"#d97706",fontWeight:700}}>{senateTossup}</span> Toss-ups &nbsp;·&nbsp;
+              <span style={{color:"#1d4ed8",fontWeight:700}}>{senate.filter(r=>ratingIndex(r.rating)<=2).length}</span> Lean/Likely D &nbsp;·&nbsp;
+              <span style={{color:"#b91c1c",fontWeight:700}}>{senate.filter(r=>ratingIndex(r.rating)>=4).length}</span> Lean/Likely R
+            </div>
+            <div style={{fontSize:10,color:"#9ca3af",marginTop:6,fontStyle:"italic"}}>
+              Includes 2 Independents (King, ME · Sanders, VT — caucus D) · Majority = 51 (VP breaks ties)
             </div>
           </div>
           <div style={{...cardStyle}}>
