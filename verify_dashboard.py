@@ -150,6 +150,36 @@ def check_local(max_age_days: int):
     except Exception as e:  # noqa: BLE001
         record("L9-timeseries", "FAIL", f"sentiment_history.json: {e}")
 
+    # L10 — every cited URL must be a deep link to an article, not a publisher homepage
+    try:
+        from urllib.parse import urlparse
+
+        def homepage_only(urls):
+            bad = []
+            for u in urls:
+                p = urlparse(u)
+                if p.scheme in ("http", "https") and p.path in ("", "/") and not p.query:
+                    bad.append(u)
+            return bad
+
+        bad = []
+        html = (HERE / "index.html").read_text()
+        demo = re.search(r"const DEMO_NEWS = \[(.*?)\n\];", html, re.S)
+        if demo:
+            bad += [f"index.html DEMO_NEWS: {u}"
+                    for u in homepage_only(re.findall(r'url:"([^"]+)"', demo.group(1)))]
+        if na:
+            for st, s in na.get("states", {}).items():
+                for r in s.get("races", []):
+                    bad += [f"news_analysis.json {st}/{r.get('type')}: {a.get('url')}"
+                            for a in r.get("articles", [])
+                            if homepage_only([a.get("url", "")])]
+        record("L10-links", "FAIL" if bad else "PASS",
+               f"homepage-only links (must deep-link to the article): {bad[:5]}" if bad
+               else "all article links are deep links")
+    except Exception as e:  # noqa: BLE001
+        record("L10-links", "FAIL", f"link check: {e}")
+
     # L8 — history.json ordering
     try:
         hist = json.loads((HERE / "history.json").read_text())
