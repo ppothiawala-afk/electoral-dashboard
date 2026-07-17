@@ -1,0 +1,57 @@
+# State-media pipeline — weekly collection, classification, snapshot, verify.
+#
+# NOT auto-activated. This file is intentionally kept OUT of .github/workflows/.
+# To activate: copy it to .github/workflows/media-pipeline.yml in the repo,
+# add the ANTHROPIC_API_KEY secret, and (optionally) enable the commit step.
+#
+# Ingestion can run more often than scoring (RSS items expire); this template
+# runs the whole pass weekly. Adjust the cron for 2-3x/week if desired.
+name: state-media-pipeline
+on:
+  schedule:
+    - cron: "17 11 * * 1"   # Mondays 11:17 UTC
+  workflow_dispatch: {}
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        working-directory: state-media-pipeline
+        run: pip install -r requirements.txt
+
+      - name: Weekly pass (collect -> classify -> snapshot -> verify)
+        working-directory: state-media-pipeline
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: ./run_weekly.sh
+
+      - name: Monthly feed discovery + weekly health check (proposals only)
+        working-directory: state-media-pipeline
+        run: |
+          python3 discover_feeds.py --health-check || true
+          # Discovery candidates + apply are human-gated; not run automatically.
+
+      - name: Commit updated data
+        working-directory: state-media-pipeline
+        run: |
+          git config user.name "media-pipeline-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add items_raw.json items_classified.json media_history.json verification_report.json feeds_patch.json || true
+          git commit -m "weekly media snapshot $(date -u +%F)" || echo "nothing to commit"
+          git push || echo "push skipped"
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: media-pipeline-outputs
+          path: |
+            state-media-pipeline/items_classified.json
+            state-media-pipeline/media_history.json
+            state-media-pipeline/verification_report.json

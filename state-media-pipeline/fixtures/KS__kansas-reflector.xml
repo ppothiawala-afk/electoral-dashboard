@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Kansas Reflector</title>
+    <link>https://kansasreflector.com</link>
+    <description>Kansas Reflector feed</description>
+    <item>
+      <title>Kansas water conservation rule advances amid drought</title>
+      <link>https://kansasreflector.com/2026/07/13/water-rule/</link>
+      <pubDate>Mon, 13 Jul 2026 00:00:00 +0000</pubDate>
+      <description><![CDATA[A regulation on water quality and conservation responds to ongoing drought.]]></description>
+    </item>
+    <item>
+      <title>Wind power project sparks county zoning fight</title>
+      <link>https://kansasreflector.com/2026/07/11/wind-zoning/</link>
+      <pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
+      <description><![CDATA[A renewable energy development faces land use and zoning debate.]]></description>
+    </item>
+  </channel>
+</rss>

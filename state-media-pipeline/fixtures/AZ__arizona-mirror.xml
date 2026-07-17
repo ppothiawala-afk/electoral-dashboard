@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Arizona Mirror</title>
+    <link>https://azmirror.com</link>
+    <description>Arizona Mirror feed</description>
+    <item>
+      <title>Arizona governor vetoes election administration bill</title>
+      <link>https://azmirror.com/2026/07/14/election-veto/</link>
+      <pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate>
+      <description><![CDATA[The governor rejected a voting measure as candidates and lawmakers spar ahead of the primary.]]></description>
+    </item>
+    <item>
+      <title>Phoenix semiconductor expansion adds 1,200 jobs</title>
+      <link>https://azmirror.com/2026/07/12/chip-jobs/</link>
+      <pubDate>Sun, 12 Jul 2026 00:00:00 +0000</pubDate>
+      <description><![CDATA[A major manufacturing investment with incentives boosts the regional workforce.]]></description>
+    </item>
+    <item>
+      <title>Extreme heat wave strains Arizona grid</title>
+      <link>https://azmirror.com/2026/07/11/heat-grid/</link>
+      <pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
+      <description><![CDATA[Record heat renews climate adaptation and clean energy debate.]]></description>
+    </item>
+  </channel>
+</rss>

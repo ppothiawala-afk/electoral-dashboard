@@ -1,0 +1,592 @@
+{
+  "_comment": "Topic-tagged + entity-extracted items. Counts, not judgments: no sentiment anywhere. topics from locked allowed set only.",
+  "generated": "2026-07-17",
+  "backend": "offline_keyword",
+  "allowed_topics": [
+    "climate",
+    "politics",
+    "economic_development",
+    "environmental_legislation"
+  ],
+  "stats": {
+    "items_in": 33,
+    "prefilter_survivors": 32,
+    "prefilter_skipped": 1,
+    "skip_rate": 0.0303,
+    "api_calls": 0,
+    "api_items": 0,
+    "classified": 32
+  },
+  "items": [
+    {
+      "id": "d29e535b88f0843d",
+      "title": "Arizona governor vetoes election administration bill",
+      "link": "https://azmirror.com/2026/07/14/election-veto/",
+      "published": "2026-07-14",
+      "state": "AZ",
+      "outlet": "Arizona Mirror",
+      "feed_url": "https://azmirror.com/feed/",
+      "topics": [
+        "politics"
+      ],
+      "entities": [
+        "Arizona",
+        "Governor"
+      ],
+      "also_in": []
+    },
+    {
+      "id": "7546a926ec54ce7c",
+      "title": "Phoenix semiconductor expansion adds 1,200 jobs",
+      "link": "https://azmirror.com/2026/07/12/chip-jobs/",
+      "published": "2026-07-12",
+      "state": "AZ",
+      "outlet": "Arizona Mirror",
+      "feed_url": "https://azmirror.com/feed/",
+      "topics": [
+        "economic_development"
+      ],
+      "entities": [
+        "Phoenix"
+      ],
+      "also_in": []
+    },
+    {
+      "id": "0d1dd85f089da522",
+      "title": "Extreme heat wave strains Arizona grid",
+      "link": "https://azmirror.com/2026/07/11/heat-grid/",
+      "published": "2026-07-11",
+      "state": "AZ",
+      "outlet": "Arizona Mirror",
+      "feed_url": "https://azmirror.com/feed/",
+      "topics": [
+        "climate"
+      ],
+      "entities": [
+        "Arizona",
+        "Extreme",
+        "Record"
+      ],
+      "also_in": []
+    },
+    {
+      "id": "a4021d08bd41829d",
+      "title": "Colorado lawmakers advance clean energy bill in special session",
+      "link": "https://coloradonewsline.com/2026/07/14/clean-energy-bill/",
+      "published": "2026-07-14",
+      "state": "CO",
+      "outlet": "Colorado Newsline",
+      "feed_url": "https://coloradonewsline.com/feed/",
+      "topics": [
+        "climate",
+        "politics"
+      ],
+      "entities": [
+        "Colorado",
+        "Gov. Jared Polis",
+        "Legislature",
+        "State"
+      ],
+      "also_in": []
+    },
+    {
+      "id": "974e340e4b6bb90f",
+      "title": "Front Range wildfire prompts new drought resilience funding",
+      "link": "https://coloradonewsline.com/2026/07/13/wildfire-drought/",
+      "published": "2026-07-13",
+      "state": "CO",
+      "outlet": "Colorado Newsline",
+      "feed_url": "https://coloradonewsline.com/feed/",
+      "topics": [
+        "climate",
+        "environmental_legislation"
+      ],
+      "entities": [
+        "Boulder",
+        "Front Range"
+      ],
+      "also_in": []
+    },
+    {
+      "id": "ba6c2249d424dd18",
+      "title": "EPA finalizes new power plant emissions rule affecting states",
+      "link": "https://coloradonewsline.com/2026/07/12/epa-rule/",
+      "published": "2026-07-12",
+      "state": "CO",
+      "outlet": "Colorado Newsline",
+      "feed_url": "https://coloradonewsline.com/feed/",
+      "topics": [
+        "climate",
+        "economic_development",
+        "environmental_legislation"
+      ],
+      "entities": [
+        "EPA",
+        "The EPA"
+      ],
+      "also_in": [
+        {
+          "outlet": "Michigan Advance",
+          "state": "MI"
+        },
+        {
+          "outlet": "Ohio Capital Journal",
+          "state": "OH"
+        }
+      ]
+    },
+    {
+      "id": "542d2db5d9b51234",
+      "title": "Denver data center expansion promises 400 jobs",
+      "link": "https://coloradonewsline.com/2026/07/11/data-center-jobs/",
+      "published": "2026-07-11",
+      "state": "CO",
+      "outlet": "Colorado Newsline",
+      "feed_url": "https://coloradonewsline.com/feed/",
+      "topics": [
+        "economic_development"
+      ],
+      "entities": [
+        "Denver"
+      ],
+      "also_in": []
+    },
+    {
+      "id": "ebb8b4dc1211818c",
+      "title": "Florida wetlands permit rule faces legal challenge",
+      "link": "https://floridaphoenix.com/2026/07/14/wetlands/",
+      "published": "2026-07-14",
+      "state": "FL",
+      "outlet": "Florida Phoenix",
+      "feed_url": "https://floridaphoenix.com/feed/",
+      "topics": [
+        "environmental_legislation"
+      ],
+      "entities": [
+        "Florida"
+      ],
+      "also_in": []
+    },
+    {
+      "id": "c4e3722e7fd52493",
+      "title": "Hurricane season prompts climate resilience funding",
+      "link": "https://floridaphoenix.com/2026/07/12/resilience/",
+      "published": "2026-07-12",
+      "state": "FL",
+      "outlet": "Florida Phoenix",
+      "feed_url": "https://floridaphoenix.com/feed/",
+      "topics": [
+        "climate",
+        "politics"
+      ],
+      "entities": [
+        "Hurricane",
+        "State"
+      ],
+      "also_in": []
+    },
+    {
+      "id": "787fe69aae5fd944",
+      "title": "Tampa manufacturing plant adds 300 jobs",
+      "link": "https://floridaphoenix.com/2026/07/11/plant-jobs/",
+      "published": "2026-07-11",
+      "state": "FL",
+      "outlet": "Florida Phoenix",
+      "feed_url": "https://floridaphoenix.com/feed/",
+      "topics": [
+        "economic_development"
+      ],
+      "entities": [
+        "Tampa"
+      ],
+      "also_in": []
+    },
+    {
+      "id": "e0245fce4b6dc28f",
+      "title": "Georgia lawmakers spar over voting bill",
+      "link": "https://georgiarecorder.com/2026/07/14/voting-bill/",
+      "published": "2026-07-14",
+      "state": "GA",
+      "outlet": "Georgia Recorder",
+      "feed_url": "https://georgiarecorder.com/feed/",
+      "topics": [
+        "politics"
+      ],
+      "entities": [
+        "Georgia"
+      ],
+      "also_in": []
+    },
+    {
+      "id": "1cf98e444cf7d4e6",
+      "title": "Savannah port expansion drives economic development",
+      "link": "https://georgiarecorder.com/2026/07/12/port/",
+      "published": "2026-07-12",
+      "state": "GA",
+      "outlet": "Georgia Recorder",
+      "feed_url": "https://georgiarecorder.com/feed/",
+      "topics": [
+        "economic_development"
+      ],
+      "entities": [
+        "Infrastructure",
+        "Savannah"
+      ],
+      "also_in": []
+    },
+    {
+      "id": "ece6fb1bc7eff9c6",
+      "title": "Hawaii sea level rise plan draws public comment",
+      "link": "https://www.civilbeat.org/2026/07/14/sea-level/",
+      "published": "2026-07-14",
+      "state": "HI",
+      "outlet": "Honolulu Civil Beat",
+      "feed_url": "https://www.civilbeat.org/feed/",
+      "topics": [
+        "climate"
+      ],
+      "entities": [
+        "Hawaii",
+        "State"
+      ],
+      "also_in": []
+    },
+    {
+      "id": "b210645cf8f96481",
+      "title": "Honolulu rail project adds construction jobs",
+      "link": "https://www.civilbeat.org/2026/07/12/rail-jobs/",
+      "published": "2026-07-12",
+      "state": "HI",
+      "outlet": "Honolulu Civil Beat",
+      "feed_url": "https://www.civilbeat.org/feed/",
+      "topics": [
+        "economic_development"
+      ],
+      "entities": [
+        "Honolulu"
+      ],
+      "also_in": []
+    },
+    {
+      "id": "8d20fca29722202a",
+      "title": "Legislature overrides governor veto on housing bill",
+      "link": "https://www.civilbeat.org/2026/07/11/housing-veto/",
+      "published": "2026-07-11",
+      "state": "HI",
+      "outlet": "Honolulu Civil Beat",
+      "feed_url": "https://www.civilbeat.org/feed/",
+      "topics": [
+        "economic_development",
+        "environmental_legislation",
+        "politics"
+      ],
+      "entities": [
+        "Governor",
+        "Lawmakers",
+        "Legislature"
+      ],
+      "also_in": []
+    },
+    {
+      "id": "7a1c1ab984e4e7ae",
+      "title": "Kansas water conservation rule advances amid drought",
+      "link": "https://kansasreflector.com/2026/07/13/water-rule/",
+      "published": "2026-07-13",
+      "state": "KS",
+      "outlet": "Kansas Reflector",
+      "feed_url": "https://kansasreflector.com/feed/",
+      "topics": [
+        "climate",
+        "environmental_legislation"
+      ],
+      "entities": [
+        "Kansas"
+      ],
+      "also_in": []
+    },
+    {
+      "id": "6f3ae4644b71c611",
+      "title": "Wind power project sparks county zoning fight",
+      "link": "https://kansasreflector.com/2026/07/11/wind-zoning/",
+      "published": "2026-07-11",
+      "state": "KS",
+      "outlet": "Kansas Reflector",
+      "feed_url": "https://kansasreflector.com/feed/",
+      "topics": [
+        "climate",
+        "economic_development",
+        "environmental_legislation"
+      ],
+      "entities": [
+        "Wind"
+      ],
+      "also_in": []
+    },
+    {
+      "id": "2b9a5a54919b7de4",
+      "title": "Michigan Senate advances PFAS cleanup regulation",
+      "link": "https://michiganadvance.com/2026/07/13/pfas/",
+      "published": "2026-07-13",
+      "state": "MI",
+      "outlet": "Michigan Advance",
+      "feed_url": "https://michiganadvance.com/feed/",
+      "topics": [
+        "environmental_legislation",
+        "politics"
+      ],
+      "entities": [
+        "Michigan Senate",
+        "PFAS",
+        "Senate"
+      ],
+      "also_in": []
+    },
+    {
+      "id": "a91d4c1730e5c422",
+      "title": "EV battery plant investment lands in Michigan",
+      "link": "https://michiganadvance.com/2026/07/11/ev-plant/",
+      "published": "2026-07-11",
+      "state": "MI",
+      "outlet": "Michigan Advance",
+      "feed_url": "https://michiganadvance.com/feed/",
+      "topics": [
+        "economic_development"
+      ],
+      "entities": [
+        "Michigan An"
+      ],
+      "also_in": []
+    },
+    {
+      "id": "75235cc0d79224db",
+      "title": "Minnesota clean cars rule challenged in court",
+      "link": "https://minnesotareformer.com/2026/07/13/clean-cars/",
+      "published": "2026-07-13",
+      "state": "MN",
+      "outlet": "Minnesota Reformer",
+      "feed_url": "https://minnesotareformer.com/feed/",
+      "topics": [
+        "climate",
+        "environmental_legislation"
+      ],
+      "entities": [
+        "Minnesota"
+      ],
+      "also_in": []
+    },
+    {
+      "id": "c69ea4d34ffe2d16",
+      "title": "Iron Range mining permit debate continues",
+      "link": "https://minnesotareformer.com/2026/07/11/mining-permit/",
+      "published": "2026-07-11",
+      "state": "MN",
+      "outlet": "Minnesota Reformer",
+      "feed_url": "https://minnesotareformer.com/feed/",
+      "topics": [
+        "economic_development",
+        "environmental_legislation"
+      ],
+      "entities": [
+        "Iron Range"
+      ],
+      "also_in": []
+    },
+    {
+      "id": "619cfdedda9a2d3f",
+      "title": "North Carolina legislature overrides veto on energy bill",
+      "link": "https://ncnewsline.com/2026/07/14/energy-veto/",
+      "published": "2026-07-14",
+      "state": "NC",
+      "outlet": "NC Newsline",
+      "feed_url": "https://ncnewsline.com/feed/",
+      "topics": [
+        "climate",
+        "politics"
+      ],
+      "entities": [
+        "Governor",
+        "Lawmakers",
+        "Legislature",
+        "North Carolina"
+      ],
+      "also_in": []
+    },
+    {
+      "id": "94d8219b778fff89",
+      "title": "Research Triangle expansion adds tech jobs",
+      "link": "https://ncnewsline.com/2026/07/12/rtp-jobs/",
+      "published": "2026-07-12",
+      "state": "NC",
+      "outlet": "NC Newsline",
+      "feed_url": "https://ncnewsline.com/feed/",
+      "topics": [
+        "economic_development"
+      ],
+      "entities": [
+        "Research Triangle"
+      ],
+      "also_in": []
+    },
+    {
+      "id": "75cd933e8093547e",
+      "title": "Ohio Senate passes redistricting overhaul",
+      "link": "https://ohiocapitaljournal.com/2026/07/14/redistricting/",
+      "published": "2026-07-14",
+      "state": "OH",
+      "outlet": "Ohio Capital Journal",
+      "feed_url": "https://ohiocapitaljournal.com/feed/",
+      "topics": [
+        "politics"
+      ],
+      "entities": [
+        "Lawmakers",
+        "Ohio Senate",
+        "Senate"
+      ],
+      "also_in": []
+    },
+    {
+      "id": "8e1a7d9e72ecb178",
+      "title": "Intel plant hiring ramps up near Columbus",
+      "link": "https://ohiocapitaljournal.com/2026/07/11/intel-jobs/",
+      "published": "2026-07-11",
+      "state": "OH",
+      "outlet": "Ohio Capital Journal",
+      "feed_url": "https://ohiocapitaljournal.com/feed/",
+      "topics": [
+        "economic_development"
+      ],
+      "entities": [
+        "Columbus The",
+        "Intel",
+        "Ohio"
+      ],
+      "also_in": []
+    },
+    {
+      "id": "884481fc4c4065d8",
+      "title": "Lake Erie water quality permit challenged in court",
+      "link": "https://ohiocapitaljournal.com/2026/07/10/lake-erie-permit/",
+      "published": "2026-07-10",
+      "state": "OH",
+      "outlet": "Ohio Capital Journal",
+      "feed_url": "https://ohiocapitaljournal.com/feed/",
+      "topics": [
+        "environmental_legislation",
+        "politics"
+      ],
+      "entities": [
+        "Lake Erie"
+      ],
+      "also_in": []
+    },
+    {
+      "id": "ca7c9e9fd1670d04",
+      "title": "Texas Legislature debates grid reliability bill",
+      "link": "https://www.texastribune.org/2026/07/14/grid-bill/",
+      "published": "2026-07-14",
+      "state": "TX",
+      "outlet": "The Texas Tribune",
+      "feed_url": "https://www.texastribune.org/feeds/main/",
+      "topics": [
+        "climate",
+        "politics"
+      ],
+      "entities": [
+        "Lawmakers",
+        "Legislature",
+        "Texas Legislature"
+      ],
+      "also_in": []
+    },
+    {
+      "id": "a1b6524fb71052f2",
+      "title": "Border data center boom brings jobs and water concerns",
+      "link": "https://www.texastribune.org/2026/07/12/data-center/",
+      "published": "2026-07-12",
+      "state": "TX",
+      "outlet": "The Texas Tribune",
+      "feed_url": "https://www.texastribune.org/feeds/main/",
+      "topics": [
+        "economic_development",
+        "environmental_legislation"
+      ],
+      "entities": [
+        "Border"
+      ],
+      "also_in": []
+    },
+    {
+      "id": "ccaf5a909f7c9047",
+      "title": "Texas primary runoff candidates make final push",
+      "link": "https://www.texastribune.org/2026/07/11/runoff/",
+      "published": "2026-07-11",
+      "state": "TX",
+      "outlet": "The Texas Tribune",
+      "feed_url": "https://www.texastribune.org/feeds/main/",
+      "topics": [
+        "politics"
+      ],
+      "entities": [
+        "Campaign",
+        "Texas"
+      ],
+      "also_in": []
+    },
+    {
+      "id": "ebcc5f339756ac05",
+      "title": "Vermont clean water permit rules updated by state agency",
+      "link": "https://vtdigger.org/2026/07/14/clean-water/",
+      "published": "2026-07-14",
+      "state": "VT",
+      "outlet": "VTDigger",
+      "feed_url": "https://vtdigger.org/feed/",
+      "topics": [
+        "environmental_legislation",
+        "politics"
+      ],
+      "entities": [
+        "New",
+        "Vermont"
+      ],
+      "also_in": []
+    },
+    {
+      "id": "f301f4cb68223775",
+      "title": "Solar incentive program expands across Vermont",
+      "link": "https://vtdigger.org/2026/07/13/solar/",
+      "published": "2026-07-13",
+      "state": "VT",
+      "outlet": "VTDigger",
+      "feed_url": "https://vtdigger.org/feed/",
+      "topics": [
+        "climate",
+        "economic_development"
+      ],
+      "entities": [
+        "Solar",
+        "Vermont"
+      ],
+      "also_in": []
+    },
+    {
+      "id": "2eac2fc42d8b6bbe",
+      "title": "Montpelier flood recovery spending debated",
+      "link": "https://vtdigger.org/2026/07/11/flood/",
+      "published": "2026-07-11",
+      "state": "VT",
+      "outlet": "VTDigger",
+      "feed_url": "https://vtdigger.org/feed/",
+      "topics": [
+        "climate",
+        "economic_development",
+        "politics"
+      ],
+      "entities": [
+        "Lawmakers",
+        "Montpelier"
+      ],
+      "also_in": []
+    }
+  ]
+}

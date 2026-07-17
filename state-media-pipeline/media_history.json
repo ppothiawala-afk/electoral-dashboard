@@ -1,0 +1,1715 @@
+{
+ "_comment": "Weekly per-state, per-topic coverage-VOLUME snapshots (counts only, no sentiment). Appended by append_media_history.py. History is the product.",
+ "snapshots": [
+  {
+   "date": "2026-07-10",
+   "national": {
+    "topic_volume": {
+     "climate": 8,
+     "politics": 8,
+     "economic_development": 9,
+     "environmental_legislation": 7
+    },
+    "total_items": 19
+   },
+   "states": {
+    "AL": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "AK": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "AZ": {
+     "total": 2,
+     "topic_volume": {
+      "climate": 1,
+      "politics": 1,
+      "economic_development": 1,
+      "environmental_legislation": 0
+     },
+     "top_entities": [
+      [
+       "Arizona",
+       2
+      ],
+      [
+       "Governor",
+       1
+      ],
+      [
+       "Phoenix",
+       1
+      ],
+      [
+       "Extreme",
+       1
+      ],
+      [
+       "Record",
+       1
+      ]
+     ],
+     "low_volume": true
+    },
+    "AR": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "CA": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "CO": {
+     "total": 2,
+     "topic_volume": {
+      "climate": 2,
+      "politics": 1,
+      "economic_development": 1,
+      "environmental_legislation": 1
+     },
+     "top_entities": [
+      [
+       "Colorado",
+       1
+      ],
+      [
+       "Gov. Jared Polis",
+       1
+      ],
+      [
+       "Legislature",
+       1
+      ],
+      [
+       "State",
+       1
+      ],
+      [
+       "Boulder",
+       1
+      ],
+      [
+       "Front Range",
+       1
+      ],
+      [
+       "EPA",
+       1
+      ],
+      [
+       "The EPA",
+       1
+      ]
+     ],
+     "low_volume": true
+    },
+    "CT": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "DE": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "FL": {
+     "total": 2,
+     "topic_volume": {
+      "climate": 1,
+      "politics": 1,
+      "economic_development": 1,
+      "environmental_legislation": 1
+     },
+     "top_entities": [
+      [
+       "Florida",
+       1
+      ],
+      [
+       "Hurricane",
+       1
+      ],
+      [
+       "State",
+       1
+      ],
+      [
+       "Tampa",
+       1
+      ]
+     ],
+     "low_volume": true
+    },
+    "GA": {
+     "total": 1,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 1,
+      "economic_development": 1,
+      "environmental_legislation": 0
+     },
+     "top_entities": [
+      [
+       "Georgia",
+       1
+      ],
+      [
+       "Infrastructure",
+       1
+      ],
+      [
+       "Savannah",
+       1
+      ]
+     ],
+     "low_volume": true
+    },
+    "HI": {
+     "total": 2,
+     "topic_volume": {
+      "climate": 1,
+      "politics": 1,
+      "economic_development": 1,
+      "environmental_legislation": 1
+     },
+     "top_entities": [
+      [
+       "Hawaii",
+       1
+      ],
+      [
+       "State",
+       1
+      ],
+      [
+       "Honolulu",
+       1
+      ],
+      [
+       "Governor",
+       1
+      ],
+      [
+       "Lawmakers",
+       1
+      ],
+      [
+       "Legislature",
+       1
+      ]
+     ],
+     "low_volume": true
+    },
+    "ID": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "IL": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "IN": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "IA": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "KS": {
+     "total": 1,
+     "topic_volume": {
+      "climate": 1,
+      "politics": 0,
+      "economic_development": 1,
+      "environmental_legislation": 1
+     },
+     "top_entities": [
+      [
+       "Kansas",
+       1
+      ],
+      [
+       "Wind",
+       1
+      ]
+     ],
+     "low_volume": true
+    },
+    "KY": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "LA": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "ME": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "MD": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "MA": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "MI": {
+     "total": 1,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 1,
+      "economic_development": 1,
+      "environmental_legislation": 1
+     },
+     "top_entities": [
+      [
+       "Michigan Senate",
+       1
+      ],
+      [
+       "PFAS",
+       1
+      ],
+      [
+       "Senate",
+       1
+      ],
+      [
+       "Michigan An",
+       1
+      ]
+     ],
+     "low_volume": true
+    },
+    "MN": {
+     "total": 1,
+     "topic_volume": {
+      "climate": 1,
+      "politics": 0,
+      "economic_development": 1,
+      "environmental_legislation": 1
+     },
+     "top_entities": [
+      [
+       "Minnesota",
+       1
+      ],
+      [
+       "Iron Range",
+       1
+      ]
+     ],
+     "low_volume": true
+    },
+    "MS": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "MO": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "MT": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "NE": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "NV": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "NH": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "NJ": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "NM": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "NY": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "NC": {
+     "total": 1,
+     "topic_volume": {
+      "climate": 1,
+      "politics": 1,
+      "economic_development": 1,
+      "environmental_legislation": 0
+     },
+     "top_entities": [
+      [
+       "Governor",
+       1
+      ],
+      [
+       "Lawmakers",
+       1
+      ],
+      [
+       "Legislature",
+       1
+      ],
+      [
+       "North Carolina",
+       1
+      ],
+      [
+       "Research Triangle",
+       1
+      ]
+     ],
+     "low_volume": true
+    },
+    "ND": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "OH": {
+     "total": 2,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 1,
+      "economic_development": 1,
+      "environmental_legislation": 1
+     },
+     "top_entities": [
+      [
+       "Lawmakers",
+       1
+      ],
+      [
+       "Ohio Senate",
+       1
+      ],
+      [
+       "Senate",
+       1
+      ],
+      [
+       "Columbus The",
+       1
+      ],
+      [
+       "Intel",
+       1
+      ],
+      [
+       "Ohio",
+       1
+      ],
+      [
+       "Lake Erie",
+       1
+      ]
+     ],
+     "low_volume": true
+    },
+    "OK": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "OR": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "PA": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "RI": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "SC": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "SD": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "TN": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "TX": {
+     "total": 2,
+     "topic_volume": {
+      "climate": 1,
+      "politics": 1,
+      "economic_development": 1,
+      "environmental_legislation": 1
+     },
+     "top_entities": [
+      [
+       "Lawmakers",
+       1
+      ],
+      [
+       "Legislature",
+       1
+      ],
+      [
+       "Texas Legislature",
+       1
+      ],
+      [
+       "Border",
+       1
+      ],
+      [
+       "Campaign",
+       1
+      ],
+      [
+       "Texas",
+       1
+      ]
+     ],
+     "low_volume": true
+    },
+    "UT": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "VT": {
+     "total": 2,
+     "topic_volume": {
+      "climate": 1,
+      "politics": 1,
+      "economic_development": 1,
+      "environmental_legislation": 1
+     },
+     "top_entities": [
+      [
+       "Vermont",
+       2
+      ],
+      [
+       "New",
+       1
+      ],
+      [
+       "Solar",
+       1
+      ],
+      [
+       "Lawmakers",
+       1
+      ],
+      [
+       "Montpelier",
+       1
+      ]
+     ],
+     "low_volume": true
+    },
+    "VA": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "WA": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "WV": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "WI": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "WY": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    }
+   },
+   "meta": {
+    "states_present": 12,
+    "states_all": 50,
+    "low_volume_states": [
+     "AL",
+     "AK",
+     "AR",
+     "CA",
+     "CT",
+     "DE",
+     "GA",
+     "ID",
+     "IL",
+     "IN",
+     "IA",
+     "KS",
+     "KY",
+     "LA",
+     "ME",
+     "MD",
+     "MA",
+     "MI",
+     "MN",
+     "MS",
+     "MO",
+     "MT",
+     "NE",
+     "NV",
+     "NH",
+     "NJ",
+     "NM",
+     "NY",
+     "NC",
+     "ND",
+     "OK",
+     "OR",
+     "PA",
+     "RI",
+     "SC",
+     "SD",
+     "TN",
+     "UT",
+     "VA",
+     "WA",
+     "WV",
+     "WI",
+     "WY"
+    ],
+    "backend": "offline_keyword",
+    "seed_synthetic": true
+   }
+  },
+  {
+   "date": "2026-07-17",
+   "national": {
+    "topic_volume": {
+     "climate": 13,
+     "politics": 13,
+     "economic_development": 15,
+     "environmental_legislation": 12
+    },
+    "total_items": 32
+   },
+   "states": {
+    "AL": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "AK": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "AZ": {
+     "total": 3,
+     "topic_volume": {
+      "climate": 1,
+      "politics": 1,
+      "economic_development": 1,
+      "environmental_legislation": 0
+     },
+     "top_entities": [
+      [
+       "Arizona",
+       2
+      ],
+      [
+       "Governor",
+       1
+      ],
+      [
+       "Phoenix",
+       1
+      ],
+      [
+       "Extreme",
+       1
+      ],
+      [
+       "Record",
+       1
+      ]
+     ],
+     "low_volume": false
+    },
+    "AR": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "CA": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "CO": {
+     "total": 4,
+     "topic_volume": {
+      "climate": 3,
+      "politics": 1,
+      "economic_development": 2,
+      "environmental_legislation": 2
+     },
+     "top_entities": [
+      [
+       "Colorado",
+       1
+      ],
+      [
+       "Gov. Jared Polis",
+       1
+      ],
+      [
+       "Legislature",
+       1
+      ],
+      [
+       "State",
+       1
+      ],
+      [
+       "Boulder",
+       1
+      ],
+      [
+       "Front Range",
+       1
+      ],
+      [
+       "EPA",
+       1
+      ],
+      [
+       "The EPA",
+       1
+      ]
+     ],
+     "low_volume": false
+    },
+    "CT": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "DE": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "FL": {
+     "total": 3,
+     "topic_volume": {
+      "climate": 1,
+      "politics": 1,
+      "economic_development": 1,
+      "environmental_legislation": 1
+     },
+     "top_entities": [
+      [
+       "Florida",
+       1
+      ],
+      [
+       "Hurricane",
+       1
+      ],
+      [
+       "State",
+       1
+      ],
+      [
+       "Tampa",
+       1
+      ]
+     ],
+     "low_volume": false
+    },
+    "GA": {
+     "total": 2,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 1,
+      "economic_development": 1,
+      "environmental_legislation": 0
+     },
+     "top_entities": [
+      [
+       "Georgia",
+       1
+      ],
+      [
+       "Infrastructure",
+       1
+      ],
+      [
+       "Savannah",
+       1
+      ]
+     ],
+     "low_volume": true
+    },
+    "HI": {
+     "total": 3,
+     "topic_volume": {
+      "climate": 1,
+      "politics": 1,
+      "economic_development": 2,
+      "environmental_legislation": 1
+     },
+     "top_entities": [
+      [
+       "Hawaii",
+       1
+      ],
+      [
+       "State",
+       1
+      ],
+      [
+       "Honolulu",
+       1
+      ],
+      [
+       "Governor",
+       1
+      ],
+      [
+       "Lawmakers",
+       1
+      ],
+      [
+       "Legislature",
+       1
+      ]
+     ],
+     "low_volume": false
+    },
+    "ID": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "IL": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "IN": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "IA": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "KS": {
+     "total": 2,
+     "topic_volume": {
+      "climate": 2,
+      "politics": 0,
+      "economic_development": 1,
+      "environmental_legislation": 2
+     },
+     "top_entities": [
+      [
+       "Kansas",
+       1
+      ],
+      [
+       "Wind",
+       1
+      ]
+     ],
+     "low_volume": true
+    },
+    "KY": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "LA": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "ME": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "MD": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "MA": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "MI": {
+     "total": 2,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 1,
+      "economic_development": 1,
+      "environmental_legislation": 1
+     },
+     "top_entities": [
+      [
+       "Michigan Senate",
+       1
+      ],
+      [
+       "PFAS",
+       1
+      ],
+      [
+       "Senate",
+       1
+      ],
+      [
+       "Michigan An",
+       1
+      ]
+     ],
+     "low_volume": true
+    },
+    "MN": {
+     "total": 2,
+     "topic_volume": {
+      "climate": 1,
+      "politics": 0,
+      "economic_development": 1,
+      "environmental_legislation": 2
+     },
+     "top_entities": [
+      [
+       "Minnesota",
+       1
+      ],
+      [
+       "Iron Range",
+       1
+      ]
+     ],
+     "low_volume": true
+    },
+    "MS": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "MO": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "MT": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "NE": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "NV": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "NH": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "NJ": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "NM": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "NY": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "NC": {
+     "total": 2,
+     "topic_volume": {
+      "climate": 1,
+      "politics": 1,
+      "economic_development": 1,
+      "environmental_legislation": 0
+     },
+     "top_entities": [
+      [
+       "Governor",
+       1
+      ],
+      [
+       "Lawmakers",
+       1
+      ],
+      [
+       "Legislature",
+       1
+      ],
+      [
+       "North Carolina",
+       1
+      ],
+      [
+       "Research Triangle",
+       1
+      ]
+     ],
+     "low_volume": true
+    },
+    "ND": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "OH": {
+     "total": 3,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 2,
+      "economic_development": 1,
+      "environmental_legislation": 1
+     },
+     "top_entities": [
+      [
+       "Lawmakers",
+       1
+      ],
+      [
+       "Ohio Senate",
+       1
+      ],
+      [
+       "Senate",
+       1
+      ],
+      [
+       "Columbus The",
+       1
+      ],
+      [
+       "Intel",
+       1
+      ],
+      [
+       "Ohio",
+       1
+      ],
+      [
+       "Lake Erie",
+       1
+      ]
+     ],
+     "low_volume": false
+    },
+    "OK": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "OR": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "PA": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "RI": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "SC": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "SD": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "TN": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "TX": {
+     "total": 3,
+     "topic_volume": {
+      "climate": 1,
+      "politics": 2,
+      "economic_development": 1,
+      "environmental_legislation": 1
+     },
+     "top_entities": [
+      [
+       "Lawmakers",
+       1
+      ],
+      [
+       "Legislature",
+       1
+      ],
+      [
+       "Texas Legislature",
+       1
+      ],
+      [
+       "Border",
+       1
+      ],
+      [
+       "Campaign",
+       1
+      ],
+      [
+       "Texas",
+       1
+      ]
+     ],
+     "low_volume": false
+    },
+    "UT": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "VT": {
+     "total": 3,
+     "topic_volume": {
+      "climate": 2,
+      "politics": 2,
+      "economic_development": 2,
+      "environmental_legislation": 1
+     },
+     "top_entities": [
+      [
+       "Vermont",
+       2
+      ],
+      [
+       "New",
+       1
+      ],
+      [
+       "Solar",
+       1
+      ],
+      [
+       "Lawmakers",
+       1
+      ],
+      [
+       "Montpelier",
+       1
+      ]
+     ],
+     "low_volume": false
+    },
+    "VA": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "WA": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "WV": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "WI": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    },
+    "WY": {
+     "total": 0,
+     "topic_volume": {
+      "climate": 0,
+      "politics": 0,
+      "economic_development": 0,
+      "environmental_legislation": 0
+     },
+     "top_entities": [],
+     "low_volume": true
+    }
+   },
+   "meta": {
+    "states_present": 12,
+    "states_all": 50,
+    "low_volume_states": [
+     "AL",
+     "AK",
+     "AR",
+     "CA",
+     "CT",
+     "DE",
+     "GA",
+     "ID",
+     "IL",
+     "IN",
+     "IA",
+     "KS",
+     "KY",
+     "LA",
+     "ME",
+     "MD",
+     "MA",
+     "MI",
+     "MN",
+     "MS",
+     "MO",
+     "MT",
+     "NE",
+     "NV",
+     "NH",
+     "NJ",
+     "NM",
+     "NY",
+     "NC",
+     "ND",
+     "OK",
+     "OR",
+     "PA",
+     "RI",
+     "SC",
+     "SD",
+     "TN",
+     "UT",
+     "VA",
+     "WA",
+     "WV",
+     "WI",
+     "WY"
+    ],
+    "backend": "offline_keyword"
+   }
+  }
+ ],
+ "_note_seed": "2026-07-10 snapshot is a SYNTHETIC SEED (scaled from the first real run) so the lookback/trend UI is demonstrable at week 1. Real history replaces it as weeks accumulate."
+}

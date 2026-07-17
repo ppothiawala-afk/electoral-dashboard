@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>State Media Coverage Tracker</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root{
+    --bg:#0f1420; --panel:#161d2e; --panel2:#1d2740; --ink:#e8edf7; --muted:#8b98b5;
+    --line:#28324a; --accent:#4f9dff; --accent2:#22c7a9;
+    --climate:#22c7a9; --politics:#e0679c; --economic_development:#f2b23e; --environmental_legislation:#8b7cf0;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  header{padding:20px 26px;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+  h1{font-size:19px;margin:0;letter-spacing:.2px}
+  h1 span{color:var(--muted);font-weight:400;font-size:13px;display:block;margin-top:2px}
+  .wrap{max-width:1180px;margin:0 auto;padding:22px 26px 60px}
+  .controls{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+  select{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px 12px;font-size:13px}
+  label{color:var(--muted);font-size:12px;margin-right:6px;text-transform:uppercase;letter-spacing:.5px}
+  .grid{display:grid;gap:18px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:820px){.row{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px}
+  .card h2{font-size:13px;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin:0 0 14px}
+  .kpis{display:flex;gap:26px;flex-wrap:wrap}
+  .kpi .n{font-size:30px;font-weight:600}
+  .kpi .l{color:var(--muted);font-size:12px}
+  .heat{display:grid;grid-template-columns:repeat(10,1fr);gap:6px}
+  .cell{aspect-ratio:1;border-radius:7px;background:var(--panel2);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;border:1px solid transparent;transition:.12s;position:relative}
+  .cell:hover{border-color:var(--accent)}
+  .cell.sel{border-color:#fff}
+  .cell .st{font-size:11px;font-weight:600;opacity:.9}
+  .cell .v{font-size:10px;color:var(--muted)}
+  .cell.lv{opacity:.55}
+  .cell.lv .st{font-weight:400}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px;font-size:12px;color:var(--muted)}
+  .sw{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+  .topicpill{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;margin:2px 4px 2px 0;color:#0f1420;font-weight:600}
+  .items{max-height:340px;overflow:auto}
+  .item{padding:10px 0;border-bottom:1px solid var(--line)}
+  .item a{color:var(--ink);text-decoration:none;font-weight:500}
+  .item a:hover{color:var(--accent)}
+  .item .meta{color:var(--muted);font-size:12px;margin-top:3px}
+  .ent{color:var(--muted);font-size:12px;margin-top:8px}
+  .ent b{color:var(--ink);font-weight:500}
+  .muted{color:var(--muted)}
+  .banner{background:#3a2a12;border:1px solid #6a4a1a;color:#f2c98a;padding:10px 14px;border-radius:8px;font-size:12.5px;margin-bottom:16px;display:none}
+  canvas{max-height:230px}
+  .drill h3{margin:0 0 4px;font-size:16px}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>State Media Coverage Tracker
+      <span>Counts, not judgments &middot; 50-state nonprofit &amp; public RSS &middot; no sentiment scoring</span>
+    </h1>
+  </div>
+  <div class="controls">
+    <div><label>Week</label><select id="weekPick"></select></div>
+    <div><label>Heat topic</label>
+      <select id="topicPick">
+        <option value="total">All coverage</option>
+        <option value="climate">Climate</option>
+        <option value="politics">Politics</option>
+        <option value="economic_development">Economic development</option>
+        <option value="environmental_legislation">Environmental legislation</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+<div class="wrap grid" style="gap:18px">
+  <div id="loadErr" class="banner"></div>
+
+  <div class="row">
+    <div class="card">
+      <h2>National topic mix &mdash; <span id="wkLabel"></span></h2>
+      <div class="kpis" style="margin-bottom:12px">
+        <div class="kpi"><div class="n" id="kTotal">0</div><div class="l">items this week</div></div>
+        <div class="kpi"><div class="n" id="kStates">0</div><div class="l">states with coverage</div></div>
+        <div class="kpi"><div class="n" id="kLow">0</div><div class="l">low-volume states</div></div>
+      </div>
+      <canvas id="mixChart"></canvas>
+    </div>
+    <div class="card">
+      <h2>National volume trend (all weeks)</h2>
+      <canvas id="trendChart"></canvas>
+      <div class="legend" id="trendLegend"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Per-topic state heat map &mdash; <span id="heatLabel"></span></h2>
+    <div class="heat" id="heat"></div>
+    <div class="legend">
+      <span><span class="sw" style="background:var(--panel2)"></span>no / low volume</span>
+      <span><span class="sw" style="background:#1f4a6e"></span>lower</span>
+      <span><span class="sw" style="background:#2f7fd1"></span>higher</span>
+      <span class="muted">&nbsp;&middot; click any state for a drilldown</span>
+    </div>
+  </div>
+
+  <div class="card drill" id="drill">
+    <h2>State drilldown</h2>
+    <p class="muted" id="drillHint">Select a state in the heat map above.</p>
+    <div id="drillBody" style="display:none">
+      <h3 id="dName"></h3>
+      <div class="row" style="margin-top:12px">
+        <div>
+          <canvas id="stateTrend"></canvas>
+          <div class="ent" id="dEntities"></div>
+        </div>
+        <div>
+          <div class="muted" style="font-size:12px;margin-bottom:6px">Recent classified items (this week)</div>
+          <div class="items" id="dItems"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="muted" style="font-size:12px">
+    Data: <code>media_history.json</code> (weekly snapshots) + <code>items_classified.json</code> (current items).
+    Every count is reproducible from the raw items by <code>verify_pipeline.py</code>.
+    Sentiment analysis is intentionally excluded. Serve locally with
+    <code>python3 -m http.server</code> so the browser can fetch the JSON files.
+  </p>
+</div>
+
+<script>
+const TOPICS=["climate","politics","economic_development","environmental_legislation"];
+const TCOLOR={climate:"#22c7a9",politics:"#e0679c",economic_development:"#f2b23e",environmental_legislation:"#8b7cf0"};
+const TLABEL={climate:"Climate",politics:"Politics",economic_development:"Econ. development",environmental_legislation:"Env. legislation"};
+const STATES=["AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"];
+let HIST=null, ITEMS=null, curWeek=null, curTopic="total", curState=null;
+let mixC,trendC,stateC;
+
+async function boot(){
+  try{
+    const [h,i]=await Promise.all([
+      fetch("media_history.json").then(r=>{if(!r.ok)throw Error("media_history.json "+r.status);return r.json()}),
+      fetch("items_classified.json").then(r=>{if(!r.ok)throw Error("items_classified.json "+r.status);return r.json()})
+    ]);
+    HIST=h; ITEMS=i;
+  }catch(e){
+    document.getElementById("loadErr").style.display="block";
+    document.getElementById("loadErr").textContent=
+      "Could not load data files ("+e.message+"). Serve this folder over HTTP: run  python3 -m http.server  in the pipeline directory, then open http://localhost:8000/dashboard.html";
+    return;
+  }
+  const snaps=HIST.snapshots;
+  curWeek=snaps[snaps.length-1].date;
+  const wp=document.getElementById("weekPick");
+  snaps.slice().reverse().forEach(s=>{
+    const o=document.createElement("option");o.value=s.date;
+    o.textContent=s.date+(s.meta&&s.meta.seed_synthetic?" (seed)":"");
+    wp.appendChild(o);
+  });
+  wp.value=curWeek;
+  wp.onchange=e=>{curWeek=e.target.value;render()};
+  document.getElementById("topicPick").onchange=e=>{curTopic=e.target.value;render()};
+  render();
+}
+
+function snap(date){return HIST.snapshots.find(s=>s.date===date)}
+
+function render(){
+  const s=snap(curWeek);
+  document.getElementById("wkLabel").textContent=curWeek;
+  document.getElementById("heatLabel").textContent=
+    (curTopic==="total"?"All coverage":TLABEL[curTopic])+" &middot; "+curWeek;
+  document.getElementById("heatLabel").innerHTML=
+    (curTopic==="total"?"All coverage":TLABEL[curTopic])+" &middot; "+curWeek;
+  // KPIs
+  document.getElementById("kTotal").textContent=s.national.total_items;
+  document.getElementById("kStates").textContent=s.meta.states_present;
+  document.getElementById("kLow").textContent=s.meta.low_volume_states.length;
+  drawMix(s); drawTrend(); drawHeat(s);
+  if(curState) drawDrill(curState);
+}
+
+function drawMix(s){
+  const data=TOPICS.map(t=>s.national.topic_volume[t]||0);
+  const cfg={type:"doughnut",data:{labels:TOPICS.map(t=>TLABEL[t]),
+    datasets:[{data,backgroundColor:TOPICS.map(t=>TCOLOR[t]),borderColor:"#161d2e",borderWidth:2}]},
+    options:{plugins:{legend:{position:"right",labels:{color:"#e8edf7",boxWidth:12,font:{size:11}}}},cutout:"58%"}};
+  if(mixC)mixC.destroy(); mixC=new Chart(document.getElementById("mixChart"),cfg);
+}
+
+function drawTrend(){
+  const labels=HIST.snapshots.map(s=>s.date);
+  const ds=TOPICS.map(t=>({label:TLABEL[t],data:HIST.snapshots.map(s=>s.national.topic_volume[t]||0),
+    borderColor:TCOLOR[t],backgroundColor:TCOLOR[t],tension:.3,pointRadius:3}));
+  if(trendC)trendC.destroy();
+  trendC=new Chart(document.getElementById("trendChart"),{type:"line",data:{labels,datasets:ds},
+    options:{plugins:{legend:{display:false}},scales:{
+      x:{ticks:{color:"#8b98b5"},grid:{color:"#28324a"}},
+      y:{ticks:{color:"#8b98b5"},grid:{color:"#28324a"},beginAtZero:true}}}});
+  document.getElementById("trendLegend").innerHTML=
+    TOPICS.map(t=>`<span><span class="sw" style="background:${TCOLOR[t]}"></span>${TLABEL[t]}</span>`).join("");
+}
+
+function heatVal(s,st){
+  const d=s.states[st]; if(!d)return {v:0,low:true};
+  const v=curTopic==="total"?d.total:(d.topic_volume[curTopic]||0);
+  return {v, low:d.low_volume};
+}
+function drawHeat(s){
+  let max=0; STATES.forEach(st=>{max=Math.max(max,heatVal(s,st).v)});
+  const el=document.getElementById("heat"); el.innerHTML="";
+  STATES.forEach(st=>{
+    const {v,low}=heatVal(s,st);
+    const c=document.createElement("div");
+    c.className="cell"+(low&&v===0?" lv":"")+(curState===st?" sel":"");
+    if(v>0){const f=max?v/max:0; c.style.background=mix2("#1f4a6e","#2f7fd1",f); c.style.filter=`brightness(${0.9+0.5*f})`}
+    c.innerHTML=`<div class="st">${st}</div><div class="v">${v||""}</div>`;
+    c.onclick=()=>{curState=st;drawHeat(s);drawDrill(st);
+      document.getElementById("drill").scrollIntoView({behavior:"smooth",block:"nearest"})};
+    el.appendChild(c);
+  });
+}
+function mix2(a,b,f){
+  const pa=[parseInt(a.slice(1,3),16),parseInt(a.slice(3,5),16),parseInt(a.slice(5,7),16)];
+  const pb=[parseInt(b.slice(1,3),16),parseInt(b.slice(3,5),16),parseInt(b.slice(5,7),16)];
+  const r=pa.map((x,i)=>Math.round(x+(pb[i]-x)*f));
+  return `rgb(${r[0]},${r[1]},${r[2]})`;
+}
+
+function drawDrill(st){
+  document.getElementById("drillHint").style.display="none";
+  document.getElementById("drillBody").style.display="block";
+  const full={AL:"Alabama",AK:"Alaska",AZ:"Arizona",AR:"Arkansas",CA:"California",CO:"Colorado",CT:"Connecticut",DE:"Delaware",FL:"Florida",GA:"Georgia",HI:"Hawaii",ID:"Idaho",IL:"Illinois",IN:"Indiana",IA:"Iowa",KS:"Kansas",KY:"Kentucky",LA:"Louisiana",ME:"Maine",MD:"Maryland",MA:"Massachusetts",MI:"Michigan",MN:"Minnesota",MS:"Mississippi",MO:"Missouri",MT:"Montana",NE:"Nebraska",NV:"Nevada",NH:"New Hampshire",NJ:"New Jersey",NM:"New Mexico",NY:"New York",NC:"North Carolina",ND:"North Dakota",OH:"Ohio",OK:"Oklahoma",OR:"Oregon",PA:"Pennsylvania",RI:"Rhode Island",SC:"South Carolina",SD:"South Dakota",TN:"Tennessee",TX:"Texas",UT:"Utah",VT:"Vermont",VA:"Virginia",WA:"Washington",WV:"West Virginia",WI:"Wisconsin",WY:"Wyoming"}[st];
+  const s=snap(curWeek), d=s.states[st]||{total:0,topic_volume:{},top_entities:[]};
+  document.getElementById("dName").textContent=full+" ("+st+") — "+d.total+" items";
+  // state volume trend across weeks
+  const labels=HIST.snapshots.map(x=>x.date);
+  const ds=TOPICS.map(t=>({label:TLABEL[t],
+    data:HIST.snapshots.map(x=>(x.states[st]&&x.states[st].topic_volume[t])||0),
+    borderColor:TCOLOR[t],tension:.3,pointRadius:3}));
+  if(stateC)stateC.destroy();
+  stateC=new Chart(document.getElementById("stateTrend"),{type:"line",data:{labels,datasets:ds},
+    options:{plugins:{legend:{labels:{color:"#e8edf7",boxWidth:10,font:{size:10}}}},
+      scales:{x:{ticks:{color:"#8b98b5"},grid:{color:"#28324a"}},
+              y:{ticks:{color:"#8b98b5"},grid:{color:"#28324a"},beginAtZero:true}}}});
+  // entities
+  const ents=(d.top_entities||[]).map(e=>`<b>${e[0]}</b> (${e[1]})`).join(" &middot; ");
+  document.getElementById("dEntities").innerHTML=ents?("Top entities: "+ents):"<span class='muted'>No entities recorded this week.</span>";
+  // recent items from items_classified (current corpus)
+  const its=ITEMS.items.filter(x=>x.state===st);
+  const box=document.getElementById("dItems");
+  box.innerHTML=its.length?its.map(x=>{
+    const pills=x.topics.map(t=>`<span class="topicpill" style="background:${TCOLOR[t]}">${TLABEL[t]}</span>`).join("");
+    const also=x.also_in&&x.also_in.length?` &middot; also in ${x.also_in.length} outlet(s)`:"";
+    return `<div class="item"><a href="${x.link}" target="_blank" rel="noopener">${x.title}</a>
+      <div>${pills}</div>
+      <div class="meta">${x.outlet} &middot; ${x.published}${also}</div></div>`;
+  }).join(""):"<p class='muted'>No current items for this state in items_classified.json.</p>";
+}
+boot();
+</script>
+</body>
+</html>
