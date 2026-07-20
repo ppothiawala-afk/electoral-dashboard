@@ -1,54 +1,48 @@
 {
- "generated": "2026-07-16",
+ "generated": "2026-07-20",
  "method": "Headlines collected via web search (fetch_news.py collector blocked in sandbox; use it for local/Actions runs). Entity sentiment scored by Claude during the weekly Cowork routine. sentiment = 0-100 D-favorability of coverage tone (matches existing dashboard sentimentScore semantics: >55 leans D, <45 leans R). candidateSentiment = 0-100 favorability of coverage toward that candidate personally. outletLean: -2 left ... +2 right (AllSides-style); null = unrated outlet, excluded from scatter.",
  "states": {
   "ME": {
    "races": [
     {
      "type": "Senate",
-     "matchup": "Susan Collins (R, inc.) vs. Democratic nominee TBD (Jul 25 convention)",
-     "sentiment": 44,
-     "summary": "Platner's Jul 8 withdrawal upended the race. Coverage now centers on Democratic disarray: seven candidates (Jackson, Shah, Bellows, Kleban, Wood, Costello, Loud) racing toward a 601-delegate Jul 25 convention, with reeling Platner voters and a Jul 27 legal deadline. Collins benefits from the chaos narrative, though outlets still frame Maine as her toughest cycle.",
+     "matchup": "Susan Collins (R, inc.) vs. Troy Jackson (D, presumptive; convention Jul 25)",
+     "sentiment": 48,
+     "summary": "Troy Jackson effectively locked up the replacement nomination, winning the vast majority of pledged convention delegates ahead of the Jul 25 convention. Coverage shifted from Democratic disarray to consolidation, though Collins is portrayed as confident and Jackson as less tested statewide than Platner's insurgent coalition.",
      "candidates": [
       {
        "name": "Susan Collins",
        "party": "R",
-       "mentions": 5,
-       "sentiment": 55
+       "mentions": 4,
+       "sentiment": 54
       },
       {
-       "name": "Democratic nominee TBD",
+       "name": "Troy Jackson",
        "party": "D",
        "mentions": 6,
-       "sentiment": 40
+       "sentiment": 53
       }
      ],
      "outlets": [
       {
-       "source": "NPR",
-       "lean": -1,
-       "sentiment": 42,
-       "articles": 1
-      },
-      {
        "source": "CNN",
        "lean": -1,
-       "sentiment": 44,
-       "articles": 1
+       "sentiment": 50,
+       "articles": 2
       },
       {
-       "source": "CNBC",
-       "lean": 0,
+       "source": "NPR",
+       "lean": -1,
        "sentiment": 45,
        "articles": 1
       }
      ],
      "articles": [
       {
-       "headline": "Platner's voters are reeling as Maine Democratic Party races to choose his replacement",
-       "url": "https://www.npr.org/2026/07/14/nx-s1-5892502/platner-collins-maine-democratic-party-senate",
-       "source": "NPR",
-       "date": "2026-07-14"
+       "headline": "Troy Jackson effectively wraps up Maine Democrats' nomination to face Sen. Susan Collins",
+       "url": "https://www.cnn.com/2026/07/18/politics/troy-jackson-graham-platner-maine",
+       "source": "CNN",
+       "date": "2026-07-18"
       },
       {
        "headline": "The frenzied sprint among Maine Democrats hoping to replace Graham Platner",
@@ -57,76 +51,76 @@
        "date": "2026-07-15"
       },
       {
-       "headline": "Platner quits Maine Senate race; Democrats set to pick new nominee",
-       "url": "https://www.cnbc.com/2026/07/08/platner-quits-maine-senate-race-midterm-elections.html",
-       "source": "CNBC",
-       "date": "2026-07-08"
+       "headline": "Platner's voters are reeling as Maine Democratic Party races to choose his replacement",
+       "url": "https://www.npr.org/2026/07/14/nx-s1-5892502/platner-collins-maine-democratic-party-senate",
+       "source": "NPR",
+       "date": "2026-07-14"
       }
      ]
     },
     {
      "type": "Governor",
      "matchup": "Hannah Pingree (D) vs. Bobby Charles (R) vs. Rick Bennett (I)",
-     "sentiment": 68,
-     "summary": "Coverage strongly favors Pingree after the Times/Press Herald/Siena poll gave her a 50-36 lead over Charles with Bennett at 8. Outlets frame her as the heavy favorite following her ranked-choice primary win; Charles coverage is muted and Bennett is treated as a spoiler question.",
+     "sentiment": 67,
+     "summary": "Pingree holds a wide lead: the Jul 1 BDN/Siena poll has her at 50% to Charles's 36% with Bennett at 8%. Coverage frames the general as Pingree's to lose, with Bennett's independent bid the main wildcard.",
      "candidates": [
       {
        "name": "Hannah Pingree",
        "party": "D",
        "mentions": 3,
-       "sentiment": 70
+       "sentiment": 68
       },
       {
        "name": "Bobby Charles",
        "party": "R",
-       "mentions": 3,
+       "mentions": 2,
        "sentiment": 38
       },
       {
        "name": "Rick Bennett",
        "party": "I",
-       "mentions": 2,
+       "mentions": 1,
        "sentiment": 45
       }
      ],
      "outlets": [
       {
-       "source": "Portland Press Herald",
-       "lean": null,
-       "sentiment": 68,
-       "articles": 1
-      },
-      {
-       "source": "Maine Public",
+       "source": "Bangor Daily News",
        "lean": null,
        "sentiment": 66,
        "articles": 1
       },
       {
-       "source": "Bangor Daily News",
+       "source": "Fox23 Maine",
        "lean": null,
-       "sentiment": 65,
+       "sentiment": 50,
+       "articles": 1
+      },
+      {
+       "source": "Maine Morning Star",
+       "lean": null,
+       "sentiment": 55,
        "articles": 1
       }
      ],
      "articles": [
       {
-       "headline": "Hannah Pingree is the heavy favorite in Maine governor's race, Times/Press Herald/Siena poll finds",
-       "url": "https://www.pressherald.com/2026/06/30/hannah-pingree-is-the-heavy-favorite-in-maine-governors-race-times-press-herald-siena-poll-finds/",
-       "source": "Portland Press Herald",
-       "date": "2026-06-30"
-      },
-      {
-       "headline": "Poll of Maine governor's race gives Hannah Pingree comfortable lead over Bobby Charles",
-       "url": "https://www.mainepublic.org/maine/2026-06-30/poll-of-maine-governors-race-gives-hannah-pingree-comfortable-lead-over-bobby-charles",
-       "source": "Maine Public",
-       "date": "2026-06-30"
-      },
-      {
        "headline": "Hannah Pingree leads Bobby Charles in Maine governor's race poll",
        "url": "https://www.bangordailynews.com/2026/07/01/politics/elections/maine-governor-race-poll-hannah-pingree-bobby-charles-rick-bennett/",
        "source": "Bangor Daily News",
        "date": "2026-07-01"
+      },
+      {
+       "headline": "Maine gubernatorial candidates trade barbs on first day of general campaign",
+       "url": "https://fox23maine.com/news/instagram/maine-gubernatorial-candidates-trade-barbs-on-first-day-of-general-campaign-democrat-hannah-pingree-republican-bobby-charles-independent-rick-bennett",
+       "source": "Fox23 Maine",
+       "date": "2026-06-22"
+      },
+      {
+       "headline": "Bobby Charles secures Republican nomination for governor",
+       "url": "https://mainemorningstar.com/2026/06/19/bobby-charles-secures-republican-nomination-for-governor/",
+       "source": "Maine Morning Star",
+       "date": "2026-06-19"
       }
      ]
     }
@@ -138,71 +132,65 @@
      "type": "Senate",
      "matchup": "Stevens/El-Sayed (D primary Aug 4) vs. Mike Rogers (R)",
      "sentiment": 50,
-     "summary": "McMorrow's early-July exit collapsed the Democratic primary into a Stevens vs. El-Sayed dead heat \u2014 Tavern Research has it 42-41 Stevens, the Detroit News/WDIV poll 48-41 Stevens. Coverage is dominated by primary mechanics rather than the Rogers general; sentiment stays mixed until Aug 4 resolves it.",
+     "summary": "Two weeks from the Aug 4 primary, polls diverge: a Detroit News/WDIV survey has Stevens up ~7 while Tavern Research has the race tied; El-Sayed leads all candidates in fundraising. McMorrow's Jul 5 exit made it a two-way Democratic fight. Rogers draws little coverage while the D primary dominates.",
      "candidates": [
       {
        "name": "Haley Stevens",
        "party": "D",
-       "mentions": 3,
-       "sentiment": 53
+       "mentions": 5,
+       "sentiment": 54
       },
       {
        "name": "Abdul El-Sayed",
        "party": "D",
-       "mentions": 3,
-       "sentiment": 52
-      },
-      {
-       "name": "Mallory McMorrow",
-       "party": "D",
-       "mentions": 2,
-       "sentiment": 40
+       "mentions": 5,
+       "sentiment": 53
       },
       {
        "name": "Mike Rogers",
        "party": "R",
-       "mentions": 1,
-       "sentiment": 48
+       "mentions": 2,
+       "sentiment": 46
       }
      ],
      "outlets": [
       {
-       "source": "Michigan Advance",
-       "lean": null,
+       "source": "The Washington Post",
+       "lean": -1,
        "sentiment": 52,
-       "articles": 1
-      },
-      {
-       "source": "The Hill",
-       "lean": 0,
-       "sentiment": 50,
        "articles": 1
       },
       {
        "source": "The Detroit News",
        "lean": null,
-       "sentiment": 51,
+       "sentiment": 50,
+       "articles": 1
+      },
+      {
+       "source": "Michigan Advance",
+       "lean": null,
+       "sentiment": 50,
        "articles": 1
       }
      ],
      "articles": [
       {
+       "headline": "Haley Stevens polls ahead of Abdul El-Sayed in key Michigan Senate test",
+       "url": "https://www.washingtonpost.com/politics/2026/07/15/haley-stevens-polls-ahead-abdul-el-sayed-key-michigan-senate-test/",
+       "source": "The Washington Post",
+       "date": "2026-07-15"
+      },
+      {
+       "headline": "Abdul El-Sayed tops Stevens, Rogers in Michigan Senate fundraising",
+       "url": "https://www.detroitnews.com/story/news/politics/2026/07/15/abdul-el-sayed-haley-stevens-mike-rogers-michigan-senate-race-fundraising/90933599007/",
+       "source": "The Detroit News",
+       "date": "2026-07-15"
+      },
+      {
        "headline": "New poll shows El-Sayed, Stevens statistically tied in Michigan's Democratic U.S. Senate primary",
        "url": "https://michiganadvance.com/2026/07/08/new-poll-shows-el-sayed-stevens-statistically-tied-in-michigans-democratic-u-s-senate-primary/",
        "source": "Michigan Advance",
        "date": "2026-07-08"
-      },
-      {
-       "headline": "Michigan Democratic Senate primary a toss-up after McMorrow departure: Survey",
-       "url": "https://thehill.com/homenews/campaign/5959292-michigan-democratic-senate-race/",
-       "source": "The Hill",
-       "date": "2026-07-13"
-      },
-      {
-       "headline": "Haley Stevens leads Abdul El-Sayed in new Michigan Senate race poll",
-       "url": "https://www.detroitnews.com/story/news/politics/2026/07/14/michigan-senate-race-poll-democrats-abdul-el-sayed-haley-stevens-edge/90907700007/",
-       "source": "The Detroit News",
-       "date": "2026-07-14"
       }
      ]
     },
@@ -305,7 +293,7 @@
      ],
      "articles": [
       {
-       "headline": "Sherrod Brown chances of ousting GOP's Jon Husted in Ohio Senate race \u2014 Polls",
+       "headline": "Sherrod Brown chances of ousting GOP's Jon Husted in Ohio Senate race — Polls",
        "url": "https://www.newsweek.com/sherrod-brown-jon-husted-ohio-senate-race-poll-12122669",
        "source": "Newsweek",
        "date": "2026-06-25"
@@ -373,23 +361,29 @@
     {
      "type": "Senate",
      "matchup": "Roy Cooper (D) vs. Michael Whatley (R)",
-     "sentiment": 60,
-     "summary": "Cooper still leads \u2014 PPP (Jul 10-11) has it 48-44 \u2014 but the storyline this window is Whatley gaining: the lead has tightened from earlier double digits and undecideds broke for Trump by 72 points in 2024. Cooper's $14.8M quarter and 92% name recognition keep the D-favorable frame intact.",
+     "sentiment": 57,
+     "summary": "The race is tightening: PPP (Jul 10-11) has Cooper +4, down from double digits, as GOP support coalesces behind Whatley. Cooper's $14.8M quarter and name-ID edge still anchor a pro-D coverage tilt, but 'Whatley gaining' is now the dominant frame.",
      "candidates": [
       {
        "name": "Roy Cooper",
        "party": "D",
-       "mentions": 5,
-       "sentiment": 60
+       "mentions": 6,
+       "sentiment": 58
       },
       {
        "name": "Michael Whatley",
        "party": "R",
-       "mentions": 4,
-       "sentiment": 47
+       "mentions": 5,
+       "sentiment": 50
       }
      ],
      "outlets": [
+      {
+       "source": "WFAE",
+       "lean": null,
+       "sentiment": 52,
+       "articles": 1
+      },
       {
        "source": "WRAL",
        "lean": null,
@@ -397,29 +391,23 @@
        "articles": 1
       },
       {
-       "source": "Newsweek",
-       "lean": 0,
-       "sentiment": 57,
-       "articles": 1
-      },
-      {
        "source": "Public Policy Polling",
        "lean": null,
-       "sentiment": 60,
+       "sentiment": 58,
        "articles": 1
       }
      ],
      "articles": [
       {
+       "headline": "Poll shows North Carolina Senate race tightening",
+       "url": "https://www.wfae.org/politics/2026-07-15/poll-shows-north-carolina-senate-race-tightening",
+       "source": "WFAE",
+       "date": "2026-07-15"
+      },
+      {
        "headline": "Cooper raises $14.8 million in 3 months, new poll shows Whatley gaining ground",
        "url": "https://www.wral.com/news/nccapitol/roy-cooper-michael-whatley-fundraising-campaign-finance-ad-poll-senate-nc-july-2026/",
        "source": "WRAL",
-       "date": "2026-07-14"
-      },
-      {
-       "headline": "Republican Chances of Losing North Carolina Senate Seat to Roy Cooper \u2014 Polls",
-       "url": "https://www.newsweek.com/republican-chances-of-losing-north-carolina-senate-seat-to-roy-cooper-polls-12189907",
-       "source": "Newsweek",
        "date": "2026-07-14"
       },
       {
@@ -437,33 +425,93 @@
     {
      "type": "Senate",
      "matchup": "Jon Ossoff (D, inc.) vs. Mike Collins (R)",
-     "sentiment": 63,
-     "summary": "Ossoff's position strengthened this window: the Fox News poll (Jun 23-27) has him up 56-43 with stronger party loyalty and independents at 68%, while the tighter Wick poll (+4) keeps Republicans hopeful. Coverage frames Collins as bruised from the runoff and trading attacks with Trump amplifying the race.",
+     "sentiment": 64,
+     "summary": "Ossoff enters the general with a commanding position: a Fox News poll has him +13 over Collins, and his $20M second quarter (over $42M on hand) dwarfs Collins's $2.1M. Coverage is broadly favorable to the incumbent, with Collins leaning on Trump's endorsement to consolidate Republicans.",
      "candidates": [
       {
        "name": "Jon Ossoff",
        "party": "D",
-       "mentions": 4,
-       "sentiment": 64
+       "mentions": 5,
+       "sentiment": 66
       },
       {
        "name": "Mike Collins",
        "party": "R",
+       "mentions": 4,
+       "sentiment": 41
+      }
+     ],
+     "outlets": [
+      {
+       "source": "CBS News",
+       "lean": -1,
+       "sentiment": 62,
+       "articles": 1
+      },
+      {
+       "source": "Fox News",
+       "lean": 2,
+       "sentiment": 58,
+       "articles": 1
+      },
+      {
+       "source": "Jewish Insider",
+       "lean": null,
+       "sentiment": 50,
+       "articles": 1
+      }
+     ],
+     "articles": [
+      {
+       "headline": "Sen. Ossoff, Rep. Collins release latest fundraising numbers for Georgia Senate race",
+       "url": "https://www.cbsnews.com/atlanta/news/sen-ossoff-rep-collins-release-latest-fundraising-numbers-for-georgia-senate-race/",
+       "source": "CBS News",
+       "date": "2026-07-16"
+      },
+      {
+       "headline": "Jon Ossoff leads Mike Collins by double digits in Georgia Senate poll",
+       "url": "https://www.foxnews.com/politics/fox-news-poll-early-look-georgia-senate-race",
+       "source": "Fox News",
+       "date": "2026-07-01"
+      },
+      {
+       "headline": "In Georgia's Senate race, tough choices ahead for the state's Jewish community",
+       "url": "https://jewishinsider.com/2026/07/georgia-senate-race-jon-ossoff-mike-collins-jewish-community/",
+       "source": "Jewish Insider",
+       "date": "2026-07-15"
+      }
+     ]
+    },
+    {
+     "type": "Governor",
+     "matchup": "Rick Jackson (R) vs. Keisha Lance Bottoms (D)",
+     "sentiment": 52,
+     "summary": "Fox's July poll shows meaningful ticket-splitting: 11% of Ossoff voters back Jackson for governor. Bottoms is better-liked (52/38 favorable) than Jackson (43/38), keeping coverage slightly D-tilted in a Toss-up open seat.",
+     "candidates": [
+      {
+       "name": "Rick Jackson",
+       "party": "R",
        "mentions": 3,
-       "sentiment": 42
+       "sentiment": 48
+      },
+      {
+       "name": "Keisha Lance Bottoms",
+       "party": "D",
+       "mentions": 3,
+       "sentiment": 54
       }
      ],
      "outlets": [
       {
        "source": "Fox News",
        "lean": 2,
-       "sentiment": 55,
+       "sentiment": 50,
        "articles": 1
       },
       {
-       "source": "Newsweek",
-       "lean": 0,
-       "sentiment": 60,
+       "source": "CBS News",
+       "lean": -1,
+       "sentiment": 53,
        "articles": 1
       }
      ],
@@ -475,58 +523,10 @@
        "date": "2026-07-01"
       },
       {
-       "headline": "Jon Ossoff's chances of defeating Mike Collins in Georgia Senate race \u2014 Poll",
-       "url": "https://www.newsweek.com/jon-ossoffs-chances-of-defeating-mike-collins-in-georgia-senate-race-poll-12179218",
-       "source": "Newsweek",
-       "date": "2026-07-08"
-      }
-     ]
-    },
-    {
-     "type": "Governor",
-     "matchup": "Rick Jackson (R) vs. Keisha Lance Bottoms (D)",
-     "sentiment": 50,
-     "summary": "Quiet window since the Jun 16 runoff settled the matchup: self-funding businessman Rick Jackson beat Trump-endorsed Burt Jones for the GOP nod and faces Keisha Lance Bottoms, who cleared 50% in May to avoid a runoff. General-election coverage is thin so far; both parties treat the open Kemp seat as a toss-up.",
-     "candidates": [
-      {
-       "name": "Rick Jackson",
-       "party": "R",
-       "mentions": 2,
-       "sentiment": 50
-      },
-      {
-       "name": "Keisha Lance Bottoms",
-       "party": "D",
-       "mentions": 2,
-       "sentiment": 52
-      }
-     ],
-     "outlets": [
-      {
-       "source": "NBC News",
-       "lean": -1,
-       "sentiment": 50,
-       "articles": 1
-      },
-      {
-       "source": "WSAV",
-       "lean": null,
-       "sentiment": 50,
-       "articles": 1
-      }
-     ],
-     "articles": [
-      {
-       "headline": "Georgia Governor Primary Election 2026 results: Rick Jackson wins GOP runoff, faces Bottoms",
-       "url": "https://www.nbcnews.com/politics/2026-primary-elections/georgia-governor-results",
-       "source": "NBC News",
-       "date": "2026-06-16"
-      },
-      {
-       "headline": "Georgia Governor's Race heads to GOP runoff after Primary, as Democrats select Bottoms",
-       "url": "https://www.wsav.com/news/georgia-governors-race-heads-to-gop-runoff-after-primary-as-democrats-select-bottoms/",
-       "source": "WSAV",
-       "date": "2026-05-20"
+       "headline": "Georgia Senate race 2026: Trump and Ossoff exchange attacks after Collins wins GOP nomination",
+       "url": "https://www.cbsnews.com/atlanta/news/georgia-senate-race-2026-trump-and-ossoff-exchange-attacks-after-collins-wins-gop-nomination/",
+       "source": "CBS News",
+       "date": "2026-06-24"
       }
      ]
     }
@@ -538,42 +538,48 @@
      "type": "Senate",
      "matchup": "Ashley Hinson (R) vs. Josh Turek (D)",
      "sentiment": 55,
-     "summary": "Dueling polls define the window: Fox News (Jun 23-27) has Turek up 50-46 while NYT/Siena (Jun 30) has Hinson +2 \u2014 both inside the margin. The D-favorable undertone comes from environment numbers: Trump 13 points underwater in Iowa and inflation blame landing on Republicans.",
+     "summary": "Iowa's open-seat Senate race stays a pure coin flip in coverage: NYT/Siena has Hinson +2 while Fox News has Turek +4, both within error. Turek's paralympian-to-legislator story keeps earning favorable profiles; Hinson holds the R-lean fundamentals.",
      "candidates": [
       {
        "name": "Josh Turek",
        "party": "D",
-       "mentions": 3,
-       "sentiment": 56
+       "mentions": 4,
+       "sentiment": 55
       },
       {
        "name": "Ashley Hinson",
        "party": "R",
-       "mentions": 3,
-       "sentiment": 47
+       "mentions": 4,
+       "sentiment": 48
       }
      ],
      "outlets": [
       {
-       "source": "Fox News",
-       "lean": 2,
-       "sentiment": 50,
+       "source": "The Gazette",
+       "lean": null,
+       "sentiment": 52,
        "articles": 1
       },
       {
-       "source": "The Hill",
-       "lean": 0,
+       "source": "Fox News",
+       "lean": 2,
        "sentiment": 55,
        "articles": 1
       },
       {
-       "source": "CBS2 Iowa",
+       "source": "Little Village",
        "lean": null,
-       "sentiment": 48,
+       "sentiment": 56,
        "articles": 1
       }
      ],
      "articles": [
+      {
+       "headline": "Polls: Iowa's U.S. Senate campaign tight, Sand leads for governor",
+       "url": "https://www.thegazette.com/news/elections/national/polls-iowa-s-u-s-senate-campaign-tight-sand-leads-for-governor/article_c9e86be1-a2cc-4dfe-a417-a6a3270388e6.html",
+       "source": "The Gazette",
+       "date": "2026-07-02"
+      },
       {
        "headline": "Josh Turek holds 4-point lead over Ashley Hinson in Iowa Senate race",
        "url": "https://www.foxnews.com/politics/fox-news-poll-close-senate-contest-brewing-iowa",
@@ -581,64 +587,58 @@
        "date": "2026-07-01"
       },
       {
-       "headline": "Democrat Josh Turek has slight lead over GOP Rep. Ashley Hinson in Iowa Senate race: Survey",
-       "url": "https://thehill.com/homenews/campaign/5951256-iowa-senate-race-ashley-hinson-josh-turek-fox-news-poll/",
-       "source": "The Hill",
-       "date": "2026-07-01"
-      },
-      {
-       "headline": "NYT Poll: Ashley Hinson narrowly leads Josh Turek in Iowa's U.S. Senate race",
-       "url": "https://cbs2iowa.com/news/local/nyt-poll-ashley-hinson-leads-josh-turek-in-iowas-us-senate-race",
-       "source": "CBS2 Iowa",
-       "date": "2026-06-30"
+       "headline": "Josh Turek leads Ashley Hinson in one of two new election polls; Rob Sand beats Zach Lahn in both",
+       "url": "https://littlevillagemag.com/josh-turek-leads-ashley-hinson-in-one-of-two-new-election-polls-rob-sand-beats-zach-lahn-in-both/",
+       "source": "Little Village",
+       "date": "2026-07-02"
       }
      ]
     },
     {
      "type": "Governor",
      "matchup": "Zach Lahn (R) vs. Rob Sand (D)",
-     "sentiment": 62,
-     "summary": "Momentum coverage runs clearly toward Sand: Inside Elections became the third major rater (after Cook and Sabato) to move the race to Toss-up in his favor, he leads in both NYT/Siena and Fox polling, and his $18.3M cash on hand dwarfs Lahn's $636K. Lahn's upset of Trump-endorsed Feenstra remains his defining story.",
+     "sentiment": 63,
+     "summary": "Sand leads Lahn in both new polls (NYT/Siena 48-47; Fox News 53-44) with notable crossover support from Hinson voters. Coverage frames the open governorship as Democrats' best Iowa opportunity in a decade.",
      "candidates": [
       {
        "name": "Rob Sand",
        "party": "D",
-       "mentions": 3,
+       "mentions": 4,
        "sentiment": 64
       },
       {
        "name": "Zach Lahn",
        "party": "R",
-       "mentions": 2,
-       "sentiment": 42
+       "mentions": 3,
+       "sentiment": 43
       }
      ],
      "outlets": [
       {
-       "source": "Waterloo-Cedar Falls Courier",
+       "source": "The Gazette",
        "lean": null,
        "sentiment": 60,
        "articles": 1
       },
       {
-       "source": "The Gazette",
+       "source": "Little Village",
        "lean": null,
-       "sentiment": 58,
+       "sentiment": 62,
        "articles": 1
       }
      ],
      "articles": [
       {
-       "headline": "Polls: Iowa U.S. Senate race tight, Sand leads for governor",
-       "url": "https://wcfcourier.com/news/state-regional/government-politics/elections/article_b07fd1f1-3618-5ea5-9ec1-b8c7e92d941d.html",
-       "source": "Waterloo-Cedar Falls Courier",
-       "date": "2026-06-28"
+       "headline": "Polls: Iowa's U.S. Senate campaign tight, Sand leads for governor",
+       "url": "https://www.thegazette.com/news/elections/national/polls-iowa-s-u-s-senate-campaign-tight-sand-leads-for-governor/article_c9e86be1-a2cc-4dfe-a417-a6a3270388e6.html",
+       "source": "The Gazette",
+       "date": "2026-07-02"
       },
       {
-       "headline": "Polls: Iowa U.S. Senate race tight, Sand leads for governor",
-       "url": "https://www.thegazette.com/news/elections/national/polls-iowa-s-u-s-senate-campaign-tight-sand-leads",
-       "source": "The Gazette",
-       "date": "2026-06-28"
+       "headline": "Josh Turek leads Ashley Hinson in one of two new election polls; Rob Sand beats Zach Lahn in both",
+       "url": "https://littlevillagemag.com/josh-turek-leads-ashley-hinson-in-one-of-two-new-election-polls-rob-sand-beats-zach-lahn-in-both/",
+       "source": "Little Village",
+       "date": "2026-07-02"
       }
      ]
     }
@@ -649,48 +649,60 @@
     {
      "type": "Governor",
      "matchup": "Joe Lombardo (R, inc.) vs. Aaron Ford (D)",
-     "sentiment": 50,
-     "summary": "Post-primary coverage settles into a pure toss-up: Emerson has Lombardo-Ford tied at 41 with 18% undecided, while the most recent May likely-voter poll gave Lombardo a 3-point edge. Both candidates cruised through their Jun 9 primaries; ethics complaints against both are a recurring subplot.",
+     "sentiment": 52,
+     "summary": "A rough week for Lombardo: bodycam video showed him invoking his name to avoid a red-light citation, drawing an 'abuse of authority' attack from Ford, while Newsom headlined the Democrats' canvassing kickoff. Polling still gives Lombardo a slight edge, but the coverage tone moved toward Ford.",
      "candidates": [
       {
        "name": "Joe Lombardo",
        "party": "R",
-       "mentions": 3,
-       "sentiment": 49
+       "mentions": 5,
+       "sentiment": 44
       },
       {
        "name": "Aaron Ford",
        "party": "D",
-       "mentions": 3,
-       "sentiment": 50
+       "mentions": 4,
+       "sentiment": 52
       }
      ],
      "outlets": [
       {
-       "source": "Emerson College Polling",
+       "source": "Las Vegas Review-Journal",
        "lean": null,
-       "sentiment": 50,
+       "sentiment": 45,
        "articles": 1
       },
       {
-       "source": "Las Vegas Review-Journal",
+       "source": "Nevada Current",
        "lean": null,
-       "sentiment": 50,
+       "sentiment": 58,
+       "articles": 1
+      },
+      {
+       "source": "KTNV",
+       "lean": null,
+       "sentiment": 48,
        "articles": 1
       }
      ],
      "articles": [
       {
-       "headline": "Nevada 2026 Poll: Dead Heat for Governor, U.S. Senators Rosen and Cortez Masto Underwater",
-       "url": "https://emersoncollegepolling.com/nevada-2026-poll/",
-       "source": "Emerson College Polling",
-       "date": "2026-07-09"
+       "headline": "Gov. Joe Lombardo abused his authority during traffic stop, Aaron Ford says",
+       "url": "https://www.reviewjournal.com/news/politics-and-government/nevada/ford-lombardo-absolutely-abused-authority-during-traffic-stop-3851312/",
+       "source": "Las Vegas Review-Journal",
+       "date": "2026-07-16"
       },
       {
-       "headline": "Lombardo, Ford tied in polling for Nevada governor's race, Emerson College poll shows",
-       "url": "https://www.reviewjournal.com/news/politics-and-government/nevada/governors-race-poll-shows-lombardo-ford-in-virtual-tie-as-both-hit-with-complaints-3584867/",
-       "source": "Las Vegas Review-Journal",
-       "date": "2026-07-09"
+       "headline": "Newsom stumps for Ford and Horsford",
+       "url": "https://nevadacurrent.com/2026/07/13/newsom-stumps-for-ford-and-horsford/",
+       "source": "Nevada Current",
+       "date": "2026-07-13"
+      },
+      {
+       "headline": "New poll shows Lombardo has slight lead in 2026 governor matchup",
+       "url": "https://www.ktnv.com/news/new-poll-shows-lombardo-has-slight-lead-in-2026-governor-matchup",
+       "source": "KTNV",
+       "date": "2026-07-10"
       }
      ]
     }
@@ -700,67 +712,73 @@
    "races": [
     {
      "type": "Governor",
-     "matchup": "D primary Aug 11 (Barnes, Hong lead field) vs. Tom Tiffany (R)",
-     "sentiment": 56,
-     "summary": "The Aug 11 Democratic primary is the story: Barnes and Hong are the only candidates polling above 10%, with democratic socialist Hong's rise testing how far left the state will go. The Marquette Law survey (Jul 2-4) shows every leading Democrat beating Tiffany \u2014 Barnes +4, Rodriguez +5, Hong +3 \u2014 tilting general-election framing D.",
+     "matchup": "D primary Aug 11 (Barnes, Hong, Crowley) vs. Tom Tiffany (R)",
+     "sentiment": 54,
+     "summary": "A whirlwind Jul 17: Rodriguez suspended her bid over financial-reporting errors, and Milwaukee County Exec David Crowley re-entered the primary with outgoing Gov. Evers' endorsement, making Aug 11 a three-way Barnes-Hong-Crowley contest. Tiffany's $8M haul - mostly from the state GOP - leads all candidates. Coverage is even-handed with a slight D structural tilt in this open swing seat.",
      "candidates": [
       {
        "name": "Mandela Barnes",
        "party": "D",
-       "mentions": 3,
-       "sentiment": 54
+       "mentions": 4,
+       "sentiment": 53
       },
       {
        "name": "Francesca Hong",
        "party": "D",
        "mentions": 3,
-       "sentiment": 52
+       "sentiment": 50
+      },
+      {
+       "name": "David Crowley",
+       "party": "D",
+       "mentions": 3,
+       "sentiment": 54
       },
       {
        "name": "Tom Tiffany",
        "party": "R",
-       "mentions": 3,
-       "sentiment": 44
+       "mentions": 4,
+       "sentiment": 48
       }
      ],
      "outlets": [
       {
        "source": "NBC News",
        "lean": -1,
-       "sentiment": 54,
-       "articles": 1
-      },
-      {
-       "source": "WBAY",
-       "lean": null,
        "sentiment": 50,
        "articles": 1
       },
       {
-       "source": "WPR",
+       "source": "PBS",
        "lean": null,
-       "sentiment": 52,
+       "sentiment": 56,
+       "articles": 1
+      },
+      {
+       "source": "Wisconsin Examiner",
+       "lean": null,
+       "sentiment": 54,
        "articles": 1
       }
      ],
      "articles": [
       {
-       "headline": "Riding primary momentum, democratic socialists eye a battleground state breakthrough",
-       "url": "https://www.nbcnews.com/politics/2026-election/democratic-socialists-eye-battleground-state-breakthrough-primary-rcna351135",
+       "headline": "Wisconsin Lt. Gov. Sara Rodriguez drops out of governor's race",
+       "url": "https://www.nbcnews.com/politics/2026-election/wisconsin-lt-gov-sara-rodriguez-drops-governors-race-rcna588001",
        "source": "NBC News",
-       "date": "2026-07-12"
+       "date": "2026-07-17"
       },
       {
-       "headline": "A breakdown of who's running for Wisconsin Governor ahead of August primary",
-       "url": "https://www.wbay.com/2026/07/06/breakdown-whos-running-wisconsin-governor-ahead-august-primary/",
-       "source": "WBAY",
-       "date": "2026-07-06"
+       "headline": "David Crowley reenters battleground Wisconsin's Democratic governor primary with Gov. Evers' backing",
+       "url": "https://www.pbs.org/newshour/politics/david-crowley-reenters-battleground-wisconsins-democratic-governor-primary-with-gov-evers-backing",
+       "source": "PBS",
+       "date": "2026-07-17"
       },
       {
-       "headline": "Ad wars heat up in closing weeks of governor's primary",
-       "url": "https://www.wpr.org/news/wisconsin-governors-primary-ad-wars-campaign-spending",
-       "source": "WPR",
-       "date": "2026-07-10"
+       "headline": "Tiffany reports over $8 million haul for gov race, while Barnes leads Dem field in fundraising",
+       "url": "https://wisconsinexaminer.com/2026/07/16/tiffany-reports-over-8-million-haul-for-gov-race-while-barnes-leads-dem-field-in-fundraising/",
+       "source": "Wisconsin Examiner",
+       "date": "2026-07-16"
       }
      ]
     }
@@ -770,61 +788,55 @@
    "races": [
     {
      "type": "Governor",
-     "matchup": "Katie Hobbs (D, inc.) vs. GOP primary Jul 21 (Biggs leads)",
-     "sentiment": 55,
-     "summary": "Five days out from the Jul 21 primary, Biggs has blown open the GOP race (48-18 over Schweikert per Emerson). General-election coverage leans Hobbs: she leads Biggs by 4 and Schweikert by 7, with +9 favorability. The competitive-but-incumbent-favored frame holds until the matchup is set.",
+     "matchup": "Katie Hobbs (D, inc.) vs. GOP primary Jul 21 (Biggs prohibitive favorite)",
+     "sentiment": 56,
+     "summary": "Primary-eve coverage is all but coronating Biggs - one poll gives him a 50-point lead over Schweikert, and Robson's February exit left no establishment alternative. Hobbs, sitting on roughly $15M and a fresh Lean D rating from Cook, is consistently framed as the general-election favorite against a Trump-aligned nominee.",
      "candidates": [
       {
        "name": "Katie Hobbs",
        "party": "D",
        "mentions": 4,
-       "sentiment": 57
+       "sentiment": 58
       },
       {
        "name": "Andy Biggs",
        "party": "R",
-       "mentions": 4,
-       "sentiment": 47
+       "mentions": 5,
+       "sentiment": 46
+      },
+      {
+       "name": "David Schweikert",
+       "party": "R",
+       "mentions": 2,
+       "sentiment": 40
       }
      ],
      "outlets": [
       {
-       "source": "Emerson College Polling",
+       "source": "ABC15",
        "lean": null,
-       "sentiment": 54,
-       "articles": 1
-      },
-      {
-       "source": "ABC15 Arizona",
-       "lean": null,
-       "sentiment": 56,
+       "sentiment": 52,
        "articles": 1
       },
       {
        "source": "KTAR",
        "lean": null,
-       "sentiment": 52,
+       "sentiment": 55,
        "articles": 1
       }
      ],
      "articles": [
       {
-       "headline": "Arizona 2026: Governor Hobbs Faces Tight Re-Election Race; Rep. Biggs Leads GOP Primary",
-       "url": "https://emersoncollegepolling.com/arizona-2026-governor/",
-       "source": "Emerson College Polling",
-       "date": "2026-07-09"
-      },
-      {
-       "headline": "Arizona poll shows Hobbs ahead of both GOP governor candidates",
-       "url": "https://www.abc15.com/news/state/arizona-poll-shows-hobbs-ahead-of-both-gop-governor-candidates",
-       "source": "ABC15 Arizona",
-       "date": "2026-07-09"
+       "headline": "What to expect in Arizona's state primary on Tuesday",
+       "url": "https://www.abc15.com/news/political/elections/what-to-expect-in-arizonas-state-primary-on-tuesday",
+       "source": "ABC15",
+       "date": "2026-07-18"
       },
       {
        "headline": "Arizona governor polling: GOP race a blowout",
-       "url": "https://ktar.com/arizona-election-news/arizona-governor-polling/5865576/",
+       "url": "https://ktar.com/arizona-politics-news/election/arizona-governor-polling/5865576/",
        "source": "KTAR",
-       "date": "2026-07-10"
+       "date": "2026-07-15"
       }
      ]
     }
@@ -836,19 +848,25 @@
      "type": "Senate",
      "matchup": "Chris Pappas (D) vs. John E. Sununu (R)",
      "sentiment": 54,
-     "summary": "Pappas still leads but the gap is closing: UNH (Jun 18-23) has it 47-44, down from 49-42 in April, and an NRSC/Peak Insights internal calls it a statistical tie at 43-42. Both men dominate their Sep 8 primaries. Coverage frames this open Shaheen seat as the GOP's best New England shot.",
+     "summary": "UNH's July poll has Pappas up 47-44 on Sununu, with Sununu dominating his primary (59-20 over Brown) and Pappas's primary edge shrinking against Manzur. Coverage treats the open seat as Lean D but genuinely contested.",
      "candidates": [
       {
        "name": "Chris Pappas",
        "party": "D",
-       "mentions": 3,
+       "mentions": 4,
        "sentiment": 55
       },
       {
        "name": "John Sununu",
        "party": "R",
-       "mentions": 3,
+       "mentions": 4,
        "sentiment": 50
+      },
+      {
+       "name": "Scott Brown",
+       "party": "R",
+       "mentions": 1,
+       "sentiment": 40
       }
      ],
      "outlets": [
@@ -859,15 +877,15 @@
        "articles": 1
       },
       {
-       "source": "WCAX",
+       "source": "Emerson College Polling",
        "lean": null,
-       "sentiment": 52,
+       "sentiment": 50,
        "articles": 1
       },
       {
-       "source": "NRSC",
+       "source": "New Hampshire Review",
        "lean": null,
-       "sentiment": 42,
+       "sentiment": 52,
        "articles": 1
       }
      ],
@@ -879,16 +897,16 @@
        "date": "2026-07-01"
       },
       {
-       "headline": "New UNH poll shows early leads in NH Senate, governor races",
-       "url": "https://www.wcax.com/2026/07/01/new-unh-poll-shows-early-leads-nh-senate-governor-races/",
-       "source": "WCAX",
-       "date": "2026-07-01"
+       "headline": "New Hampshire 2026: Sununu Leads GOP Nomination, Ties Pappas for Senate",
+       "url": "https://emersoncollegepolling.com/new-hampshire-2026-sununu-leads-gop-nomination-ties-pappas-for-senate/",
+       "source": "Emerson College Polling",
+       "date": "2026-07-08"
       },
       {
-       "headline": "John Sununu tied with Chris Pappas in new NRSC poll",
-       "url": "https://www.nrsc.org/press-releases/john-sununu-tied-with-chris-pappas-in-new-nrsc-poll-2026-07-10/",
-       "source": "NRSC",
-       "date": "2026-07-10"
+       "headline": "Latest UNH Poll on NH's 2026 U.S. Senate Race: Pappas Holds Primary and General Election Edge as Sununu Consolidates GOP Field",
+       "url": "https://newhampshirereview.com/articles/nh-senate-2026-unh-poll-pappas-sununu-brown-shaheen/",
+       "source": "New Hampshire Review",
+       "date": "2026-07-02"
       }
      ]
     },
@@ -946,32 +964,44 @@
    "races": [
     {
      "type": "Governor",
-     "matchup": "Open seat (Kelly term-limited) \u2014 primaries Aug 4",
-     "sentiment": 45,
-     "summary": "The 10-candidate race for Kelly's open seat has turned to attacks and counterpunches as advance voting opened Jul 15 ahead of the Aug 4 primary. Trump-endorsed Senate President Ty Masterson anchors the GOP field with a tax-cut record; coverage gives Democrats a puncher's chance in a state that elected Kelly twice.",
+     "matchup": "Open seat (Kelly term-limited) - primaries Aug 4 (Masterson favored on R side)",
+     "sentiment": 46,
+     "summary": "Voter-guide coverage dominates two weeks out from the Aug 4 primaries: Trump-endorsed Masterson is the clear R frontrunner over Schwab, with Holscher leading the D side. An economy-focused candidate forum drew even-handed coverage; the fundamentals still favor an R flip of Kelly's seat.",
      "candidates": [
       {
        "name": "Ty Masterson",
        "party": "R",
-       "mentions": 3,
+       "mentions": 4,
        "sentiment": 50
+      },
+      {
+       "name": "Scott Schwab",
+       "party": "R",
+       "mentions": 2,
+       "sentiment": 46
+      },
+      {
+       "name": "Cindy Holscher",
+       "party": "D",
+       "mentions": 2,
+       "sentiment": 48
       }
      ],
      "outlets": [
       {
-       "source": "Kansas Reflector",
+       "source": "Kansas Public Radio",
        "lean": null,
-       "sentiment": 45,
+       "sentiment": 48,
+       "articles": 1
+      },
+      {
+       "source": "KCTV5",
+       "lean": null,
+       "sentiment": 48,
        "articles": 1
       },
       {
        "source": "Johnson County Post",
-       "lean": null,
-       "sentiment": 47,
-       "articles": 1
-      },
-      {
-       "source": "KSN",
        "lean": null,
        "sentiment": 48,
        "articles": 1
@@ -979,22 +1009,22 @@
      ],
      "articles": [
       {
-       "headline": "Kansas gubernatorial race descends into phase dominated by attacks and counterpunches",
-       "url": "https://kansasreflector.com/2026/07/07/kansas-gubernatorial-race-descends-into-phase-dominated-by-attacks-and-counterpunches/",
-       "source": "Kansas Reflector",
-       "date": "2026-07-07"
+       "headline": "Meet the 2026 Candidates for Kansas Governor",
+       "url": "https://kansaspublicradio.org/local-news/2026-07-17/meet-the-2026-candidates-for-kansas-governor",
+       "source": "Kansas Public Radio",
+       "date": "2026-07-17"
+      },
+      {
+       "headline": "What the Kansas gubernatorial candidates said about their plan to address the economy",
+       "url": "https://www.kctv5.com/2026/07/15/what-kansas-gubernatorial-candidates-said-about-their-plan-address-economy/",
+       "source": "KCTV5",
+       "date": "2026-07-15"
       },
       {
        "headline": "Who's running for Kansas governor in 2026? Here's a guide to the candidates",
        "url": "https://johnsoncountypost.com/2026/07/08/kansas-governor-2026-voter-guide-290552/",
        "source": "Johnson County Post",
        "date": "2026-07-08"
-      },
-      {
-       "headline": "2026 primary election: Who is Kansas governor candidate Ty Masterson?",
-       "url": "https://www.ksn.com/news/your-local-election-hq/who-is-kansas-governor-candidate-ty-masterson/",
-       "source": "KSN",
-       "date": "2026-07-14"
       }
      ]
     }
@@ -1006,7 +1036,7 @@
      "type": "Senate",
      "matchup": "Kurt Alme (R) vs. Alani Bankhead (D) vs. Seth Bodnar (I)",
      "sentiment": 33,
-     "summary": "The split-opposition problem dominates: GrayHouse (Jun 23-24) has Alme 41, Bankhead 25, Bodnar 17, and on Jul 8 seventeen Democratic legislators publicly urged Bankhead and Bodnar to consolidate. Neither is budging \u2014 Bankhead demands Bodnar exit, citing a discrimination suit at UM. Analysts call it Alme's race to lose.",
+     "summary": "The four-way general field is set (Alme-R, Bankhead-D, Bodnar-I, Austin-L), and the anti-consolidation problem is now explicit: 17 Democratic legislators publicly urged Bankhead and Bodnar to unify. Coverage continues to frame the split opposition as securing the GOP hold.",
      "candidates": [
       {
        "name": "Kurt Alme",
@@ -1018,53 +1048,53 @@
        "name": "Alani Bankhead",
        "party": "D",
        "mentions": 3,
-       "sentiment": 45
+       "sentiment": 44
       },
       {
        "name": "Seth Bodnar",
        "party": "I",
-       "mentions": 3,
+       "mentions": 2,
        "sentiment": 42
       }
      ],
      "outlets": [
       {
-       "source": "Daily Montanan",
-       "lean": null,
-       "sentiment": 38,
-       "articles": 1
-      },
-      {
-       "source": "Newsweek",
-       "lean": 0,
-       "sentiment": 40,
-       "articles": 1
-      },
-      {
        "source": "Ballotpedia News",
        "lean": null,
-       "sentiment": 45,
+       "sentiment": 50,
+       "articles": 1
+      },
+      {
+       "source": "Daily Montanan",
+       "lean": null,
+       "sentiment": 42,
+       "articles": 1
+      },
+      {
+       "source": "Semafor",
+       "lean": null,
+       "sentiment": 40,
        "articles": 1
       }
      ],
      "articles": [
       {
-       "headline": "Mighty strange times in Montana's Senate race",
-       "url": "https://dailymontanan.com/2026/07/10/mighty-strange-times-in-montanas-senate-race/",
-       "source": "Daily Montanan",
-       "date": "2026-07-10"
-      },
-      {
-       "headline": "Inside Seth Bodnar's Montana Senate Race Giving Both Democrats and Republicans Heartburn",
-       "url": "https://www.newsweek.com/montana-senate-seth-bodnar-democrat-republican-independent-12185515",
-       "source": "Newsweek",
-       "date": "2026-07-12"
-      },
-      {
        "headline": "Four general election candidates to compete for Montana's open U.S. Senate seat",
        "url": "https://news.ballotpedia.org/2026/07/14/four-general-election-candidates-to-compete-for-montanas-open-u-s-senate-seat/",
        "source": "Ballotpedia News",
        "date": "2026-07-14"
+      },
+      {
+       "headline": "Democratic legislators want a consolidated U.S. Senate race in Montana",
+       "url": "https://dailymontanan.com/2026/07/09/democratic-legislators-want-a-consolidated-u-s-senate-race-in-montana/",
+       "source": "Daily Montanan",
+       "date": "2026-07-09"
+      },
+      {
+       "headline": "Divided Montana Senate field helps Republicans",
+       "url": "https://www.semafor.com/article/06/18/2026/divided-montana-senate-field-helps-republicans",
+       "source": "Semafor",
+       "date": "2026-06-18"
       }
      ]
     }
@@ -1074,49 +1104,43 @@
    "races": [
     {
      "type": "Senate",
-     "matchup": "Dan Sullivan (R, inc.) vs. Mary Peltola (D) \u2014 RCV, primary Aug 18",
-     "sentiment": 52,
-     "summary": "Genuinely split signals: NYT/Siena (Jun 15-29) has Sullivan up just 47-45, while Alaska Survey Research shows Peltola +5-6 and prediction markets make her the favorite. A same-named spoiler candidate ('Dan J. Sullivan') survived a state supreme court challenge Jun 29, adding RCV chaos potential.",
+     "matchup": "Dan Sullivan (R, inc.) vs. Mary Peltola (D) — RCV, primary Aug 18",
+     "sentiment": 54,
+     "summary": "Peltola vastly outraised Sullivan ($6.9M to just over $2M since Apr 1) heading into the Aug 18 top-four primary, and the same-named 'Dan Sullivan' challenger remains on the ballot after the court reversal. Forecasters split between Toss-up (Cook, Sabato) and Lean R (IE).",
      "candidates": [
       {
        "name": "Dan Sullivan",
        "party": "R",
-       "mentions": 2,
-       "sentiment": 48
+       "mentions": 4,
+       "sentiment": 45
       },
       {
        "name": "Mary Peltola",
        "party": "D",
-       "mentions": 2,
-       "sentiment": 53
+       "mentions": 4,
+       "sentiment": 56
       }
      ],
      "outlets": [
       {
-       "source": "Alaska Watchman",
+       "source": "Alaska Public Media",
        "lean": null,
-       "sentiment": 45,
-       "articles": 1
-      },
-      {
-       "source": "Polymarket",
-       "lean": null,
-       "sentiment": 55,
-       "articles": 1
+       "sentiment": 54,
+       "articles": 2
       }
      ],
      "articles": [
       {
-       "headline": "Sullivan holds slim lead over Peltola in NYT Alaska Senate poll",
-       "url": "https://alaskawatchman.com/2026/07/01/sullivan-holds-slim-lead-over-peltola-in-nyt-alaska-senate-poll/",
-       "source": "Alaska Watchman",
-       "date": "2026-07-01"
+       "headline": "Peltola vastly outraises Sullivan in Alaska's U.S. Senate race",
+       "url": "https://alaskapublic.org/news/politics/washington-d-c/2026-07-16/peltola-vastly-outraises-sullivan-in-alaskas-u-s-senate-race",
+       "source": "Alaska Public Media",
+       "date": "2026-07-16"
       },
       {
-       "headline": "Alaska Senate Election Winner Predictions & Odds 2026",
-       "url": "https://polymarket.com/event/alaska-senate-election-winner",
-       "source": "Polymarket",
-       "date": "2026-07-15"
+       "headline": "Alaska Division of Elections intends to strike U.S. Senate challenger Dan Sullivan from the ballot",
+       "url": "https://alaskapublic.org/news/politics/2026-06-12/alaska-division-of-elections-intends-to-strike-u-s-senate-challenger-dan-sullivan-from-the-ballot",
+       "source": "Alaska Public Media",
+       "date": "2026-06-12"
       }
      ]
     }
@@ -1127,48 +1151,36 @@
     {
      "type": "Senate",
      "matchup": "Pete Ricketts (R, inc.) vs. Dan Osborn (I)",
-     "sentiment": 48,
-     "summary": "Every public survey finds Ricketts-Osborn statistically tied (latest: 48-47), though the polling average keeps Ricketts ahead by ~4.7. Democrat Cindy Burbank won her primary but is expected to step aside for Osborn again. Coverage frames the rematch as the sleeper race Republicans can't shake.",
+     "sentiment": 50,
+     "summary": "A new statewide survey has the race in a statistical tie (Ricketts 48, Osborn 47), and Democratic nominee Cindy Burbank moved to withdraw on Jul 17 - pending an AG opinion - which would consolidate the anti-Ricketts vote behind Osborn. Coverage increasingly treats Nebraska as a genuine sleeper race.",
      "candidates": [
       {
        "name": "Pete Ricketts",
        "party": "R",
-       "mentions": 3,
-       "sentiment": 49
+       "mentions": 4,
+       "sentiment": 47
       },
       {
        "name": "Dan Osborn",
        "party": "I",
-       "mentions": 3,
-       "sentiment": 51
+       "mentions": 4,
+       "sentiment": 53
       }
      ],
      "outlets": [
       {
-       "source": "Omaha World-Herald",
-       "lean": null,
-       "sentiment": 50,
-       "articles": 1
-      },
-      {
        "source": "Chadron Radio",
        "lean": null,
-       "sentiment": 50,
+       "sentiment": 54,
        "articles": 1
       }
      ],
      "articles": [
       {
-       "headline": "Democratic-aligned poll shows Dan Osborn leading Pete Ricketts in Senate race",
-       "url": "https://omaha.com/news/local/government-politics/article_33558b63-5e55-495d-b381-4e2626ef3d06.html",
-       "source": "Omaha World-Herald",
-       "date": "2026-07-08"
-      },
-      {
        "headline": "NEW POLL: Dan Osborn is Tied With Pete Ricketts in Critical Nebraska Senate Race",
        "url": "https://chadronradio.com/new-poll-dan-osborn-is-tied-with-pete-ricketts-in-critical-nebraska-senate-race/",
        "source": "Chadron Radio",
-       "date": "2026-07-10"
+       "date": "2026-07-15"
       }
      ]
     }
@@ -1179,60 +1191,54 @@
     {
      "type": "Senate",
      "matchup": "Ken Paxton (R) vs. James Talarico (D)",
-     "sentiment": 55,
-     "summary": "The shock of the cycle: NYT/Siena (Jun 19-27) has Paxton-Talarico tied at 47, matching the UT/Texas Politics Project's 43-42. Talarico wins independents by ~27 and Hispanic voters by wide margins; even Fox's framing ('threatening GOP stronghold') signals a genuinely national race in Texas.",
+     "sentiment": 57,
+     "summary": "Talarico's $30M quarter - more than triple Paxton's $9M and $70M+ since launch - headlines the week, and Paxton's camp confirmed he will debate. Coverage of Paxton stays dogged by the impeachment record and a controversial plea deal; public polling remains essentially tied.",
      "candidates": [
       {
        "name": "James Talarico",
        "party": "D",
-       "mentions": 4,
-       "sentiment": 58
+       "mentions": 5,
+       "sentiment": 62
       },
       {
        "name": "Ken Paxton",
        "party": "R",
-       "mentions": 4,
-       "sentiment": 41
+       "mentions": 5,
+       "sentiment": 40
       }
      ],
      "outlets": [
       {
        "source": "Texas Tribune",
        "lean": null,
-       "sentiment": 55,
-       "articles": 1
+       "sentiment": 58,
+       "articles": 2
       },
       {
-       "source": "The Hill",
-       "lean": 0,
-       "sentiment": 55,
-       "articles": 1
-      },
-      {
-       "source": "Fox News",
-       "lean": 2,
-       "sentiment": 48,
+       "source": "Bloomberg",
+       "lean": -1,
+       "sentiment": 58,
        "articles": 1
       }
      ],
      "articles": [
       {
-       "headline": "Poll: Paxton and Talarico are virtually tied in Senate race",
-       "url": "https://www.texastribune.org/2026/06/23/texas-us-senate-poll-ken-paxton-james-talarico-ut-austin/",
+       "headline": "Ken Paxton's campaign says he will debate James Talarico in Texas' U.S. Senate race",
+       "url": "https://www.texastribune.org/2026/07/16/texas-ken-paxton-james-talarico-debate-senate-race-2026/",
        "source": "Texas Tribune",
-       "date": "2026-06-23"
+       "date": "2026-07-16"
       },
       {
-       "headline": "James Talarico, Ken Paxton tied at 47 percent in Texas Senate race: Poll",
-       "url": "https://thehill.com/homenews/campaign/5946853-texas-senate-race-james-talarico-ken-paxton-tied-survey/",
-       "source": "The Hill",
-       "date": "2026-06-30"
+       "headline": "Talarico more than triples Paxton's Q2 haul in Texas Senate race",
+       "url": "https://www.texastribune.org/2026/07/08/texas-james-talarico-senate-fundraising-second-quarter-30-million/",
+       "source": "Texas Tribune",
+       "date": "2026-07-08"
       },
       {
-       "headline": "Texas Senate poll shows Paxton, Talarico tied in key 2026 midterm race",
-       "url": "https://www.foxnews.com/politics/shock-poll-talarico-ties-paxton-texas-senate-race-threatening-gop-stronghold",
-       "source": "Fox News",
-       "date": "2026-06-30"
+       "headline": "Talarico's $30 Million Haul Crushes Paxton in Texas Senate Race",
+       "url": "https://www.bloomberg.com/news/articles/2026-07-09/talarico-s-30-million-haul-crushes-paxton-in-texas-senate-race",
+       "source": "Bloomberg",
+       "date": "2026-07-09"
       }
      ]
     },
@@ -1240,7 +1246,7 @@
      "type": "Governor",
      "matchup": "Greg Abbott (R, inc.) vs. Gina Hinojosa (D)",
      "sentiment": 39,
-     "summary": "Abbott stays favored \u2014 the RCP average has him +6.8 and stuck near 49 \u2014 but the narrowing storyline persists: Texas Public Opinion Research has it within 5, with Hinojosa winning independents, moderates, and Latino voters. A third of voters still don't know her, which reads as both ceiling and runway.",
+     "summary": "Abbott stays favored — the RCP average has him +6.8 and stuck near 49 — but the narrowing storyline persists: Texas Public Opinion Research has it within 5, with Hinojosa winning independents, moderates, and Latino voters. A third of voters still don't know her, which reads as both ceiling and runway.",
      "candidates": [
       {
        "name": "Greg Abbott",
@@ -1293,7 +1299,7 @@
      "matchup": "Tommy Tuberville",
      "sentiment": 25,
      "baseline": true,
-     "summary": "Rated Solid R. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Solid R. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []
@@ -1303,7 +1309,7 @@
      "matchup": "Open (Ivey term-limited)",
      "sentiment": 25,
      "baseline": true,
-     "summary": "Rated Solid R. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Solid R. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []
@@ -1318,7 +1324,7 @@
      "matchup": "Tom Cotton",
      "sentiment": 25,
      "baseline": true,
-     "summary": "Rated Solid R. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Solid R. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []
@@ -1328,7 +1334,7 @@
      "matchup": "Sarah Huckabee Sanders",
      "sentiment": 25,
      "baseline": true,
-     "summary": "Rated Solid R. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Solid R. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []
@@ -1341,33 +1347,33 @@
     {
      "type": "Governor",
      "matchup": "Xavier Becerra (D) vs. Steve Hilton (R)",
-     "sentiment": 72,
-     "summary": "The new PPIC survey (Jun 29-Jul 6) shows Becerra leading Hilton by a wide margin among likely voters, confirming the June top-two result as a formality en route to a D hold. Coverage focuses on margin, not outcome; Hilton's path gets little serious treatment.",
+     "sentiment": 71,
+     "summary": "PPIC's new survey (Jun 29-Jul 6) gives Becerra a 61-36 lead over Hilton among likely voters - a wider margin than earlier polling. Coverage treats the general as safely Democratic, focusing on Becerra's coalition and Hilton's uphill media-driven bid.",
      "candidates": [
       {
        "name": "Xavier Becerra",
        "party": "D",
-       "mentions": 3,
+       "mentions": 4,
        "sentiment": 64
       },
       {
        "name": "Steve Hilton",
        "party": "R",
        "mentions": 3,
-       "sentiment": 40
+       "sentiment": 39
       }
      ],
      "outlets": [
       {
-       "source": "ABC7 Los Angeles",
-       "lean": null,
-       "sentiment": 70,
+       "source": "ABC News",
+       "lean": -1,
+       "sentiment": 68,
        "articles": 1
       },
       {
-       "source": "CalMatters",
-       "lean": null,
-       "sentiment": 68,
+       "source": "NBC News",
+       "lean": -1,
+       "sentiment": 66,
        "articles": 1
       }
      ],
@@ -1375,14 +1381,14 @@
       {
        "headline": "Xavier Becerra leads Steve Hilton by wide margin in California governor's race, new poll finds",
        "url": "https://abc7.com/post/xavier-becerra-leads-steve-hilton-wide-margin-california-governors-race-new-poll-finds/19517695/",
-       "source": "ABC7 Los Angeles",
-       "date": "2026-07-15"
+       "source": "ABC News",
+       "date": "2026-07-16"
       },
       {
-       "headline": "New poll in California governor's race shows Becerra ahead",
-       "url": "https://calmatters.org/newsletter/governor-race-poll-whos-ahead/",
-       "source": "CalMatters",
-       "date": "2026-07-15"
+       "headline": "New poll shows Becerra leads Hilton in California governor's race",
+       "url": "https://www.nbclosangeles.com/video/news/california-news/poll-becerra-leads-hilton-california-governors-race/3917926/",
+       "source": "NBC News",
+       "date": "2026-07-16"
       }
      ]
     }
@@ -1395,7 +1401,7 @@
      "matchup": "Michael Bennet",
      "sentiment": 75,
      "baseline": true,
-     "summary": "Rated Solid D. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Solid D. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []
@@ -1405,7 +1411,7 @@
      "matchup": "Open (Polis term-limited)",
      "sentiment": 75,
      "baseline": true,
-     "summary": "Rated Solid D. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Solid D. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []
@@ -1420,7 +1426,7 @@
      "matchup": "Open (Lamont term-limited)",
      "sentiment": 75,
      "baseline": true,
-     "summary": "Rated Solid D. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Solid D. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []
@@ -1465,7 +1471,7 @@
      ],
      "articles": [
       {
-       "headline": "Ashley Moody opens a healthy \u2014 and hardened \u2014 lead over Alex Vindman in new AIF Senate poll",
+       "headline": "Ashley Moody opens a healthy — and hardened — lead over Alex Vindman in new AIF Senate poll",
        "url": "https://floridapolitics.com/archives/802818-ashley-moody-opens-a-healthy-and-hardened-lead-over-alex-vindman-in-new-aif-senate-poll/",
        "source": "Florida Politics",
        "date": "2026-06-19"
@@ -1483,7 +1489,7 @@
      "matchup": "Open (DeSantis term-limited)",
      "sentiment": 25,
      "baseline": true,
-     "summary": "Rated Solid R. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Solid R. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []
@@ -1497,7 +1503,7 @@
      "matchup": "Josh Green",
      "sentiment": 75,
      "baseline": true,
-     "summary": "Rated Solid D. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Solid D. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []
@@ -1512,7 +1518,7 @@
      "matchup": "Open (Risch retiring)",
      "sentiment": 25,
      "baseline": true,
-     "summary": "Rated Solid R. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Solid R. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []
@@ -1522,7 +1528,7 @@
      "matchup": "Brad Little",
      "sentiment": 25,
      "baseline": true,
-     "summary": "Rated Solid R. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Solid R. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []
@@ -1537,7 +1543,7 @@
      "matchup": "Open (Durbin retiring)",
      "sentiment": 75,
      "baseline": true,
-     "summary": "Rated Solid D. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Solid D. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []
@@ -1547,7 +1553,7 @@
      "matchup": "JB Pritzker",
      "sentiment": 75,
      "baseline": true,
-     "summary": "Rated Solid D. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Solid D. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []
@@ -1562,7 +1568,7 @@
      "matchup": "Open (McConnell retiring)",
      "sentiment": 25,
      "baseline": true,
-     "summary": "Rated Solid R. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Solid R. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []
@@ -1576,7 +1582,7 @@
      "type": "Senate",
      "matchup": "Julia Letlow (R) vs. Jamie Davis (D)",
      "sentiment": 30,
-     "summary": "Letlow's 56.9% runoff win over Fleming on Jun 27 completed Trump's revenge play against Cassidy and effectively decided the seat \u2014 coverage universally treats the Trump-endorsed congresswoman as the near-certain winner in a state Trump carried by 22. Democrat Jamie Davis gets minimal mention.",
+     "summary": "Letlow's 56.9% runoff win over Fleming on Jun 27 completed Trump's revenge play against Cassidy and effectively decided the seat — coverage universally treats the Trump-endorsed congresswoman as the near-certain winner in a state Trump carried by 22. Democrat Jamie Davis gets minimal mention.",
      "candidates": [
       {
        "name": "Julia Letlow",
@@ -1641,7 +1647,7 @@
      "matchup": "Maura Healey",
      "sentiment": 75,
      "baseline": true,
-     "summary": "Rated Solid D. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Solid D. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []
@@ -1656,7 +1662,7 @@
      "matchup": "Wes Moore",
      "sentiment": 75,
      "baseline": true,
-     "summary": "Rated Solid D. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Solid D. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []
@@ -1669,60 +1675,66 @@
     {
      "type": "Senate",
      "matchup": "Flanagan/Craig (DFL primary Aug 11) for Smith's open seat",
-     "sentiment": 58,
-     "summary": "The Aug 11 DFL primary is a national proxy fight: progressive Flanagan leads moderate Craig 43-36 despite $10M+ in dark-money ads against her. Endorsements split by ideology (Frey and Wellstone's son for Craig; progressive and LGBTQ+ groups for Flanagan). The seat itself stays D-favored in coverage.",
+     "sentiment": 56,
+     "summary": "The DFL primary is the story: Flanagan leads recent polling while Craig out-raises her, and their first debate sharpened contrasts on affordability and Washington experience. Royce White's general-election bid gets minimal, mostly skeptical coverage.",
      "candidates": [
       {
        "name": "Peggy Flanagan",
        "party": "D",
        "mentions": 4,
-       "sentiment": 55
+       "sentiment": 54
       },
       {
        "name": "Angie Craig",
        "party": "D",
        "mentions": 4,
-       "sentiment": 50
+       "sentiment": 52
+      },
+      {
+       "name": "Royce White",
+       "party": "R",
+       "mentions": 1,
+       "sentiment": 38
       }
      ],
      "outlets": [
       {
-       "source": "Star Tribune",
+       "source": "The Center Square",
        "lean": null,
-       "sentiment": 55,
+       "sentiment": 52,
        "articles": 1
       },
       {
-       "source": "Washington Blade",
+       "source": "InForum",
        "lean": null,
-       "sentiment": 54,
+       "sentiment": 52,
        "articles": 1
       },
       {
-       "source": "MinnPost",
-       "lean": null,
+       "source": "CBS News",
+       "lean": -1,
        "sentiment": 55,
        "articles": 1
       }
      ],
      "articles": [
       {
-       "headline": "Unknown donors pouring millions into what could be Minnesota's most expensive Senate primary",
-       "url": "https://www.startribune.com/dark-money-mn-senate-democrat-primary-flanagan-craig-super-pac-ads/601863328",
-       "source": "Star Tribune",
-       "date": "2026-07-13"
+       "headline": "Flanagan leads polling, Craig tops fundraising in U.S. Senate race",
+       "url": "https://www.thecentersquare.com/minnesota/article_5db19f2b-cdc8-467e-b890-430aef0b9846.html",
+       "source": "The Center Square",
+       "date": "2026-07-15"
       },
       {
-       "headline": "Political drama in Angie Craig's Minn. Senate race heats up",
-       "url": "https://www.washingtonblade.com/2026/07/14/political-drama-in-angie-craigs-minn-senate-race-heats-up/",
-       "source": "Washington Blade",
+       "headline": "What the first Flanagan-Craig debate reveals about the U.S. Senate race",
+       "url": "https://www.inforum.com/news/minnesota/what-the-first-flanagan-craig-debate-reveals-about-the-u-s-senate-race",
+       "source": "InForum",
        "date": "2026-07-14"
       },
       {
-       "headline": "D.C. Memo: Craig, Flanagan battle for endorsements as well as votes",
-       "url": "https://www.minnpost.com/dc-memo/2026/07/d-c-memo-craig-flanagan-battle-for-endorsements-as-well-as-votes/",
-       "source": "MinnPost",
-       "date": "2026-07-10"
+       "headline": "Stakes building in U.S. Senate contest between two of Minnesota's brightest DFL stars",
+       "url": "https://www.cbsnews.com/minnesota/news/minnesota-dfl-u-s-senate-primary-angie-craig-peggy-flanagan/",
+       "source": "CBS News",
+       "date": "2026-07-12"
       }
      ]
     },
@@ -1730,30 +1742,30 @@
      "type": "Governor",
      "matchup": "Amy Klobuchar (DFL) vs. R primary Aug 11 (Demuth, Lindell, Robbins)",
      "sentiment": 63,
-     "summary": "Klobuchar's entry after Walz's fraud-scandal exit stabilized the race for Democrats \u2014 she took the DFL endorsement on the first ballot and Sabato keeps the race Likely Democratic. The crowded GOP field (Speaker Demuth, Lindell, Robbins) draws novelty coverage more than threat coverage.",
+     "summary": "Klobuchar leads every tested GOP opponent in the new Star Tribune/MPR Minnesota Poll, though many independents remain undecided, and she continues to lap the Republican field in fundraising ahead of the Aug 11 primary (Demuth vs. Lindell vs. Robbins).",
      "candidates": [
       {
        "name": "Amy Klobuchar",
        "party": "D",
-       "mentions": 3,
-       "sentiment": 62
+       "mentions": 4,
+       "sentiment": 63
       },
       {
        "name": "Lisa Demuth",
        "party": "R",
-       "mentions": 1,
-       "sentiment": 48
+       "mentions": 2,
+       "sentiment": 47
       }
      ],
      "outlets": [
       {
-       "source": "KARE 11",
+       "source": "Star Tribune",
        "lean": null,
-       "sentiment": 58,
+       "sentiment": 60,
        "articles": 1
       },
       {
-       "source": "Sabato's Crystal Ball",
+       "source": "Minnesota Reformer",
        "lean": null,
        "sentiment": 60,
        "articles": 1
@@ -1761,16 +1773,16 @@
      ],
      "articles": [
       {
-       "headline": "Who is still in the race for Minnesota governor?",
-       "url": "https://www.kare11.com/article/news/local/who-is-still-in-the-race-for-minnesota-governor/89-06848ac2-c0d1-4224-92e2-8bba03623ff0",
-       "source": "KARE 11",
-       "date": "2026-07-08"
+       "headline": "Minnesota Poll: Klobuchar leads race for governor, but many independents undecided",
+       "url": "https://www.startribune.com/minnesota-poll-klobuchar-leads-all-gop-candidates-for-governor/601850018",
+       "source": "Star Tribune",
+       "date": "2026-07-15"
       },
       {
-       "headline": "With Walz Exiting but Klobuchar Potentially Entering, Minnesota's Gubernatorial Race Remains Likely Democratic",
-       "url": "https://centerforpolitics.org/crystalball/with-walz-exit-minnesota-remains-likely-democratic/",
-       "source": "Sabato's Crystal Ball",
-       "date": "2026-06-26"
+       "headline": "Klobuchar continues to far out-raise GOP candidates for Minnesota governor",
+       "url": "https://minnesotareformer.com/briefs/klobuchar-continues-to-far-out-raise-gop-candidates-for-minnesota-governor/",
+       "source": "Minnesota Reformer",
+       "date": "2026-07-16"
       }
      ]
     }
@@ -1783,7 +1795,7 @@
      "matchup": "Roger Wicker",
      "sentiment": 25,
      "baseline": true,
-     "summary": "Rated Solid R. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Solid R. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []
@@ -1798,7 +1810,7 @@
      "matchup": "Cory Booker",
      "sentiment": 75,
      "baseline": true,
-     "summary": "Rated Solid D. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Solid D. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []
@@ -1813,7 +1825,7 @@
      "matchup": "Martin Heinrich",
      "sentiment": 75,
      "baseline": true,
-     "summary": "Rated Solid D. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Solid D. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []
@@ -1823,7 +1835,7 @@
      "matchup": "Open (Lujan Grisham term-limited)",
      "sentiment": 65,
      "baseline": true,
-     "summary": "Rated Likely D. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Likely D. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []
@@ -1838,7 +1850,7 @@
      "matchup": "Kathy Hochul",
      "sentiment": 75,
      "baseline": true,
-     "summary": "Rated Solid D. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Solid D. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []
@@ -1853,7 +1865,7 @@
      "matchup": "James Lankford",
      "sentiment": 25,
      "baseline": true,
-     "summary": "Rated Solid R. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Solid R. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []
@@ -1863,7 +1875,7 @@
      "matchup": "Open (Stitt term-limited)",
      "sentiment": 25,
      "baseline": true,
-     "summary": "Rated Solid R. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Solid R. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []
@@ -1878,7 +1890,7 @@
      "matchup": "Ron Wyden",
      "sentiment": 75,
      "baseline": true,
-     "summary": "Rated Solid D. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Solid D. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []
@@ -1888,7 +1900,7 @@
      "matchup": "Tina Kotek",
      "sentiment": 65,
      "baseline": true,
-     "summary": "Rated Likely D. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Likely D. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []
@@ -1903,7 +1915,7 @@
      "matchup": "Josh Shapiro",
      "sentiment": 65,
      "baseline": true,
-     "summary": "Rated Likely D. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Likely D. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []
@@ -1918,7 +1930,7 @@
      "matchup": "Sheldon Whitehouse",
      "sentiment": 75,
      "baseline": true,
-     "summary": "Rated Solid D. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Solid D. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []
@@ -1928,7 +1940,7 @@
      "matchup": "Dan McKee",
      "sentiment": 75,
      "baseline": true,
-     "summary": "Rated Solid D. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Solid D. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []
@@ -1943,7 +1955,7 @@
      "matchup": "Lindsey Graham",
      "sentiment": 25,
      "baseline": true,
-     "summary": "Rated Solid R. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Solid R. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []
@@ -1953,7 +1965,7 @@
      "matchup": "Open (McMaster term-limited)",
      "sentiment": 25,
      "baseline": true,
-     "summary": "Rated Solid R. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Solid R. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []
@@ -1968,7 +1980,7 @@
      "matchup": "Mike Rounds",
      "sentiment": 25,
      "baseline": true,
-     "summary": "Rated Solid R. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Solid R. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []
@@ -1978,7 +1990,7 @@
      "matchup": "Open (Noem seat)",
      "sentiment": 25,
      "baseline": true,
-     "summary": "Rated Solid R. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Solid R. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []
@@ -1993,7 +2005,7 @@
      "matchup": "Bill Hagerty",
      "sentiment": 25,
      "baseline": true,
-     "summary": "Rated Solid R. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Solid R. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []
@@ -2003,7 +2015,7 @@
      "matchup": "Open (Lee term-limited)",
      "sentiment": 25,
      "baseline": true,
-     "summary": "Rated Solid R. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Solid R. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []
@@ -2018,7 +2030,7 @@
      "matchup": "Open (Warner retiring)",
      "sentiment": 75,
      "baseline": true,
-     "summary": "Rated Solid D. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Solid D. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []
@@ -2033,7 +2045,7 @@
      "matchup": "Open (Sanders seat)",
      "sentiment": 75,
      "baseline": true,
-     "summary": "Rated Solid D. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Solid D. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []
@@ -2043,7 +2055,7 @@
      "matchup": "Phil Scott",
      "sentiment": 35,
      "baseline": true,
-     "summary": "Rated Likely R. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Likely R. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []
@@ -2073,7 +2085,7 @@
      "matchup": "Shelley Moore Capito",
      "sentiment": 25,
      "baseline": true,
-     "summary": "Rated Solid R. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Solid R. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []
@@ -2088,7 +2100,7 @@
      "matchup": "John Barrasso",
      "sentiment": 25,
      "baseline": true,
-     "summary": "Rated Solid R. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Solid R. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []
@@ -2098,7 +2110,7 @@
      "matchup": "Open (Gordon term-limited)",
      "sentiment": 25,
      "baseline": true,
-     "summary": "Rated Solid R. This race isn't in the weekly news collection yet \u2014 the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
+     "summary": "Rated Solid R. This race isn't in the weekly news collection yet — the tone shown is a baseline from the forecaster rating, not scored coverage. Ask Claude to add it to news_config.json if it heats up.",
      "candidates": [],
      "outlets": [],
      "articles": []

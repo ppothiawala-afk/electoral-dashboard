@@ -1,41 +1,50 @@
 {
-  "_comment": "Public corrections log, rendered on methodology.html. Every substantive data error gets an entry when fixed — no silent corrections. Fields: date fixed, what was wrong, what it should have been, how it was caught, scope of impact.",
-  "corrections": [
-    {
-      "date": "2026-07-03",
-      "area": "Governors — Texas",
-      "wrong": "Listed the TX governorship as 'Open (Abbott term-limited)'.",
-      "right": "Texas has no gubernatorial term limits. Gov. Greg Abbott is seeking a fourth term against Gina Hinojosa (D).",
-      "caught_by": "Independent research pass while building the State News feature; confirmed via Texas Tribune coverage of the general-election campaign.",
-      "impact": "Governors tab incumbent/open fields; race was never mis-rated (Solid R throughout).",
-      "source": "https://www.texastribune.org/2026/06/03/texas-governor-race-gina-hinojosa-ad-greg-abbott-nba-finals-spurs-2026-midterms/"
-    },
-    {
-      "date": "2026-07-03",
-      "area": "Governors — Minnesota",
-      "wrong": "Listed Gov. Tim Walz as running for re-election ('Post-VP run name ID boost').",
-      "right": "Walz withdrew from the race on Jan 5, 2026 amid criticism of the state's handling of child-care fraud. Amy Klobuchar is the DFL-endorsed nominee.",
-      "caught_by": "News collection surfaced the exit; verified across CBS, NBC, NPR, and Axios before the fix was applied.",
-      "impact": "Governors tab incumbent/open/notes fields; rating unchanged (Likely D) pending forecaster moves. Stale for ~6 months — the class of error the weekly candidate-matchup verification (added July 2026) now targets.",
-      "source": "https://www.cbsnews.com/minnesota/news/tim-walz-drop-out-of-gubernatorial-race-2026/"
-    },
-    {
-      "date": "2026-07-06",
-      "area": "Governors — Georgia",
-      "wrong": "Notes described the GOP field as unsettled/led by Burt Jones after the May 19 primary.",
-      "right": "Rick Jackson (R) defeated Burt Jones in the June 16 GOP runoff; the general is Jackson (R) vs. Keisha Lance Bottoms (D).",
-      "caught_by": "Weekly candidate-matchup verification subagent (Contract 3.5), 2026-07-06 run — the mechanism added July 2026 after the Abbott/Walz misses.",
-      "impact": "Governors tab notes only; rating never mis-set (Toss-up throughout). Stale ~3 weeks.",
-      "source": "https://www.newsnationnow.com/politics/2026-midterm-elections/georgia-governor-primary-runoff-election-results-2026/amp/"
-    },
-    {
-      "date": "2026-07-14",
-      "area": "Senate — Maine",
-      "wrong": "Listed Janet Mills (D) as Susan Collins' challenger.",
-      "right": "Mills suspended her campaign Apr 30; Graham Platner won the Jun 9 Democratic primary with >50%. Platner then withdrew Jul 10; the Democratic nominee will be chosen by a party convention by Jul 27.",
-      "caught_by": "Weekly candidate-matchup verification subagent (Contract 3.5), 2026-07-14 run.",
-      "impact": "Senate tab challenger/notes fields; rating never mis-set (Toss-up throughout). Challenger stale ~5 weeks (Jun 9 - Jul 14).",
-      "source": "https://ballotpedia.org/United_States_Senate_election_in_Maine,_2026_(June_9_Democratic_primary)"
-    }
-  ]
+ "_comment": "Public corrections log, rendered on methodology.html. Every substantive data error gets an entry when fixed — no silent corrections. Fields: date fixed, what was wrong, what it should have been, how it was caught, scope of impact.",
+ "corrections": [
+  {
+   "date": "2026-07-03",
+   "area": "Governors — Texas",
+   "wrong": "Listed the TX governorship as 'Open (Abbott term-limited)'.",
+   "right": "Texas has no gubernatorial term limits. Gov. Greg Abbott is seeking a fourth term against Gina Hinojosa (D).",
+   "caught_by": "Independent research pass while building the State News feature; confirmed via Texas Tribune coverage of the general-election campaign.",
+   "impact": "Governors tab incumbent/open fields; race was never mis-rated (Solid R throughout).",
+   "source": "https://www.texastribune.org/2026/06/03/texas-governor-race-gina-hinojosa-ad-greg-abbott-nba-finals-spurs-2026-midterms/"
+  },
+  {
+   "date": "2026-07-03",
+   "area": "Governors — Minnesota",
+   "wrong": "Listed Gov. Tim Walz as running for re-election ('Post-VP run name ID boost').",
+   "right": "Walz withdrew from the race on Jan 5, 2026 amid criticism of the state's handling of child-care fraud. Amy Klobuchar is the DFL-endorsed nominee.",
+   "caught_by": "News collection surfaced the exit; verified across CBS, NBC, NPR, and Axios before the fix was applied.",
+   "impact": "Governors tab incumbent/open/notes fields; rating unchanged (Likely D) pending forecaster moves. Stale for ~6 months — the class of error the weekly candidate-matchup verification (added July 2026) now targets.",
+   "source": "https://www.cbsnews.com/minnesota/news/tim-walz-drop-out-of-gubernatorial-race-2026/"
+  },
+  {
+   "date": "2026-07-06",
+   "area": "Governors — Georgia",
+   "wrong": "Notes described the GOP field as unsettled/led by Burt Jones after the May 19 primary.",
+   "right": "Rick Jackson (R) defeated Burt Jones in the June 16 GOP runoff; the general is Jackson (R) vs. Keisha Lance Bottoms (D).",
+   "caught_by": "Weekly candidate-matchup verification subagent (Contract 3.5), 2026-07-06 run — the mechanism added July 2026 after the Abbott/Walz misses.",
+   "impact": "Governors tab notes only; rating never mis-set (Toss-up throughout). Stale ~3 weeks.",
+   "source": "https://www.newsnationnow.com/politics/2026-midterm-elections/georgia-governor-primary-runoff-election-results-2026/amp/"
+  },
+  {
+   "date": "2026-07-14",
+   "area": "Senate — Maine",
+   "wrong": "Listed Janet Mills (D) as Susan Collins' challenger.",
+   "right": "Mills suspended her campaign Apr 30; Graham Platner won the Jun 9 Democratic primary with >50%. Platner then withdrew Jul 10; the Democratic nominee will be chosen by a party convention by Jul 27.",
+   "caught_by": "Weekly candidate-matchup verification subagent (Contract 3.5), 2026-07-14 run.",
+   "impact": "Senate tab challenger/notes fields; rating never mis-set (Toss-up throughout). Challenger stale ~5 weeks (Jun 9 - Jul 14).",
+   "source": "https://ballotpedia.org/United_States_Senate_election_in_Maine,_2026_(June_9_Democratic_primary)"
+  },
+  {
+   "date": "2026-07-20",
+   "area": "Senate tab — LA row",
+   "wrong": "Row still described Cassidy as 'facing an R primary challenge' from Julia Letlow, implying a pending primary",
+   "right": "Cassidy lost the May 16 primary (3rd, 25%); Letlow won the Jun 27 runoff and is the R nominee vs Jamie Davis (D)",
+   "caught_by": "Weekly Cowork routine 2026-07-20 (state-news refresh cross-check)",
+   "impact": "Stale matchup displayed on Senate tab for ~3 weeks; rating (Solid R) unaffected",
+   "source": "https://www.washingtonpost.com/elections/2026/06/27/letlow-wins-louisiana-senate-runoff-succeed-cassidy-who-lost-his-primary/"
+  }
+ ]
 }
