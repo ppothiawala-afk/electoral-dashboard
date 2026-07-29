@@ -45,6 +45,33 @@
    "caught_by": "Weekly Cowork routine 2026-07-20 (state-news refresh cross-check)",
    "impact": "Stale matchup displayed on Senate tab for ~3 weeks; rating (Solid R) unaffected",
    "source": "https://www.washingtonpost.com/elections/2026/06/27/letlow-wins-louisiana-senate-runoff-succeed-cassidy-who-lost-his-primary/"
+  },
+  {
+   "date": "2026-07-29",
+   "area": "Senate — South Carolina",
+   "wrong": "Row and Constants notes described appointed Sen. Darline Graham Nordone as 'interim, not running', and listed the special-primary field as Norman, Lynch, Buckner.",
+   "right": "Nordone announced Jul 20 that she IS running, with Trump's endorsement. Filing closed Jul 28 with 12 filed and 9 certified by the SC GOP: Buckner, Fry, Graham (Nordone), Lynch, McBride, Norman, Parker, Sanford, Shepherd.",
+   "caught_by": "Weekly verification subagents (Contract 3.5), 2026-07-29 run — flagged independently by both the membership verifier and the candidate/matchup verifier.",
+   "impact": "Senate tab SC notes and Constants NOTES; published wrong for ~9 days (Jul 20-29). Rating never mis-set (Solid R throughout).",
+   "source": "https://www.axios.com/2026/07/20/trump-backed-nordone-enters-senate-race"
+  },
+  {
+   "date": "2026-07-29",
+   "area": "Senate — Florida (special)",
+   "wrong": "Challenger listed as 'Alan Grayson (D)'.",
+   "right": "Grayson is not in the field. The Aug 18 Democratic primary is Alex Vindman vs. state Rep. Angie Nixon, against appointed Sen. Ashley Moody (R). Note also that the candidate is Alex Vindman, not his twin brother Rep. Eugene Vindman (VA-01).",
+   "caught_by": "Weekly candidate-matchup verification subagent (Contract 3.5), 2026-07-29 run.",
+   "impact": "Senate tab challenger field; stale since at least the Apr 22 Vindman announcement — roughly three months. Rating never mis-set (Solid R throughout).",
+   "source": "https://floridaphoenix.com/2026/04/22/its-official-alex-vindman-is-running-for-the-u-s-senate-seat/"
+  },
+  {
+   "date": "2026-07-29",
+   "area": "Election Calendar — Michigan",
+   "wrong": "Aug 4 Michigan entry described the Democratic Senate field as 'McMorrow / El-Sayed / Stevens'.",
+   "right": "Mallory McMorrow suspended her campaign Jul 5, 2026. The active primary is Stevens vs. El-Sayed; McMorrow's name remains printed on the ballot.",
+   "caught_by": "Weekly candidate-matchup verification subagent (Contract 3.5), 2026-07-29 run.",
+   "impact": "Overview tab Election Calendar note only; stale ~3 weeks. No rating or chamber effect.",
+   "source": "https://www.nbcnews.com/politics/2026-election/mallory-mcmorrow-ends-bid-democratic-senate-nomination-michigan-rcna353053"
   }
  ]
 }

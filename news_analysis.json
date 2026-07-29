@@ -1,60 +1,60 @@
 {
- "generated": "2026-07-20",
+ "generated": "2026-07-29",
  "method": "Headlines collected via web search (fetch_news.py collector blocked in sandbox; use it for local/Actions runs). Entity sentiment scored by Claude during the weekly Cowork routine. sentiment = 0-100 D-favorability of coverage tone (matches existing dashboard sentimentScore semantics: >55 leans D, <45 leans R). candidateSentiment = 0-100 favorability of coverage toward that candidate personally. outletLean: -2 left ... +2 right (AllSides-style); null = unrated outlet, excluded from scatter.",
  "states": {
   "ME": {
    "races": [
     {
      "type": "Senate",
-     "matchup": "Susan Collins (R, inc.) vs. Troy Jackson (D, presumptive; convention Jul 25)",
-     "sentiment": 48,
-     "summary": "Troy Jackson effectively locked up the replacement nomination, winning the vast majority of pledged convention delegates ahead of the Jul 25 convention. Coverage shifted from Democratic disarray to consolidation, though Collins is portrayed as confident and Jackson as less tested statewide than Platner's insurgent coalition.",
+     "matchup": "Susan Collins (R, inc.) vs. Troy Jackson (D)",
+     "sentiment": 58,
+     "summary": "Maine Democrats formally nominated Troy Jackson on Jul 25, 566 of 571 delegates, closing the Platner episode. A UNH poll fielded Jul 15-20 put Jackson 49-46 over Collins, a statistical tie, and Jackson's campaign reported $2M in the first 48 hours after the nomination. Collins retains the cash advantage (~$11M on hand plus an allied super PAC) and coverage has turned to direct attacks between the two.",
      "candidates": [
       {
        "name": "Susan Collins",
        "party": "R",
-       "mentions": 4,
-       "sentiment": 54
+       "mentions": 6,
+       "sentiment": 46
       },
       {
        "name": "Troy Jackson",
        "party": "D",
-       "mentions": 6,
-       "sentiment": 53
+       "mentions": 8,
+       "sentiment": 60
       }
      ],
      "outlets": [
       {
-       "source": "CNN",
-       "lean": -1,
-       "sentiment": 50,
+       "source": "Portland Press Herald",
+       "lean": null,
+       "sentiment": 58,
        "articles": 2
       },
       {
        "source": "NPR",
        "lean": -1,
-       "sentiment": 45,
+       "sentiment": 58,
        "articles": 1
       }
      ],
      "articles": [
       {
-       "headline": "Troy Jackson effectively wraps up Maine Democrats' nomination to face Sen. Susan Collins",
-       "url": "https://www.cnn.com/2026/07/18/politics/troy-jackson-graham-platner-maine",
-       "source": "CNN",
-       "date": "2026-07-18"
+       "headline": "Troy Jackson has slight edge over Susan Collins, new poll finds",
+       "url": "https://www.pressherald.com/2026/07/21/troy-jackson-has-slight-edge-over-susan-collins-new-poll-finds/",
+       "source": "Portland Press Herald",
+       "date": "2026-07-21"
       },
       {
-       "headline": "The frenzied sprint among Maine Democrats hoping to replace Graham Platner",
-       "url": "https://www.cnn.com/2026/07/15/politics/graham-platner-maine-democrats-convention-us-senate-susan-collins",
-       "source": "CNN",
-       "date": "2026-07-15"
-      },
-      {
-       "headline": "Platner's voters are reeling as Maine Democratic Party races to choose his replacement",
-       "url": "https://www.npr.org/2026/07/14/nx-s1-5892502/platner-collins-maine-democratic-party-senate",
+       "headline": "Democrats in Maine formally nominate Troy Jackson as their new U.S. Senate candidate",
+       "url": "https://www.npr.org/2026/07/25/nx-s1-5902982/democrats-maine-senate-race",
        "source": "NPR",
-       "date": "2026-07-14"
+       "date": "2026-07-25"
+      },
+      {
+       "headline": "How Troy Jackson and Susan Collins are attacking one another in Maine's U.S. Senate race",
+       "url": "https://www.pressherald.com/2026/07/27/how-troy-jackson-and-susan-collins-are-attacking-one-another-in-maines-u-s-senate-race/",
+       "source": "Portland Press Herald",
+       "date": "2026-07-27"
       }
      ]
     },
@@ -130,127 +130,115 @@
    "races": [
     {
      "type": "Senate",
-     "matchup": "Stevens/El-Sayed (D primary Aug 4) vs. Mike Rogers (R)",
-     "sentiment": 50,
-     "summary": "Two weeks from the Aug 4 primary, polls diverge: a Detroit News/WDIV survey has Stevens up ~7 while Tavern Research has the race tied; El-Sayed leads all candidates in fundraising. McMorrow's Jul 5 exit made it a two-way Democratic fight. Rogers draws little coverage while the D primary dominates.",
+     "matchup": "Aug 4 D primary: Haley Stevens vs. Abdul El-Sayed; winner faces Mike Rogers (R)",
+     "sentiment": 47,
+     "summary": "The Aug 4 Democratic primary is unresolved and expensive. A Detroit News/WDIV-Glengariff poll had Stevens up 48-41 while other surveys showed El-Sayed narrowly ahead. Pro-Stevens outside groups have spent north of $50M, including AIPAC-linked ads featuring Barack Obama, who has not endorsed. A late-July general-election poll found Stevens leading Rogers 47-45 but Rogers beating El-Sayed 49-39, which has made electability the closing argument.",
      "candidates": [
-      {
-       "name": "Haley Stevens",
-       "party": "D",
-       "mentions": 5,
-       "sentiment": 54
-      },
       {
        "name": "Abdul El-Sayed",
        "party": "D",
-       "mentions": 5,
-       "sentiment": 53
+       "mentions": 7,
+       "sentiment": 47
+      },
+      {
+       "name": "Haley Stevens",
+       "party": "D",
+       "mentions": 7,
+       "sentiment": 52
       },
       {
        "name": "Mike Rogers",
        "party": "R",
-       "mentions": 2,
-       "sentiment": 46
+       "mentions": 4,
+       "sentiment": 47
       }
      ],
      "outlets": [
       {
-       "source": "The Washington Post",
-       "lean": -1,
-       "sentiment": 52,
-       "articles": 1
-      },
-      {
        "source": "The Detroit News",
        "lean": null,
-       "sentiment": 50,
+       "sentiment": 47,
        "articles": 1
       },
       {
-       "source": "Michigan Advance",
+       "source": "CNN",
+       "lean": -1,
+       "sentiment": 47,
+       "articles": 1
+      },
+      {
+       "source": "Roll Call",
        "lean": null,
-       "sentiment": 50,
+       "sentiment": 47,
        "articles": 1
       }
      ],
      "articles": [
       {
-       "headline": "Haley Stevens polls ahead of Abdul El-Sayed in key Michigan Senate test",
-       "url": "https://www.washingtonpost.com/politics/2026/07/15/haley-stevens-polls-ahead-abdul-el-sayed-key-michigan-senate-test/",
-       "source": "The Washington Post",
-       "date": "2026-07-15"
-      },
-      {
-       "headline": "Abdul El-Sayed tops Stevens, Rogers in Michigan Senate fundraising",
-       "url": "https://www.detroitnews.com/story/news/politics/2026/07/15/abdul-el-sayed-haley-stevens-mike-rogers-michigan-senate-race-fundraising/90933599007/",
+       "headline": "Read full Detroit News/WDIV poll of Michigan Democratic primary voters",
+       "url": "https://www.detroitnews.com/story/news/politics/2026/07/16/michigan-us-senate-democratic-primary-poll-haley-stevens-abdul-el-sayed-detroit-news-wdiv/90939862007/",
        "source": "The Detroit News",
-       "date": "2026-07-15"
+       "date": "2026-07-16"
       },
       {
-       "headline": "New poll shows El-Sayed, Stevens statistically tied in Michigan's Democratic U.S. Senate primary",
-       "url": "https://michiganadvance.com/2026/07/08/new-poll-shows-el-sayed-stevens-statistically-tied-in-michigans-democratic-u-s-senate-primary/",
-       "source": "Michigan Advance",
-       "date": "2026-07-08"
+       "headline": "Barack Obama hasn't endorsed a Michigan Senate candidate. An AIPAC-linked group is spending millions on ads with him anyway",
+       "url": "https://www.cnn.com/2026/07/17/politics/obama-michigan-senate-stevens-el-sayed-ads",
+       "source": "CNN",
+       "date": "2026-07-17"
+      },
+      {
+       "headline": "Contentious Democratic Senate contest dominates Michigan's primary season",
+       "url": "https://rollcall.com/2026/07/28/contentious-democratic-senate-contest-dominates-michigans-primary-season/",
+       "source": "Roll Call",
+       "date": "2026-07-28"
       }
      ]
     },
     {
      "type": "Governor",
-     "matchup": "Jocelyn Benson (D) vs. John James (R)",
-     "sentiment": 61,
-     "summary": "Benson has opened a real lead: the polling average sits near Benson +5, a sharp reversal from late 2025 when James led by six in a three-way field. Duggan's May exit consolidated the anti-James vote, and Newsweek-style 'Democratic chances soar' framing now dominates; GOP coverage frets about enthusiasm.",
+     "matchup": "Jocelyn Benson (D) vs. John James (R) — both favored in Aug 4 primaries",
+     "sentiment": 62,
+     "summary": "Benson leads Sheriff Chris Swanson 72-12 in a Detroit News/WDIV-Glengariff primary poll and has outraised him roughly seven to one in 2026. Trump's endorsement of John James collapsed the Republican field: Aric Nesbitt and then Mike Cox exited, with Cox suspending Jul 17 while remaining on the ballot. Coverage treats the November matchup as effectively set.",
      "candidates": [
       {
        "name": "Jocelyn Benson",
        "party": "D",
-       "mentions": 4,
-       "sentiment": 62
+       "mentions": 6,
+       "sentiment": 64
       },
       {
        "name": "John James",
        "party": "R",
-       "mentions": 3,
-       "sentiment": 44
+       "mentions": 4,
+       "sentiment": 48
       }
      ],
      "outlets": [
       {
-       "source": "Newsweek",
-       "lean": 0,
-       "sentiment": 60,
+       "source": "The Detroit News",
+       "lean": null,
+       "sentiment": 62,
        "articles": 1
       },
       {
-       "source": "WZZM13",
+       "source": "Michigan Advance",
        "lean": null,
-       "sentiment": 58,
-       "articles": 1
-      },
-      {
-       "source": "WLNS",
-       "lean": null,
-       "sentiment": 52,
+       "sentiment": 62,
        "articles": 1
       }
      ],
      "articles": [
       {
-       "headline": "Democrats' Chances of Beating GOP In Michigan Governor Race Soar: Charts",
-       "url": "https://www.newsweek.com/democrat-gop-michigan-governor-race-polls-charts-jocelyn-benson-john-james-11955474",
-       "source": "Newsweek",
-       "date": "2026-07-10"
+       "headline": "Jocelyn Benson builds huge lead over Chris Swanson in new primary poll",
+       "url": "https://www.detroitnews.com/story/news/politics/2026/07/15/jocelyn-benson-chris-swanson-democratic-governor-race-primary-poll/90920037007/",
+       "source": "The Detroit News",
+       "date": "2026-07-15"
       },
       {
-       "headline": "New polling: Benson leads James, Johnson, Duggan in Michigan governor race",
-       "url": "https://www.wzzm13.com/article/news/politics/michigan-politics/new-polling-jocelyn-benson-leads-john-james-perry-johnson-mike-duggan-in-new-poll-michigan-governor-race/69-10a1946f-b9a4-45be-821d-9afc3d7b4aa6",
-       "source": "WZZM13",
-       "date": "2026-07-08"
-      },
-      {
-       "headline": "Polymarket predicts Michigan governors race",
-       "url": "https://wtvbam.com/2026/07/13/958644/",
-       "source": "WTVB",
-       "date": "2026-07-13"
+       "headline": "State of the Race: Democrats line up behind Benson, Republicans face off in brutal two-way primary",
+       "url": "https://michiganadvance.com/2026/07/29/state-of-the-race-democrats-line-up-behind-benson-republicans-face-off-in-brutal-two-way-primary/",
+       "source": "Michigan Advance",
+       "date": "2026-07-29"
       }
      ]
     }
@@ -425,60 +413,48 @@
     {
      "type": "Senate",
      "matchup": "Jon Ossoff (D, inc.) vs. Mike Collins (R)",
-     "sentiment": 64,
-     "summary": "Ossoff enters the general with a commanding position: a Fox News poll has him +13 over Collins, and his $20M second quarter (over $42M on hand) dwarfs Collins's $2.1M. Coverage is broadly favorable to the incumbent, with Collins leaning on Trump's endorsement to consolidate Republicans.",
+     "sentiment": 66,
+     "summary": "An AARP poll by Fabrizio Ward and Impact Research fielded Jul 13-16 put Ossoff up 52-43, with a 30-point edge among younger voters offset by Collins leading by 24 among those 65 and older. Ossoff reported $20M raised in Q2 and roughly $42M on hand against Collins' $2.1M raised, about a 20-to-1 cash gap, and went on air with a seven-figure buy over Collins' vote against releasing the Epstein files.",
      "candidates": [
       {
        "name": "Jon Ossoff",
        "party": "D",
-       "mentions": 5,
+       "mentions": 8,
        "sentiment": 66
       },
       {
        "name": "Mike Collins",
        "party": "R",
-       "mentions": 4,
-       "sentiment": 41
+       "mentions": 6,
+       "sentiment": 40
       }
      ],
      "outlets": [
       {
-       "source": "CBS News",
-       "lean": -1,
-       "sentiment": 62,
+       "source": "The Hill",
+       "lean": 0,
+       "sentiment": 66,
        "articles": 1
       },
       {
-       "source": "Fox News",
-       "lean": 2,
-       "sentiment": 58,
-       "articles": 1
-      },
-      {
-       "source": "Jewish Insider",
+       "source": "Roll Call",
        "lean": null,
-       "sentiment": 50,
+       "sentiment": 66,
        "articles": 1
       }
      ],
      "articles": [
       {
-       "headline": "Sen. Ossoff, Rep. Collins release latest fundraising numbers for Georgia Senate race",
-       "url": "https://www.cbsnews.com/atlanta/news/sen-ossoff-rep-collins-release-latest-fundraising-numbers-for-georgia-senate-race/",
-       "source": "CBS News",
-       "date": "2026-07-16"
+       "headline": "Ossoff leads Collins by 9 points in Georgia Senate race: Poll",
+       "url": "https://thehill.com/homenews/campaign/5986198-ossoff-leads-collins-ga-poll/",
+       "source": "The Hill",
+       "date": "2026-07-23"
       },
       {
-       "headline": "Jon Ossoff leads Mike Collins by double digits in Georgia Senate poll",
-       "url": "https://www.foxnews.com/politics/fox-news-poll-early-look-georgia-senate-race",
-       "source": "Fox News",
-       "date": "2026-07-01"
-      },
-      {
-       "headline": "In Georgia's Senate race, tough choices ahead for the state's Jewish community",
-       "url": "https://jewishinsider.com/2026/07/georgia-senate-race-jon-ossoff-mike-collins-jewish-community/",
-       "source": "Jewish Insider",
-       "date": "2026-07-15"
+       "headline": "At the Races: Seeing blue in Georgia",
+       "url": "https://rollcall.com/2026/07/23/at-the-races-seeing-blue-in-georgia/",
+       "source": "Roll Call",
+       "date": "2026-07-23"
       }
      ]
     },
@@ -712,73 +688,73 @@
    "races": [
     {
      "type": "Governor",
-     "matchup": "D primary Aug 11 (Barnes, Hong, Crowley) vs. Tom Tiffany (R)",
-     "sentiment": 54,
-     "summary": "A whirlwind Jul 17: Rodriguez suspended her bid over financial-reporting errors, and Milwaukee County Exec David Crowley re-entered the primary with outgoing Gov. Evers' endorsement, making Aug 11 a three-way Barnes-Hong-Crowley contest. Tiffany's $8M haul - mostly from the state GOP - leads all candidates. Coverage is even-handed with a slight D structural tilt in this open swing seat.",
+     "matchup": "Aug 11 primaries — D: Hong, Barnes, Crowley, Roys, Brennan; R: Tom Tiffany (Trump-endorsed) front-runner",
+     "sentiment": 50,
+     "summary": "Two July polls show state Rep. Francesca Hong, a DSA member, leading a scrambled Democratic primary: Marquette Law School had Hong 38, Barnes 16, Crowley 7 with most voters undecided, and a State Navigate survey had Hong 44, Crowley 15, Barnes 14. Marquette also found Barnes is the strongest Democrat against Tiffany, leading him 44-40, which is fuelling an electability fight in the final two weeks.",
      "candidates": [
-      {
-       "name": "Mandela Barnes",
-       "party": "D",
-       "mentions": 4,
-       "sentiment": 53
-      },
       {
        "name": "Francesca Hong",
        "party": "D",
-       "mentions": 3,
-       "sentiment": 50
+       "mentions": 6,
+       "sentiment": 55
+      },
+      {
+       "name": "Mandela Barnes",
+       "party": "D",
+       "mentions": 5,
+       "sentiment": 54
       },
       {
        "name": "David Crowley",
        "party": "D",
        "mentions": 3,
-       "sentiment": 54
+       "sentiment": 50
       },
       {
        "name": "Tom Tiffany",
        "party": "R",
        "mentions": 4,
-       "sentiment": 48
+       "sentiment": 45
       }
      ],
      "outlets": [
       {
-       "source": "NBC News",
-       "lean": -1,
+       "source": "Wisconsin Public Radio",
+       "lean": null,
        "sentiment": 50,
        "articles": 1
       },
       {
-       "source": "PBS",
+       "source": "WSAW-TV",
        "lean": null,
-       "sentiment": 56,
+       "sentiment": 50,
        "articles": 1
       },
       {
-       "source": "Wisconsin Examiner",
-       "lean": null,
-       "sentiment": 54,
+       "source": "The Hill",
+       "lean": 0,
+       "sentiment": 50,
        "articles": 1
       }
      ],
      "articles": [
       {
-       "headline": "Wisconsin Lt. Gov. Sara Rodriguez drops out of governor's race",
-       "url": "https://www.nbcnews.com/politics/2026-election/wisconsin-lt-gov-sara-rodriguez-drops-governors-race-rcna588001",
-       "source": "NBC News",
+       "headline": "Hong leads latest Marquette poll, but most voters undecided in Democratic primary for governor",
+       "url": "https://www.wpr.org/news/marquette-poll-wisconsin-governor-july-22-2026",
+       "source": "Wisconsin Public Radio",
+       "date": "2026-07-22"
+      },
+      {
+       "headline": "Who is running for Wisconsin governor? Check candidate list here",
+       "url": "https://www.wsaw.com/2026/07/17/who-is-running-wisconsin-governor-check-candidate-list-here/",
+       "source": "WSAW-TV",
        "date": "2026-07-17"
       },
       {
-       "headline": "David Crowley reenters battleground Wisconsin's Democratic governor primary with Gov. Evers' backing",
-       "url": "https://www.pbs.org/newshour/politics/david-crowley-reenters-battleground-wisconsins-democratic-governor-primary-with-gov-evers-backing",
-       "source": "PBS",
-       "date": "2026-07-17"
-      },
-      {
-       "headline": "Tiffany reports over $8 million haul for gov race, while Barnes leads Dem field in fundraising",
-       "url": "https://wisconsinexaminer.com/2026/07/16/tiffany-reports-over-8-million-haul-for-gov-race-while-barnes-leads-dem-field-in-fundraising/",
-       "source": "Wisconsin Examiner",
-       "date": "2026-07-16"
+       "headline": "Hong holds strong double-digit lead in Wisconsin Democratic governor's primary: Poll",
+       "url": "https://thehill.com/homenews/5997331-hong-wisconsin-democratic-governor-primary-poll/",
+       "source": "The Hill",
+       "date": "2026-07-28"
       }
      ]
     }
@@ -788,55 +764,49 @@
    "races": [
     {
      "type": "Governor",
-     "matchup": "Katie Hobbs (D, inc.) vs. GOP primary Jul 21 (Biggs prohibitive favorite)",
-     "sentiment": 56,
-     "summary": "Primary-eve coverage is all but coronating Biggs - one poll gives him a 50-point lead over Schweikert, and Robson's February exit left no establishment alternative. Hobbs, sitting on roughly $15M and a fresh Lean D rating from Cook, is consistently framed as the general-election favorite against a Trump-aligned nominee.",
+     "matchup": "Katie Hobbs (D, inc.) vs. Andy Biggs (R)",
+     "sentiment": 52,
+     "summary": "Biggs won the Jul 21 Republican primary decisively, taking roughly 70% to Rep. David Schweikert's 17% on Trump's endorsement and a large cash edge; Hobbs was unopposed. General-election polling since is close and inconsistent, with surveys in the window ranging from Hobbs 41-37 to a 44-43 Emerson result.",
      "candidates": [
       {
        "name": "Katie Hobbs",
        "party": "D",
-       "mentions": 4,
-       "sentiment": 58
+       "mentions": 6,
+       "sentiment": 53
       },
       {
        "name": "Andy Biggs",
        "party": "R",
-       "mentions": 5,
-       "sentiment": 46
-      },
-      {
-       "name": "David Schweikert",
-       "party": "R",
-       "mentions": 2,
-       "sentiment": 40
+       "mentions": 6,
+       "sentiment": 48
       }
      ],
      "outlets": [
       {
-       "source": "ABC15",
-       "lean": null,
+       "source": "The Washington Post",
+       "lean": -1,
        "sentiment": 52,
        "articles": 1
       },
       {
-       "source": "KTAR",
-       "lean": null,
-       "sentiment": 55,
+       "source": "CNN",
+       "lean": -1,
+       "sentiment": 52,
        "articles": 1
       }
      ],
      "articles": [
       {
-       "headline": "What to expect in Arizona's state primary on Tuesday",
-       "url": "https://www.abc15.com/news/political/elections/what-to-expect-in-arizonas-state-primary-on-tuesday",
-       "source": "ABC15",
-       "date": "2026-07-18"
+       "headline": "Andy Biggs wins Arizona GOP Governor primary. Election results 2026 live updates",
+       "url": "https://www.washingtonpost.com/elections/results/2026/07/21/arizona-governor-primary-election-results-2026-live-updates/",
+       "source": "The Washington Post",
+       "date": "2026-07-21"
       },
       {
-       "headline": "Arizona governor polling: GOP race a blowout",
-       "url": "https://ktar.com/arizona-politics-news/election/arizona-governor-polling/5865576/",
-       "source": "KTAR",
-       "date": "2026-07-15"
+       "headline": "Trump-backed Andy Biggs wins GOP nomination for governor and other Arizona primary takeaways",
+       "url": "https://www.cnn.com/2026/07/21/politics/arizona-primaries-takeaways",
+       "source": "CNN",
+       "date": "2026-07-21"
       }
      ]
     }
@@ -846,67 +816,55 @@
    "races": [
     {
      "type": "Senate",
-     "matchup": "Chris Pappas (D) vs. John E. Sununu (R)",
-     "sentiment": 54,
-     "summary": "UNH's July poll has Pappas up 47-44 on Sununu, with Sununu dominating his primary (59-20 over Brown) and Pappas's primary edge shrinking against Manzur. Coverage treats the open seat as Lean D but genuinely contested.",
+     "matchup": "Chris Pappas (D) vs. Sep 8 R primary: John E. Sununu (Trump-endorsed) vs. Scott Brown",
+     "sentiment": 55,
+     "summary": "Q2 filings showed Pappas raising $3.5M with about $5.1M on hand, against roughly $1.5M raised and $3M banked for Sununu and $279,000 raised for Brown. Trump's endorsement plus a UNH poll showing Sununu up 48-25 has made the Republican primary lopsided. Republicans spent the window using Maine Democrats' nominee swap as an attack line against Pappas.",
      "candidates": [
       {
        "name": "Chris Pappas",
        "party": "D",
-       "mentions": 4,
-       "sentiment": 55
+       "mentions": 6,
+       "sentiment": 57
       },
       {
-       "name": "John Sununu",
+       "name": "John E. Sununu",
        "party": "R",
-       "mentions": 4,
+       "mentions": 5,
        "sentiment": 50
       },
       {
        "name": "Scott Brown",
        "party": "R",
-       "mentions": 1,
-       "sentiment": 40
+       "mentions": 3,
+       "sentiment": 42
       }
      ],
      "outlets": [
       {
-       "source": "NHPR",
+       "source": "New Hampshire Public Radio",
        "lean": null,
-       "sentiment": 54,
+       "sentiment": 55,
        "articles": 1
       },
       {
-       "source": "Emerson College Polling",
-       "lean": null,
-       "sentiment": 50,
-       "articles": 1
-      },
-      {
-       "source": "New Hampshire Review",
-       "lean": null,
-       "sentiment": 52,
+       "source": "Washington Times",
+       "lean": 2,
+       "sentiment": 55,
        "articles": 1
       }
      ],
      "articles": [
       {
-       "headline": "UNH poll shows tight races for governor and U.S. Senate",
-       "url": "https://www.nhpr.org/politics/2026-07-01/unh-poll-shows-tight-races-for-governor-and-u-s-senate-2026-midterms",
-       "source": "NHPR",
-       "date": "2026-07-01"
+       "headline": "Pappas, Sununu, Sullivan, and DiLorenzo boast campaign funding hauls",
+       "url": "https://www.nhpr.org/politics/2026-07-16/pappas-sununu-sullivan-and-dilorenzo-boast-campaign-funding-hauls",
+       "source": "New Hampshire Public Radio",
+       "date": "2026-07-16"
       },
       {
-       "headline": "New Hampshire 2026: Sununu Leads GOP Nomination, Ties Pappas for Senate",
-       "url": "https://emersoncollegepolling.com/new-hampshire-2026-sununu-leads-gop-nomination-ties-pappas-for-senate/",
-       "source": "Emerson College Polling",
-       "date": "2026-07-08"
-      },
-      {
-       "headline": "Latest UNH Poll on NH's 2026 U.S. Senate Race: Pappas Holds Primary and General Election Edge as Sununu Consolidates GOP Field",
-       "url": "https://newhampshirereview.com/articles/nh-senate-2026-unh-poll-pappas-sununu-brown-shaheen/",
-       "source": "New Hampshire Review",
-       "date": "2026-07-02"
+       "headline": "Democrats' primary shake-up becomes GOP ammunition in New Hampshire Senate race",
+       "url": "https://www.washingtontimes.com/news/2026/jul/23/democrats-primary-shake-becomes-gop-ammunition-new-hampshire-senate/",
+       "source": "Washington Times",
+       "date": "2026-07-23"
       }
      ]
     },
@@ -964,46 +922,40 @@
    "races": [
     {
      "type": "Governor",
-     "matchup": "Open seat (Kelly term-limited) - primaries Aug 4 (Masterson favored on R side)",
-     "sentiment": 46,
-     "summary": "Voter-guide coverage dominates two weeks out from the Aug 4 primaries: Trump-endorsed Masterson is the clear R frontrunner over Schwab, with Holscher leading the D side. An economy-focused candidate forum drew even-handed coverage; the fundamentals still favor an R flip of Kelly's seat.",
+     "matchup": "Aug 4 open-seat primaries (Kelly term-limited) — R: Ty Masterson (Trump-endorsed) et al.; D: Ethan Corson (Kelly-endorsed), Cindy Holscher, Curt Skoog",
+     "sentiment": 38,
+     "summary": "Ten candidates remain on the ballot, seven Republicans and three Democrats. Masterson is the presumed GOP front-runner on Trump's endorsement and a lopsided Sedgwick County straw-poll win, while Club for Growth-linked ads attack Vicki Schmidt and Masterson takes fire over data-center tax breaks. Kelly reaffirmed her endorsement of Corson in July. No credible public head-to-head primary polling surfaced.",
      "candidates": [
       {
        "name": "Ty Masterson",
        "party": "R",
-       "mentions": 4,
-       "sentiment": 50
+       "mentions": 5,
+       "sentiment": 42
       },
       {
-       "name": "Scott Schwab",
-       "party": "R",
-       "mentions": 2,
-       "sentiment": 46
-      },
-      {
-       "name": "Cindy Holscher",
+       "name": "Ethan Corson",
        "party": "D",
-       "mentions": 2,
-       "sentiment": 48
+       "mentions": 3,
+       "sentiment": 52
       }
      ],
      "outlets": [
       {
        "source": "Kansas Public Radio",
        "lean": null,
-       "sentiment": 48,
+       "sentiment": 38,
        "articles": 1
       },
       {
-       "source": "KCTV5",
+       "source": "KWCH",
        "lean": null,
-       "sentiment": 48,
+       "sentiment": 38,
        "articles": 1
       },
       {
-       "source": "Johnson County Post",
+       "source": "Lawrence Times",
        "lean": null,
-       "sentiment": 48,
+       "sentiment": 38,
        "articles": 1
       }
      ],
@@ -1015,16 +967,16 @@
        "date": "2026-07-17"
       },
       {
-       "headline": "What the Kansas gubernatorial candidates said about their plan to address the economy",
-       "url": "https://www.kctv5.com/2026/07/15/what-kansas-gubernatorial-candidates-said-about-their-plan-address-economy/",
-       "source": "KCTV5",
-       "date": "2026-07-15"
+       "headline": "WATCH: 10 candidates vying for Kansas governor ahead of Aug. 4 primary",
+       "url": "https://www.kwch.com/2026/07/20/10-candidates-vying-kansas-governor-ahead-aug-4-primary/",
+       "source": "KWCH",
+       "date": "2026-07-20"
       },
       {
        "headline": "Who's running for Kansas governor in 2026? Here's a guide to the candidates",
-       "url": "https://johnsoncountypost.com/2026/07/08/kansas-governor-2026-voter-guide-290552/",
-       "source": "Johnson County Post",
-       "date": "2026-07-08"
+       "url": "https://lawrencekstimes.com/2026/07/27/kns-ks-gov-candidates-202608/",
+       "source": "Lawrence Times",
+       "date": "2026-07-27"
       }
      ]
     }
@@ -1104,32 +1056,50 @@
    "races": [
     {
      "type": "Senate",
-     "matchup": "Dan Sullivan (R, inc.) vs. Mary Peltola (D) — RCV, primary Aug 18",
-     "sentiment": 54,
-     "summary": "Peltola vastly outraised Sullivan ($6.9M to just over $2M since Apr 1) heading into the Aug 18 top-four primary, and the same-named 'Dan Sullivan' challenger remains on the ballot after the court reversal. Forecasters split between Toss-up (Cook, Sabato) and Lean R (IE).",
+     "matchup": "Dan Sullivan (R, inc.) vs. Mary Peltola (D) — Aug 18 top-four primary, RCV general",
+     "sentiment": 56,
+     "summary": "Q2 filings dominated coverage: Peltola raised $6.9M from April through June, more than triple Sullivan's roughly $2M, with $6M from individuals. Heavy spending left her with $6.1M on hand against Sullivan's $8.3M. Fifteen candidates are on the primary ballot, including the second, unrelated Dan Sullivan the Alaska Supreme Court allowed to remain.",
      "candidates": [
       {
        "name": "Dan Sullivan",
        "party": "R",
-       "mentions": 4,
+       "mentions": 6,
        "sentiment": 45
       },
       {
        "name": "Mary Peltola",
        "party": "D",
-       "mentions": 4,
-       "sentiment": 56
+       "mentions": 6,
+       "sentiment": 62
       }
      ],
      "outlets": [
       {
+       "source": "Alaska's News Source",
+       "lean": null,
+       "sentiment": 56,
+       "articles": 1
+      },
+      {
        "source": "Alaska Public Media",
        "lean": null,
-       "sentiment": 54,
-       "articles": 2
+       "sentiment": 56,
+       "articles": 1
+      },
+      {
+       "source": "Anchorage Daily News",
+       "lean": null,
+       "sentiment": 56,
+       "articles": 1
       }
      ],
      "articles": [
+      {
+       "headline": "Election 2026: Sen. Sullivan raises less than half of Peltola's campaign in second quarter",
+       "url": "https://www.alaskasnewssource.com/2026/07/15/election-2026-sen-sullivan-raises-less-than-half-peltola-second-quarter/",
+       "source": "Alaska's News Source",
+       "date": "2026-07-15"
+      },
       {
        "headline": "Peltola vastly outraises Sullivan in Alaska's U.S. Senate race",
        "url": "https://alaskapublic.org/news/politics/washington-d-c/2026-07-16/peltola-vastly-outraises-sullivan-in-alaskas-u-s-senate-race",
@@ -1137,10 +1107,10 @@
        "date": "2026-07-16"
       },
       {
-       "headline": "Alaska Division of Elections intends to strike U.S. Senate challenger Dan Sullivan from the ballot",
-       "url": "https://alaskapublic.org/news/politics/2026-06-12/alaska-division-of-elections-intends-to-strike-u-s-senate-challenger-dan-sullivan-from-the-ballot",
-       "source": "Alaska Public Media",
-       "date": "2026-06-12"
+       "headline": "Peltola raises millions more than Sullivan in Alaska's U.S. Senate race",
+       "url": "https://www.adn.com/politics/2026/07/20/peltola-raises-millions-more-than-sullivan-in-alaskas-us-senate-race/",
+       "source": "Anchorage Daily News",
+       "date": "2026-07-20"
       }
      ]
     }
@@ -1191,54 +1161,54 @@
     {
      "type": "Senate",
      "matchup": "Ken Paxton (R) vs. James Talarico (D)",
-     "sentiment": 57,
-     "summary": "Talarico's $30M quarter - more than triple Paxton's $9M and $70M+ since launch - headlines the week, and Paxton's camp confirmed he will debate. Coverage of Paxton stays dogged by the impeachment record and a controversial plea deal; public polling remains essentially tied.",
+     "sentiment": 58,
+     "summary": "A Texas Public Opinion Research poll released Jul 28 gave Talarico a 45-40 lead, his largest of the general election and Paxton's lowest share since the runoff, driven by independents. Talarico raised $30M in Q2 to Paxton's $9M and ended June with $23.3M on hand, more than triple Paxton's. Cook already moved the race Likely R to Lean R in June.",
      "candidates": [
-      {
-       "name": "James Talarico",
-       "party": "D",
-       "mentions": 5,
-       "sentiment": 62
-      },
       {
        "name": "Ken Paxton",
        "party": "R",
-       "mentions": 5,
+       "mentions": 6,
        "sentiment": 40
+      },
+      {
+       "name": "James Talarico",
+       "party": "D",
+       "mentions": 7,
+       "sentiment": 62
       }
      ],
      "outlets": [
       {
-       "source": "Texas Tribune",
+       "source": "The Texas Tribune",
        "lean": null,
        "sentiment": 58,
        "articles": 2
       },
       {
-       "source": "Bloomberg",
-       "lean": -1,
+       "source": "The Hill",
+       "lean": 0,
        "sentiment": 58,
        "articles": 1
       }
      ],
      "articles": [
       {
-       "headline": "Ken Paxton's campaign says he will debate James Talarico in Texas' U.S. Senate race",
-       "url": "https://www.texastribune.org/2026/07/16/texas-ken-paxton-james-talarico-debate-senate-race-2026/",
-       "source": "Texas Tribune",
-       "date": "2026-07-16"
+       "headline": "Tracking the money raised and spent in the U.S. Senate race between James Talarico and Ken Paxton",
+       "url": "https://www.texastribune.org/2026/07/20/texas-senate-talarico-paxton-fundraising-spending-money-donors/",
+       "source": "The Texas Tribune",
+       "date": "2026-07-20"
       },
       {
-       "headline": "Talarico more than triples Paxton's Q2 haul in Texas Senate race",
-       "url": "https://www.texastribune.org/2026/07/08/texas-james-talarico-senate-fundraising-second-quarter-30-million/",
-       "source": "Texas Tribune",
-       "date": "2026-07-08"
+       "headline": "Talarico leads Paxton by 5 points in new poll of Texas' U.S. Senate race",
+       "url": "https://www.texastribune.org/2026/07/28/texas-senate-poll-james-talarico-ken-paxton-july-2026/",
+       "source": "The Texas Tribune",
+       "date": "2026-07-28"
       },
       {
-       "headline": "Talarico's $30 Million Haul Crushes Paxton in Texas Senate Race",
-       "url": "https://www.bloomberg.com/news/articles/2026-07-09/talarico-s-30-million-haul-crushes-paxton-in-texas-senate-race",
-       "source": "Bloomberg",
-       "date": "2026-07-09"
+       "headline": "James Talarico expands lead over Ken Paxton in new Texas Senate poll",
+       "url": "https://thehill.com/homenews/campaign/5994317-talarico-leads-paxton-texas-senate-poll/",
+       "source": "The Hill",
+       "date": "2026-07-28"
       }
      ]
     },
@@ -1438,49 +1408,67 @@
    "races": [
     {
      "type": "Senate",
-     "matchup": "Ashley Moody (R, inc.) vs. Alex Vindman (D)",
-     "sentiment": 37,
-     "summary": "Moody has opened a hardened 47-40 lead in the AIF poll (Jun 3-7): she leads in nearly every media market except Miami, is +15 with white voters and +10 with Hispanics, and her definite-vote share beats Vindman's 35-29. Coverage treats the special as Lean R with Vindman needing the big undecided pool in Miami.",
+     "matchup": "Ashley Moody (R, appointed inc.) vs. Aug 18 D primary: Alex Vindman vs. Angie Nixon",
+     "sentiment": 38,
+     "summary": "A University of North Florida poll released Jul 20 had Moody beating Nixon 50-42 and Vindman 50-40 — the less-funded Nixon outperforming Vindman in trial heats. A Change Research survey had Vindman up 34-24 in the primary with 41% undecided. Vindman has raised $8.2M to Nixon's roughly $294,000 and launched his first ad buy, but has declined to commit to debates Nixon has accepted.",
      "candidates": [
       {
        "name": "Ashley Moody",
        "party": "R",
-       "mentions": 3,
-       "sentiment": 58
+       "mentions": 5,
+       "sentiment": 44
       },
       {
        "name": "Alex Vindman",
        "party": "D",
-       "mentions": 3,
-       "sentiment": 42
+       "mentions": 6,
+       "sentiment": 45
+      },
+      {
+       "name": "Angie Nixon",
+       "party": "D",
+       "mentions": 4,
+       "sentiment": 52
       }
      ],
      "outlets": [
       {
-       "source": "Florida Politics",
+       "source": "Florida Phoenix",
        "lean": null,
        "sentiment": 38,
        "articles": 1
       },
       {
-       "source": "Florida's Voice",
+       "source": "Jacksonville Today",
        "lean": null,
-       "sentiment": 36,
+       "sentiment": 38,
+       "articles": 1
+      },
+      {
+       "source": "WUSF",
+       "lean": null,
+       "sentiment": 38,
        "articles": 1
       }
      ],
      "articles": [
       {
-       "headline": "Ashley Moody opens a healthy — and hardened — lead over Alex Vindman in new AIF Senate poll",
-       "url": "https://floridapolitics.com/archives/802818-ashley-moody-opens-a-healthy-and-hardened-lead-over-alex-vindman-in-new-aif-senate-poll/",
-       "source": "Florida Politics",
-       "date": "2026-06-19"
+       "headline": "Moody leads Nixon by 8 points, Vindman by 10, in new poll of Florida Senate race",
+       "url": "https://floridaphoenix.com/2026/07/20/moody-leads-nixon-by-8-points-vindman-by-10-in-new-poll-of-florida-senate-race-embargoed/",
+       "source": "Florida Phoenix",
+       "date": "2026-07-20"
       },
       {
-       "headline": "POLL: Moody leads Alex Vindman by seven points in new Senate poll",
-       "url": "https://flvoicenews.com/poll-moody-leads-alex-vindman-by-seven-points-in-new-senate-poll/",
-       "source": "Florida's Voice",
-       "date": "2026-06-20"
+       "headline": "Democratic Senate race: Jacksonville progressive Angie Nixon vs. ret. Lt. Col. Alex Vindman",
+       "url": "https://jaxtoday.org/2026/07/20/alex-vindman-angie-nixon/",
+       "source": "Jacksonville Today",
+       "date": "2026-07-20"
+      },
+      {
+       "headline": "Democrats vying for Florida's Senate seat discuss affordability and the Iran War",
+       "url": "https://www.wusf.org/the-florida-roundup/2026-07-27/us-senate-democratic-candidates-discuss-making-florida-more-affordable-iran-war",
+       "source": "WUSF",
+       "date": "2026-07-27"
       }
      ]
     },
@@ -1674,67 +1662,49 @@
    "races": [
     {
      "type": "Senate",
-     "matchup": "Flanagan/Craig (DFL primary Aug 11) for Smith's open seat",
-     "sentiment": 56,
-     "summary": "The DFL primary is the story: Flanagan leads recent polling while Craig out-raises her, and their first debate sharpened contrasts on affordability and Washington experience. Royce White's general-election bid gets minimal, mostly skeptical coverage.",
+     "matchup": "Aug 11 DFL primary: Peggy Flanagan (DFL-endorsed) vs. Angie Craig",
+     "sentiment": 55,
+     "summary": "Flanagan has widened her lead over Craig despite being heavily outspent — a Public Policy Polling survey fielded Jul 23-24 put her up 46-32, roughly doubling a seven-point edge from a month earlier, against reported pro-Craig outside spending near $20M. Coverage frames the open Smith seat as a test of whether party endorsement still beats money in Minnesota.",
      "candidates": [
       {
        "name": "Peggy Flanagan",
        "party": "D",
-       "mentions": 4,
-       "sentiment": 54
+       "mentions": 6,
+       "sentiment": 58
       },
       {
        "name": "Angie Craig",
        "party": "D",
-       "mentions": 4,
-       "sentiment": 52
-      },
-      {
-       "name": "Royce White",
-       "party": "R",
-       "mentions": 1,
-       "sentiment": 38
+       "mentions": 5,
+       "sentiment": 48
       }
      ],
      "outlets": [
       {
-       "source": "The Center Square",
+       "source": "MPR News",
        "lean": null,
-       "sentiment": 52,
+       "sentiment": 55,
        "articles": 1
       },
       {
-       "source": "InForum",
+       "source": "KEYC",
        "lean": null,
-       "sentiment": 52,
-       "articles": 1
-      },
-      {
-       "source": "CBS News",
-       "lean": -1,
        "sentiment": 55,
        "articles": 1
       }
      ],
      "articles": [
       {
-       "headline": "Flanagan leads polling, Craig tops fundraising in U.S. Senate race",
-       "url": "https://www.thecentersquare.com/minnesota/article_5db19f2b-cdc8-467e-b890-430aef0b9846.html",
-       "source": "The Center Square",
-       "date": "2026-07-15"
+       "headline": "'A coin flip': The tight Democratic race for Senate between Craig and Flanagan",
+       "url": "https://www.mprnews.org/episode/2026/07/23/peggy-flanagan-angie-craig-democratic-race-for-senate",
+       "source": "MPR News",
+       "date": "2026-07-23"
       },
       {
-       "headline": "What the first Flanagan-Craig debate reveals about the U.S. Senate race",
-       "url": "https://www.inforum.com/news/minnesota/what-the-first-flanagan-craig-debate-reveals-about-the-u-s-senate-race",
-       "source": "InForum",
-       "date": "2026-07-14"
-      },
-      {
-       "headline": "Stakes building in U.S. Senate contest between two of Minnesota's brightest DFL stars",
-       "url": "https://www.cbsnews.com/minnesota/news/minnesota-dfl-u-s-senate-primary-angie-craig-peggy-flanagan/",
-       "source": "CBS News",
-       "date": "2026-07-12"
+       "headline": "MN DFL race for U.S. Senate heats up as primary approaches",
+       "url": "https://www.keyc.com/2026/07/27/mn-dfl-race-us-senate-heats-up-primary-approaches/",
+       "source": "KEYC",
+       "date": "2026-07-27"
       }
      ]
     },

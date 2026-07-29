@@ -1,5 +1,5 @@
 {
- "notes": "Weekly 2026-07-20: chamber unchanged (218R/212D/1I/4V House; 53R/47D Senate). Seven House rating updates from Cook (Jul 16) and Sabato (Jul 16) batches; ME Senate challenger set to Troy Jackson (presumptive, Jul 25 convention); SC special-primary field notes (Norman entered Jul 18); LA Senate row un-staled (Letlow won Jun 27 runoff vs Jamie Davis; Cassidy lost May 16 primary).",
+ "notes": "Weekly 2026-07-29: chamber unchanged (218R/212D/1I/4V House; 53R/47D Senate) — GA-13 stayed vacant when the Jul 28 special went to an Aug 25 runoff. One rating move: FL Governor Solid R -> Likely R (Sabato, Jul 23). Corrections: SC row said Nordone was 'not running' (she entered Jul 20, Trump-endorsed; 9-candidate field certified Jul 28) and FL Senate challenger said Alan Grayson (actually Alex Vindman vs. Angie Nixon). ME challenger finalized (Jackson nominated 566-5 on Jul 25). CA-03 Party cell corrected R -> I per the Kiley rule.",
  "updates": {
   "HOUSE_R": 218,
   "HOUSE_D": 212,
@@ -8,8 +8,8 @@
   "SENATE_R": 53,
   "SENATE_D": 47,
   "SENATE_I": 3,
-  "LAST_UPDATED": "2026-07-20",
-  "NOTES": "Kiley (CA-03) is Independent but caucuses R. Vacancies (4): CA-14 (Swalwell-D resigned Apr 14, special general Aug 18: Wahab vs Hernandez), FL-20 (Cherfilus-McCormick-D resigned Apr 21, filled via regular Aug 18 primary/Nov 3 general), GA-13 (Scott-D died Apr 22, special Jul 28, runoff Aug 25 if needed), TX-23 (Gonzales-R resigned Apr 14, special still not called). Senate: Nordone (R-SC) interim through the Nov 3 special; 53R/47D unchanged."
+  "LAST_UPDATED": "2026-07-29",
+  "NOTES": "Kiley (CA-03) is Independent but caucuses R. Vacancies (4): CA-14 (Swalwell-D resigned Apr 14, special runoff Aug 18: Wahab vs Hernandez), FL-20 (Cherfilus-McCormick-D resigned Apr 21, special date still TBD; expected to resolve Nov 3), GA-13 (Scott-D died Apr 22; Jul 28 special produced no majority, Aug 25 runoff Marcye Scott vs Everton Blair Jr.), TX-23 (Gonzales-R resigned Apr 14, special still not called by Abbott). Senate: Nordone (R-SC) appointed Jul 13 and running in the Aug 11 special primary; 53R/47D unchanged."
  },
  "row_updates": {
   "Senate": {
@@ -29,8 +29,8 @@
       "YES"
      ],
      "rating": "Toss-up",
-     "challenger": "Troy Jackson (D, presumptive)",
-     "notes": "Jackson won 460+ of 500 pledged county delegates; formal nomination at Jul 25 convention (deadline Jul 27). Platner withdrew Jul 10; Mills suspended Apr 30."
+     "challenger": "Troy Jackson (D)",
+     "notes": "Jackson formally nominated at the Jul 25 convention, 566 of 571 delegates (Pelletier 5), replacing Platner (withdrew Jul 10). UNH poll fielded Jul 15-20: Jackson 49, Collins 46. Collins holds the cash edge (~$11M on hand plus allied super PAC)."
     },
     {
      "key": [
@@ -38,16 +38,53 @@
       "YES"
      ],
      "rating": "Solid R",
-     "notes": "Graham died Jul 11; Nordone (interim, not running) sworn in Jul 14. Special GOP primary Aug 11 (filing Jul 21-28; runoff Aug 25): Norman (entered Jul 18), Lynch, Buckner. Winner faces Annie Andrews (D) Nov 3. IE rates Likely R (Apr 23) - watch for moves."
+     "challenger": "Annie Andrews (D)",
+     "notes": "CORRECTED: Nordone IS running. Graham died Jul 11; sister Darline Graham Nordone appointed Jul 13, sworn in Jul 14, entered the race Jul 20 with Trump's endorsement. Filing closed Jul 28: 12 filed, 9 certified by SC GOP - Buckner, Fry, Graham (Nordone), Lynch, McBride, Norman, Parker, Sanford, Shepherd. Special GOP primary Aug 11, runoff Aug 25 if needed; nominee faces Annie Andrews (D) Nov 3. Reps. Norman (SC-05) and Fry (SC-07) remain seated - no House vacancy."
     },
     {
      "key": [
-      "LA",
+      "FL",
       "YES"
      ],
      "rating": "Solid R",
-     "challenger": "Julia Letlow (R) vs Jamie Davis (D)",
-     "notes": "Cassidy lost May 16 primary (3rd, 25%); Letlow won Jun 27 runoff 57-43 over Fleming. Trump-endorsed Letlow heavy favorite; Davis (D) won Dem runoff."
+     "challenger": "Alex Vindman (D) vs. Angie Nixon (D), Aug 18 primary",
+     "notes": "CORRECTED: Alan Grayson is not in the field. Aug 18 Dem primary is Alex Vindman (ret. Lt. Col.; not his twin Rep. Eugene Vindman of VA-01) vs. state Rep. Angie Nixon. UNF poll Jul 20: Moody 50-42 over Nixon, 50-40 over Vindman. Vindman has raised $8.2M to Nixon's ~$294K. Special election for Rubio's seat; Moody appointed."
+    }
+   ]
+  },
+  "Governors": {
+   "key_cols": [
+    "State",
+    "Election 2026"
+   ],
+   "rating_col": "Rating",
+   "extra_col_map": {
+    "Notes": "notes"
+   },
+   "changes": [
+    {
+     "key": [
+      "FL",
+      "YES"
+     ],
+     "rating": "Likely R",
+     "notes": "Sabato moved Safe R -> Likely R Jul 23, citing a UNF poll with Byron Donalds (R) up only 5 over David Jolly (D). Cook and Inside Elections still rate it Solid/Safe R."
+    },
+    {
+     "key": [
+      "AZ",
+      "YES"
+     ],
+     "rating": "Lean D",
+     "notes": "Biggs won the Jul 21 GOP primary ~70-17 over Schweikert; Hobbs unopposed. Cook moved Toss-up -> Lean D Jul 10 (Hobbs fundraising edge). Post-primary polling is close: Hobbs 41-37 in one survey, 44-43 Emerson."
+    },
+    {
+     "key": [
+      "MI",
+      "YES"
+     ],
+     "rating": "Lean D",
+     "notes": "Sabato moved Toss-up -> Leans D Jul 23, matching where the sheet already sat. Benson leads Swanson 72-12 in the Aug 4 D primary; Trump's endorsement cleared the R field for John James (Nesbitt and Cox exited)."
     }
    ]
   },
@@ -58,64 +95,18 @@
    ],
    "rating_col": "Rating",
    "extra_col_map": {
+    "Party": "party",
     "Note": "note"
    },
    "changes": [
     {
      "key": [
       "CA",
-      "45"
+      "03"
      ],
-     "rating": "Likely D",
-     "note": "Cook moved Lean D->Likely D Jul 16"
-    },
-    {
-     "key": [
-      "NY",
-      "19"
-     ],
-     "rating": "Likely D",
-     "note": "Cook moved Lean D->Likely D Jul 16"
-    },
-    {
-     "key": [
-      "KY",
-      "06"
-     ],
-     "rating": "Likely R",
-     "note": "Cook moved Safe R->Likely R Jul 16 (Barr retiring)"
-    },
-    {
-     "key": [
-      "NH",
-      "02"
-     ],
-     "rating": "Solid D",
-     "note": "Cook moved Likely D->Safe D Jul 16"
-    },
-    {
-     "key": [
-      "OR",
-      "05"
-     ],
-     "rating": "Solid D",
-     "note": "Cook moved Likely D->Safe D Jul 16"
-    },
-    {
-     "key": [
-      "TX",
-      "15"
-     ],
-     "rating": "Lean R",
-     "note": "Cook moved Likely R->Lean R Jul 16"
-    },
-    {
-     "key": [
-      "CA",
-      "22"
-     ],
-     "rating": "Lean D",
-     "note": "Sabato moved Toss-up->Lean D Jul 16 (Valadao trailed 59-41 in certified top-two primary two-party vote)"
+     "rating": "Solid R",
+     "party": "I",
+     "note": "Kiley left the GOP in Mar 2026 and is registered Independent while caucusing R; Party cell corrected R -> I to match HOUSE_I = 1."
     }
    ]
   }

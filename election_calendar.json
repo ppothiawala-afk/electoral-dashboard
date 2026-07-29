@@ -1,6 +1,6 @@
 {
  "_comment": "Upcoming election events rendered on the Overview tab. Maintained by the weekly Cowork routine — the candidate-matchup verifier should confirm dates and add/remove events as primaries resolve. Past events are auto-hidden by the UI (kept here for the record). kind: primary | runoff | special | convention | general.",
- "updated": "2026-07-20",
+ "updated": "2026-07-29",
  "events": [
   {
    "date": "2026-06-16",
@@ -14,42 +14,42 @@
    "state": "AZ",
    "kind": "primary",
    "title": "Arizona primaries",
-   "note": "GOP field vs. Hobbs resolves; Biggs prohibitive favorite (Robson exited in February; Schweikert far behind)."
+   "note": "Resolved: Andy Biggs won the GOP nomination (~70% to Schweikert's 17%); faces Hobbs Nov 3."
   },
   {
    "date": "2026-07-25",
    "state": "ME",
    "kind": "convention",
    "title": "Maine Democratic convention",
-   "note": "601-delegate convention picks Platner's replacement; Troy Jackson presumptive after winning most pledged delegates (legal deadline Jul 27)."
+   "note": "Resolved: Troy Jackson nominated 566-5 over Sandra Pelletier (571 delegates voting); faces Collins Nov 3."
   },
   {
    "date": "2026-07-28",
    "state": "GA",
    "kind": "special",
    "title": "GA-13 special election",
-   "note": "Filling the late Rep. Scott's D+ seat."
+   "note": "Resolved: no majority. Marcye Scott 46.8%, Everton Blair Jr. 36.7% advance to the Aug 25 runoff; seat stays vacant."
   },
   {
    "date": "2026-08-04",
    "state": "MI",
    "kind": "primary",
    "title": "Michigan primaries",
-   "note": "D Senate field (McMorrow / El-Sayed / Stevens) resolves; Benson vs. James set."
+   "note": "D Senate primary is Stevens vs. El-Sayed (McMorrow suspended Jul 5, still on the ballot); Benson vs. James set for governor."
   },
   {
    "date": "2026-08-04",
    "state": "KS",
    "kind": "primary",
    "title": "Kansas primaries",
-   "note": "Open-governor fields resolve (Masterson favored on R side)."
+   "note": "Open-governor fields resolve: 7 R (Masterson Trump-endorsed) and 3 D (Corson Kelly-endorsed)."
   },
   {
    "date": "2026-08-11",
    "state": "WI",
    "kind": "primary",
    "title": "Wisconsin primaries",
-   "note": "D governor field resolves: Barnes vs. Hong vs. Crowley (re-entered Jul 17 w/ Evers backing); Tiffany presumptive on R side."
+   "note": "D governor field is Hong, Barnes, Crowley, Roys, Brennan — Hong led two July polls; Tiffany is the Trump-endorsed R front-runner."
   },
   {
    "date": "2026-08-11",
@@ -63,7 +63,7 @@
    "state": "SC",
    "kind": "special",
    "title": "SC Senate special GOP primary",
-   "note": "Nominee for Graham's seat: Norman, Lynch, Buckner et al.; filing Jul 21-28; runoff Aug 25 if needed; winner faces Annie Andrews (D) Nov 3."
+   "note": "Special GOP primary for Graham's seat. Filing closed Jul 28: 9 certified of 12 filed, incl. appointed Sen. Darline Graham Nordone (Trump-endorsed), Reps. Ralph Norman and Russell Fry, and Mark Sanford. Runoff Aug 25 if needed; winner faces Annie Andrews (D) Nov 3."
   },
   {
    "date": "2026-08-18",
@@ -77,21 +77,21 @@
    "state": "FL",
    "kind": "primary",
    "title": "Florida primaries",
-   "note": "D Senate-special field (Vindman, Nixon) resolves vs. Moody."
+   "note": "D Senate-special primary resolves: Alex Vindman vs. Angie Nixon, vs. appointed Sen. Ashley Moody (R)."
   },
   {
    "date": "2026-08-18",
    "state": "CA",
    "kind": "special",
-   "title": "CA-14 special general",
-   "note": "Filling Swalwell's seat."
+   "title": "CA-14 special runoff",
+   "note": "Formally a special runoff under the Apr 14 proclamation: Aisha Wahab vs. Melissa Hernandez, both D. Filling Swalwell's seat."
   },
   {
    "date": "2026-08-25",
    "state": "GA",
    "kind": "runoff",
    "title": "GA-13 special runoff (if needed)",
-   "note": "Only if no candidate clears 50% on Jul 28."
+   "note": "Confirmed: Marcye Scott vs. Everton Blair Jr., both Democrats. Winner serves the remainder of David Scott's term."
   },
   {
    "date": "2026-09-08",

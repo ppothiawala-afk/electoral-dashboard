@@ -693,6 +693,45 @@
     }
    ],
    "snapshot": {}
+  },
+  {
+   "date": "2026-07-29",
+   "label": "Jul 29",
+   "briefing": "weekly_briefing_2026-07-29.md",
+   "chamber": {
+    "house_r": 218,
+    "house_d": 212,
+    "house_i": 1,
+    "house_vacancies": 4,
+    "senate_r": 53,
+    "senate_d": 47,
+    "senate_i": 3,
+    "notes": "No membership changes. 4 House vacancies unchanged: the Jul 28 GA-13 special produced no majority (Marcye Scott 46.8%, Everton Blair Jr. 36.7%) so the seat stays vacant through the Aug 25 runoff; TX-23 and FL-20 specials still uncalled; CA-14 runoff Aug 18. Senate 53R/47D — Nordone (R-SC) is running for the seat she was appointed to (corrected from 'not running'). ME nominee finalized: Troy Jackson, 566 of 571 delegates Jul 25."
+   },
+   "rating_changes": [
+    {
+     "tab": "Governors",
+     "race": "FL — open (DeSantis term-limited); Donalds (R) vs Jolly (D)",
+     "from": "Solid R",
+     "to": "Likely R",
+     "source": "Sabato's Crystal Ball, Jul 23"
+    },
+    {
+     "tab": "Governors",
+     "race": "MI — open (Whitmer term-limited); Benson (D) vs James (R)",
+     "from": "Toss-up",
+     "to": "Lean D",
+     "source": "Sabato's Crystal Ball, Jul 23"
+    },
+    {
+     "tab": "Governors",
+     "race": "NM — open (Lujan Grisham term-limited); Haaland (D) favored",
+     "from": "Likely D",
+     "to": "Solid D",
+     "source": "Sabato's Crystal Ball, Jul 23"
+    }
+   ],
+   "snapshot": {}
   }
  ]
 }
