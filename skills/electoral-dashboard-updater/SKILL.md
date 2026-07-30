@@ -422,53 +422,69 @@ Do NOT consider the run complete until both pass:
    fallbacks, State News wiring, pending-patch validity, and history ordering. Fix any ❌
    before finishing. (The Actions job re-runs this plus live-Sheet checks post-apply.)
 
-5. **Assert patch-file integrity.** Neither `validate_patch.py` nor `verify_dashboard.py --local`
-   catches a *missing* pending patch — L7 passes silently when there is nothing to validate, which
-   is exactly how the 2026-07-29 rename trap went unnoticed. Run this explicitly:
-
+5. **Assert patch-file integrity.**
    ```bash
-   cd ~/Documents/Claude/Projects/"Electoral Dashboard" && python3 -c "
-   import json,glob,re,sys
-   ok=True
-   if not glob.glob('constants_patch.json'):
-       print('FAIL: no pending constants_patch.json'); ok=False
-   else:
-       print('pending ->', json.load(open('constants_patch.json'))['updates']['LAST_UPDATED'])
-   for f in sorted(glob.glob('constants_patch.applied_*.json')):
-       d=json.load(open(f)).get('updates',{}).get('LAST_UPDATED')
-       m=re.search(r'applied_(\d{4}-\d{2}-\d{2})',f).group(1)
-       if d and d>m: print('FAIL: archive newer than its name:',f,'->',d); ok=False
-   sys.exit(0 if ok else 1)"
+   cd ~/Documents/Claude/Projects/"Electoral Dashboard" && python3 check_patch_integrity.py
    ```
+   Neither `validate_patch.py` nor `verify_dashboard.py --local` catches a *missing* pending
+   patch — L7 treats "nothing to validate" as a pass, which is exactly how the 2026-07-29 rename
+   trap went unnoticed while the verifier reported 10/10 green. This script checks that a pending
+   patch exists and that no archive's `LAST_UPDATED` is *later* than its own filename date, and
+   prints recovery commands on failure. See its docstring for the full incident write-up.
 
-   An archive whose `LAST_UPDATED` is *later* than its own filename date means new content was
-   merged into an old archive — the rename trap. (An *earlier* date is fine and normal: archives
-   are named for the apply date, `LAST_UPDATED` for the research date, so the 2026-07-15 archive
-   legitimately reads 2026-07-14.) If this fails, recover both files from git history:
-   `git show <bot-commit>:constants_patch.applied_YYYY-MM-DD.json > constants_patch.applied_YYYY-MM-DD.json`
-   and `git show <research-commit>:constants_patch.json > constants_patch.json`, then re-validate.
+6. **Check the refresh coverage warning.** `verify_dashboard.py --local` now emits
+   `L2b-coverage: N/M configured races refreshed`. L2-freshness only reads the `generated` date
+   stamp, so it passes whether you rescored 27 races or zero; L2b measures the actual work by
+   requiring each configured race to carry an article dated within 10 days of `generated`
+   (tune with `--refresh-window`). If it warns, **name the exact count and the stale races in the
+   briefing's Contract 3.9 scope note** — do not describe a partial refresh as a full one.
 
-Only after all five checks pass do you tell the user the weekly cycle is done.
+Only after all six checks pass do you tell the user the weekly cycle is done.
 
 ---
 
-## Handing off the git block (paste-safety rules)
+## CONTRACT 5 — SHIP IT (you run this; the user does not)
 
-Every run ends with a paste-ready `git add`/`commit`/`push` block for the user. **The user's shell
-is zsh on macOS**, which breaks blocks in ways bash does not. The 2026-07-29 run lost twenty
-minutes to all three of these:
+**Superseded rule.** The 2026-07-06 instruction "never run git yourself, end every run with a
+paste-ready git block" is **retired as of 2026-07-29** at the user's explicit request ("I want you
+to take it completely off my keyboard"). You now commit and push yourself, via one script:
 
-- **No `#` comments anywhere.** zsh has `INTERACTIVE_COMMENTS` off by default, so `#` and
-  everything after it is parsed as arguments, not a comment.
-- **No apostrophes**, even inside what you intend as prose ("the bot's archive" opens a `quote>`
-  continuation prompt and swallows the rest of the block).
-- **Never stage `verification_report.json`** — it is gitignored and `git add` will error on it.
-- **Never suggest `git add -A`.** `weekly-apply.yml`, `publish_to_ghost.py` and `WEBSITE_PLAN.md`
-  are intentionally uncommitted pending Ghost secrets; committing the workflow without the script
-  would break the Monday job. Always list the changed files by name.
+```bash
+cd ~/Documents/Claude/Projects/"Electoral Dashboard" && ./weekly_commit.sh "Weekly YYYY-MM-DD: <one-line summary of changes>"
+```
 
-With Step 0 in place the end-of-run block is a plain add/commit/push — no pull, no stash, because
-the clone was already synced at pre-flight.
+**Do not hand-write git commands, and do not ask the user to run anything.** The script is the only
+sanctioned path: it runs every Contract 4 gate, stages an explicit allowlist, pulls with **rename
+detection disabled** so the archive rename can only surface as a visible conflict, re-checks
+integrity after the merge, and **aborts before pushing** if the merge damaged anything. On any
+post-commit failure it rewinds the repo to a clean state with the local commit intact and unpushed,
+so an unattended run can never leave a half-merged repo behind.
+
+Then report the outcome in your summary: the pushed commit SHA on success, or — if the script
+exited nonzero — quote its error verbatim, state plainly that **nothing reached origin**, and say
+what the user needs to decide. Never describe a run as complete when the push did not land.
+
+`--dry-run` runs all gates and changes nothing; use it if you want to verify before shipping.
+
+> The hazards below are why hand-written blocks are banned rather than merely discouraged — they
+> are permanent properties of this environment, not one-off slips. They still apply if the user
+> ever explicitly asks you for raw git commands:
+
+- **zsh has `INTERACTIVE_COMMENTS` off**, so `#` and everything after it parses as arguments.
+- **An apostrophe anywhere** (even in prose like "the bot's archive") opens a `quote>` continuation
+  and swallows the rest of the block.
+- **`verification_report.json` is gitignored** and `git add` errors on it.
+- **`git add -A` is never safe here** — `weekly-apply.yml`, `publish_to_ghost.py` and
+  `WEBSITE_PLAN.md` are intentionally uncommitted pending Ghost secrets, and committing the
+  workflow without the script would break the Monday job.
+
+### Git commands you may run
+
+`git pull` (Contract 1 Step 0), `./weekly_commit.sh` (Contract 5), and any read-only inspection
+(`status`, `log`, `show`, `diff`, `stash list`). Everything else — bare `add`/`commit`/`push`,
+`reset --hard`, `stash pop`, force-pushes, branch surgery — stays off-limits: put it in front of
+the user with an explanation instead. Always `find .git -maxdepth 1 -name "*.lock" -delete` first;
+stale `index.lock` and `HEAD.lock` recur in this repo.
 
 ---
 

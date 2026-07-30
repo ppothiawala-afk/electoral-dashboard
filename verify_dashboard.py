@@ -56,7 +56,45 @@ def record(check, status, msg):
 
 # ────────────────────────────── LOCAL MODE ──────────────────────────────
 
-def check_local(max_age_days: int):
+def _refresh_coverage(na, cfg, window_days: int):
+    """
+    Which configured races actually received fresh articles this cycle?
+
+    L2-freshness only reads the `generated` date stamp, so bumping that field
+    satisfies it whether 27 races were rescored or zero. This measures the work
+    instead: a configured race counts as refreshed only if it carries at least
+    one article dated within `window_days` of `generated`. Returns (fresh, stale)
+    as lists of "ST/Type" labels, or None if `generated` is unparseable.
+    """
+    try:
+        gen = datetime.date.fromisoformat(na.get("generated", ""))
+    except ValueError:
+        return None
+    cutoff = gen - datetime.timedelta(days=window_days)
+    fresh, stale = [], []
+    for st, sdata in cfg.get("states", {}).items():
+        for cfg_race in sdata.get("races", []):
+            typ = cfg_race.get("type")
+            label = f"{st}/{typ}"
+            hit = next((r for r in na.get("states", {}).get(st, {}).get("races", [])
+                        if r.get("type") == typ), None)
+            if hit is None:
+                stale.append(f"{label} (absent from news_analysis)")
+                continue
+            dates = []
+            for a in hit.get("articles", []):
+                try:
+                    dates.append(datetime.date.fromisoformat(a.get("date", "")))
+                except ValueError:
+                    pass
+            if dates and max(dates) >= cutoff:
+                fresh.append(label)
+            else:
+                stale.append(f"{label} (newest {max(dates).isoformat() if dates else 'none'})")
+    return fresh, stale
+
+
+def check_local(max_age_days: int, refresh_window_days: int = 10):
     print("LOCAL checks:")
 
     # L1/L2/L3 — news_analysis.json
@@ -107,6 +145,25 @@ def check_local(max_age_days: int):
         bad_leans = {k: v for k, v in cfg.get("outlet_lean", {}).items() if not (-2 <= v <= 2)}
         if bad_leans:
             record("L4-leans", "FAIL", f"outlet_lean out of range: {bad_leans}")
+
+        # L2b — did the refresh actually touch every configured race?
+        if na:
+            cov = _refresh_coverage(na, cfg, refresh_window_days)
+            if cov is None:
+                record("L2b-coverage", "WARN", "cannot compute: generated date unparseable")
+            else:
+                fresh, stale = cov
+                total = len(fresh) + len(stale)
+                if not stale:
+                    record("L2b-coverage", "PASS",
+                           f"all {total} configured races refreshed "
+                           f"(article within {refresh_window_days}d of generated)")
+                else:
+                    shown = "; ".join(stale[:8])
+                    more = f" (+{len(stale) - 8} more)" if len(stale) > 8 else ""
+                    record("L2b-coverage", "WARN",
+                           f"{len(fresh)}/{total} configured races refreshed — "
+                           f"{len(stale)} stale: {shown}{more}")
     except Exception as e:  # noqa: BLE001
         record("L4-config", "FAIL", f"news_config.json: {e}")
 
@@ -301,12 +358,15 @@ def main():
     ap.add_argument("--sheet", action="store_true")
     ap.add_argument("--sheet-id", default="")
     ap.add_argument("--max-age", type=int, default=10, help="max staleness in days")
+    ap.add_argument("--refresh-window", type=int, default=10,
+                    help="L2b: a configured race counts as refreshed only if it has an "
+                         "article dated within this many days of news_analysis.generated")
     args = ap.parse_args()
     if not (args.local or args.sheet):
         ap.error("pass --local and/or --sheet")
 
     if args.local:
-        check_local(args.max_age)
+        check_local(args.max_age, args.refresh_window)
     if args.sheet:
         if not args.sheet_id:
             ap.error("--sheet requires --sheet-id")
