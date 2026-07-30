@@ -90,16 +90,32 @@ fi
 echo "  clean"
 
 # ── 2. pre-flight validation ─────────────────────────────────────────────────
-step "Validating pending patch"
-python3 validate_patch.py constants_patch.json \
-  || die "patch validation failed — fix the patch before committing"
+# A pending patch is the normal state, but not the only legitimate one: if the
+# apply job ran mid-cycle (manual dispatch, or a re-run) the patch is already
+# archived and gone. That is fine — but ONLY if some archive carries this
+# cycle's date. Tying it to the newest weekly briefing is what separates
+# "applied" from "lost": a patch that vanished without being applied leaves no
+# archive bearing that date.
+PRE_ARGS=()
+if [ -f constants_patch.json ]; then
+  step "Validating pending patch"
+  python3 validate_patch.py constants_patch.json \
+    || die "patch validation failed — fix the patch before committing"
+else
+  step "No pending patch — verifying this cycle's patch was applied, not lost"
+  NEWEST_BRIEF=$(ls -1 weekly_briefing_*.md 2>/dev/null | sort | tail -1 \
+                 | sed 's/.*weekly_briefing_\(.*\)\.md/\1/')
+  [ -z "$NEWEST_BRIEF" ] && die "no pending patch and no weekly briefing to reconcile against"
+  echo "  newest briefing: $NEWEST_BRIEF"
+  PRE_ARGS=(--consumed-ok "$NEWEST_BRIEF")
+fi
 
 step "Running local verifier"
 python3 verify_dashboard.py --local \
   || die "verifier reported FAILURES — resolve them before committing"
 
 step "Asserting patch-file integrity (pre-commit)"
-python3 check_patch_integrity.py \
+python3 check_patch_integrity.py "${PRE_ARGS[@]}" \
   || die "patch files are already damaged — repair before committing"
 
 # ── 3. stage an explicit allowlist ───────────────────────────────────────────
@@ -130,9 +146,18 @@ do
 done
 git --no-pager diff --cached --stat || true
 
+# Nothing to stage is not the same as nothing to do: Claude can commit from the
+# Cowork sandbox but cannot push (no GitHub credentials there), so this script
+# is often re-run later purely to ship commits that already exist.
+SKIP_COMMIT=0
 if git diff --cached --quiet; then
-  echo "  nothing staged — no changes to commit"
-  exit 0
+  UNPUSHED=$(git rev-list --count '@{u}..HEAD' 2>/dev/null || echo 0)
+  if [ "$UNPUSHED" = "0" ]; then
+    echo "  nothing staged and nothing unpushed — already up to date"
+    exit 0
+  fi
+  echo "  nothing new to stage, but $UNPUSHED unpushed commit(s) — will sync and push those"
+  SKIP_COMMIT=1
 fi
 
 if [ "$DRY_RUN" -eq 1 ]; then
@@ -142,8 +167,12 @@ if [ "$DRY_RUN" -eq 1 ]; then
 fi
 
 # ── 4. commit ────────────────────────────────────────────────────────────────
-step "Committing"
-git commit -m "$MSG" || die "commit failed"
+if [ "$SKIP_COMMIT" -eq 0 ]; then
+  step "Committing"
+  git commit -m "$MSG" || die "commit failed"
+else
+  step "Skipping commit (shipping existing unpushed commits)"
+fi
 
 # Remember the pending patch's LAST_UPDATED before syncing. If the apply job ran
 # while this cycle was in progress, the merge will legitimately remove the
@@ -176,7 +205,7 @@ if ! git push; then
   echo "  push rejected — origin moved; syncing once and retrying"
   git -c merge.renames=false pull --no-rebase --no-edit \
     || rewind_and_die "retry pull conflicted"
-  python3 check_patch_integrity.py \
+  python3 check_patch_integrity.py "${POST_ARGS[@]}" \
     || rewind_and_die "retry merge damaged the patch files. ABORTED BEFORE PUSH."
   git push || die "push failed twice — origin may be protected or the network is down"
 fi
