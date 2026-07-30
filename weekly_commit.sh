@@ -166,6 +166,7 @@ python3 check_patch_integrity.py "${PRE_ARGS[@]}" \
 # verification_report.json is gitignored and would error if named.
 step "Staging weekly files"
 for p in \
+  .gitignore \
   constants_patch.json \
   'constants_patch.applied_*.json' \
   history.json \

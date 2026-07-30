@@ -37,3 +37,7 @@ news_raw.json
 verification_report.json
 PROJECT_OVERVIEW.md
 ROADMAP.html
+
+# GitHub token used by weekly_commit.sh to push from the Cowork sandbox.
+# NEVER commit this. Fine-grained PAT, single repo, contents:write only.
+.gh_token
