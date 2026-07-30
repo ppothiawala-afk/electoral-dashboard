@@ -261,6 +261,12 @@ fi
 
 # ── 8. confirm ───────────────────────────────────────────────────────────────
 step "Done"
-python3 -c "import json;print('  pending patch LAST_UPDATED:', json.load(open('constants_patch.json'))['updates']['LAST_UPDATED'])"
 echo "  pushed: $(git rev-parse --short HEAD)"
-echo "  Monday's apply job will pick this up."
+if [ -f constants_patch.json ]; then
+  python3 -c "import json;print('  pending patch LAST_UPDATED:', json.load(open('constants_patch.json'))['updates']['LAST_UPDATED'])"
+  echo "  Monday's apply job will pick this up."
+else
+  NEWEST_ARCHIVE=$(ls -1 constants_patch.applied_*.json 2>/dev/null | sort | tail -1)
+  echo "  no pending patch — this cycle's was already applied and archived as ${NEWEST_ARCHIVE:-unknown}."
+  echo "  nothing is waiting for the next apply run."
+fi
