@@ -26,7 +26,12 @@
 #   ./weekly_commit.sh "Weekly 2026-08-03: ..."   # commit + push
 #   ./weekly_commit.sh --dry-run                  # run all gates, change nothing
 #
-set -uo pipefail
+# NOTE: deliberately no `set -u`. macOS ships bash 3.2 at /bin/bash, where
+# expanding an empty array as "${arr[@]}" under `set -u` aborts with "unbound
+# variable". This script passes optional flag arrays around, so -u would break
+# it on the very machine the LaunchAgent runs on. Every variable is explicitly
+# initialised instead.
+set -o pipefail
 cd "$(dirname "$0")" || exit 1
 
 DRY_RUN=0
@@ -194,8 +199,16 @@ fi
 
 # ── 6. post-merge integrity gate ─────────────────────────────────────────────
 step "Re-asserting patch-file integrity (post-merge)"
+# If a patch was pending before the sync, it may legitimately have been consumed
+# by the merge. If none was pending to begin with, carry the pre-flight
+# reconciliation (briefing-date) forward rather than reverting to the strict
+# "a pending patch must exist" rule, which would fail a correctly-applied cycle.
 POST_ARGS=()
-[ -n "$PENDING_LU" ] && POST_ARGS=(--consumed-ok "$PENDING_LU")
+if [ -n "$PENDING_LU" ]; then
+  POST_ARGS=(--consumed-ok "$PENDING_LU")
+elif [ "${#PRE_ARGS[@]}" -gt 0 ]; then
+  POST_ARGS=("${PRE_ARGS[@]}")
+fi
 python3 check_patch_integrity.py "${POST_ARGS[@]}" \
   || rewind_and_die "the merge damaged the patch files (see RECOVERY above). ABORTED BEFORE PUSH."
 
