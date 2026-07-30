@@ -478,6 +478,27 @@ what the user needs to decide. Never describe a run as complete when the push di
   `WEBSITE_PLAN.md` are intentionally uncommitted pending Ghost secrets, and committing the
   workflow without the script would break the Monday job.
 
+### How the push works (and the two dead ends)
+
+`weekly_commit.sh` reads `.gh_token` — a fine-grained PAT scoped to this repo with
+`contents:write`, gitignored — and injects it into the remote URL for that single push. It is never
+written to `.git/config`, never echoed, and redacted from any git output. The script refuses to run
+if `.gh_token` ever becomes tracked. If the file is absent it falls back to the system credential
+helper, so running on the Mac still works.
+
+Two approaches were tried and abandoned on 2026-07-29; do not revive them:
+
+- **Pushing from the sandbox with the system helper** — there are no credentials there:
+  `fatal: could not read Username for 'https://github.com'`.
+- **A macOS LaunchAgent running the script natively** — macOS TCC blocks background launchd jobs
+  from `~/Documents`, where this repo lives: `bash: ./weekly_commit.sh: Operation not permitted`.
+  The only workarounds were granting Full Disk Access to `/bin/bash` (far too broad) or moving the
+  repo out of `~/Documents` (breaks the Cowork mount).
+
+**If the token expires,** the push fails cleanly with nothing sent to origin. Say so plainly in the
+summary and tell the user to mint a new fine-grained PAT (this repo only, contents:write) and
+overwrite `.gh_token`. Never work around it by asking them to paste git commands.
+
 ### Git commands you may run
 
 `git pull` (Contract 1 Step 0), `./weekly_commit.sh` (Contract 5), and any read-only inspection

@@ -59,6 +59,41 @@ if ! git config user.email >/dev/null 2>&1; then
   export GIT_COMMITTER_EMAIL="ppothiawala@gmail.com"
 fi
 
+# ── push helper ──────────────────────────────────────────────────────────────
+# The Cowork sandbox has no GitHub credentials and macOS TCC blocks launchd from
+# ~/Documents, so neither Claude nor a LaunchAgent can use the keychain. Instead
+# an optional .gh_token (fine-grained PAT, this repo only, contents:write) is
+# read at push time and injected into the remote URL for that one command. It is
+# never written to .git/config and never echoed. On the Mac, where the keychain
+# works, omit the file and this falls through to a plain `git push`.
+TOKEN=""
+if [ -f .gh_token ]; then
+  # Refuse to run if the token ever became tracked — that would be a live leak.
+  if git ls-files --error-unmatch .gh_token >/dev/null 2>&1; then
+    printf '\n\033[31m✖ .gh_token is TRACKED by git. Stop and rotate that token now:\n' >&2
+    printf '    git rm --cached .gh_token\n  Then revoke it on GitHub and issue a new one.\033[0m\n' >&2
+    exit 1
+  fi
+  TOKEN=$(tr -d ' \t\n\r' < .gh_token)
+fi
+
+do_push() {
+  if [ -z "$TOKEN" ]; then
+    git push
+    return $?
+  fi
+  # Strip scheme and any existing credentials, then re-attach the token.
+  local url path_part authed rc
+  url=$(git remote get-url origin)
+  path_part=${url#https://}
+  path_part=${path_part#*@}
+  authed="https://x-access-token:${TOKEN}@${path_part}"
+  # Redact the token from anything git prints, including failure messages.
+  git push "$authed" "HEAD:main" 2>&1 | sed "s|${TOKEN}|***REDACTED***|g"
+  rc=${PIPESTATUS[0]}
+  return $rc
+}
+
 # Rewind to a clean state, preserving the local commit, then fail.
 #
 # NEVER `reset --hard` here. On 2026-07-29 this function used it and silently
@@ -214,13 +249,14 @@ python3 check_patch_integrity.py "${POST_ARGS[@]}" \
 
 # ── 7. push, with one retry if origin moved underneath us ────────────────────
 step "Pushing"
-if ! git push; then
-  echo "  push rejected — origin moved; syncing once and retrying"
+[ -n "$TOKEN" ] && echo "  using .gh_token" || echo "  using the system git credential helper"
+if ! do_push; then
+  echo "  push rejected — origin may have moved; syncing once and retrying"
   git -c merge.renames=false pull --no-rebase --no-edit \
     || rewind_and_die "retry pull conflicted"
   python3 check_patch_integrity.py "${POST_ARGS[@]}" \
     || rewind_and_die "retry merge damaged the patch files. ABORTED BEFORE PUSH."
-  git push || die "push failed twice — origin may be protected or the network is down"
+  do_push || die "push failed twice — check the token scope/expiry, or the network"
 fi
 
 # ── 8. confirm ───────────────────────────────────────────────────────────────
