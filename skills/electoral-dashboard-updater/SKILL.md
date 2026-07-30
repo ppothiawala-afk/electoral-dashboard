@@ -41,10 +41,43 @@ the old "patch applied 7 days stale" bug). Never assume a cron will run the rese
 Before you research or overwrite `constants_patch.json`, confirm last week's cycle actually
 completed. If it did not, you must NOT silently overwrite the pending patch.
 
-**Check A — last week's patch was consumed.** In the project folder:
+### Step 0 — SYNC THE CLONE FIRST (mandatory, before any file write)
+
+**This is the one git command you are allowed to run.** Everything else stays manual — you still
+never `add`, `commit`, or `push`. Run this in the project folder before Check A:
+
+```bash
+cd ~/Documents/Claude/Projects/"Electoral Dashboard"
+find .git -maxdepth 1 -name "*.lock" -delete
+git pull --no-rebase --no-edit
+```
+
+The lock-file delete is not optional — sandbox git has repeatedly left stale `index.lock` and
+`HEAD.lock` in this repo, and a pull will fail on them.
+
+> 🚫 **The rename trap (this destroyed a full week's patch on 2026-07-29).** The Monday apply job
+> archives by *renaming* `constants_patch.json` → `constants_patch.applied_YYYY-MM-DD.json` and
+> pushes that commit back. If you write a NEW `constants_patch.json` and it gets committed while
+> the clone is still behind, the later `git pull` detects a 100%-similarity rename and merges the
+> new content **into the archive path** — with **no conflict** and a harmless-looking diffstat
+> (`constants_patch.json => constants_patch.applied_*.json | 0`). The result is no pending patch
+> for Monday *and* an archive holding the wrong week's content. Pulling FIRST removes the
+> divergence, so the rename has nothing to collide with. Never skip Step 0 to save time.
+
+If the pull fails or the folder is not a clean checkout, **stop and report** rather than writing a
+patch onto a diverged clone — say so in the briefing and let the user resolve it.
+
+**Check A — last week's patch was consumed.** After Step 0, in the project folder:
 - There should be an archive `constants_patch.applied_YYYY-MM-DD.json` dated **last Monday**.
 - There should be **no** leftover `constants_patch.json` from a prior week (a leftover means
   the apply job never ran — the patch is unapplied).
+
+> ⚠️ **The archive file is only a proxy — the Sheet is the authority.** Before declaring Check A
+> failed, read the Sheet: if Constants `LAST_UPDATED` equals last Monday's date and last week's
+> row changes are visibly live, the patch **was** applied and the missing archive just means the
+> clone was stale (which Step 0 now fixes). In that case it is safe to write a new patch — say so
+> explicitly in the briefing rather than halting. Only treat the patch as genuinely unapplied when
+> the Sheet also fails to show it.
 
 **Check B — history matches last week's briefing.** Read `history.json`. Its **last** `weeks[]`
 entry's `date` and `briefing` should correspond to last week's `weekly_briefing_YYYY-MM-DD.md`.
@@ -389,7 +422,53 @@ Do NOT consider the run complete until both pass:
    fallbacks, State News wiring, pending-patch validity, and history ordering. Fix any ❌
    before finishing. (The Actions job re-runs this plus live-Sheet checks post-apply.)
 
-Only after all four checks pass do you tell the user the weekly cycle is done.
+5. **Assert patch-file integrity.** Neither `validate_patch.py` nor `verify_dashboard.py --local`
+   catches a *missing* pending patch — L7 passes silently when there is nothing to validate, which
+   is exactly how the 2026-07-29 rename trap went unnoticed. Run this explicitly:
+
+   ```bash
+   cd ~/Documents/Claude/Projects/"Electoral Dashboard" && python3 -c "
+   import json,glob,re,sys
+   ok=True
+   if not glob.glob('constants_patch.json'):
+       print('FAIL: no pending constants_patch.json'); ok=False
+   else:
+       print('pending ->', json.load(open('constants_patch.json'))['updates']['LAST_UPDATED'])
+   for f in sorted(glob.glob('constants_patch.applied_*.json')):
+       d=json.load(open(f)).get('updates',{}).get('LAST_UPDATED')
+       m=re.search(r'applied_(\d{4}-\d{2}-\d{2})',f).group(1)
+       if d and d>m: print('FAIL: archive newer than its name:',f,'->',d); ok=False
+   sys.exit(0 if ok else 1)"
+   ```
+
+   An archive whose `LAST_UPDATED` is *later* than its own filename date means new content was
+   merged into an old archive — the rename trap. (An *earlier* date is fine and normal: archives
+   are named for the apply date, `LAST_UPDATED` for the research date, so the 2026-07-15 archive
+   legitimately reads 2026-07-14.) If this fails, recover both files from git history:
+   `git show <bot-commit>:constants_patch.applied_YYYY-MM-DD.json > constants_patch.applied_YYYY-MM-DD.json`
+   and `git show <research-commit>:constants_patch.json > constants_patch.json`, then re-validate.
+
+Only after all five checks pass do you tell the user the weekly cycle is done.
+
+---
+
+## Handing off the git block (paste-safety rules)
+
+Every run ends with a paste-ready `git add`/`commit`/`push` block for the user. **The user's shell
+is zsh on macOS**, which breaks blocks in ways bash does not. The 2026-07-29 run lost twenty
+minutes to all three of these:
+
+- **No `#` comments anywhere.** zsh has `INTERACTIVE_COMMENTS` off by default, so `#` and
+  everything after it is parsed as arguments, not a comment.
+- **No apostrophes**, even inside what you intend as prose ("the bot's archive" opens a `quote>`
+  continuation prompt and swallows the rest of the block).
+- **Never stage `verification_report.json`** — it is gitignored and `git add` will error on it.
+- **Never suggest `git add -A`.** `weekly-apply.yml`, `publish_to_ghost.py` and `WEBSITE_PLAN.md`
+  are intentionally uncommitted pending Ghost secrets; committing the workflow without the script
+  would break the Monday job. Always list the changed files by name.
+
+With Step 0 in place the end-of-run block is a plain add/commit/push — no pull, no stash, because
+the clone was already synced at pre-flight.
 
 ---
 
