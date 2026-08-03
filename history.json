@@ -744,8 +744,8 @@
         "house_vacancies": 4,
         "senate_r": 53,
         "senate_d": 47,
-        "senate_i": 3,
-        "notes": "No membership changes this week. Four House vacancies hold (CA-14, FL-20, GA-13, TX-23); GA-13 goes to an Aug 25 runoff after the Jul 28 special produced no majority."
+        "senate_i": 2,
+        "notes": "No membership changes this week. Four House vacancies hold (CA-14, FL-20, GA-13, TX-23); GA-13 goes to an Aug 25 runoff after the Jul 28 special produced no majority. SENATE_I corrected from 3 to 2 (Murkowski is a Republican on the official senate.gov roster; only Sanders and King are independents)."
       },
       "rating_changes": [
         {

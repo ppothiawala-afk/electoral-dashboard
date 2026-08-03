@@ -138,12 +138,21 @@ through `constants_patch.json`.
 ### 2.3 Invariants (must always hold)
 
 - **HOUSE (exclusive):** `HOUSE_R + HOUSE_D + HOUSE_I + HOUSE_VACANCIES == 435`.
-- **SENATE (overlapping):** `SENATE_R + SENATE_D == 100`. The three independents
-  (**Sanders-VT, King-ME, Murkowski-AK**) are counted **INSIDE** the R/D caucus totals.
-  `SENATE_I` (= 3) is informational and a **subset** — it is NOT added on top.
-  > 🚫 **Senate-sums-to-103 trap.** `SENATE_R + SENATE_D + SENATE_I = 103` is **CORRECT**, not a
+- **SENATE (overlapping):** `SENATE_R + SENATE_D == 100`. The **two** independents
+  (**Sanders-VT, King-ME**) are counted **INSIDE** the D caucus total.
+  `SENATE_I` (= 2) is informational and a **subset** — it is NOT added on top.
+  > 🚫 **Senate-overlap trap.** `SENATE_R + SENATE_D + SENATE_I = 102` is **CORRECT**, not a
   > bug. NEVER "fix" the Senate to sum to 100 by lowering `SENATE_R`/`SENATE_D` to net out the
   > independents. The only Senate sum invariant is `SENATE_R + SENATE_D == 100`.
+  > ⚠️ **Murkowski is NOT an independent — corrected 2026-08-03.** This skill previously said
+  > `SENATE_I = 3`, counting Murkowski-AK alongside Sanders and King. That was wrong on the
+  > official record: [senate.gov's party division](https://www.senate.gov/history/partydiv.htm)
+  > lists 53 R / 45 D / 2 I, and the dashboard's own Senate tab has always carried Murkowski as
+  > **R**. She has publicly floated leaving the GOP but has not done so. Do not restore the 3
+  > without a primary source showing she actually switched — and if she ever does, she moves
+  > *out* of `SENATE_R` and into the D-caucus total only if she caucuses D. Re-verify against
+  > senate.gov rather than assuming; this error survived several months of weekly runs because
+  > the number was hard-coded here and never re-checked.
 - Ratings ∈ the 7-point enum. Dates are ISO `YYYY-MM-DD`.
 - **Kevin Kiley (CA-03)** is Independent but caucuses R → counts as **I** in `HOUSE_I`, not R.
   His sheet Party cell should be "I". (Same shape of edge case: a member who caucuses with a
@@ -275,7 +284,7 @@ substitute the homepage. (`verify_dashboard.py --local` fails on homepage-only U
 Current N House vacancies:
 - [ST-DD] ([Member, Party]) — [status, source inline]
 
-Senate: XR / XD / XI — [Sanders-VT, King-ME, Murkowski-AK counted inside caucus totals; no change / explain]
+Senate: XR / XD / XI — [Sanders-VT and King-ME counted inside the D caucus total; Murkowski-AK is R; no change / explain]
 
 ---
 

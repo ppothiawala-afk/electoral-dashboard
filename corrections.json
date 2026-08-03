@@ -108,6 +108,15 @@
       "caught_by": "Weekly ratings verification subagent (Contract 3.5), 2026-08-03 run.",
       "impact": "Citation date only, in the Senate tab Notes cell. No rating or chamber effect.",
       "source": "https://www.cookpolitical.com/analysis/senate/texas-senate/texas-senate-moves-lean-republican-after-paxton-runoff-win"
+    },
+    {
+      "date": "2026-08-03",
+      "area": "Constants - SENATE_I",
+      "wrong": "Constants tab published SENATE_I = 3, counting Lisa Murkowski (AK) as an independent alongside Bernie Sanders (VT) and Angus King (ME).",
+      "right": "There are 2 independents. senate.gov's official party division lists 53 R / 45 D / 2 I; Murkowski is a Republican, which is also how this dashboard's own Senate tab has always carried her. She has publicly floated leaving the GOP but has not done so.",
+      "caught_by": "Weekly membership and balance verification subagent (Contract 3.5), 2026-08-03 run. The value was hard-coded in SKILL.md and had never been re-checked against the primary source.",
+      "impact": "Constants tab SENATE_I cell and any Senate summary line rendering it, wrong for several months. No invariant effect: SENATE_I is a subset of the caucus totals, not an addend, so SENATE_R + SENATE_D == 100 held throughout and no rating or seat count was affected. SKILL.md corrected in the same commit.",
+      "source": "https://www.senate.gov/history/partydiv.htm"
     }
   ]
 }
