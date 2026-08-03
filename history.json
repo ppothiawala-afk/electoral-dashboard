@@ -1,737 +1,818 @@
 {
- "generated": "2026-06-29",
- "weeks": [
-  {
-   "date": "2026-05-26",
-   "label": "May 26",
-   "briefing": "weekly_briefing_2026-05-26.md",
-   "chamber": {
-    "house_r": 220,
-    "house_d": 213,
-    "house_i": 1,
-    "house_vacancies": 1,
-    "senate_r": 53,
-    "senate_d": 47,
-    "senate_i": 3,
-    "notes": "Early cycle baseline. LaMalfa (R-CA-01) died Jan 6; seat vacant."
-   },
-   "rating_changes": [
+  "generated": "2026-06-29",
+  "weeks": [
     {
-     "tab": "Senate",
-     "race": "GA — Ossoff (D) vs Carter (R)",
-     "from": "Toss-up",
-     "to": "Lean D",
-     "source": "Sabato, Apr 13"
+      "date": "2026-05-26",
+      "label": "May 26",
+      "briefing": "weekly_briefing_2026-05-26.md",
+      "chamber": {
+        "house_r": 220,
+        "house_d": 213,
+        "house_i": 1,
+        "house_vacancies": 1,
+        "senate_r": 53,
+        "senate_d": 47,
+        "senate_i": 3,
+        "notes": "Early cycle baseline. LaMalfa (R-CA-01) died Jan 6; seat vacant."
+      },
+      "rating_changes": [
+        {
+          "tab": "Senate",
+          "race": "GA — Ossoff (D) vs Carter (R)",
+          "from": "Toss-up",
+          "to": "Lean D",
+          "source": "Sabato, Apr 13"
+        },
+        {
+          "tab": "Senate",
+          "race": "NC — Open (Cooper D vs Whatley R)",
+          "from": "Toss-up",
+          "to": "Lean D",
+          "source": "Sabato, Apr 13"
+        },
+        {
+          "tab": "Senate",
+          "race": "OH Special — Husted (R) vs Brown (D)",
+          "from": "Lean R",
+          "to": "Toss-up",
+          "source": "Sabato, Apr 13"
+        },
+        {
+          "tab": "Governors",
+          "race": "MI — Open (Whitmer term-limited)",
+          "from": "Toss-up",
+          "to": "Lean D",
+          "source": "Cook, May 21"
+        }
+      ],
+      "snapshot": {
+        "Senate": {
+          "AK": "Lean R",
+          "AR": "Solid R",
+          "CO": "Solid D",
+          "DE": "Solid D",
+          "FL": "Solid R",
+          "GA": "Lean D",
+          "ID": "Solid R",
+          "IL": "Solid D",
+          "IA": "Likely R",
+          "KS": "Solid R",
+          "KY": "Solid R",
+          "LA": "Solid R",
+          "ME": "Toss-up",
+          "MA": "Solid D",
+          "MI": "Toss-up",
+          "MN": "Likely D",
+          "MS": "Solid R",
+          "MT": "Solid R",
+          "NE": "Likely R",
+          "NH": "Lean D",
+          "NJ": "Solid D",
+          "NM": "Solid D",
+          "NC": "Lean D",
+          "OK": "Solid R",
+          "OR": "Solid D",
+          "RI": "Solid D",
+          "SC": "Solid R",
+          "SD": "Solid R",
+          "TN": "Solid R",
+          "TX": "Likely R",
+          "VA": "Solid D",
+          "WV": "Solid R",
+          "WY": "Solid R",
+          "OH_special": "Toss-up",
+          "FL_special": "Solid R"
+        },
+        "Governors": {
+          "AL": "Solid R",
+          "AK": "Likely R",
+          "AZ": "Toss-up",
+          "AR": "Solid R",
+          "CA": "Solid D",
+          "CO": "Solid D",
+          "CT": "Solid D",
+          "FL": "Solid R",
+          "GA": "Toss-up",
+          "HI": "Solid D",
+          "ID": "Solid R",
+          "IL": "Solid D",
+          "IA": "Toss-up",
+          "KS": "Lean R",
+          "ME": "Likely D",
+          "MD": "Solid D",
+          "MA": "Solid D",
+          "MI": "Lean D",
+          "MN": "Solid D",
+          "NE": "Solid R",
+          "NV": "Toss-up",
+          "NH": "Likely R",
+          "NM": "Likely D",
+          "NY": "Solid D",
+          "OH": "Lean R",
+          "OK": "Solid R",
+          "OR": "Solid D",
+          "PA": "Solid D",
+          "RI": "Solid D",
+          "SC": "Solid R",
+          "SD": "Solid R",
+          "TN": "Solid R",
+          "TX": "Solid R",
+          "VT": "Solid R",
+          "WI": "Toss-up",
+          "WY": "Solid R"
+        }
+      }
     },
     {
-     "tab": "Senate",
-     "race": "NC — Open (Cooper D vs Whatley R)",
-     "from": "Toss-up",
-     "to": "Lean D",
-     "source": "Sabato, Apr 13"
+      "date": "2026-06-08",
+      "label": "Jun 8",
+      "briefing": "weekly_briefing_2026-06-08.md",
+      "chamber": {
+        "house_r": 217,
+        "house_d": 212,
+        "house_i": 1,
+        "house_vacancies": 5,
+        "senate_r": 53,
+        "senate_d": 47,
+        "senate_i": 3,
+        "notes": "5 vacancies: CA-01, CA-14, TX-23, FL-20, GA-13. Clay Fuller (R) sworn in GA-14 Apr 14."
+      },
+      "rating_changes": [
+        {
+          "tab": "Senate",
+          "race": "IA — Ernst open (Hinson R vs Turek D)",
+          "from": "Likely R",
+          "to": "Lean R",
+          "source": "Cook & Sabato, Jun 2"
+        },
+        {
+          "tab": "Senate",
+          "race": "TX — Cornyn→Paxton (R) vs Talarico (D)",
+          "from": "Likely R",
+          "to": "Lean R",
+          "source": "Cook, Jun 5"
+        },
+        {
+          "tab": "House",
+          "race": "FL-23 — Moskowitz (D)",
+          "from": "Likely D",
+          "to": "Solid D",
+          "source": "Cook, Jun 3"
+        },
+        {
+          "tab": "House",
+          "race": "IA-02 — Hinson (R)",
+          "from": "Likely R",
+          "to": "Lean R",
+          "source": "Sabato, Jun 2"
+        }
+      ],
+      "snapshot": {
+        "Senate": {
+          "AK": "Lean R",
+          "AR": "Solid R",
+          "CO": "Solid D",
+          "DE": "Solid D",
+          "FL": "Solid R",
+          "GA": "Lean D",
+          "ID": "Solid R",
+          "IL": "Solid D",
+          "IA": "Lean R",
+          "KS": "Solid R",
+          "KY": "Solid R",
+          "LA": "Solid R",
+          "ME": "Toss-up",
+          "MA": "Solid D",
+          "MI": "Toss-up",
+          "MN": "Likely D",
+          "MS": "Solid R",
+          "MT": "Solid R",
+          "NE": "Likely R",
+          "NH": "Lean D",
+          "NJ": "Solid D",
+          "NM": "Solid D",
+          "NC": "Lean D",
+          "OK": "Solid R",
+          "OR": "Solid D",
+          "RI": "Solid D",
+          "SC": "Solid R",
+          "SD": "Solid R",
+          "TN": "Solid R",
+          "TX": "Lean R",
+          "VA": "Solid D",
+          "WV": "Solid R",
+          "WY": "Solid R",
+          "OH_special": "Toss-up",
+          "FL_special": "Solid R"
+        },
+        "Governors": {
+          "AL": "Solid R",
+          "AK": "Likely R",
+          "AZ": "Toss-up",
+          "AR": "Solid R",
+          "CA": "Solid D",
+          "CO": "Solid D",
+          "CT": "Solid D",
+          "FL": "Solid R",
+          "GA": "Toss-up",
+          "HI": "Solid D",
+          "ID": "Solid R",
+          "IL": "Solid D",
+          "IA": "Toss-up",
+          "KS": "Lean R",
+          "ME": "Likely D",
+          "MD": "Solid D",
+          "MA": "Solid D",
+          "MI": "Lean D",
+          "MN": "Solid D",
+          "NE": "Solid R",
+          "NV": "Toss-up",
+          "NH": "Likely R",
+          "NM": "Likely D",
+          "NY": "Solid D",
+          "OH": "Lean R",
+          "OK": "Solid R",
+          "OR": "Solid D",
+          "PA": "Solid D",
+          "RI": "Solid D",
+          "SC": "Solid R",
+          "SD": "Solid R",
+          "TN": "Solid R",
+          "TX": "Solid R",
+          "VT": "Solid R",
+          "WI": "Toss-up",
+          "WY": "Solid R"
+        }
+      }
     },
     {
-     "tab": "Senate",
-     "race": "OH Special — Husted (R) vs Brown (D)",
-     "from": "Lean R",
-     "to": "Toss-up",
-     "source": "Sabato, Apr 13"
+      "date": "2026-06-15",
+      "label": "Jun 15",
+      "briefing": "weekly_briefing_2026-06-15.md",
+      "chamber": {
+        "house_r": 218,
+        "house_d": 212,
+        "house_i": 1,
+        "house_vacancies": 4,
+        "senate_r": 53,
+        "senate_d": 47,
+        "senate_i": 3,
+        "notes": "James Gallagher (R) sworn in Jun 10 filling CA-01. 4 vacancies: CA-14, TX-23, FL-20, GA-13."
+      },
+      "rating_changes": [
+        {
+          "tab": "Senate",
+          "race": "AK — Sullivan (R) vs Peltola (D)",
+          "from": "Lean R",
+          "to": "Toss-up",
+          "source": "Sabato, Jun 11"
+        },
+        {
+          "tab": "Senate",
+          "race": "NC — Open (Cooper D vs Whatley R)",
+          "from": "Toss-up",
+          "to": "Lean D",
+          "source": "Sabato, Jun 11"
+        },
+        {
+          "tab": "House",
+          "race": "CA-06 — Bera (D)",
+          "from": "Likely D",
+          "to": "Lean D",
+          "source": "Inside Elections, Jun 11"
+        }
+      ],
+      "snapshot": {
+        "Senate": {
+          "AK": "Toss-up",
+          "AR": "Solid R",
+          "CO": "Solid D",
+          "DE": "Solid D",
+          "FL": "Solid R",
+          "GA": "Lean D",
+          "ID": "Solid R",
+          "IL": "Solid D",
+          "IA": "Lean R",
+          "KS": "Solid R",
+          "KY": "Solid R",
+          "LA": "Solid R",
+          "ME": "Toss-up",
+          "MA": "Solid D",
+          "MI": "Toss-up",
+          "MN": "Likely D",
+          "MS": "Solid R",
+          "MT": "Solid R",
+          "NE": "Likely R",
+          "NH": "Lean D",
+          "NJ": "Solid D",
+          "NM": "Solid D",
+          "NC": "Lean D",
+          "OK": "Solid R",
+          "OR": "Solid D",
+          "RI": "Solid D",
+          "SC": "Solid R",
+          "SD": "Solid R",
+          "TN": "Solid R",
+          "TX": "Lean R",
+          "VA": "Solid D",
+          "WV": "Solid R",
+          "WY": "Solid R",
+          "OH_special": "Toss-up",
+          "FL_special": "Solid R"
+        },
+        "Governors": {
+          "AL": "Solid R",
+          "AK": "Likely R",
+          "AZ": "Toss-up",
+          "AR": "Solid R",
+          "CA": "Solid D",
+          "CO": "Solid D",
+          "CT": "Solid D",
+          "FL": "Solid R",
+          "GA": "Toss-up",
+          "HI": "Solid D",
+          "ID": "Solid R",
+          "IL": "Solid D",
+          "IA": "Toss-up",
+          "KS": "Lean R",
+          "ME": "Likely D",
+          "MD": "Solid D",
+          "MA": "Solid D",
+          "MI": "Lean D",
+          "MN": "Solid D",
+          "NE": "Solid R",
+          "NV": "Toss-up",
+          "NH": "Likely R",
+          "NM": "Likely D",
+          "NY": "Solid D",
+          "OH": "Lean R",
+          "OK": "Solid R",
+          "OR": "Solid D",
+          "PA": "Solid D",
+          "RI": "Solid D",
+          "SC": "Solid R",
+          "SD": "Solid R",
+          "TN": "Solid R",
+          "TX": "Solid R",
+          "VT": "Solid R",
+          "WI": "Toss-up",
+          "WY": "Solid R"
+        }
+      }
     },
     {
-     "tab": "Governors",
-     "race": "MI — Open (Whitmer term-limited)",
-     "from": "Toss-up",
-     "to": "Lean D",
-     "source": "Cook, May 21"
+      "date": "2026-06-22",
+      "label": "Jun 22",
+      "briefing": "weekly_briefing_2026-06-22.md",
+      "chamber": {
+        "house_r": 218,
+        "house_d": 212,
+        "house_i": 1,
+        "house_vacancies": 4,
+        "senate_r": 53,
+        "senate_d": 47,
+        "senate_i": 3,
+        "notes": "CA-14 special primary held Jun 16; no majority winner; runoff Aug 18. Still 4 vacancies: CA-14, TX-23, FL-20, GA-13."
+      },
+      "rating_changes": [
+        {
+          "tab": "Senate",
+          "race": "OH Special — Husted (R) vs Brown (D)",
+          "from": "Lean R",
+          "to": "Toss-up",
+          "source": "Sabato, Jun 11"
+        },
+        {
+          "tab": "Senate",
+          "race": "IA — Ernst open (Hinson R vs Turek D)",
+          "from": "Likely R",
+          "to": "Lean R",
+          "source": "Sabato, Jun 2"
+        },
+        {
+          "tab": "House",
+          "race": "MI-08 — McDonald Rivet (D)",
+          "from": "Lean D",
+          "to": "Likely D",
+          "source": "Inside Elections, Jun 11"
+        },
+        {
+          "tab": "House",
+          "race": "NC-11 — Edwards (R)",
+          "from": "Likely R",
+          "to": "Lean R",
+          "source": "Inside Elections, Jun 11"
+        },
+        {
+          "tab": "House",
+          "race": "NJ-07 — Kean (R)",
+          "from": "Toss-up",
+          "to": "Lean D",
+          "source": "Inside Elections, Jun 11"
+        },
+        {
+          "tab": "House",
+          "race": "FL-09 — Soto (D, redistricted)",
+          "from": "Solid D",
+          "to": "Likely R",
+          "source": "Cook, Jun 18"
+        },
+        {
+          "tab": "House",
+          "race": "FL-14 — Castor (D, redistricted)",
+          "from": "Solid D",
+          "to": "Lean R",
+          "source": "Cook, Jun 18"
+        }
+      ],
+      "snapshot": {
+        "Senate": {
+          "AK": "Toss-up",
+          "AR": "Solid R",
+          "CO": "Solid D",
+          "DE": "Solid D",
+          "FL": "Solid R",
+          "GA": "Lean D",
+          "ID": "Solid R",
+          "IL": "Solid D",
+          "IA": "Lean R",
+          "KS": "Solid R",
+          "KY": "Solid R",
+          "LA": "Solid R",
+          "ME": "Toss-up",
+          "MA": "Solid D",
+          "MI": "Toss-up",
+          "MN": "Likely D",
+          "MS": "Solid R",
+          "MT": "Solid R",
+          "NE": "Likely R",
+          "NH": "Lean D",
+          "NJ": "Solid D",
+          "NM": "Solid D",
+          "NC": "Lean D",
+          "OK": "Solid R",
+          "OR": "Solid D",
+          "RI": "Solid D",
+          "SC": "Solid R",
+          "SD": "Solid R",
+          "TN": "Solid R",
+          "TX": "Lean R",
+          "VA": "Solid D",
+          "WV": "Solid R",
+          "WY": "Solid R",
+          "OH_special": "Toss-up",
+          "FL_special": "Solid R"
+        },
+        "Governors": {
+          "AL": "Solid R",
+          "AK": "Likely R",
+          "AZ": "Toss-up",
+          "AR": "Solid R",
+          "CA": "Solid D",
+          "CO": "Solid D",
+          "CT": "Solid D",
+          "FL": "Solid R",
+          "GA": "Toss-up",
+          "HI": "Solid D",
+          "ID": "Solid R",
+          "IL": "Solid D",
+          "IA": "Toss-up",
+          "KS": "Lean R",
+          "ME": "Likely D",
+          "MD": "Solid D",
+          "MA": "Solid D",
+          "MI": "Lean D",
+          "MN": "Solid D",
+          "NE": "Solid R",
+          "NV": "Toss-up",
+          "NH": "Likely R",
+          "NM": "Likely D",
+          "NY": "Solid D",
+          "OH": "Lean R",
+          "OK": "Solid R",
+          "OR": "Solid D",
+          "PA": "Solid D",
+          "RI": "Solid D",
+          "SC": "Solid R",
+          "SD": "Solid R",
+          "TN": "Solid R",
+          "TX": "Solid R",
+          "VT": "Solid R",
+          "WI": "Toss-up",
+          "WY": "Solid R"
+        }
+      }
+    },
+    {
+      "date": "2026-06-29",
+      "label": "Jun 29",
+      "briefing": "weekly_briefing_2026-06-29.md",
+      "chamber": {
+        "house_r": 218,
+        "house_d": 212,
+        "house_i": 1,
+        "house_vacancies": 4,
+        "senate_r": 53,
+        "senate_d": 47,
+        "senate_i": 3,
+        "notes": "No chamber-balance change. 4 vacancies: CA-14, FL-20, GA-13, TX-23. TX Senate Challenger updated to James Talarico (D) after Paxton won May 26 GOP runoff."
+      },
+      "rating_changes": [
+        {
+          "tab": "Senate",
+          "race": "TX — Paxton (R) vs Talarico (D)",
+          "from": "Likely R",
+          "to": "Lean R",
+          "source": "Cook, Jun 26"
+        },
+        {
+          "tab": "House",
+          "race": "FL-09 — Soto (D, redistricted)",
+          "from": "Solid D",
+          "to": "Likely R",
+          "source": "Cook, Jun 25"
+        },
+        {
+          "tab": "House",
+          "race": "FL-14 — Castor (D, redistricted)",
+          "from": "Solid D",
+          "to": "Lean R",
+          "source": "Cook, Jun 25"
+        }
+      ],
+      "snapshot": {}
+    },
+    {
+      "date": "2026-07-06",
+      "label": "Jul 6",
+      "briefing": "weekly_briefing_2026-07-06.md",
+      "chamber": {
+        "house_r": 218,
+        "house_d": 212,
+        "house_i": 1,
+        "house_vacancies": 4,
+        "senate_r": 53,
+        "senate_d": 47,
+        "senate_i": 3,
+        "notes": "No membership changes. 4 vacancies: CA-14, FL-20, GA-13, TX-23. GA Governor notes corrected: Rick Jackson (R) is the GOP nominee (won Jun 16 runoff), not Burt Jones."
+      },
+      "rating_changes": [
+        {
+          "tab": "Senate",
+          "race": "AK — Sullivan (R) vs Peltola (D)",
+          "from": "Lean R",
+          "to": "Toss-up",
+          "source": "Cook, Jul 1"
+        }
+      ],
+      "snapshot": {}
+    },
+    {
+      "date": "2026-07-14",
+      "label": "Jul 14",
+      "briefing": "weekly_briefing_2026-07-14.md",
+      "chamber": {
+        "house_r": 218,
+        "house_d": 212,
+        "house_i": 1,
+        "house_vacancies": 4,
+        "senate_r": 53,
+        "senate_d": 47,
+        "senate_i": 3,
+        "notes": "Graham (R-SC) died Jul 11; sister Darline Graham Nordone (R) appointed by McMaster, sworn in Jul 14 - Senate stays 53R/47D. House unchanged; 4 vacancies: CA-14, FL-20, GA-13, TX-23. ME Senate challenger corrected (Platner won Jun 9 primary, withdrew Jul 10; Dem nominee TBD by Jul 27)."
+      },
+      "rating_changes": [
+        {
+          "tab": "Governors",
+          "race": "AZ — Hobbs (D) incumbent",
+          "from": "Toss-up",
+          "to": "Lean D",
+          "source": "Cook Political Report, Jul 10"
+        },
+        {
+          "tab": "Governors",
+          "race": "OH — open (DeWine term-limited)",
+          "from": "Lean R",
+          "to": "Toss-up",
+          "source": "Cook Political Report, Jul 10"
+        },
+        {
+          "tab": "Governors",
+          "race": "ME — open (Mills term-limited)",
+          "from": "Likely D",
+          "to": "Solid D",
+          "source": "Cook Political Report, Jul 10"
+        },
+        {
+          "tab": "Governors",
+          "race": "NM — open (Lujan Grisham term-limited)",
+          "from": "Likely D",
+          "to": "Solid D",
+          "source": "Cook Political Report, Jul 10"
+        },
+        {
+          "tab": "Governors",
+          "race": "OR — Kotek (D) incumbent",
+          "from": "Solid D",
+          "to": "Likely D",
+          "source": "Cook Political Report, Jul 10"
+        }
+      ],
+      "snapshot": {}
+    },
+    {
+      "date": "2026-07-20",
+      "label": "Jul 20",
+      "briefing": "weekly_briefing_2026-07-20.md",
+      "chamber": {
+        "house_r": 218,
+        "house_d": 212,
+        "house_i": 1,
+        "house_vacancies": 4,
+        "senate_r": 53,
+        "senate_d": 47,
+        "senate_i": 3,
+        "notes": "No membership changes this week. 4 House vacancies unchanged (CA-14, FL-20, GA-13, TX-23); Senate 53R/47D with Nordone (R-SC) seated Jul 14. ME Senate: Troy Jackson presumptive D nominee vs Collins (convention Jul 25). SC special GOP primary Aug 11 field forming (Norman entered Jul 18)."
+      },
+      "rating_changes": [
+        {
+          "tab": "House",
+          "race": "CA-45 — Tran (D)",
+          "from": "Lean D",
+          "to": "Likely D",
+          "source": "Cook Political Report, Jul 16"
+        },
+        {
+          "tab": "House",
+          "race": "NY-19 — Riley (D)",
+          "from": "Lean D",
+          "to": "Likely D",
+          "source": "Cook Political Report, Jul 16"
+        },
+        {
+          "tab": "House",
+          "race": "KY-06 — open (Barr retiring)",
+          "from": "Solid R",
+          "to": "Likely R",
+          "source": "Cook Political Report, Jul 16"
+        },
+        {
+          "tab": "House",
+          "race": "NH-02 — Goodlander (D)",
+          "from": "Likely D",
+          "to": "Solid D",
+          "source": "Cook Political Report, Jul 16"
+        },
+        {
+          "tab": "House",
+          "race": "OR-05 — Bynum (D)",
+          "from": "Likely D",
+          "to": "Solid D",
+          "source": "Cook Political Report, Jul 16"
+        },
+        {
+          "tab": "House",
+          "race": "TX-15 — De La Cruz (R)",
+          "from": "Likely R",
+          "to": "Lean R",
+          "source": "Cook Political Report, Jul 16"
+        },
+        {
+          "tab": "House",
+          "race": "CA-22 — Valadao (R)",
+          "from": "Toss-up",
+          "to": "Lean D",
+          "source": "Sabato's Crystal Ball, Jul 16"
+        },
+        {
+          "tab": "House",
+          "race": "ME-02 — Golden (D)",
+          "from": "Lean R",
+          "to": "Likely R",
+          "source": "Sabato's Crystal Ball, Jul 16 (sheet already Likely R; no sheet change)"
+        }
+      ],
+      "snapshot": {}
+    },
+    {
+      "date": "2026-07-29",
+      "label": "Jul 29",
+      "briefing": "weekly_briefing_2026-07-29.md",
+      "chamber": {
+        "house_r": 218,
+        "house_d": 212,
+        "house_i": 1,
+        "house_vacancies": 4,
+        "senate_r": 53,
+        "senate_d": 47,
+        "senate_i": 3,
+        "notes": "No membership changes. 4 House vacancies unchanged: the Jul 28 GA-13 special produced no majority (Marcye Scott 46.8%, Everton Blair Jr. 36.7%) so the seat stays vacant through the Aug 25 runoff; TX-23 and FL-20 specials still uncalled; CA-14 runoff Aug 18. Senate 53R/47D — Nordone (R-SC) is running for the seat she was appointed to (corrected from 'not running'). ME nominee finalized: Troy Jackson, 566 of 571 delegates Jul 25."
+      },
+      "rating_changes": [
+        {
+          "tab": "Governors",
+          "race": "FL — open (DeSantis term-limited); Donalds (R) vs Jolly (D)",
+          "from": "Solid R",
+          "to": "Likely R",
+          "source": "Sabato's Crystal Ball, Jul 23"
+        },
+        {
+          "tab": "Governors",
+          "race": "MI — open (Whitmer term-limited); Benson (D) vs James (R)",
+          "from": "Toss-up",
+          "to": "Lean D",
+          "source": "Sabato's Crystal Ball, Jul 23"
+        },
+        {
+          "tab": "Governors",
+          "race": "NM — open (Lujan Grisham term-limited); Haaland (D) favored",
+          "from": "Likely D",
+          "to": "Solid D",
+          "source": "Sabato's Crystal Ball, Jul 23"
+        }
+      ],
+      "snapshot": {}
+    },
+    {
+      "date": "2026-08-03",
+      "label": "Aug 3",
+      "briefing": "weekly_briefing_2026-08-03.md",
+      "chamber": {
+        "house_r": 218,
+        "house_d": 212,
+        "house_i": 1,
+        "house_vacancies": 4,
+        "senate_r": 53,
+        "senate_d": 47,
+        "senate_i": 3,
+        "notes": "No membership changes this week. Four House vacancies hold (CA-14, FL-20, GA-13, TX-23); GA-13 goes to an Aug 25 runoff after the Jul 28 special produced no majority."
+      },
+      "rating_changes": [
+        {
+          "tab": "Senate",
+          "race": "GA - Ossoff (D) vs. Mike Collins (R)",
+          "from": "Lean D",
+          "to": "Likely D",
+          "source": "Sabato's Crystal Ball, 2026-07-30"
+        },
+        {
+          "tab": "House",
+          "race": "CO-04 - Boebert (R)",
+          "from": "Solid R",
+          "to": "Likely R",
+          "source": "Sabato's Crystal Ball, 2026-07-30"
+        },
+        {
+          "tab": "House",
+          "race": "FL-14 - Castor (D)",
+          "from": "Lean R",
+          "to": "Toss-up",
+          "source": "Sabato's Crystal Ball, 2026-07-30"
+        },
+        {
+          "tab": "House",
+          "race": "NC-01 - Don Davis (D)",
+          "from": "Lean R",
+          "to": "Toss-up",
+          "source": "Sabato's Crystal Ball, 2026-07-30"
+        },
+        {
+          "tab": "House",
+          "race": "NC-11 - Edwards (R)",
+          "from": "Lean R",
+          "to": "Toss-up",
+          "source": "Sabato's Crystal Ball, 2026-07-30"
+        },
+        {
+          "tab": "House",
+          "race": "OH-07 - Max Miller (R)",
+          "from": "Likely R",
+          "to": "Lean R",
+          "source": "Sabato's Crystal Ball, 2026-07-30"
+        },
+        {
+          "tab": "House",
+          "race": "PA-08 - Bresnahan (R)",
+          "from": "Lean R",
+          "to": "Toss-up",
+          "source": "Sabato's Crystal Ball, 2026-07-30"
+        },
+        {
+          "tab": "House",
+          "race": "SC-01 - open seat",
+          "from": "Solid R",
+          "to": "Likely R",
+          "source": "Sabato's Crystal Ball, 2026-07-30"
+        },
+        {
+          "tab": "House",
+          "race": "TX-15 - De La Cruz (R)",
+          "from": "Likely R",
+          "to": "Lean R",
+          "source": "Sabato's Crystal Ball, 2026-07-30"
+        }
+      ],
+      "snapshot": {}
     }
-   ],
-   "snapshot": {
-    "Senate": {
-     "AK": "Lean R",
-     "AR": "Solid R",
-     "CO": "Solid D",
-     "DE": "Solid D",
-     "FL": "Solid R",
-     "GA": "Lean D",
-     "ID": "Solid R",
-     "IL": "Solid D",
-     "IA": "Likely R",
-     "KS": "Solid R",
-     "KY": "Solid R",
-     "LA": "Solid R",
-     "ME": "Toss-up",
-     "MA": "Solid D",
-     "MI": "Toss-up",
-     "MN": "Likely D",
-     "MS": "Solid R",
-     "MT": "Solid R",
-     "NE": "Likely R",
-     "NH": "Lean D",
-     "NJ": "Solid D",
-     "NM": "Solid D",
-     "NC": "Lean D",
-     "OK": "Solid R",
-     "OR": "Solid D",
-     "RI": "Solid D",
-     "SC": "Solid R",
-     "SD": "Solid R",
-     "TN": "Solid R",
-     "TX": "Likely R",
-     "VA": "Solid D",
-     "WV": "Solid R",
-     "WY": "Solid R",
-     "OH_special": "Toss-up",
-     "FL_special": "Solid R"
-    },
-    "Governors": {
-     "AL": "Solid R",
-     "AK": "Likely R",
-     "AZ": "Toss-up",
-     "AR": "Solid R",
-     "CA": "Solid D",
-     "CO": "Solid D",
-     "CT": "Solid D",
-     "FL": "Solid R",
-     "GA": "Toss-up",
-     "HI": "Solid D",
-     "ID": "Solid R",
-     "IL": "Solid D",
-     "IA": "Toss-up",
-     "KS": "Lean R",
-     "ME": "Likely D",
-     "MD": "Solid D",
-     "MA": "Solid D",
-     "MI": "Lean D",
-     "MN": "Solid D",
-     "NE": "Solid R",
-     "NV": "Toss-up",
-     "NH": "Likely R",
-     "NM": "Likely D",
-     "NY": "Solid D",
-     "OH": "Lean R",
-     "OK": "Solid R",
-     "OR": "Solid D",
-     "PA": "Solid D",
-     "RI": "Solid D",
-     "SC": "Solid R",
-     "SD": "Solid R",
-     "TN": "Solid R",
-     "TX": "Solid R",
-     "VT": "Solid R",
-     "WI": "Toss-up",
-     "WY": "Solid R"
-    }
-   }
-  },
-  {
-   "date": "2026-06-08",
-   "label": "Jun 8",
-   "briefing": "weekly_briefing_2026-06-08.md",
-   "chamber": {
-    "house_r": 217,
-    "house_d": 212,
-    "house_i": 1,
-    "house_vacancies": 5,
-    "senate_r": 53,
-    "senate_d": 47,
-    "senate_i": 3,
-    "notes": "5 vacancies: CA-01, CA-14, TX-23, FL-20, GA-13. Clay Fuller (R) sworn in GA-14 Apr 14."
-   },
-   "rating_changes": [
-    {
-     "tab": "Senate",
-     "race": "IA — Ernst open (Hinson R vs Turek D)",
-     "from": "Likely R",
-     "to": "Lean R",
-     "source": "Cook & Sabato, Jun 2"
-    },
-    {
-     "tab": "Senate",
-     "race": "TX — Cornyn→Paxton (R) vs Talarico (D)",
-     "from": "Likely R",
-     "to": "Lean R",
-     "source": "Cook, Jun 5"
-    },
-    {
-     "tab": "House",
-     "race": "FL-23 — Moskowitz (D)",
-     "from": "Likely D",
-     "to": "Solid D",
-     "source": "Cook, Jun 3"
-    },
-    {
-     "tab": "House",
-     "race": "IA-02 — Hinson (R)",
-     "from": "Likely R",
-     "to": "Lean R",
-     "source": "Sabato, Jun 2"
-    }
-   ],
-   "snapshot": {
-    "Senate": {
-     "AK": "Lean R",
-     "AR": "Solid R",
-     "CO": "Solid D",
-     "DE": "Solid D",
-     "FL": "Solid R",
-     "GA": "Lean D",
-     "ID": "Solid R",
-     "IL": "Solid D",
-     "IA": "Lean R",
-     "KS": "Solid R",
-     "KY": "Solid R",
-     "LA": "Solid R",
-     "ME": "Toss-up",
-     "MA": "Solid D",
-     "MI": "Toss-up",
-     "MN": "Likely D",
-     "MS": "Solid R",
-     "MT": "Solid R",
-     "NE": "Likely R",
-     "NH": "Lean D",
-     "NJ": "Solid D",
-     "NM": "Solid D",
-     "NC": "Lean D",
-     "OK": "Solid R",
-     "OR": "Solid D",
-     "RI": "Solid D",
-     "SC": "Solid R",
-     "SD": "Solid R",
-     "TN": "Solid R",
-     "TX": "Lean R",
-     "VA": "Solid D",
-     "WV": "Solid R",
-     "WY": "Solid R",
-     "OH_special": "Toss-up",
-     "FL_special": "Solid R"
-    },
-    "Governors": {
-     "AL": "Solid R",
-     "AK": "Likely R",
-     "AZ": "Toss-up",
-     "AR": "Solid R",
-     "CA": "Solid D",
-     "CO": "Solid D",
-     "CT": "Solid D",
-     "FL": "Solid R",
-     "GA": "Toss-up",
-     "HI": "Solid D",
-     "ID": "Solid R",
-     "IL": "Solid D",
-     "IA": "Toss-up",
-     "KS": "Lean R",
-     "ME": "Likely D",
-     "MD": "Solid D",
-     "MA": "Solid D",
-     "MI": "Lean D",
-     "MN": "Solid D",
-     "NE": "Solid R",
-     "NV": "Toss-up",
-     "NH": "Likely R",
-     "NM": "Likely D",
-     "NY": "Solid D",
-     "OH": "Lean R",
-     "OK": "Solid R",
-     "OR": "Solid D",
-     "PA": "Solid D",
-     "RI": "Solid D",
-     "SC": "Solid R",
-     "SD": "Solid R",
-     "TN": "Solid R",
-     "TX": "Solid R",
-     "VT": "Solid R",
-     "WI": "Toss-up",
-     "WY": "Solid R"
-    }
-   }
-  },
-  {
-   "date": "2026-06-15",
-   "label": "Jun 15",
-   "briefing": "weekly_briefing_2026-06-15.md",
-   "chamber": {
-    "house_r": 218,
-    "house_d": 212,
-    "house_i": 1,
-    "house_vacancies": 4,
-    "senate_r": 53,
-    "senate_d": 47,
-    "senate_i": 3,
-    "notes": "James Gallagher (R) sworn in Jun 10 filling CA-01. 4 vacancies: CA-14, TX-23, FL-20, GA-13."
-   },
-   "rating_changes": [
-    {
-     "tab": "Senate",
-     "race": "AK — Sullivan (R) vs Peltola (D)",
-     "from": "Lean R",
-     "to": "Toss-up",
-     "source": "Sabato, Jun 11"
-    },
-    {
-     "tab": "Senate",
-     "race": "NC — Open (Cooper D vs Whatley R)",
-     "from": "Toss-up",
-     "to": "Lean D",
-     "source": "Sabato, Jun 11"
-    },
-    {
-     "tab": "House",
-     "race": "CA-06 — Bera (D)",
-     "from": "Likely D",
-     "to": "Lean D",
-     "source": "Inside Elections, Jun 11"
-    }
-   ],
-   "snapshot": {
-    "Senate": {
-     "AK": "Toss-up",
-     "AR": "Solid R",
-     "CO": "Solid D",
-     "DE": "Solid D",
-     "FL": "Solid R",
-     "GA": "Lean D",
-     "ID": "Solid R",
-     "IL": "Solid D",
-     "IA": "Lean R",
-     "KS": "Solid R",
-     "KY": "Solid R",
-     "LA": "Solid R",
-     "ME": "Toss-up",
-     "MA": "Solid D",
-     "MI": "Toss-up",
-     "MN": "Likely D",
-     "MS": "Solid R",
-     "MT": "Solid R",
-     "NE": "Likely R",
-     "NH": "Lean D",
-     "NJ": "Solid D",
-     "NM": "Solid D",
-     "NC": "Lean D",
-     "OK": "Solid R",
-     "OR": "Solid D",
-     "RI": "Solid D",
-     "SC": "Solid R",
-     "SD": "Solid R",
-     "TN": "Solid R",
-     "TX": "Lean R",
-     "VA": "Solid D",
-     "WV": "Solid R",
-     "WY": "Solid R",
-     "OH_special": "Toss-up",
-     "FL_special": "Solid R"
-    },
-    "Governors": {
-     "AL": "Solid R",
-     "AK": "Likely R",
-     "AZ": "Toss-up",
-     "AR": "Solid R",
-     "CA": "Solid D",
-     "CO": "Solid D",
-     "CT": "Solid D",
-     "FL": "Solid R",
-     "GA": "Toss-up",
-     "HI": "Solid D",
-     "ID": "Solid R",
-     "IL": "Solid D",
-     "IA": "Toss-up",
-     "KS": "Lean R",
-     "ME": "Likely D",
-     "MD": "Solid D",
-     "MA": "Solid D",
-     "MI": "Lean D",
-     "MN": "Solid D",
-     "NE": "Solid R",
-     "NV": "Toss-up",
-     "NH": "Likely R",
-     "NM": "Likely D",
-     "NY": "Solid D",
-     "OH": "Lean R",
-     "OK": "Solid R",
-     "OR": "Solid D",
-     "PA": "Solid D",
-     "RI": "Solid D",
-     "SC": "Solid R",
-     "SD": "Solid R",
-     "TN": "Solid R",
-     "TX": "Solid R",
-     "VT": "Solid R",
-     "WI": "Toss-up",
-     "WY": "Solid R"
-    }
-   }
-  },
-  {
-   "date": "2026-06-22",
-   "label": "Jun 22",
-   "briefing": "weekly_briefing_2026-06-22.md",
-   "chamber": {
-    "house_r": 218,
-    "house_d": 212,
-    "house_i": 1,
-    "house_vacancies": 4,
-    "senate_r": 53,
-    "senate_d": 47,
-    "senate_i": 3,
-    "notes": "CA-14 special primary held Jun 16; no majority winner; runoff Aug 18. Still 4 vacancies: CA-14, TX-23, FL-20, GA-13."
-   },
-   "rating_changes": [
-    {
-     "tab": "Senate",
-     "race": "OH Special — Husted (R) vs Brown (D)",
-     "from": "Lean R",
-     "to": "Toss-up",
-     "source": "Sabato, Jun 11"
-    },
-    {
-     "tab": "Senate",
-     "race": "IA — Ernst open (Hinson R vs Turek D)",
-     "from": "Likely R",
-     "to": "Lean R",
-     "source": "Sabato, Jun 2"
-    },
-    {
-     "tab": "House",
-     "race": "MI-08 — McDonald Rivet (D)",
-     "from": "Lean D",
-     "to": "Likely D",
-     "source": "Inside Elections, Jun 11"
-    },
-    {
-     "tab": "House",
-     "race": "NC-11 — Edwards (R)",
-     "from": "Likely R",
-     "to": "Lean R",
-     "source": "Inside Elections, Jun 11"
-    },
-    {
-     "tab": "House",
-     "race": "NJ-07 — Kean (R)",
-     "from": "Toss-up",
-     "to": "Lean D",
-     "source": "Inside Elections, Jun 11"
-    },
-    {
-     "tab": "House",
-     "race": "FL-09 — Soto (D, redistricted)",
-     "from": "Solid D",
-     "to": "Likely R",
-     "source": "Cook, Jun 18"
-    },
-    {
-     "tab": "House",
-     "race": "FL-14 — Castor (D, redistricted)",
-     "from": "Solid D",
-     "to": "Lean R",
-     "source": "Cook, Jun 18"
-    }
-   ],
-   "snapshot": {
-    "Senate": {
-     "AK": "Toss-up",
-     "AR": "Solid R",
-     "CO": "Solid D",
-     "DE": "Solid D",
-     "FL": "Solid R",
-     "GA": "Lean D",
-     "ID": "Solid R",
-     "IL": "Solid D",
-     "IA": "Lean R",
-     "KS": "Solid R",
-     "KY": "Solid R",
-     "LA": "Solid R",
-     "ME": "Toss-up",
-     "MA": "Solid D",
-     "MI": "Toss-up",
-     "MN": "Likely D",
-     "MS": "Solid R",
-     "MT": "Solid R",
-     "NE": "Likely R",
-     "NH": "Lean D",
-     "NJ": "Solid D",
-     "NM": "Solid D",
-     "NC": "Lean D",
-     "OK": "Solid R",
-     "OR": "Solid D",
-     "RI": "Solid D",
-     "SC": "Solid R",
-     "SD": "Solid R",
-     "TN": "Solid R",
-     "TX": "Lean R",
-     "VA": "Solid D",
-     "WV": "Solid R",
-     "WY": "Solid R",
-     "OH_special": "Toss-up",
-     "FL_special": "Solid R"
-    },
-    "Governors": {
-     "AL": "Solid R",
-     "AK": "Likely R",
-     "AZ": "Toss-up",
-     "AR": "Solid R",
-     "CA": "Solid D",
-     "CO": "Solid D",
-     "CT": "Solid D",
-     "FL": "Solid R",
-     "GA": "Toss-up",
-     "HI": "Solid D",
-     "ID": "Solid R",
-     "IL": "Solid D",
-     "IA": "Toss-up",
-     "KS": "Lean R",
-     "ME": "Likely D",
-     "MD": "Solid D",
-     "MA": "Solid D",
-     "MI": "Lean D",
-     "MN": "Solid D",
-     "NE": "Solid R",
-     "NV": "Toss-up",
-     "NH": "Likely R",
-     "NM": "Likely D",
-     "NY": "Solid D",
-     "OH": "Lean R",
-     "OK": "Solid R",
-     "OR": "Solid D",
-     "PA": "Solid D",
-     "RI": "Solid D",
-     "SC": "Solid R",
-     "SD": "Solid R",
-     "TN": "Solid R",
-     "TX": "Solid R",
-     "VT": "Solid R",
-     "WI": "Toss-up",
-     "WY": "Solid R"
-    }
-   }
-  },
-  {
-   "date": "2026-06-29",
-   "label": "Jun 29",
-   "briefing": "weekly_briefing_2026-06-29.md",
-   "chamber": {
-    "house_r": 218,
-    "house_d": 212,
-    "house_i": 1,
-    "house_vacancies": 4,
-    "senate_r": 53,
-    "senate_d": 47,
-    "senate_i": 3,
-    "notes": "No chamber-balance change. 4 vacancies: CA-14, FL-20, GA-13, TX-23. TX Senate Challenger updated to James Talarico (D) after Paxton won May 26 GOP runoff."
-   },
-   "rating_changes": [
-    {
-     "tab": "Senate",
-     "race": "TX — Paxton (R) vs Talarico (D)",
-     "from": "Likely R",
-     "to": "Lean R",
-     "source": "Cook, Jun 26"
-    },
-    {
-     "tab": "House",
-     "race": "FL-09 — Soto (D, redistricted)",
-     "from": "Solid D",
-     "to": "Likely R",
-     "source": "Cook, Jun 25"
-    },
-    {
-     "tab": "House",
-     "race": "FL-14 — Castor (D, redistricted)",
-     "from": "Solid D",
-     "to": "Lean R",
-     "source": "Cook, Jun 25"
-    }
-   ],
-   "snapshot": {}
-  },
-  {
-   "date": "2026-07-06",
-   "label": "Jul 6",
-   "briefing": "weekly_briefing_2026-07-06.md",
-   "chamber": {
-    "house_r": 218,
-    "house_d": 212,
-    "house_i": 1,
-    "house_vacancies": 4,
-    "senate_r": 53,
-    "senate_d": 47,
-    "senate_i": 3,
-    "notes": "No membership changes. 4 vacancies: CA-14, FL-20, GA-13, TX-23. GA Governor notes corrected: Rick Jackson (R) is the GOP nominee (won Jun 16 runoff), not Burt Jones."
-   },
-   "rating_changes": [
-    {
-     "tab": "Senate",
-     "race": "AK — Sullivan (R) vs Peltola (D)",
-     "from": "Lean R",
-     "to": "Toss-up",
-     "source": "Cook, Jul 1"
-    }
-   ],
-   "snapshot": {}
-  },
-  {
-   "date": "2026-07-14",
-   "label": "Jul 14",
-   "briefing": "weekly_briefing_2026-07-14.md",
-   "chamber": {
-    "house_r": 218,
-    "house_d": 212,
-    "house_i": 1,
-    "house_vacancies": 4,
-    "senate_r": 53,
-    "senate_d": 47,
-    "senate_i": 3,
-    "notes": "Graham (R-SC) died Jul 11; sister Darline Graham Nordone (R) appointed by McMaster, sworn in Jul 14 - Senate stays 53R/47D. House unchanged; 4 vacancies: CA-14, FL-20, GA-13, TX-23. ME Senate challenger corrected (Platner won Jun 9 primary, withdrew Jul 10; Dem nominee TBD by Jul 27)."
-   },
-   "rating_changes": [
-    {
-     "tab": "Governors",
-     "race": "AZ — Hobbs (D) incumbent",
-     "from": "Toss-up",
-     "to": "Lean D",
-     "source": "Cook Political Report, Jul 10"
-    },
-    {
-     "tab": "Governors",
-     "race": "OH — open (DeWine term-limited)",
-     "from": "Lean R",
-     "to": "Toss-up",
-     "source": "Cook Political Report, Jul 10"
-    },
-    {
-     "tab": "Governors",
-     "race": "ME — open (Mills term-limited)",
-     "from": "Likely D",
-     "to": "Solid D",
-     "source": "Cook Political Report, Jul 10"
-    },
-    {
-     "tab": "Governors",
-     "race": "NM — open (Lujan Grisham term-limited)",
-     "from": "Likely D",
-     "to": "Solid D",
-     "source": "Cook Political Report, Jul 10"
-    },
-    {
-     "tab": "Governors",
-     "race": "OR — Kotek (D) incumbent",
-     "from": "Solid D",
-     "to": "Likely D",
-     "source": "Cook Political Report, Jul 10"
-    }
-   ],
-   "snapshot": {}
-  },
-  {
-   "date": "2026-07-20",
-   "label": "Jul 20",
-   "briefing": "weekly_briefing_2026-07-20.md",
-   "chamber": {
-    "house_r": 218,
-    "house_d": 212,
-    "house_i": 1,
-    "house_vacancies": 4,
-    "senate_r": 53,
-    "senate_d": 47,
-    "senate_i": 3,
-    "notes": "No membership changes this week. 4 House vacancies unchanged (CA-14, FL-20, GA-13, TX-23); Senate 53R/47D with Nordone (R-SC) seated Jul 14. ME Senate: Troy Jackson presumptive D nominee vs Collins (convention Jul 25). SC special GOP primary Aug 11 field forming (Norman entered Jul 18)."
-   },
-   "rating_changes": [
-    {
-     "tab": "House",
-     "race": "CA-45 — Tran (D)",
-     "from": "Lean D",
-     "to": "Likely D",
-     "source": "Cook Political Report, Jul 16"
-    },
-    {
-     "tab": "House",
-     "race": "NY-19 — Riley (D)",
-     "from": "Lean D",
-     "to": "Likely D",
-     "source": "Cook Political Report, Jul 16"
-    },
-    {
-     "tab": "House",
-     "race": "KY-06 — open (Barr retiring)",
-     "from": "Solid R",
-     "to": "Likely R",
-     "source": "Cook Political Report, Jul 16"
-    },
-    {
-     "tab": "House",
-     "race": "NH-02 — Goodlander (D)",
-     "from": "Likely D",
-     "to": "Solid D",
-     "source": "Cook Political Report, Jul 16"
-    },
-    {
-     "tab": "House",
-     "race": "OR-05 — Bynum (D)",
-     "from": "Likely D",
-     "to": "Solid D",
-     "source": "Cook Political Report, Jul 16"
-    },
-    {
-     "tab": "House",
-     "race": "TX-15 — De La Cruz (R)",
-     "from": "Likely R",
-     "to": "Lean R",
-     "source": "Cook Political Report, Jul 16"
-    },
-    {
-     "tab": "House",
-     "race": "CA-22 — Valadao (R)",
-     "from": "Toss-up",
-     "to": "Lean D",
-     "source": "Sabato's Crystal Ball, Jul 16"
-    },
-    {
-     "tab": "House",
-     "race": "ME-02 — Golden (D)",
-     "from": "Lean R",
-     "to": "Likely R",
-     "source": "Sabato's Crystal Ball, Jul 16 (sheet already Likely R; no sheet change)"
-    }
-   ],
-   "snapshot": {}
-  },
-  {
-   "date": "2026-07-29",
-   "label": "Jul 29",
-   "briefing": "weekly_briefing_2026-07-29.md",
-   "chamber": {
-    "house_r": 218,
-    "house_d": 212,
-    "house_i": 1,
-    "house_vacancies": 4,
-    "senate_r": 53,
-    "senate_d": 47,
-    "senate_i": 3,
-    "notes": "No membership changes. 4 House vacancies unchanged: the Jul 28 GA-13 special produced no majority (Marcye Scott 46.8%, Everton Blair Jr. 36.7%) so the seat stays vacant through the Aug 25 runoff; TX-23 and FL-20 specials still uncalled; CA-14 runoff Aug 18. Senate 53R/47D — Nordone (R-SC) is running for the seat she was appointed to (corrected from 'not running'). ME nominee finalized: Troy Jackson, 566 of 571 delegates Jul 25."
-   },
-   "rating_changes": [
-    {
-     "tab": "Governors",
-     "race": "FL — open (DeSantis term-limited); Donalds (R) vs Jolly (D)",
-     "from": "Solid R",
-     "to": "Likely R",
-     "source": "Sabato's Crystal Ball, Jul 23"
-    },
-    {
-     "tab": "Governors",
-     "race": "MI — open (Whitmer term-limited); Benson (D) vs James (R)",
-     "from": "Toss-up",
-     "to": "Lean D",
-     "source": "Sabato's Crystal Ball, Jul 23"
-    },
-    {
-     "tab": "Governors",
-     "race": "NM — open (Lujan Grisham term-limited); Haaland (D) favored",
-     "from": "Likely D",
-     "to": "Solid D",
-     "source": "Sabato's Crystal Ball, Jul 23"
-    }
-   ],
-   "snapshot": {}
-  }
- ]
+  ]
 }

@@ -1,13 +1,13 @@
 {
  "_comment": "Upcoming election events rendered on the Overview tab. Maintained by the weekly Cowork routine — the candidate-matchup verifier should confirm dates and add/remove events as primaries resolve. Past events are auto-hidden by the UI (kept here for the record). kind: primary | runoff | special | convention | general.",
- "updated": "2026-07-29",
+ "updated": "2026-08-03",
  "events": [
   {
    "date": "2026-06-16",
    "state": "GA",
    "kind": "runoff",
    "title": "Georgia GOP gubernatorial runoff",
-   "note": "Rick Jackson defeated Burt Jones."
+   "note": "Resolved: Rick Jackson defeated Burt Jones 52.9-47.1; faces Keisha Lance Bottoms Nov 3. Same night, Rep. Mike Collins beat Derek Dooley ~55-45 in the GOP Senate runoff and faces Sen. Jon Ossoff."
   },
   {
    "date": "2026-07-21",
@@ -35,49 +35,49 @@
    "state": "MI",
    "kind": "primary",
    "title": "Michigan primaries",
-   "note": "D Senate primary is Stevens vs. El-Sayed (McMorrow suspended Jul 5, still on the ballot); Benson vs. James set for governor."
+   "note": "D Senate primary is Stevens vs. El-Sayed (McMorrow suspended Jul 5, still on the ballot); Mike Rogers is unopposed for the R Senate nod. Governor: Benson leads Swanson big on the D side; James (Trump-endorsed) leads Perry Johnson 40-32 on the R side."
   },
   {
    "date": "2026-08-04",
    "state": "KS",
    "kind": "primary",
    "title": "Kansas primaries",
-   "note": "Open-governor fields resolve: 7 R (Masterson Trump-endorsed) and 3 D (Corson Kelly-endorsed)."
+   "note": "Open-governor fields resolve: 7 R (Masterson Trump-endorsed) and 3 D — Ethan Corson (Kelly-endorsed), Cindy Holscher and Overland Park Mayor Curt Skoog."
   },
   {
    "date": "2026-08-11",
    "state": "WI",
    "kind": "primary",
    "title": "Wisconsin primaries",
-   "note": "D governor field is Hong, Barnes, Crowley, Roys, Brennan — Hong led two July polls; Tiffany is the Trump-endorsed R front-runner."
+   "note": "Open seat (Evers retiring). Mandela Barnes suspended Jul 30, leaving four active D candidates: Hong, Crowley (Evers-endorsed), Roys, Brennan — Hong led the Jul 29 Marquette poll at 38%. Tiffany is the Trump- and state-party-endorsed R front-runner (67% in the same poll) over Andy Manske."
   },
   {
    "date": "2026-08-11",
    "state": "MN",
    "kind": "primary",
    "title": "Minnesota primaries",
-   "note": "DFL Senate: Flanagan (endorsed) vs. Craig."
+   "note": "DFL Senate: Flanagan (DFL-endorsed) vs. Craig; Adam Schwarze is the GOP-endorsed Senate candidate. Governor is open after Walz ended his re-election bid in Jan — Amy Klobuchar took the DFL endorsement May 30."
   },
   {
    "date": "2026-08-11",
    "state": "SC",
    "kind": "special",
    "title": "SC Senate special GOP primary",
-   "note": "Special GOP primary for Graham's seat. Filing closed Jul 28: 9 certified of 12 filed, incl. appointed Sen. Darline Graham Nordone (Trump-endorsed), Reps. Ralph Norman and Russell Fry, and Mark Sanford. Runoff Aug 25 if needed; winner faces Annie Andrews (D) Nov 3."
+   "note": "Special GOP primary for the late Lindsey Graham's seat, held under SC Code 7-11-55. Filing closed noon Jul 28: 9 certified of 12 filed, incl. appointed Sen. Darline Graham Nordone (Trump-endorsed), Reps. Ralph Norman and Russell Fry, and Mark Sanford. Early voting Aug 5-7. Runoff Aug 25 if no one clears 50%; winner faces Annie Andrews (D) Nov 3."
   },
   {
    "date": "2026-08-18",
    "state": "AK",
    "kind": "primary",
    "title": "Alaska top-4 primary",
-   "note": "Top four advance to ranked-choice general (Sullivan, Peltola expected)."
+   "note": "Top four advance to ranked-choice general. 16 Senate candidates on the ballot; only Sullivan (R) and Peltola (D) have raised money. A second 'Dan Sullivan' was allowed on the ballot by the Alaska Supreme Court and is under federal/state investigation."
   },
   {
    "date": "2026-08-18",
    "state": "FL",
    "kind": "primary",
    "title": "Florida primaries",
-   "note": "D Senate-special primary resolves: Alex Vindman vs. Angie Nixon, vs. appointed Sen. Ashley Moody (R)."
+   "note": "D Senate-special primary resolves: Alex Vindman vs. Angie Nixon. Appointed Sen. Ashley Moody (R) also faces a nominal primary (Gleason, Taneja Perry, Rivera) the same day; general Nov 3."
   },
   {
    "date": "2026-08-18",
@@ -90,15 +90,22 @@
    "date": "2026-08-25",
    "state": "GA",
    "kind": "runoff",
-   "title": "GA-13 special runoff (if needed)",
-   "note": "Confirmed: Marcye Scott vs. Everton Blair Jr., both Democrats. Winner serves the remainder of David Scott's term."
+   "title": "GA-13 special runoff",
+   "note": "Confirmed and required — no one cleared 50% on Jul 28. Marcye Scott vs. Everton Blair Jr., both Democrats. Winner serves the remainder of the late David Scott's term."
+  },
+  {
+   "date": "2026-08-25",
+   "state": "SC",
+   "kind": "runoff",
+   "title": "SC Senate special GOP primary runoff (if needed)",
+   "note": "Set by the state Election Commission for Tue Aug 25 if no candidate clears 50% on Aug 11; early voting Aug 19-21. Nominee goes on the Nov 3 general-election ballot against Annie Andrews (D)."
   },
   {
    "date": "2026-09-08",
    "state": "NH",
    "kind": "primary",
    "title": "New Hampshire primaries",
-   "note": "Last primary of the cycle: Sununu vs. Brown for the R Senate nod."
+   "note": "Last primary of the cycle: former Sen. John E. Sununu (Trump-endorsed, led Brown 48-25 in UNH polling) vs. Scott Brown for the R Senate nod. Chris Pappas is the heavy D favorite."
   },
   {
    "date": "2026-11-03",
@@ -112,7 +119,7 @@
    "state": "GA",
    "kind": "runoff",
    "title": "Georgia Senate runoff (if needed)",
-   "note": "Only if no candidate clears 50% on Nov 3."
+   "note": "Only if no candidate clears 50% on Nov 3. Matchup is Sen. Jon Ossoff (D) vs. Rep. Mike Collins (R)."
   }
  ]
 }
