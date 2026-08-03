@@ -5,7 +5,9 @@
 
 ## Chamber Balance
 
-No changes this week. Confirmed: **218R | 212D | 1I | 4V House / 53R | 47D | 3I Senate** ([House Clerk](https://clerk.house.gov/Members/ViewVacancies)).
+No membership changes this week. Confirmed: **218R | 212D | 1I | 4V House / 53R | 47D | 2I Senate** ([House Clerk](https://clerk.house.gov/Members/ViewVacancies), [senate.gov](https://www.senate.gov/history/partydiv.htm)).
+
+⚠️ **`SENATE_I` changed 3 → 2 this week — a data correction, not a membership change.** No senator switched anything. The dashboard had been counting Murkowski as an independent alongside Sanders and King; she is a Republican on the official roster and always has been in this sheet's own Senate tab. Details in Verification below.
 
 ⚠️ **Source conflict, disclosed rather than resolved silently.** The [House Press Gallery](https://pressgallery.house.gov/member-data/party-breakdown) currently shows **217R and 5 vacancies** — it has not been updated since April 22 and still lists CA-01 as open, though James Gallagher (R) was sworn in June 10. The Clerk's list is the current one: Press Gallery 217R + Gallagher = 218R, 4 vacancies. This is the documented Press-Gallery lag, not a real discrepancy in the count.
 
@@ -16,7 +18,7 @@ Current 4 House vacancies:
 - **GA-13** (David Scott, D) — died Apr 22; the Jul 28 special produced no majority, so it goes to an **Aug 25 runoff between Marcye Scott and Everton Blair Jr.** ([Georgia Recorder, July 28](https://georgiarecorder.com/2026/07/28/special-election-to-fill-late-georgia-congressmans-seat-advances-to-an-august-runoff/))
 - **TX-23** (Tony Gonzales, R) — resigned Apr 14; Abbott **still has not called** a special ([Axios San Antonio, July 27](https://www.axios.com/local/san-antonio/2026/07/27/special-election-tony-gonzales-texas-23-congress))
 
-Senate: 53R / 47D / 3I — no change. Nordone (R-SC) remains seated following Lindsey Graham's death on July 11; the special GOP primary is **Aug 11** with an Aug 25 runoff if needed ([SC Election Commission](https://scvotes.gov/u-s-senate-special-republican-party-filing-primary/)). Note a live wrinkle: the SC GOP removed three candidates from that primary ballot around July 31 and litigation is underway ([WBTV, July 31](https://www.wbtv.com/2026/07/31/south-carolina-gop-boots-three-candidates-special-primary-legal-battle-underway/)).
+Senate: 53R / 47D / **2I** (Sanders-VT and King-ME, both counted inside the D caucus total; Murkowski-AK is R). Caucus totals unchanged. Nordone (R-SC) remains seated following Lindsey Graham's death on July 11; the special GOP primary is **Aug 11** with an Aug 25 runoff if needed ([SC Election Commission](https://scvotes.gov/u-s-senate-special-republican-party-filing-primary/)). Note a live wrinkle: the SC GOP removed three candidates from that primary ballot around July 31 and litigation is underway ([WBTV, July 31](https://www.wbtv.com/2026/07/31/south-carolina-gop-boots-three-candidates-special-primary-legal-battle-underway/)).
 
 No member of either chamber died, resigned, or switched parties this week. John Fetterman (D-PA) said flatly on July 30 that he is not becoming a Republican ([The Hill](https://thehill.com/homenews/senate/5869290-john-fetterman-democrat-no-gop/)).
 
@@ -98,8 +100,9 @@ The week's other structural story is money. In the two marquee Senate races that
 | Senate | NH Challenger | Scott Brown (R) | **John E. Sununu (R)** — Trump-endorsed, leads Brown 59-20 for the Sep 8 primary |
 | Senate | MN Challenger | Royce White (R) | **Adam Schwarze (R)** — state GOP endorsee |
 | Senate | TX Notes | "Cook shifted … June 26" | **May 26, 2026** — the day Paxton won the runoff |
+| Constants | `SENATE_I` | 3 | **2** — Murkowski is a Republican on the official roster |
 
-All four are logged in `corrections.json` and will render on methodology.html.
+All five are logged in `corrections.json` and will render on methodology.html.
 
 ### No action needed
 
@@ -121,6 +124,13 @@ Three independent subagents fact-checked this week's claims in fresh context, re
 - ⚠️ **"No membership changes this week" — UNVERIFIABLE by design.** The Clerk's list shows no vacancy newer than Apr 22, which rules out a House death or resignation. But no primary source affirmatively certifies a negative over a 7-day window, and party switches never appear on the Clerk list. Read this as "no evidence of change," not as positively established.
 - **Zero changes were dropped from the patch.**
 
+### Decision queue
+
+Judgment calls that are not mine to make now go to `decisions.json` instead of blocking a run or being silently resolved. This week:
+
+- 🗳️ **RESOLVED — `SENATE_I`.** Corrected 3 → 2 at your direction, before the apply job ran. (`2026-08-03-senate-i`)
+- 🗳️ **OPEN — MO-05.** The row carries Party `D` (Cleaver) with Rating `Solid R` and a note saying the Solid R label "was sheet error." Post-redistricting Solid R may well be correct for the new seat, but the note and the cell contradict each other and I found no primary source settling it. Guessing would either restore a real error or erase a real correction. Ran with no change meanwhile. (`2026-08-03-mo-05`)
+
 ### Contract 3.9 scope note — PARTIAL REFRESH
 
 **`L2b-coverage: 10/27 configured races refreshed.** This was **not** a full sweep and should not be described as one. I rescored 10 races with fresh sourcing (GA-Sen, AK-Sen, NH-Sen, NC-Sen, MN-Sen, OH-Sen, TX-Gov, AZ-Gov, IA-Sen, IA-Gov), but several of those carry newest articles just outside the 10-day window and still count stale by the metric.
@@ -131,4 +141,27 @@ ME/Governor (2026-07-01) · OH/Senate (2026-07-15) · OH/Governor (2026-07-15) �
 
 I held to deep links with dates I could actually verify from the source rather than filling the gap with plausible-looking article dates. **NH/Governor (June 11) and LA/Senate (June 27) are the worst two** and should be first in line next week.
 
+**Root cause found and fixed after this briefing was drafted.** The gap was not discipline — 27 races of searching, deep-link verification and scoring does not fit one agent's context, which is why this step "kept getting skipped" before it was made mandatory. Contract 3.9 has been rewritten to **fan out across 5–6 parallel subagents owning 4–5 races each**. Unlike the Contract 3.5 verifiers there is no anchoring concern here, so parallelism is safe and is the point. First real test is next Sunday's run; if coverage is still short after that, the constraint is somewhere I have not found yet.
+
 `news_config.json` was updated for two resolved situations: Barnes removed from the WI gubernatorial field (dropped out Jul 30), and the MN governor entry moved off Tim Walz to Amy Klobuchar, who won the DFL endorsement on May 30.
+
+---
+
+## Pipeline Changes
+
+This run also rebuilt the parts of the pipeline that required a human. Shipped in `78b040e`; all of it takes effect from next Sunday's run.
+
+**Why.** This run stalled twice before writing a single file — stale git locks needing a delete grant, then a blocked `git pull`. Both needed P-funk at the keyboard. For a task scheduled to run unattended, that is the whole ballgame: had he been unavailable, nothing would have reached origin before the 1 PM apply job and the week would have silently no-opped. Neither stall was about time, so a longer window would not have helped.
+
+| Change | What it does |
+|---|---|
+| **`preflight_sync.py`** | Replaces hand-rolled git at Step 0. Clears locks at any depth, hash-compares every merge-blocking file against the origin blob, reverts **only** provable no-ops, pulls, then verifies the recovery was lossless. Exit 0 proceed / 1 operational failure / 2 real divergence → stop and write nothing. Restores what it reverted if the pull fails, so it can never hand back a worse repo than it found. |
+| **`decisions.json`** | A queue, not a lock. Judgment calls are logged and the run continues on the conservative branch. |
+| **Contract 3.9 fan-out** | 5–6 parallel news subagents, 4–5 races each. The fix for this week's 10/27. |
+| **Verification gating** | A CONTRADICTED claim that cannot be settled against a primary source is now dropped automatically rather than argued through. |
+| **Fail-safe, not fail-stop** | Only a broken clone or a hard verifier FAILURE aborts a run. One bad claim ships the other eight and flags the ninth. A zero-change week is explicitly a complete run — the skill now forbids manufacturing a rating change to look productive. |
+| **Schedule** | Research moved Monday 10 AM → **Sunday 9 AM** (~30h of slack, room to retry). New **Tuesday 8 AM** health check: pulls, confirms the apply landed against the Sheet, reports one line when healthy and loudly when not. That Tuesday pull is what stops the clone drift forming in the first place. |
+
+The design principle throughout: convert judgment calls into proofs a script can carry. The `git checkout` that needed approval this morning was safe for a mechanical reason — worktree bytes equalled origin bytes — and a script that checks that equality on every file every time is *stricter* than a human eyeballing a diff, not looser. Autonomy here raises the bar rather than lowering it.
+
+**Not done:** `state-media-pipeline/` is a plausible future feed source for Contract 3.9, but it scores state media *topics* rather than race matchups and the schemas do not map cleanly. Left alone pending a design pass rather than wired in on a guess.
