@@ -177,6 +177,7 @@ for p in \
   sentiment_history.json \
   decisions.json \
   index.html \
+  methodology.html \
   'weekly_briefing_*.md' \
   preflight_sync.py \
   check_patch_integrity.py \

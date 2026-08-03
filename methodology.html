@@ -152,6 +152,16 @@
   </div>
 
   <div class="card">
+    <div class="label">Open questions</div>
+    <p>Not every judgment call has a clean answer. When the data is genuinely ambiguous — a
+    source that contradicts our own convention, a row whose note disagrees with its value — the
+    weekly update logs the question here and takes the conservative option rather than guessing
+    or quietly picking a side. This is the companion to the corrections log above: that one is
+    <i>what we got wrong</i>, this one is <i>what we are not yet sure about</i>.</p>
+    <div id="decisions-list"><p style="color:#9ca3af">Loading open questions…</p></div>
+  </div>
+
+  <div class="card">
     <div class="label">Cadence &amp; contact</div>
     <p>Updates land Mondays by ~1:15 PM PT. Mid-week corrections happen when news warrants
     (see the log above). Questions, errors, or suggestions: open an issue on the
@@ -178,6 +188,50 @@ fetch("corrections.json", {cache:"no-store"})
   .catch(() => {
     document.getElementById("corrections-list").innerHTML =
       "<p style='color:#9ca3af'>Corrections log unavailable.</p>";
+  });
+
+// Open questions (decisions.json). Open items first, then resolved ones muted —
+// a resolved question is still worth showing: it records that the call was made
+// deliberately rather than defaulted into.
+const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g,
+  c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
+
+fetch("decisions.json", {cache:"no-store"})
+  .then(r => r.json())
+  .then(data => {
+    const el = document.getElementById("decisions-list");
+    const all = data.decisions || [];
+    const open = all.filter(d => d.status !== "resolved");
+    const done = all.filter(d => d.status === "resolved").reverse();
+    if (!all.length) { el.innerHTML = "<p>No open questions logged.</p>"; return; }
+
+    const badge = (txt, bg, fg) => `<span style="background:${bg};color:${fg};` +
+      `font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;` +
+      `padding:2px 7px;border-radius:99px;margin-right:8px">${txt}</span>`;
+
+    const card = (d, resolved) => `
+      <div class="correction"${resolved ? ' style="opacity:.62"' : ""}>
+        <div class="cdate">
+          ${resolved ? badge("Resolved", "#14532d", "#bbf7d0") : badge("Open", "#78350f", "#fde68a")}
+          ${esc(d.date)} · ${esc(d.area)}
+        </div>
+        <p><b>Question:</b> ${esc(d.question)}</p>
+        <p><b>Why it wasn't decided automatically:</b> ${esc(d.why_not_autonomous)}</p>
+        ${resolved && d.resolution ? `<p><b>Resolved:</b> ${esc(d.resolution)}</p>` : ""}
+        ${!resolved && d.options && d.options.length
+            ? `<p><b>Options under consideration:</b> ${d.options.map(esc).join(" · ")}</p>` : ""}
+        ${d.source ? `<p><a href="${esc(d.source)}" target="_blank" rel="noopener">source ↗</a></p>` : ""}
+      </div>`;
+
+    el.innerHTML =
+      (open.length
+        ? open.map(d => card(d, false)).join("")
+        : "<p style='color:#9ca3af'>No open questions right now — everything logged has been resolved.</p>") +
+      done.map(d => card(d, true)).join("");
+  })
+  .catch(() => {
+    document.getElementById("decisions-list").innerHTML =
+      "<p style='color:#9ca3af'>Open-questions log unavailable.</p>";
   });
 </script>
 </body>
