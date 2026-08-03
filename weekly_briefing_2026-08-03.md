@@ -101,14 +101,19 @@ The week's other structural story is money. In the two marquee Senate races that
 | Senate | MN Challenger | Royce White (R) | **Adam Schwarze (R)** — state GOP endorsee |
 | Senate | TX Notes | "Cook shifted … June 26" | **May 26, 2026** — the day Paxton won the runoff |
 | Constants | `SENATE_I` | 3 | **2** — Murkowski is a Republican on the official roster |
+| House | MO-05 Note | "prior Solid R label was sheet error" | **Sourced rationale** — Solid R is correct for the redrawn seat; the note was the error |
 
-All five are logged in `corrections.json` and will render on methodology.html.
+All six are logged in `corrections.json` and will render on methodology.html.
+
+**On MO-05 specifically.** The note assumed a Democratic incumbent implies a Democratic-leaning rating. A rating describes the *seat*, not the member. Missouri's mid-decade map — signed September 2025 and upheld by the state Supreme Court on [March 24 and May 12](https://www.stlpr.org/government-politics-issues/2026-05-12/in-blow-to-democrats-missouri-supreme-court-says-map-that-targets-rep-cleaver-is-in-effect) — turned MO-05 from Harris +24 into **Trump 58–40** (Cook PVI R+9; Inside Elections Baseline R+17). All three forecasters moved it independently: [Inside Elections Sep 29, 2025](https://insideelections.com/a-detailed-analysis-of-missouris-new-congressional-map/), [Sabato Oct 2, 2025](https://centerforpolitics.org/crystalball/rating-the-new-missouri-house-map/), Cook May 13, 2026. Cleaver (D) is running for a 12th term. Party cell stays `D`, Rating stays `Solid R`, note replaced.
+
+⚠️ **One live contingency now recorded on the row.** These ratings assume the map survives. People Not Politicians filed ~300,000 referendum signatures, and the certification decision was expected around the **Aug 4** primary. If the 2022/2024 lines end up governing November, MO-05 reverts to **Solid D** — Sabato says so explicitly. Worth watching this week.
 
 ### No action needed
 
 - CT-05, KS-03, NJ-09, NY-17, NY-19 — Sabato moved these, but the sheet already sat at the new rating.
 - Vacancies CA-14, FL-20, GA-13, TX-23 all remain pending; none resolves before Aug 18.
-- **Flagged for your review, not changed:** the MO-05 row carries Party `D` (Cleaver) with Rating `Solid R` and a note saying the Solid R label "was sheet error." Post-redistricting Solid R may well be correct for the new seat, but the note contradicts the cell. Worth settling one way or the other.
+- **MO-05 — raised as an open question, then resolved the same day.** See Sheet Updates above: the rating was right, the note was wrong.
 
 ---
 
@@ -129,7 +134,9 @@ Three independent subagents fact-checked this week's claims in fresh context, re
 Judgment calls that are not mine to make now go to `decisions.json` instead of blocking a run or being silently resolved. This week:
 
 - 🗳️ **RESOLVED — `SENATE_I`.** Corrected 3 → 2 at your direction, before the apply job ran. (`2026-08-03-senate-i`)
-- 🗳️ **OPEN — MO-05.** The row carries Party `D` (Cleaver) with Rating `Solid R` and a note saying the Solid R label "was sheet error." Post-redistricting Solid R may well be correct for the new seat, but the note and the cell contradict each other and I found no primary source settling it. Guessing would either restore a real error or erase a real correction. Ran with no change meanwhile. (`2026-08-03-mo-05`)
+- 🗳️ **RESOLVED — MO-05.** Raised as open because guessing would either restore a real error or erase a real correction. Settled the same day by a dedicated verification subagent: the rating was right, the note was wrong. Note replaced with sourced reasoning plus the referendum contingency. (`2026-08-03-mo-05`)
+
+The queue is empty going into Sunday. Both items it caught this week turned out to be real problems — one a wrong published value, one a note that would have invited a future run to "fix" a correct rating.
 
 ### Contract 3.9 scope note — PARTIAL REFRESH
 

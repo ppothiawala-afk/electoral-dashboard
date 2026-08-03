@@ -1,5 +1,5 @@
 {
-  "notes": "Weekly 2026-08-03: chamber unchanged (218R/212D/1I/4V House; 53R/47D Senate). Sabato's Crystal Ball made 13 House rating changes plus GA Senate on Jul 30, all toward Democrats; Cook and Inside Elections made no changes in the window. Nine sheet ratings move to match. Three published candidate errors corrected: GA challenger was Buddy Carter (actually Mike Collins, won the Jun 16 runoff), NH challenger was Scott Brown (actually John E. Sununu, Trump-endorsed and leading the Sep 8 primary 59-20), MN challenger was Royce White (actually Adam Schwarze, GOP-endorsed). TX Senate note re-dated: Cook's Likely R -> Lean R move was May 26, not June 26. SENATE_I corrected 3 -> 2: senate.gov lists only Sanders and King as independents; Murkowski is a Republican, as this sheet's own Senate tab has always shown.",
+  "notes": "Weekly 2026-08-03: chamber unchanged (218R/212D/1I/4V House; 53R/47D Senate). Sabato's Crystal Ball made 13 House rating changes plus GA Senate on Jul 30, all toward Democrats; Cook and Inside Elections made no changes in the window. Nine sheet ratings move to match. Three published candidate errors corrected: GA challenger was Buddy Carter (actually Mike Collins, won the Jun 16 runoff), NH challenger was Scott Brown (actually John E. Sununu, Trump-endorsed and leading the Sep 8 primary 59-20), MN challenger was Royce White (actually Adam Schwarze, GOP-endorsed). TX Senate note re-dated: Cook's Likely R -> Lean R move was May 26, not June 26. SENATE_I corrected 3 -> 2: senate.gov lists only Sanders and King as independents; Murkowski is a Republican, as this sheet's own Senate tab has always shown. MO-05 resolved: the Solid R rating is correct for the redrawn (Trump 58-40) seat and the note calling it a sheet error has been replaced; contingent on the map surviving the People Not Politicians referendum.",
   "updates": {
     "HOUSE_R": 218,
     "HOUSE_D": 212,
@@ -13,30 +13,48 @@
   },
   "row_updates": {
     "Senate": {
-      "key_cols": ["State", "Up in 2026"],
+      "key_cols": [
+        "State",
+        "Up in 2026"
+      ],
       "rating_col": "Rating",
-      "extra_col_map": {"Challenger": "challenger", "Notes": "notes"},
+      "extra_col_map": {
+        "Challenger": "challenger",
+        "Notes": "notes"
+      },
       "changes": [
         {
-          "key": ["GA", "YES"],
+          "key": [
+            "GA",
+            "YES"
+          ],
           "rating": "Likely D",
           "challenger": "Mike Collins (R)",
           "notes": "CORRECTED: challenger is Rep. Mike Collins, not Buddy Carter - Collins won the Jun 16 GOP runoff over Derek Dooley ~55-45; Carter did not make the runoff. Sabato moved Leans D -> Likely D on Jul 30, citing a fundraising gap: Ossoff has raised $81M+ this cycle ($20M in Q2) against roughly $2M raised and $2M on hand for Collins. Collins is also handling a story about his son-in-law's white nationalist posts."
         },
         {
-          "key": ["NH", "YES"],
+          "key": [
+            "NH",
+            "YES"
+          ],
           "rating": "Lean D",
           "challenger": "John E. Sununu (R)",
           "notes": "CORRECTED: the GOP candidate is former Sen. John E. Sununu, not Scott Brown. Sununu is Trump-endorsed and leads Brown 59-20 among likely GOP primary voters ahead of the Sep 8 primary; Brown remains in the race but is not the front-runner. General-election polling is close: Pappas 47, Sununu 44. Shaheen retiring."
         },
         {
-          "key": ["MN", "YES"],
+          "key": [
+            "MN",
+            "YES"
+          ],
           "rating": "Likely D",
           "challenger": "Adam Schwarze (R)",
           "notes": "CORRECTED: Royce White is not the GOP candidate; the state party endorsed Adam Schwarze. The Aug 11 DFL primary is Lt. Gov. Peggy Flanagan vs. Rep. Angie Craig. Smith retiring."
         },
         {
-          "key": ["TX", "YES"],
+          "key": [
+            "TX",
+            "YES"
+          ],
           "rating": "Lean R",
           "challenger": "James Talarico (D)",
           "notes": "CORRECTED DATE: Cook shifted Likely R -> Lean R on May 26, 2026 - the same day Ken Paxton beat Cornyn in the GOP runoff - not June 26 as previously recorded. Paxton carries ethics baggage and has been a weak fundraiser; Talarico won the Mar 3 Dem primary with 53% and holds a fundraising edge."
@@ -44,18 +62,87 @@
       ]
     },
     "House": {
-      "key_cols": ["State", "District"],
+      "key_cols": [
+        "State",
+        "District"
+      ],
       "rating_col": "Rating",
-      "extra_col_map": {"Note": "note"},
+      "extra_col_map": {
+        "Note": "note"
+      },
       "changes": [
-        {"key": ["CO", "04"], "rating": "Likely R", "note": "Sabato moved Safe R -> Likely R Jul 30 (Boebert underperformance; Democrat Eileen Laubacher fundraising)"},
-        {"key": ["FL", "14"], "rating": "Toss-up", "note": "Sabato moved Leans R -> Toss-up Jul 30 (Castor-D seat drawn R in redistricting)"},
-        {"key": ["NC", "01"], "rating": "Toss-up", "note": "Sabato moved Leans R -> Toss-up Jul 30 (Don Davis-D)"},
-        {"key": ["NC", "11"], "rating": "Toss-up", "note": "Sabato moved Leans R -> Toss-up Jul 30 (Edwards-R; weak fundraising plus ethics investigation)"},
-        {"key": ["OH", "07"], "rating": "Lean R", "note": "Sabato moved Likely R -> Leans R Jul 30 (Max Miller-R)"},
-        {"key": ["PA", "08"], "rating": "Toss-up", "note": "Sabato moved Leans R -> Toss-up Jul 30 (Bresnahan-R)"},
-        {"key": ["SC", "01"], "rating": "Likely R", "note": "Sabato moved Safe R -> Likely R Jul 30 (open seat)"},
-        {"key": ["TX", "15"], "rating": "Lean R", "note": "Sabato moved Likely R -> Leans R Jul 30 (De La Cruz-R; Bobby Pulido challenge)"}
+        {
+          "key": [
+            "CO",
+            "04"
+          ],
+          "rating": "Likely R",
+          "note": "Sabato moved Safe R -> Likely R Jul 30 (Boebert underperformance; Democrat Eileen Laubacher fundraising)"
+        },
+        {
+          "key": [
+            "FL",
+            "14"
+          ],
+          "rating": "Toss-up",
+          "note": "Sabato moved Leans R -> Toss-up Jul 30 (Castor-D seat drawn R in redistricting)"
+        },
+        {
+          "key": [
+            "NC",
+            "01"
+          ],
+          "rating": "Toss-up",
+          "note": "Sabato moved Leans R -> Toss-up Jul 30 (Don Davis-D)"
+        },
+        {
+          "key": [
+            "NC",
+            "11"
+          ],
+          "rating": "Toss-up",
+          "note": "Sabato moved Leans R -> Toss-up Jul 30 (Edwards-R; weak fundraising plus ethics investigation)"
+        },
+        {
+          "key": [
+            "OH",
+            "07"
+          ],
+          "rating": "Lean R",
+          "note": "Sabato moved Likely R -> Leans R Jul 30 (Max Miller-R)"
+        },
+        {
+          "key": [
+            "PA",
+            "08"
+          ],
+          "rating": "Toss-up",
+          "note": "Sabato moved Leans R -> Toss-up Jul 30 (Bresnahan-R)"
+        },
+        {
+          "key": [
+            "SC",
+            "01"
+          ],
+          "rating": "Likely R",
+          "note": "Sabato moved Safe R -> Likely R Jul 30 (open seat)"
+        },
+        {
+          "key": [
+            "TX",
+            "15"
+          ],
+          "rating": "Lean R",
+          "note": "Sabato moved Likely R -> Leans R Jul 30 (De La Cruz-R; Bobby Pulido challenge)"
+        },
+        {
+          "key": [
+            "MO",
+            "05"
+          ],
+          "rating": "Solid R",
+          "note": "Rating is CORRECT and describes the redrawn seat, not the incumbent's party - the prior note claiming 'Solid R was a sheet error' was itself the error. Missouri's mid-decade map (signed Sep 2025, upheld by the MO Supreme Court Mar 24 and May 12 2026) turned MO-05 from Harris +24 into Trump 58-40; Cook PVI R+9, Inside Elections Baseline R+17. All three forecasters rate it Safe/Solid R: Inside Elections Sep 29 2025, Sabato Oct 2 2025, Cook May 13 2026. Cleaver (D) is running for a 12th term, unopposed in the Aug 4 Dem primary; six Republicans contest the GOP primary. CONTINGENT: a People Not Politicians referendum (~300k signatures) could suspend the map - if the 2022/2024 lines are used in November this reverts to Solid D."
+        }
       ]
     }
   }

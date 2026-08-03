@@ -117,6 +117,15 @@
       "caught_by": "Weekly membership and balance verification subagent (Contract 3.5), 2026-08-03 run. The value was hard-coded in SKILL.md and had never been re-checked against the primary source.",
       "impact": "Constants tab SENATE_I cell and any Senate summary line rendering it, wrong for several months. No invariant effect: SENATE_I is a subset of the caucus totals, not an addend, so SENATE_R + SENATE_D == 100 held throughout and no rating or seat count was affected. SKILL.md corrected in the same commit.",
       "source": "https://www.senate.gov/history/partydiv.htm"
+    },
+    {
+      "date": "2026-08-03",
+      "area": "House - MO-05",
+      "wrong": "The MO-05 row carried a note reading 'Incumbent Emanuel Cleaver is D; prior Solid R label was sheet error', implying the Solid R rating was a mistake to be undone.",
+      "right": "Solid R is correct. The note confused the incumbent's party with the seat's lean. Cleaver is indeed a Democrat and the Party cell D is right, but Missouri's mid-decade map turned MO-05 from Harris +24 into Trump 58-40 (Cook PVI R+9), and Inside Elections (Sep 29 2025), Sabato (Oct 2 2025) and Cook (May 13 2026) all rate it Safe/Solid R. Note replaced with the sourced rationale plus the referendum contingency.",
+      "caught_by": "Logged as an open question in decisions.json during the 2026-08-03 run, then resolved by a dedicated verification subagent at P-funk's request the same day.",
+      "impact": "House tab Note cell only - the published rating was correct throughout, so no rating, chamber count or forecast was ever wrong. The risk was the reverse: the note invited a future run to 'fix' a correct Solid R rating to something D-favorable.",
+      "source": "https://insideelections.com/a-detailed-analysis-of-missouris-new-congressional-map/"
     }
   ]
 }
