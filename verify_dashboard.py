@@ -94,6 +94,140 @@ def _refresh_coverage(na, cfg, window_days: int):
     return fresh, stale
 
 
+def _briefing_chamber_claims(text: str):
+    """
+    Pull every chamber-balance claim out of a briefing's prose.
+
+    Briefings have used three shapes across the archive, so we try all of them:
+      inline pipe   "218R | 212D | 1I | 4V House / 53R | 47D | 2I Senate"
+      inline slash  "53 R / 47 D / 3 I"
+      markdown row  "| **House** | 218 | 212 | 1 | 4 | 435 |"
+
+    Returns a list of (field, value, snippet). Two deliberate narrowings, both
+    of which exist to stop the parser inventing claims:
+
+    1. SCOPE — only the "## Chamber Balance" section is read. Current-state
+       figures live there by template; numbers elsewhere are commentary.
+    2. FIRST WINS — only the first value seen for each field counts. The
+       template leads with the authoritative "Confirmed: ..." line and then
+       elaborates, and elaboration can legitimately contain other compositions.
+       The 2026-07-29 briefing is the proof case: it says "53 R / 47 D / 3 I,
+       unchanged" and then, one sentence later, "the *registration* split is
+       53 R / 45 D / 2 I". Both are true; only the first is a claim about what
+       the dashboard publishes. Without first-wins this check would hard-FAIL a
+       perfectly correct briefing and abort an unattended run — the exact
+       brittleness that would make the gate worse than no gate.
+
+    It also matches only these structured shapes, never a bare number near a
+    label, so a sentence like "SENATE_I changed 3 -> 2" is ignored.
+    """
+    t = text.replace("**", "").replace("\\*", "").replace("*", "")
+
+    # Narrow to the Chamber Balance section when the template heading is present.
+    m = re.search(r"^##\s*Chamber Balance\s*$", t, re.I | re.M)
+    if m:
+        rest = t[m.end():]
+        nxt = re.search(r"^##\s+", rest, re.M)
+        t = rest[: nxt.start()] if nxt else rest
+
+    out = []
+
+    # House: three-digit R then D, optional I and vacancies.
+    for m in re.finditer(
+        r"(\d{3})\s*R\s*[|/]\s*(\d{3})\s*D"
+        r"(?:\s*[|/]\s*(\d{1,2})\s*I)?"
+        r"(?:\s*[|/]\s*(\d{1,2})\s*V)?",
+        t, re.I,
+    ):
+        snip = m.group(0).strip()
+        out.append(("HOUSE_R", int(m.group(1)), snip))
+        out.append(("HOUSE_D", int(m.group(2)), snip))
+        if m.group(3) is not None:
+            out.append(("HOUSE_I", int(m.group(3)), snip))
+        if m.group(4) is not None:
+            out.append(("HOUSE_VACANCIES", int(m.group(4)), snip))
+
+    # Senate: two-digit R then D, optional I.
+    for m in re.finditer(
+        r"(\d{2})\s*R\s*[|/]\s*(\d{2})\s*D(?:\s*[|/]\s*(\d{1,2})\s*I)?", t, re.I
+    ):
+        snip = m.group(0).strip()
+        out.append(("SENATE_R", int(m.group(1)), snip))
+        out.append(("SENATE_D", int(m.group(2)), snip))
+        if m.group(3) is not None:
+            out.append(("SENATE_I", int(m.group(3)), snip))
+
+    # Markdown table rows: | House | 218 | 212 | 1 | 4 | 435 |
+    for m in re.finditer(
+        r"\|\s*(House|Senate)\s*\|\s*(\d{2,3})\s*\|\s*(\d{2,3})\s*\|\s*(\d{1,2})", t, re.I
+    ):
+        ch = m.group(1).upper()
+        snip = m.group(0).strip()
+        out.append((f"{ch}_R", int(m.group(2)), snip))
+        out.append((f"{ch}_D", int(m.group(3)), snip))
+        out.append((f"{ch}_I", int(m.group(4)), snip))
+
+    # First wins — see the docstring. Later mentions are elaboration, not claims.
+    first, seen = [], set()
+    for f, v, s in out:
+        if f not in seen:
+            seen.add(f)
+            first.append((f, v, s))
+    return first
+
+
+def check_briefing_consistency():
+    """
+    L11 — the briefing's prose must agree with the patch the Sheet will receive.
+
+    WHY: on 2026-08-03 SENATE_I was corrected 3 -> 2 in constants_patch.json,
+    history.json and SKILL.md, but the briefing — the document humans actually
+    read — still said "3I" in two places. Nothing in the pipeline noticed. It was
+    caught only because the user happened to ask for the briefing to be updated.
+    On an unattended run that backstop does not exist.
+
+    FAILURE MODEL (deliberate, see below): a detected contradiction is
+    unambiguous and hard-FAILS. A failure to EXTRACT is not evidence of anything
+    — briefings vary in format — so it WARNs and lets the run proceed. Without
+    that asymmetry a brittle prose parser could abort an otherwise-good
+    autonomous run, trading a rare silent error for a frequent loud one.
+    """
+    patch_p = HERE / "constants_patch.json"
+    if not patch_p.exists():
+        record("L11-briefing", "PASS", "no pending patch (nothing to reconcile)")
+        return
+    briefs = sorted(HERE.glob("weekly_briefing_*.md"))
+    if not briefs:
+        record("L11-briefing", "WARN", "no weekly briefing found to reconcile")
+        return
+    brief = briefs[-1]
+    try:
+        updates = json.loads(patch_p.read_text()).get("updates", {})
+        claims = _briefing_chamber_claims(brief.read_text())
+    except Exception as e:  # noqa: BLE001
+        record("L11-briefing", "WARN", f"could not read: {e}")
+        return
+
+    checked = [(f, v, s) for f, v, s in claims if f in updates]
+    if not checked:
+        record("L11-briefing", "WARN",
+               f"{brief.name}: no chamber figures found in a recognised format — "
+               f"consistency with the patch is UNVERIFIED, not confirmed")
+        return
+
+    bad = [(f, v, s) for f, v, s in checked if v != updates[f]]
+    if bad:
+        detail = "; ".join(
+            f"briefing says {f}={v} but patch says {updates[f]} (in \"{s}\")"
+            for f, v, s in bad[:4]
+        )
+        record("L11-briefing", "FAIL",
+               f"{brief.name} contradicts constants_patch.json — {detail}")
+    else:
+        record("L11-briefing", "PASS",
+               f"{brief.name}: {len(checked)} chamber figures agree with the patch")
+
+
 def check_local(max_age_days: int, refresh_window_days: int = 10):
     print("LOCAL checks:")
 
@@ -248,6 +382,9 @@ def check_local(max_age_days: int, refresh_window_days: int = 10):
                else "history.json entries not in chronological order")
     except Exception as e:  # noqa: BLE001
         record("L8-history", "WARN", f"history.json: {e}")
+
+    # L11 — briefing prose vs the patch the Sheet will receive
+    check_briefing_consistency()
 
 
 # ────────────────────────────── SHEET MODE ──────────────────────────────

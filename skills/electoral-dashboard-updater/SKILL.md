@@ -584,7 +584,28 @@ Do NOT consider the run complete until both pass:
    (tune with `--refresh-window`). If it warns, **name the exact count and the stale races in the
    briefing's Contract 3.9 scope note** — do not describe a partial refresh as a full one.
 
-Only after all six checks pass do you tell the user the weekly cycle is done.
+7. **Reconcile the briefing against the patch (L11, added 2026-08-03).**
+   `verify_dashboard.py --local` now emits `L11-briefing`, which parses the chamber figures out
+   of the newest briefing's **Chamber Balance** section and asserts they equal
+   `constants_patch.json`. A contradiction is a **hard FAIL and blocks the push**; a briefing whose
+   format it cannot parse is a **WARN**, because failure to extract is not evidence of an error.
+
+   > **Why this exists.** On 2026-08-03 `SENATE_I` was corrected 3 → 2 in the patch, `history.json`
+   > and this skill, while the briefing — the document humans actually read — still said "3I" in
+   > two places. Nothing in the pipeline noticed; it was caught only because the user asked for the
+   > briefing to be updated. On an unattended run that backstop does not exist.
+   >
+   > **If L11 fails, fix the briefing — do not "fix" the patch to match.** The patch is validated
+   > against the Sheet and the invariants; the prose is the thing that drifts.
+   >
+   > Two parser rules worth knowing so you do not trip it: it reads **only the Chamber Balance
+   > section**, and it takes the **first** figure per field. Elaboration after the headline line is
+   > ignored deliberately — the 2026-07-29 briefing legitimately contains both "53 R / 47 D / 3 I"
+   > and, one sentence later, "the registration split is 53 R / 45 D / 2 I", and only the first is
+   > a claim about what the dashboard publishes. Keep the authoritative figures in the headline
+   > "Confirmed: …" line and you will never fight this check.
+
+Only after all seven checks pass do you tell the user the weekly cycle is done.
 
 ---
 
