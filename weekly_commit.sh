@@ -175,8 +175,10 @@ for p in \
   news_config.json \
   news_analysis.json \
   sentiment_history.json \
+  decisions.json \
   index.html \
   'weekly_briefing_*.md' \
+  preflight_sync.py \
   check_patch_integrity.py \
   verify_dashboard.py \
   validate_patch.py \

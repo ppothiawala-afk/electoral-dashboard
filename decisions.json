@@ -1,0 +1,27 @@
+{
+  "_comment": "Judgment calls an unattended run must NOT make on its own, and must NOT block on either. Contract 3.6 appends here instead of halting; the run ships everything else and surfaces these in the briefing. P-funk reviews at leisure and resolves by editing the entry's status to 'resolved' with a note. Nothing in this file gates the pipeline. See SKILL.md Contract 3.6.",
+  "decisions": [
+    {
+      "id": "2026-08-03-senate-i",
+      "date": "2026-08-03",
+      "status": "resolved",
+      "area": "Constants — SENATE_I",
+      "question": "SKILL.md hard-coded SENATE_I = 3, counting Murkowski as an independent. senate.gov lists 2 (Sanders, King) and carries Murkowski as R, as does this dashboard's own Senate tab. Change the value and the skill, or keep 3?",
+      "why_not_autonomous": "Contradicting an explicit hard-coded value in the canonical skill is a scope change, not a data update. The invariant SENATE_R + SENATE_D == 100 held either way, so nothing was blocked by deferring it.",
+      "options": ["Correct to 2 and fix SKILL.md", "Keep 3 pending confirmation"],
+      "resolution": "Corrected to 2 on 2026-08-03 at P-funk's direction. SKILL.md 2.3 rewritten, corrections.json entry added, patch updated before the apply job ran.",
+      "source": "https://www.senate.gov/history/partydiv.htm"
+    },
+    {
+      "id": "2026-08-03-mo-05",
+      "date": "2026-08-03",
+      "status": "open",
+      "area": "House — MO-05",
+      "question": "The MO-05 row carries Party 'D' (Cleaver) with Rating 'Solid R' and a Note saying the Solid R label 'was sheet error'. Post-redistricting Solid R may be correct for the new seat, but the note and the cell contradict each other. Which is right?",
+      "why_not_autonomous": "Resolving it means deciding whether the note or the rating is the stale artifact. I found no primary source settling it, and guessing would either restore a real error or erase a real correction.",
+      "options": ["Rating is right, delete the note", "Note is right, rating should be D-favorable", "Re-research the post-redistricting MO-05 partisan lean"],
+      "resolution": null,
+      "source": null
+    }
+  ]
+}

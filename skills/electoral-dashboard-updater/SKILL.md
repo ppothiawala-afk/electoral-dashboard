@@ -43,17 +43,40 @@ completed. If it did not, you must NOT silently overwrite the pending patch.
 
 ### Step 0 — SYNC THE CLONE FIRST (mandatory, before any file write)
 
-**This is the one git command you are allowed to run.** Everything else stays manual — you still
-never `add`, `commit`, or `push`. Run this in the project folder before Check A:
+**Run one script. Do not hand-roll the git.**
 
 ```bash
-cd ~/Documents/Claude/Projects/"Electoral Dashboard"
-find .git -maxdepth 1 -name "*.lock" -delete
-git pull --no-rebase --no-edit
+cd ~/Documents/Claude/Projects/"Electoral Dashboard" && python3 preflight_sync.py
 ```
 
-The lock-file delete is not optional — sandbox git has repeatedly left stale `index.lock` and
-`HEAD.lock` in this repo, and a pull will fail on them.
+`preflight_sync.py` clears stale locks at every depth, fetches, adjudicates any file that blocks
+the merge, pulls with rename detection disabled, and verifies afterwards that nothing was lost.
+Read its exit code and act on it:
+
+| Exit | Meaning | What you do |
+|---|---|---|
+| **0** | Clone synced and clean | Proceed to Check A |
+| **1** | Operational failure (locks unremovable, fetch/pull failed) | **Stop.** Report verbatim. If locks are stuck, the sandbox needs `mcp__cowork__allow_cowork_file_delete` granted on the folder |
+| **2** | Real local divergence | **Stop and do not write any file.** Name the diverging paths in your report and let the user resolve |
+
+**Why a script and not a judgment call (added 2026-08-03).** The recurring blocker is not the
+locks — it is a *dirty worktree*. The apply job pushes a commit back, the clone never pulls it, and
+the identical edits sit uncommitted locally, so `git pull` aborts with "Your local changes … would
+be overwritten by merge." Clearing that needs `git checkout -- <files>`, which is off the allowlist.
+But the safety argument is mechanical, not discretionary:
+
+> if `sha256(worktree) == sha256(origin blob)` for every blocking file, then reverting and
+> fast-forwarding returns the worktree to exactly the bytes it started with.
+
+The script checks that equality for every file every time and **refuses when it does not hold** —
+which is stricter than a human eyeballing a diff, and is why this no longer needs a human at all.
+On a failed pull it restores anything it reverted, so it can never leave the worktree worse than it
+found it. Use `--dry-run` to see the adjudication without changing anything.
+
+> 🚫 **Never work around exit 2** by stashing, resetting, or re-running until it passes. Exit 2 means
+> content exists locally that is not in the incoming commit — the Ghost integration files have been
+> sitting uncommitted for weeks for exactly this reason. Destroying them is the 2026-07-29 class of
+> incident, not a recovery.
 
 > 🚫 **The rename trap (this destroyed a full week's patch on 2026-07-29).** The Monday apply job
 > archives by *renaming* `constants_patch.json` → `constants_patch.applied_YYYY-MM-DD.json` and
@@ -127,6 +150,29 @@ Events to find:
 > on the House floor, so it can *lag* — e.g. showing 0 vacancies when 4 exist. Cross-check the
 > Clerk's vacancy list. Never lower the vacancy count below a known-good figure just because the
 > Press Gallery hasn't caught up. (The scraper enforces a vacancy floor and will skip-and-flag.)
+> On 2026-08-03 it read 217R/5V against the Clerk's 218R/4V because it still listed CA-01 as open
+> six weeks after Gallagher was sworn in. **Report both numbers and say which is lagging** — do
+> not silently pick one.
+
+### 2.1a Research hazards (all three bit on 2026-08-03 — budget for them)
+
+- **The forecaster sites are client-rendered. `WebFetch` returns an empty shell.**
+  cookpolitical.com and centerforpolitics.org both fetch as blank. Escalate to the Claude-in-Chrome
+  tools; if the extension is not connected, fall back to a **secondary source that quotes the
+  primary verbatim and deep-links it** (Mediaite, Newsweek, The Hill and Politicalwire all
+  reproduced the full Jul 30 Crystal Ball list). Cite the primary's own URL once you have
+  confirmed its contents. Never cite a rating change you have only seen summarized.
+- **🚫 Search summaries garble district numbers.** On 2026-08-03 the same Sabato change came back
+  as **NJ-0**, **NJ-13** and **NJ-07** across three searches. The truth was **NJ-09**, and NJ-13
+  does not exist. **Never put a district-level change into the patch on the strength of a search
+  summary** — confirm the district against article body text or the forecaster, and let the
+  Contract 3.5 ratings verifier see every district claim. A wrong key silently no-ops or, worse,
+  corrupts the wrong seat.
+- **The Drive read truncates long tabs.** `read_file_content` on the Sheet returns the House tab
+  only partway (it stopped at OH-12 on 2026-08-03), so rows for later states are invisible. You
+  can still patch them — `row_updates` sets by key regardless — but you cannot report a truthful
+  "Old" value, and a key that does not match will make the whole apply exit nonzero. Say in the
+  briefing which rows you could not see, and prefer keys you have verified exist.
 
 ### 2.2 Read the current sheet (read-only)
 
@@ -154,6 +200,15 @@ through `constants_patch.json`.
   > senate.gov rather than assuming; this error survived several months of weekly runs because
   > the number was hard-coded here and never re-checked.
 - Ratings ∈ the 7-point enum. Dates are ISO `YYYY-MM-DD`.
+
+> ⚠️ **No live facts in this file — audit this rule when you touch §2.3.** §2.4 already says
+> "never hard-code live numbers into this skill," and §2.3 violated it for months with
+> `SENATE_I = 3`. Every weekly run inherited the wrong value because it was written here and
+> never re-checked against a primary source. The remaining hard-coded facts in this section are
+> **435**, the two-independent Senate composition, and the Kiley/CA-03 case. Those are stable,
+> but they are not permanent: 435 is statutory, the others are people who can change their minds.
+> **Re-verify them against a primary source at least quarterly**, and when one turns out to be
+> wrong, open a `decisions.json` entry rather than either silently changing it or ignoring it.
 - **Kevin Kiley (CA-03)** is Independent but caucuses R → counts as **I** in `HOUSE_I`, not R.
   His sheet Party cell should be "I". (Same shape of edge case: a member who caucuses with a
   party is still counted as their registered affiliation.)
@@ -350,13 +405,50 @@ is independent and can't inherit your anchoring:
 Do NOT spawn more than three; batch claims per verifier instead. Skip a verifier entirely
 if it would receive zero claims this week.
 
-### 3.5.2 Reconcile
+### 3.5.2 Reconcile — this GATES the patch
 
 - **CONFIRMED** → cite normally in the briefing.
 - **CONTRADICTED** → investigate yourself with the verifier's URLs. Whoever has the primary
-  source wins. Fix the patch/briefing, or if genuinely unresolved, drop the change from the
-  patch and flag it.
+  source wins. Fix the patch/briefing. **If you cannot settle it against a primary source, the
+  change is DROPPED from the patch automatically** — not kept with a caveat, not argued through.
+  Log it in the Verification section and move on.
 - **UNVERIFIABLE** → keep the change ONLY if your own source is primary; flag it either way.
+
+> **Fail-safe, never fail-stop (added 2026-08-03).** One unresolvable claim must never sink the
+> run. Drop that single change, ship the rest of the patch, and say plainly in the briefing what
+> was dropped and why. An unattended run that halts over one bad claim costs a whole week of
+> updates; one that ships eight good changes and flags the ninth costs nothing. The only
+> conditions that legitimately abort a run are Contract 1 exit 1/2 (diverged or broken clone) and
+> a Contract 4 hard FAILURE — everything else degrades gracefully.
+
+---
+
+## CONTRACT 3.6 — DECISION QUEUE (never block on judgment calls)
+
+Some things are genuinely not yours to decide alone: a value this skill hard-codes turning out to
+be wrong, a sheet row whose note contradicts its own cell, a scope change. Before 2026-08-03 these
+either blocked the run waiting for the user or got silently resolved. Both are wrong.
+
+**Append to `decisions.json` and keep going.** Schema:
+
+```json
+{"id":"<YYYY-MM-DD-slug>","date":"<YYYY-MM-DD>","status":"open",
+ "area":"<tab or field>","question":"<what must be decided>",
+ "why_not_autonomous":"<why you did not just pick>",
+ "options":["<a>","<b>"],"resolution":null,"source":"<url or null>"}
+```
+
+Rules:
+
+- **Nothing in `decisions.json` gates the pipeline.** It is a queue, not a lock.
+- Surface open items in the briefing under Verification, one line each. Do not re-litigate an
+  item that is already `open` — one entry per question, ever.
+- When the user resolves one, set `status` to `resolved` and fill `resolution`.
+- If a decision turns out to have been a *published error*, it also gets a `corrections.json`
+  entry when it is fixed. The two files are different jobs: `decisions.json` is "someone must
+  choose", `corrections.json` is "we published something wrong and here is the fix."
+- Default to the conservative branch while an item is open — the one that changes least and is
+  easiest to reverse.
 
 **Corrections log duty:** if this week's work FIXES a substantive error that was previously
 published on the dashboard (wrong incumbent, wrong matchup, wrong rating, wrong count),
@@ -374,8 +466,21 @@ Add to the briefing, after Sheet Updates:
 - ⚠️ [claim] — UNVERIFIABLE: kept on primary source [link] / dropped
 ```
 
+Add one line per **open** `decisions.json` item as well:
+
+```markdown
+- 🗳️ Awaiting your call — [question]. Ran with [conservative branch] meanwhile. (decisions.json: <id>)
+```
+
 An all-✅ section with zero ⚠️ items and zero dropped changes is the normal, expected result.
 If you skipped verification (e.g., zero changes this week), say so in this section explicitly.
+
+> **A zero-change week is a legitimate, complete run.** Forecasters go quiet for weeks at a time,
+> and Cook and Inside Elections both published nothing between 2026-07-27 and 2026-08-03. If
+> nothing moved, write the briefing saying nothing moved, ship the unchanged chamber values with a
+> fresh `LAST_UPDATED`, and stop. Never manufacture a rating change, stretch a stale one into
+> "news", or pad the patch to make a run look productive. The dashboard's value is that it is
+> right, not that it changes.
 
 ---
 
@@ -384,7 +489,26 @@ If you skipped verification (e.g., zero changes this week), say so in this secti
 Added 2026-07-16 (previously the optional Step 5 of WEEKLY_ROUTINE.md — it kept getting skipped,
 leaving `news_analysis.json` stale and the State News tab flagged by L2-freshness).
 
-1. For every race in `news_config.json` (`states` → `races`), web-search its `query` for
+> ⚠️ **Rewritten 2026-08-03 — FAN OUT, do not do this serially.** The 2026-08-03 run scored
+> 10 of 27 races working alone and had to report a partial refresh. That was not a discipline
+> failure: 27 races of searching, deep-link verification and scoring does not fit one agent's
+> context, which is why this step "kept getting skipped" before it was made mandatory. Making it
+> mandatory did not make it possible. **Parallelism does.**
+>
+> **Spawn 5–6 news subagents (Agent tool, general-purpose), each owning 4–5 races**, and run them
+> in parallel in a single message. Each returns structured JSON for its races only; you merge,
+> validate and write. Unlike the Contract 3.5 verifiers there is **no cap and no anchoring
+> concern** here — this is gather-and-score, not adjudication, so fan-out is safe and is the
+> whole point. Give each subagent: its race list, the exact `news_analysis.json` race schema,
+> the `outlet_lean` map, the deep-link rule, and the instruction below about dates.
+>
+> **The date rule is non-negotiable and must be repeated to every subagent:** an article's `date`
+> must come from the URL slug, an explicit dateline, or the page itself — **never inferred,
+> never approximated.** If the date cannot be established, drop the article and find another. A
+> plausible-looking invented date turns L2b from a real coverage metric into decoration, and is
+> worse than a visible gap. Prefer sources that carry the date in the URL.
+
+1. For every race in `news_config.json` (`states` → `races`), search its `query` for
    coverage from the last ~14 days (the config's `lookback_days` is the outer bound).
 2. Rescore each race into `news_analysis.json` using the existing schema and semantics
    (`sentiment` = 0-100 D-favorability of coverage tone; `candidates[].sentiment` = personal
@@ -399,6 +523,18 @@ leaving `news_analysis.json` stale and the State News tab flagged by L2-freshnes
 5. If a primary resolved since last run (AZ Jul 21, MI/KS Aug 4, WI/MN Aug 11, AK Aug 18,
    NH Sep 8), update the affected candidate lists and queries in `news_config.json` and flag
    the change in the briefing.
+
+6. **Merge, then check your own coverage before moving on.** Run
+   `python3 verify_dashboard.py --local` and read the `L2b-coverage` line. If it is below 27/27,
+   you have subagent capacity left — spawn another round for the stale races rather than
+   accepting the gap. Only report a partial refresh when a race genuinely has no datable recent
+   coverage, and then name it.
+
+> **Why L2b can under-report real work.** L2b requires an article dated within 10 days of
+> `generated`. A race can be genuinely rescored and still count stale because the best available
+> coverage is three weeks old — NC/Senate on 2026-08-03 was exactly this. That is not a bug: it
+> is the metric correctly saying "this race has no fresh coverage." Say so in those words rather
+> than implying you skipped it.
 
 Then Contract 4's steps 3-4 (sentiment snapshot + verifier) confirm the refresh landed.
 
