@@ -29,6 +29,36 @@
       ],
       "resolution": "Resolved 2026-08-03: the RATING was right and the NOTE was wrong. The note assumed a Democratic incumbent implies a Democratic-leaning rating, but a rating describes the seat. Missouri's mid-decade map turned MO-05 from Harris +24 into Trump 58-40 (Cook PVI R+9; Inside Elections Baseline R+17), and all three forecasters independently moved it to Safe/Solid R. Party cell stays D, Rating stays Solid R, note replaced with sourced reasoning. One live contingency recorded: a People Not Politicians referendum (~300k signatures, certification decision expected around the Aug 4 primary) could suspend the map, in which case the old lines would make this Solid D again.",
       "source": "https://insideelections.com/a-detailed-analysis-of-missouris-new-congressional-map/"
+    },
+    {
+      "id": "2026-08-10-inside-elections-tilt-mapping",
+      "date": "2026-08-10",
+      "status": "open",
+      "area": "Methodology — rating scale",
+      "question": "Inside Elections uses a finer scale than the dashboard: it has a 'Tilt' tier between 'Lean' and 'Toss-up' (Toss-up / Tilt / Lean / Likely / Solid). The dashboard's 7-point enum has no 'Tilt'. On Aug 6, 2026 Inside Elections moved several races to a 'Tilt' rating (NC-Sen and GA-Sen to Tilt D, IA-Sen to Tilt R, KS-Gov to Tilt R, IA-Gov to Tilt D). How should an IE 'Tilt D/R' be represented on the 7-point sheet when it is the mover — collapse to 'Toss-up', collapse to 'Lean', or keep tracking Cook/Sabato (which share the 7-point scale) and treat IE only as corroboration?",
+      "why_not_autonomous": "This is a standing methodology choice about which forecaster(s) the Rating column tracks and how to collapse a 5-gradation scale into 7 points, not a one-off data update. Picking a rule unilaterally would silently change how every future IE 'Tilt' move is handled.",
+      "options": [
+        "Keep tracking Cook/Sabato on the 7-point scale; use IE only as corroboration (never import a bare 'Tilt')",
+        "Map IE 'Tilt D/R' to 'Toss-up' (Tilt is the most competitive non-tossup tier)",
+        "Map IE 'Tilt D/R' to 'Lean D/R' (nearest same-direction label)"
+      ],
+      "resolution": null,
+      "source": "https://www.270towin.com/2026-senate-election/inside-elections-2026-senate-ratings"
+    },
+    {
+      "id": "2026-08-10-mt-senate-matchup",
+      "date": "2026-08-10",
+      "status": "open",
+      "area": "Senate — Montana",
+      "question": "The Senate ratings tab lists MT as incumbent Steve Daines (R) vs. Reilly Neill (D), Solid R. The State News pass (Montana Free Press, Daily Montanan) and news_config.json both indicate Daines did NOT seek re-election, Neill lost the June 2 Democratic primary to Alani Bankhead, and the November matchup is Kurt Alme (R) vs. Alani Bankhead (D) vs. independent Seth Bodnar. Should the Senate row's Incumbent/Challenger cells be rewritten to the Alme/Bankhead/Bodnar matchup (with Daines removed as incumbent)?",
+      "why_not_autonomous": "This is a member-level/incumbent correction surfaced only by a news-gathering subagent, not the gating Contract 3.5 membership verifier. Rewriting the Incumbent cell (a field outside the normal rating row_update) on a single unverified pass risks a half-correct row. The rating is Solid R either way, so nothing is blocked by deferring; the State News tab already shows the correct current matchup.",
+      "options": [
+        "Have next week's membership verifier confirm Daines retired, then rewrite Incumbent + Challenger together",
+        "Rewrite the matchup now to Alme (R) / Bankhead (D) / Bodnar (I)",
+        "Leave as-is pending a primary source"
+      ],
+      "resolution": null,
+      "source": "https://montanafreepress.org/2026/07/30/bankhead-bodnar-and-the-battle-over-bowing-out/"
     }
   ]
 }

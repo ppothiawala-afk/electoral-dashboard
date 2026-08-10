@@ -126,6 +126,15 @@
       "caught_by": "Logged as an open question in decisions.json during the 2026-08-03 run, then resolved by a dedicated verification subagent at P-funk's request the same day.",
       "impact": "House tab Note cell only - the published rating was correct throughout, so no rating, chamber count or forecast was ever wrong. The risk was the reverse: the note invited a future run to 'fix' a correct Solid R rating to something D-favorable.",
       "source": "https://insideelections.com/a-detailed-analysis-of-missouris-new-congressional-map/"
+    },
+    {
+      "date": "2026-08-10",
+      "area": "Senate - Kansas",
+      "wrong": "Senate tab listed the Kansas Democratic challenger to Sen. Roger Marshall as Christy Davis (D).",
+      "right": "The Democratic nominee is Rev. Adam Hamilton, a United Methodist pastor, who won the Aug 4, 2026 Democratic primary; Christy Davis finished well back (~14%). Marshall (R) won the GOP primary ~79%.",
+      "caught_by": "Weekly candidate-matchup verification subagent (Contract 3.5), 2026-08-10 run - flagged as a partial contradiction while confirming the KS primary field.",
+      "impact": "Senate tab Challenger cell; corrected the day the primary resolved. No rating mis-set - KS Senate moved Solid R -> Likely R the same week (Cook Aug 4, Sabato Aug 5), which is a separate, sourced change.",
+      "source": "https://kansasreflector.com/2026/08/04/u-s-sen-roger-marshall-united-methodist-pastor-adam-hamilton-to-compete-in-november/"
     }
   ]
 }

@@ -58,15 +58,8 @@
       "races": [
         {
           "type": "Senate",
-          "query": "Michigan senate primary 2026 Stevens El-Sayed Rogers",
+          "query": "Michigan senate race 2026 El-Sayed Rogers",
           "candidates": [
-            {
-              "name": "Haley Stevens",
-              "party": "D",
-              "aliases": [
-                "Stevens"
-              ]
-            },
             {
               "name": "Abdul El-Sayed",
               "party": "D",

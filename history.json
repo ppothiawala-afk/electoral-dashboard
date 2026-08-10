@@ -813,6 +813,38 @@
         }
       ],
       "snapshot": {}
+    },
+    {
+      "date": "2026-08-10",
+      "label": "Aug 10",
+      "briefing": "weekly_briefing_2026-08-10.md",
+      "chamber": {
+        "house_r": 218,
+        "house_d": 212,
+        "house_i": 1,
+        "house_vacancies": 4,
+        "senate_r": 53,
+        "senate_d": 47,
+        "senate_i": 2,
+        "notes": "No membership changes. Four House vacancies hold (CA-14, FL-20, GA-13, TX-23); CA-14 special Aug 18, GA-13 runoff Aug 25. SC Senate special GOP primary Aug 11 (Nordone-R seated). Press-Gallery vacancy lag cleared (now shows 4/218R)."
+      },
+      "rating_changes": [
+        {
+          "tab": "Senate",
+          "race": "KS — Marshall (R) vs. Hamilton (D)",
+          "from": "Solid R",
+          "to": "Likely R",
+          "source": "Cook Political Report, Aug 4 2026 / Sabato's Crystal Ball, Aug 5 2026"
+        },
+        {
+          "tab": "Governors",
+          "race": "TX — Abbott (R) vs. Hinojosa (D)",
+          "from": "Solid R",
+          "to": "Likely R",
+          "source": "Inside Elections, Aug 6 2026"
+        }
+      ],
+      "snapshot": {}
     }
   ]
 }

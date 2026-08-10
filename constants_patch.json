@@ -1,0 +1,58 @@
+{
+  "notes": "Weekly 2026-08-10: chamber unchanged (218R/212D/1I/4V House; 53R/47D/2I Senate). Two forecaster rating moves, both toward less confidence: KS Senate Solid R -> Likely R (Cook Aug 4, Sabato Aug 5, after Democrat Adam Hamilton won the Aug 4 primary) and TX Governor Solid R -> Likely R (Inside Elections Aug 6). One published error corrected: KS Senate challenger was Christy Davis; the actual Democratic nominee is Rev. Adam Hamilton, who won the Aug 4 primary (Davis ~14%). Inside Elections also made several 'Tilt'-tier moves (NC/GA/IA Senate, KS/IA Governor, MI-08) that the dashboard's 7-point enum cannot represent or where the sheet already sits equal-or-more-favorable; logged as a methodology decision in decisions.json and left unchanged (conservative branch). No member died, resigned, or switched parties this week.",
+  "updates": {
+    "HOUSE_R": 218,
+    "HOUSE_D": 212,
+    "HOUSE_I": 1,
+    "HOUSE_VACANCIES": 4,
+    "SENATE_R": 53,
+    "SENATE_D": 47,
+    "SENATE_I": 2,
+    "LAST_UPDATED": "2026-08-10",
+    "NOTES": "Kiley (CA-03) is Independent but caucuses R. Vacancies (4): CA-14 (Swalwell-D resigned Apr 14, special general Aug 18: Wahab vs Hernandez, both D), FL-20 (Cherfilus-McCormick-D resigned Apr 21, special date still TBD; new map eliminates the district), GA-13 (Scott-D died Apr 22; Jul 28 special produced no majority, Aug 25 runoff Marcye Scott vs Everton Blair Jr.), TX-23 (Gonzales-R resigned Apr 14, special still not called by Abbott). House Clerk and Press Gallery now both show 4 vacancies and 218R (the earlier Press-Gallery lag has cleared). Senate: Nordone (R-SC) seated Jul 14; special GOP primary Aug 11, runoff Aug 25 if needed. Senate 53R/47D unchanged; Sanders-VT and King-ME are the two independents inside the D caucus, Murkowski-AK is R."
+  },
+  "row_updates": {
+    "Senate": {
+      "key_cols": [
+        "State",
+        "Up in 2026"
+      ],
+      "rating_col": "Rating",
+      "extra_col_map": {
+        "Challenger": "challenger",
+        "Notes": "notes"
+      },
+      "changes": [
+        {
+          "key": [
+            "KS",
+            "YES"
+          ],
+          "rating": "Likely R",
+          "challenger": "Adam Hamilton (D)",
+          "notes": "CORRECTED CHALLENGER: the Democratic nominee is Rev. Adam Hamilton (United Methodist pastor), who won the Aug 4 primary; the previously listed Christy Davis finished well back (~14%). Roger Marshall (R) won the GOP primary ~79%. RATING: Cook moved Solid R -> Likely R on Aug 4 and Sabato moved Safe R -> Likely R on Aug 5, both after Hamilton's primary win gave Democrats a credible nominee. Kansas remains clearly R-favored; the move reflects a modestly more competitive-than-Safe profile, not a toss-up."
+        }
+      ]
+    },
+    "Governors": {
+      "key_cols": [
+        "State",
+        "Election 2026"
+      ],
+      "rating_col": "Rating",
+      "extra_col_map": {
+        "Notes": "notes"
+      },
+      "changes": [
+        {
+          "key": [
+            "TX",
+            "YES"
+          ],
+          "rating": "Likely R",
+          "notes": "Inside Elections moved Solid/Safe R -> Likely R on Aug 6, 2026. Abbott is seeking a 4th term (no TX gubernatorial term limits) vs. Gina Hinojosa (D); recent polling has Abbott roughly +5-6 with a ~$96M war chest. Cook and Sabato still rate the race Solid/Safe R; this follows the single forecaster that moved, consistent with the polling."
+        }
+      ]
+    }
+  }
+}

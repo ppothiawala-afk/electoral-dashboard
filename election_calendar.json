@@ -1,6 +1,6 @@
 {
  "_comment": "Upcoming election events rendered on the Overview tab. Maintained by the weekly Cowork routine — the candidate-matchup verifier should confirm dates and add/remove events as primaries resolve. Past events are auto-hidden by the UI (kept here for the record). kind: primary | runoff | special | convention | general.",
- "updated": "2026-08-03",
+ "updated": "2026-08-10",
  "events": [
   {
    "date": "2026-06-16",
@@ -35,14 +35,14 @@
    "state": "MI",
    "kind": "primary",
    "title": "Michigan primaries",
-   "note": "D Senate primary is Stevens vs. El-Sayed (McMorrow suspended Jul 5, still on the ballot); Mike Rogers is unopposed for the R Senate nod. Governor: Benson leads Swanson big on the D side; James (Trump-endorsed) leads Perry Johnson 40-32 on the R side."
+   "note": "Resolved: Abdul El-Sayed won the D Senate primary over Rep. Haley Stevens (~1 pt, AP-called Aug 5); faces Mike Rogers (R, unopposed) Nov 3. Governor: Jocelyn Benson won the D nod (~84% over Chris Swanson) and Rep. John James (R, Trump-endorsed) won the GOP nod over Perry Johnson. In MI-13, state Rep. Donavan McKinney defeated incumbent Rep. Shri Thanedar in the D primary (~52-48)."
   },
   {
    "date": "2026-08-04",
    "state": "KS",
    "kind": "primary",
    "title": "Kansas primaries",
-   "note": "Open-governor fields resolve: 7 R (Masterson Trump-endorsed) and 3 D — Ethan Corson (Kelly-endorsed), Cindy Holscher and Overland Park Mayor Curt Skoog."
+   "note": "Resolved (Senate): Sen. Roger Marshall (R) won renomination ~79%; Democrats nominated Rev. Adam Hamilton, a United Methodist pastor, over Christy Davis (~14%). Open-governor primaries were also held the same day (Ty Masterson was the Trump-endorsed R front-runner; Ethan Corson was Kelly-endorsed on the D side)."
   },
   {
    "date": "2026-08-11",
