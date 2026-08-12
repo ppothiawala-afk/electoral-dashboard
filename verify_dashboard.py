@@ -228,6 +228,75 @@ def check_briefing_consistency():
                f"{brief.name}: {len(checked)} chamber figures agree with the patch")
 
 
+def check_ie_watch():
+    """
+    L12 — ie_watch.json (IE Tilt Watch, route 3; see SKILL.md 2.3a).
+
+    The Rating column tracks Cook/Sabato on the 7-point enum; Inside Elections
+    'Tilt' (and any IE divergence) is logged here and surfaced in the briefing,
+    NEVER imported into a Rating cell. This check guards the LOG's integrity, not
+    the rule: a malformed file hard-FAILS, a `generated` older than the newest
+    briefing WARNs, and a missing file is a PASS (the feature is optional until
+    first used). It deliberately does NOT try to prove IE stayed out of the Sheet
+    — that discipline lives in the skill, not a parser.
+    """
+    p = HERE / "ie_watch.json"
+    if not p.exists():
+        record("L12-iewatch", "PASS", "ie_watch.json not present (IE Tilt Watch unused)")
+        return
+    try:
+        data = json.loads(p.read_text())
+    except Exception as e:  # noqa: BLE001
+        record("L12-iewatch", "FAIL", f"ie_watch.json does not parse: {e}")
+        return
+    watch = data.get("watch")
+    if not isinstance(watch, list):
+        record("L12-iewatch", "FAIL", "ie_watch.json missing a 'watch' list")
+        return
+    ie_tiers = {"Toss-up", "Tilt D", "Tilt R", "Lean D", "Lean R",
+                "Likely D", "Likely R", "Solid D", "Solid R"}
+    valid_status = {"open", "confirmed", "faded"}
+    problems = []
+    for i, e in enumerate(watch):
+        if not isinstance(e, dict):
+            problems.append(f"entry {i} is not an object")
+            continue
+        tag = e.get("race") or f"entry {i}"
+        if not e.get("race"):
+            problems.append(f"entry {i} missing 'race'")
+        if e.get("sheet_rating") not in RATINGS:
+            problems.append(f"{tag}: sheet_rating {e.get('sheet_rating')!r} not a 7-point rating")
+        if e.get("ie_rating") not in ie_tiers:
+            problems.append(f"{tag}: ie_rating {e.get('ie_rating')!r} not an IE tier")
+        if e.get("status") not in valid_status:
+            problems.append(f"{tag}: status {e.get('status')!r} not open/confirmed/faded")
+        src = (e.get("source") or "").strip()
+        if not (src.startswith("http") and "/" in src.split("://", 1)[-1].strip("/")):
+            problems.append(f"{tag}: source is not a deep link")
+        if e.get("status") == "confirmed" and not e.get("confirmed_by"):
+            problems.append(f"{tag}: status 'confirmed' but confirmed_by is empty")
+    if problems:
+        record("L12-iewatch", "FAIL",
+               f"ie_watch.json schema issues: {'; '.join(problems[:5])}")
+        return
+    open_n = sum(1 for e in watch if e.get("status") == "open")
+    gen = data.get("generated")
+    briefs = sorted(HERE.glob("weekly_briefing_*.md"))
+    newest = briefs[-1].name[len("weekly_briefing_"):-len(".md")] if briefs else None
+    try:
+        if gen and newest and (datetime.date.fromisoformat(gen)
+                               < datetime.date.fromisoformat(newest)):
+            record("L12-iewatch", "WARN",
+                   f"generated {gen} is older than newest briefing {newest} — rerun "
+                   f"Contract 3.9 step 7 ({len(watch)} entries, {open_n} open)")
+            return
+    except ValueError:
+        record("L12-iewatch", "WARN", f"generated date unparseable: {gen!r}")
+        return
+    record("L12-iewatch", "PASS",
+           f"ie_watch.json valid — {len(watch)} entries, {open_n} open (generated {gen})")
+
+
 def check_local(max_age_days: int, refresh_window_days: int = 10):
     print("LOCAL checks:")
 
@@ -385,6 +454,9 @@ def check_local(max_age_days: int, refresh_window_days: int = 10):
 
     # L11 — briefing prose vs the patch the Sheet will receive
     check_briefing_consistency()
+
+    # L12 — IE Tilt Watch log integrity (route 3; see SKILL.md 2.3a)
+    check_ie_watch()
 
 
 # ────────────────────────────── SHEET MODE ──────────────────────────────

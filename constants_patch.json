@@ -1,0 +1,30 @@
+{
+  "notes": "Out-of-cycle correction (2026-08-12): fix the MT-Sen matchup. Chamber balance unchanged. MT Senate row rewritten to the open-seat three-way field after Daines declined to seek re-election; rating stays Solid R. Closes decisions.json 2026-08-10-mt-senate-matchup.",
+  "updates": {
+    "HOUSE_R": 218,
+    "HOUSE_D": 212,
+    "HOUSE_I": 1,
+    "HOUSE_VACANCIES": 4,
+    "SENATE_R": 53,
+    "SENATE_D": 47,
+    "SENATE_I": 2,
+    "LAST_UPDATED": "2026-08-12",
+    "NOTES": "Kiley (CA-03) is Independent but caucuses R. Vacancies (4): CA-14 (Swalwell-D resigned Apr 14, special general Aug 18: Wahab vs Hernandez, both D), FL-20 (Cherfilus-McCormick-D resigned Apr 21, special date still TBD; new map eliminates the district), GA-13 (Scott-D died Apr 22; Jul 28 special produced no majority, Aug 25 runoff Marcye Scott vs Everton Blair Jr.), TX-23 (Gonzales-R resigned Apr 14, special still not called by Abbott). House Clerk and Press Gallery now both show 4 vacancies and 218R (the earlier Press-Gallery lag has cleared). Senate: Nordone (R-SC) seated Jul 14; special GOP primary Aug 11, runoff Aug 25 if needed. Senate 53R/47D unchanged; Sanders-VT and King-ME are the two independents inside the D caucus, Murkowski-AK is R."
+  },
+  "row_updates": {
+    "Senate": {
+      "key_cols": ["State", "Up in 2026"],
+      "rating_col": "Rating",
+      "extra_col_map": {"Open": "open", "Challenger": "challenger", "Notes": "notes"},
+      "changes": [
+        {
+          "key": ["MT", "YES"],
+          "rating": "Solid R",
+          "open": "true",
+          "challenger": "Kurt Alme (R) vs. Alani Bankhead (D) vs. Seth Bodnar (I)",
+          "notes": "Daines did not seek re-election — he withdrew from the GOP primary at the June filing deadline and endorsed U.S. Attorney Kurt Alme; the seat is now open. Alani Bankhead won the Jun 2 Democratic primary over Reilly Neill (~12k-vote margin); ex-University of Montana president Seth Bodnar is running as an independent. Rating stays Solid R: Alme polls ~40% but the anti-R vote splits between Bodnar and Bankhead (Sabato Safe R; Inside Elections Solid R)."
+        }
+      ]
+    }
+  }
+}

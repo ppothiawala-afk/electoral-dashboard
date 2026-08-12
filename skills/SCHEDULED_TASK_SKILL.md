@@ -98,10 +98,11 @@ through `constants_patch.json`.
 ### 2.3 Invariants (must always hold)
 
 - **HOUSE (exclusive):** `HOUSE_R + HOUSE_D + HOUSE_I + HOUSE_VACANCIES == 435`.
-- **SENATE (overlapping):** `SENATE_R + SENATE_D == 100`. The three independents
-  (**Sanders-VT, King-ME, Murkowski-AK**) are counted **INSIDE** the R/D caucus totals.
-  `SENATE_I` (= 3) is informational and a **subset** — it is NOT added on top.
-  > 🚫 **Senate-sums-to-103 trap.** `SENATE_R + SENATE_D + SENATE_I = 103` is **CORRECT**, not a
+- **SENATE (overlapping):** `SENATE_R + SENATE_D == 100`. The two independents
+  (**Sanders-VT, King-ME**) are counted **INSIDE** the R/D caucus totals; Murkowski-AK is R,
+  not an independent (corrected 2026-08-03).
+  `SENATE_I` (= 2) is informational and a **subset** — it is NOT added on top.
+  > 🚫 **Senate-sums-to-102 trap.** `SENATE_R + SENATE_D + SENATE_I = 102` is **CORRECT**, not a
   > bug. NEVER "fix" the Senate to sum to 100 by lowering `SENATE_R`/`SENATE_D` to net out the
   > independents. The only Senate sum invariant is `SENATE_R + SENATE_D == 100`.
 - Ratings ∈ the 7-point enum. Dates are ISO `YYYY-MM-DD`.

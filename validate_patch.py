@@ -26,12 +26,14 @@ SENATE OVERLAP SEMANTICS (read before "fixing" any Senate number)
 HOUSE counts are EXCLUSIVE and partition all 435 seats:
     HOUSE_R + HOUSE_D + HOUSE_I + HOUSE_VACANCIES == 435
 
-SENATE counts OVERLAP. The three independents (Sanders-VT, King-ME,
-Murkowski-AK) are counted INSIDE the caucus totals SENATE_R / SENATE_D:
+SENATE counts OVERLAP. The two independents (Sanders-VT, King-ME) caucus with
+the Democrats and are counted INSIDE the caucus totals SENATE_R / SENATE_D:
     SENATE_R + SENATE_D == 100        <-- the only Senate sum invariant
-    SENATE_I is informational (= 3), a SUBSET of the caucus counts.
-NEVER "correct" the Senate to 100 by changing SENATE_R or SENATE_D to net out
-SENATE_I. SENATE_R + SENATE_D + SENATE_I == 103 is CORRECT, not a bug.
+    SENATE_I is informational (= 2), a SUBSET of the caucus counts.
+Murkowski-AK is R, NOT an independent (senate.gov lists 53 R / 45 D / 2 I;
+corrected 2026-08-03 — see decisions.json / corrections.json). NEVER "correct"
+the Senate to 100 by changing SENATE_R or SENATE_D to net out SENATE_I.
+SENATE_R + SENATE_D + SENATE_I == 102 is CORRECT, not a bug.
 
 Exit code 0 on success, 1 on any validation failure.
 

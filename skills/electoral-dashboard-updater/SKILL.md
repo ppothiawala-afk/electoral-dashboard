@@ -213,6 +213,27 @@ through `constants_patch.json`.
   His sheet Party cell should be "I". (Same shape of edge case: a member who caucuses with a
   party is still counted as their registered affiliation.)
 
+### 2.3a Forecaster scale & the Inside Elections "Tilt" (route 3 — resolved 2026-08-12)
+
+The **Rating** column tracks **Cook** and **Sabato**, which share the dashboard's 7-point enum.
+**Inside Elections uses a finer scale** with a **"Tilt"** tier between "Lean" and "Toss-up"
+(most→least competitive per side: **Toss-up · Tilt · Lean · Likely · Solid**).
+
+> 🚫 **Never import a bare IE rating — Tilt or otherwise — into the Rating cell.** IE is
+> corroboration, not a mover on this dashboard. When IE diverges from the sheet (a Tilt, or any
+> tier disagreement), log it to **`ie_watch.json`** and surface it in the briefing's **IE Tilt
+> Watch** section (Contract 3) as a leading indicator. Cook and Sabato are the only forecasters
+> that move the Rating cell.
+
+- An `ie_watch.json` entry is **`open`** while IE and the sheet disagree.
+- Set it **`confirmed`** (fill `confirmed_by`) when Cook or Sabato later move to match IE — that
+  is the payoff: IE flagged the move early, and the log proves it.
+- Set it **`faded`** when IE reverts to the sheet's rating with no Cook/Sabato follow.
+- The file's `nearest_7pt` field is informational only; it is **not** written to the sheet.
+
+Resolves `decisions.json` `2026-08-10-inside-elections-tilt-mapping`. Weekly refresh: Contract 3.9
+step 7. Machine check: `verify_dashboard.py` L12-iewatch.
+
 ### 2.4 `constants_patch.json` schema
 
 Placeholder values (`<int>`, `<Rating>`) shown below — **never hard-code live numbers into this
@@ -350,6 +371,15 @@ Senate: XR / XD / XI — [Sanders-VT and King-ME counted inside the D caucus tot
 - **[Forecaster] ([date](url)):** [moves with sheet status]
 ### Governors
 - **[State]** — ([Forecaster, date](url)) moved **[Old] → [New]**. [✅ / ⚠]
+
+---
+
+## IE Tilt Watch
+[Inside Elections divergences from the sheet — leading indicators only; per 2.3a these do NOT move
+the Rating cell. One line per open `ie_watch.json` entry; note any newly confirmed or faded.]
+- **[Race]** — IE **[ie_rating]** ([date](url)) vs. sheet **[sheet_rating]**. [divergence in a few
+  words; ⏳ open / ✅ confirmed by [Forecaster, date] / ⤵ faded]
+[If nothing is open: "No open IE divergences."]
 
 ---
 
@@ -536,6 +566,17 @@ leaving `news_analysis.json` stale and the State News tab flagged by L2-freshnes
 > is the metric correctly saying "this race has no fresh coverage." Say so in those words rather
 > than implying you skipped it.
 
+7. **Refresh `ie_watch.json` (IE Tilt Watch, route 3 — see 2.3a).** While the four forecasters'
+   current ratings are in hand, reconcile the watch log against them:
+   - For every **open** entry, check whether Cook or Sabato have moved to match IE → set `status`
+     to `confirmed` and fill `confirmed_by`; or whether IE has reverted to the sheet's rating →
+     set `status` to `faded`. **Never** move the sheet's Rating cell from an IE change.
+   - Add an entry for any race where IE now diverges from the sheet cell (a Tilt, or any tier
+     disagreement): `ie_moved`, `first_logged` = today, `sheet_rating`, `ie_rating`, an
+     informational `nearest_7pt`, a deep-linked `source`, and a one-line `divergence`.
+   - Bump `generated` to today and surface every open entry in the briefing's IE Tilt Watch
+     section (Contract 3). `verify_dashboard.py` L12-iewatch checks schema and freshness.
+
 Then Contract 4's steps 3-4 (sentiment snapshot + verifier) confirm the refresh landed.
 
 ---
@@ -605,7 +646,15 @@ Do NOT consider the run complete until both pass:
    > a claim about what the dashboard publishes. Keep the authoritative figures in the headline
    > "Confirmed: …" line and you will never fight this check.
 
-Only after all seven checks pass do you tell the user the weekly cycle is done.
+8. **Check the IE Tilt Watch (L12-iewatch, added 2026-08-12).** `verify_dashboard.py --local`
+   emits `L12-iewatch`: it parses `ie_watch.json`, asserts the schema (each entry carries a
+   `race`, `sheet_rating`/`ie_rating`, a `status` of open/confirmed/faded, and a deep-linked
+   `source`), and warns if `generated` is stale relative to the newest briefing. A malformed file
+   is a **FAIL**; a stale `generated` is a **WARN**. This is the machine backstop for the route-3
+   rule (2.3a); it does NOT re-check that IE stayed out of the Rating cell, so keep that
+   discipline yourself.
+
+Only after all eight checks pass do you tell the user the weekly cycle is done.
 
 ---
 

@@ -33,7 +33,7 @@
     {
       "id": "2026-08-10-inside-elections-tilt-mapping",
       "date": "2026-08-10",
-      "status": "open",
+      "status": "resolved",
       "area": "Methodology — rating scale",
       "question": "Inside Elections uses a finer scale than the dashboard: it has a 'Tilt' tier between 'Lean' and 'Toss-up' (Toss-up / Tilt / Lean / Likely / Solid). The dashboard's 7-point enum has no 'Tilt'. On Aug 6, 2026 Inside Elections moved several races to a 'Tilt' rating (NC-Sen and GA-Sen to Tilt D, IA-Sen to Tilt R, KS-Gov to Tilt R, IA-Gov to Tilt D). How should an IE 'Tilt D/R' be represented on the 7-point sheet when it is the mover — collapse to 'Toss-up', collapse to 'Lean', or keep tracking Cook/Sabato (which share the 7-point scale) and treat IE only as corroboration?",
       "why_not_autonomous": "This is a standing methodology choice about which forecaster(s) the Rating column tracks and how to collapse a 5-gradation scale into 7 points, not a one-off data update. Picking a rule unilaterally would silently change how every future IE 'Tilt' move is handled.",
@@ -42,13 +42,13 @@
         "Map IE 'Tilt D/R' to 'Toss-up' (Tilt is the most competitive non-tossup tier)",
         "Map IE 'Tilt D/R' to 'Lean D/R' (nearest same-direction label)"
       ],
-      "resolution": null,
+      "resolution": "Resolved 2026-08-12 at P-funk's direction: OPTION 1. The Rating column tracks Cook and Sabato on the shared 7-point scale; an Inside Elections 'Tilt' (or any IE rating that diverges from the sheet) is NEVER imported into the cell. IE divergences are instead logged to ie_watch.json and surfaced in the weekly briefing's new 'IE Tilt Watch' section as a leading indicator, then closed when Cook or Sabato move to match (confirmed) or IE reverts (faded). This keeps the 7-point enum clean while preserving IE's early-mover signal. Seeded with the five Aug 6 2026 IE moves (NC-Sen, GA-Sen -> Tilt D; IA-Sen, KS-Gov -> Tilt R; IA-Gov -> Tilt D). Encoded in SKILL.md (methodology 2.3a + Contract 3 briefing section + Contract 3.9/4 wiring) and checked by verify_dashboard.py (L12-iewatch).",
       "source": "https://www.270towin.com/2026-senate-election/inside-elections-2026-senate-ratings"
     },
     {
       "id": "2026-08-10-mt-senate-matchup",
       "date": "2026-08-10",
-      "status": "open",
+      "status": "resolved",
       "area": "Senate — Montana",
       "question": "The Senate ratings tab lists MT as incumbent Steve Daines (R) vs. Reilly Neill (D), Solid R. The State News pass (Montana Free Press, Daily Montanan) and news_config.json both indicate Daines did NOT seek re-election, Neill lost the June 2 Democratic primary to Alani Bankhead, and the November matchup is Kurt Alme (R) vs. Alani Bankhead (D) vs. independent Seth Bodnar. Should the Senate row's Incumbent/Challenger cells be rewritten to the Alme/Bankhead/Bodnar matchup (with Daines removed as incumbent)?",
       "why_not_autonomous": "This is a member-level/incumbent correction surfaced only by a news-gathering subagent, not the gating Contract 3.5 membership verifier. Rewriting the Incumbent cell (a field outside the normal rating row_update) on a single unverified pass risks a half-correct row. The rating is Solid R either way, so nothing is blocked by deferring; the State News tab already shows the correct current matchup.",
@@ -57,8 +57,24 @@
         "Rewrite the matchup now to Alme (R) / Bankhead (D) / Bodnar (I)",
         "Leave as-is pending a primary source"
       ],
-      "resolution": null,
+      "resolution": "Resolved 2026-08-12 at P-funk's direction via OPTION 1 (verify, then rewrite). An independent web-search pass confirmed all three facts: Daines withdrew from the GOP primary and endorsed Kurt Alme (Fox News); Bankhead beat Neill in the Jun 2 Democratic primary by ~12k (Daily Montanan, KRTV); the November field is Alme (R) / Bankhead (D) / Bodnar (I) (Montana Free Press, Aug 10). Following sheet house-style for a not-running incumbent, Daines stays in the Incumbent cell with Open=true and the Challenger cell now carries the three-way field. Rating stays Solid R (Sabato Safe R, Inside Elections Solid R; the split anti-R vote keeps the open seat safely R). Applied via constants_patch.json (2026-08-12) and logged in corrections.json.",
       "source": "https://montanafreepress.org/2026/07/30/bankhead-bodnar-and-the-battle-over-bowing-out/"
+    },
+    {
+      "id": "2026-08-12-ga-sen-cell-note-lag",
+      "date": "2026-08-12",
+      "status": "open",
+      "area": "Senate - Georgia (rating cell vs its own note)",
+      "question": "The GA-Sen Rating cell reads 'Lean D' while its own Notes record a Sabato Jul-30 move Leans D -> Likely D. Either the cell is stale (should be Likely D) or it is intentionally tracking the MORE COMPETITIVE of Cook/Sabato (if Cook is still Lean D). Route 3 (SKILL.md 2.3a) named Cook+Sabato as the cell's drivers but did NOT specify how to reconcile when Cook and Sabato disagree with each other. Establish that standing rule and apply it to GA-Sen.",
+      "why_not_autonomous": "This is a standing methodology choice (how the cell resolves a Cook/Sabato split - most-competitive, most-recent, or consensus), not a one-off data fix, and it needs BOTH forecasters' CURRENT GA-Sen ratings verified fresh before the cell moves. Picking a rule unilaterally would silently change how every future Cook/Sabato disagreement is handled across the whole sheet.",
+      "options": [
+        "Cell tracks the MOST COMPETITIVE of Cook/Sabato (keep Lean D here if Cook is still Lean D); log the other forecaster in the note",
+        "Cell tracks the MOST RECENT forecaster move (move GA-Sen to Likely D per Sabato Jul-30)",
+        "Cell requires a Cook+Sabato CONSENSUS; a lone mover stays in the note until the other follows"
+      ],
+      "resolution": null,
+      "source": "https://centerforpolitics.org/crystalball/2026-rating-changes/",
+      "carryover": "FOLD INTO the 2026-08-16 Sunday run: the ratings verifier must pull the CURRENT Cook and Sabato GA-Sen ratings (not just changes since last Monday - the Sabato move is Jul-30, older than the weekly window), then reconcile the cell per whichever option P-funk picks. Do not leave the cell/note contradiction standing for another week without at least surfacing the fresh Cook value."
     }
   ]
 }

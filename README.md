@@ -60,10 +60,11 @@ dashboard holds last week's values — visible and safe, not silently corrupted.
 
 - **HOUSE counts are EXCLUSIVE** and partition all seats:
   `HOUSE_R + HOUSE_D + HOUSE_I + HOUSE_VACANCIES == 435`.
-- **SENATE counts OVERLAP:** `SENATE_R + SENATE_D == 100`. The three independents
-  (Sanders-VT, King-ME, Murkowski-AK) are counted **inside** the R/D caucus totals.
-  `SENATE_I` (= 3) is informational and a **subset** — it is not added on top.
-  `SENATE_R + SENATE_D + SENATE_I == 103` is **correct**, not a bug. Never "fix" the Senate to
+- **SENATE counts OVERLAP:** `SENATE_R + SENATE_D == 100`. The two independents
+  (Sanders-VT, King-ME) are counted **inside** the R/D caucus totals; Murkowski-AK is R,
+  not an independent (corrected 2026-08-03).
+  `SENATE_I` (= 2) is informational and a **subset** — it is not added on top.
+  `SENATE_R + SENATE_D + SENATE_I == 102` is **correct**, not a bug. Never "fix" the Senate to
   sum to 100 by lowering R/D to net out the independents.
 
 These invariants are enforced in `validate_patch.py`, in `update_sheet.py`

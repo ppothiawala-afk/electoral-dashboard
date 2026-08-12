@@ -34,7 +34,7 @@ INITIAL_VALUES = {
     "HOUSE_VACANCIES": 5,   # FL-20, CA-01, GA-14, TX-23, CA-14
     "SENATE_R":       53,
     "SENATE_D":       47,
-    "SENATE_I":       3,    # Sanders, King, + 1 other — caucus D
+    "SENATE_I":       2,    # Sanders-VT, King-ME caucus D; Murkowski-AK is R, NOT counted here (corrected 2026-08-03)
     "LAST_UPDATED":   "2026-06-02",
     "NOTES":          "Kiley (CA-03) is Independent but caucuses R. Vacancies: FL-20, CA-01, GA-14, TX-23, CA-14.",
 }

@@ -46,10 +46,11 @@ VALID_RATINGS = {"Solid D", "Likely D", "Lean D", "Toss-up", "Lean R", "Likely R
 
 # ── Chamber-balance invariants ────────────────────────────────────────────────
 # HOUSE counts are EXCLUSIVE: HOUSE_R + HOUSE_D + HOUSE_I + HOUSE_VACANCIES == 435.
-# SENATE counts OVERLAP: SENATE_R + SENATE_D == 100, with the three independents
-# (Sanders-VT, King-ME, Murkowski-AK) counted INSIDE those caucus totals. SENATE_I
-# (=3) is informational and a SUBSET of R/D — it is NOT added on top. Never
-# "correct" the Senate to 100 by subtracting SENATE_I from R/D.
+# SENATE counts OVERLAP: SENATE_R + SENATE_D == 100, with the two independents
+# (Sanders-VT, King-ME) counted INSIDE those caucus totals; Murkowski-AK is R, not
+# an independent (corrected 2026-08-03). SENATE_I (=2) is informational and a
+# SUBSET of R/D — it is NOT added on top. Never "correct" the Senate to 100 by
+# subtracting SENATE_I from R/D.
 HOUSE_TOTAL_SEATS = 435
 SENATE_TOTAL_SEATS = 100
 

@@ -12,6 +12,14 @@ file, and both stalls needed a human at the keyboard:
   2. `git pull` aborted with "Your local changes to the following files would be
      overwritten by merge" on .gitignore and weekly_commit.sh.
 
+A third shape appeared on 2026-08-12: the mount denied unlink *outright*
+("Operation not permitted"), so git could neither clear its own locks nor replace
+tracked files mid-pull. The pull aborted half-done and left an ORIG_HEAD.lock that
+then blocked the user's *native* clone. The cause is a missing capability, not a
+lock or a dirty worktree, so we now PROBE delete permission up front (can_delete_files)
+and stop cleanly with the grant instruction BEFORE fetching — a pull that cannot
+unlink can only make things worse.
+
 Neither is a *time* problem, so a longer scheduling window does not fix them.
 Blocker 2 is the interesting one. Its cause is structural and recurs every week:
 the weekly-apply Action pushes a commit back to origin, the local clone never
@@ -60,6 +68,11 @@ REPO = Path(__file__).resolve().parent
 
 BOLD, RED, YEL, GRN, OFF = "\033[1m", "\033[31m", "\033[33m", "\033[32m", "\033[0m"
 
+DELETE_PERM_HINT = (
+    "  The sandbox filesystem denied file deletion. Grant folder delete\n"
+    "  permission (mcp__cowork__allow_cowork_file_delete) on this repo and re-run."
+)
+
 
 def run(*args, check=False, binary=False):
     """Run a git command in the repo. Returns (rc, out)."""
@@ -101,10 +114,7 @@ def clear_locks():
         print(f"{RED}  could not unlink {len(stuck)} lock file(s):{OFF}")
         for lk in stuck:
             print(f"    {lk.relative_to(REPO)}")
-        print(
-            f"{YEL}  The sandbox filesystem denied unlink. Grant folder delete\n"
-            f"  permission (mcp__cowork__allow_cowork_file_delete) and re-run.{OFF}"
-        )
+        print(f"{YEL}{DELETE_PERM_HINT}{OFF}")
         return False
     print(f"  removed {len(locks) - len(stuck)} stale lock(s)")
     return True
@@ -113,6 +123,23 @@ def clear_locks():
 def upstream_ref():
     rc, out = run("rev-parse", "--abbrev-ref", "--symbolic-full-name", "@{u}")
     return out.strip() if rc == 0 else "origin/main"
+
+
+def can_delete_files() -> bool:
+    """Probe whether this filesystem lets us unlink a file under .git.
+
+    The 2026-08-12 blocker was neither a lock nor a dirty worktree: the mount
+    denied unlink, so git could not clear locks or replace tracked files, and the
+    half-finished pull left an ORIG_HEAD.lock that blocked the native clone. A
+    one-line probe turns that corrupting failure into a clean, actionable stop.
+    """
+    probe = REPO / ".git" / ".preflight_delete_probe"
+    try:
+        probe.write_bytes(b"probe")
+        probe.unlink()
+        return True
+    except OSError:
+        return False
 
 
 def main():
@@ -129,6 +156,16 @@ def main():
         if args.as_json:
             print(json.dumps(report, indent=2))
         sys.exit(code)
+
+    step("Checking filesystem delete permission")
+    if not can_delete_files():
+        print(f"{RED}  cannot unlink files in this repo — the mount denies deletion.{OFF}")
+        print(f"{YEL}{DELETE_PERM_HINT}{OFF}")
+        print(f"{YEL}  Stopping BEFORE fetch/pull on purpose: a pull that cannot unlink\n"
+              f"  tracked files aborts half-done and leaves an ORIG_HEAD.lock that then\n"
+              f"  blocks the native clone (the 2026-08-12 cascade).{OFF}")
+        finish(1, "delete-perm-missing")
+    print("  ok")
 
     if not clear_locks():
         finish(1, "locks-stuck")
@@ -219,6 +256,8 @@ def main():
     print("  " + "\n  ".join(out.strip().splitlines()[-6:]))
     if rc != 0:
         print(f"{RED}  pull failed{OFF}")
+        if "Operation not permitted" in out or "unable to unlink" in out:
+            print(f"{YEL}{DELETE_PERM_HINT}{OFF}")
         # We may have just reverted files in order to unblock this pull. Leaving
         # them reverted would hand back a worktree in a WORSE state than we found
         # it — the very thing this script exists to prevent. Their content is
