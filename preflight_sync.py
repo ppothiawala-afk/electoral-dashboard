@@ -46,6 +46,12 @@ work at stake. The script touches nothing, prints the diverging paths, and exits
 force-pushes, and never discards content that is not provably recoverable from
 the incoming commit.
 
+It also never commits or pushes. The sandbox has no push credentials (see
+SKILL.md Contract 5), so origin is written ONLY by the Mac (weekly_commit.sh) and
+GitHub Actions — a single-writer discipline. This script's whole job is to keep
+the local clone current and clean before those writers run, and to leave no lock
+behind that the native clone could trip on.
+
 EXIT CODES
     0  clone is synced and clean (possibly after a proven-safe recovery)
     1  operational failure (locks unremovable, fetch/pull failed)
@@ -292,10 +298,24 @@ def main():
             )
             finish(2, "recovery-lossy")
 
+    # Final sweep: never hand back a worktree carrying a lock we might have left.
+    # A leftover lock here is exactly what the native clone trips on next (the
+    # 2026-08-12 cascade), so clear any before we report done.
+    leftover = list((REPO / ".git").rglob("*.lock"))
+    swept = 0
+    for lk in leftover:
+        try:
+            lk.unlink()
+            swept += 1
+        except OSError:
+            pass
+
     rc, newhead = run("rev-parse", "--short", "HEAD")
     step("Done")
     print(f"  HEAD {head} -> {newhead.strip()}")
     print(f"  recovered: {len(report['recovered'])}  diverged: 0")
+    if swept:
+        print(f"  swept {swept} leftover lock(s) so the native clone stays clean")
     finish(0, "ok")
 
 

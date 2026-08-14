@@ -1,0 +1,24 @@
+{
+  "_comment": "Canonical STATIC facts = the single source of truth the L13 consistency linter (check_consistency.py) enforces across every LIVE file. Dynamic weekly values (chamber counts) live on the Sheet, not here. When a static fact genuinely changes (a member switches caucus, reapportionment), change it HERE and let L13 flag every file that still disagrees. This file and check_consistency.py are excluded from the scan (they define the patterns, so they would self-match).",
+  "canonical": {
+    "HOUSE_TOTAL": 435,
+    "SENATE_TOTAL": 100,
+    "SENATE_I": 2,
+    "senate_independents": ["Sanders-VT", "King-ME"]
+  },
+  "notes": {
+    "murkowski": "Murkowski-AK is a Republican counted in SENATE_R, NOT an independent (corrected 2026-08-03, senate.gov).",
+    "kiley": "Kiley (CA-03) is Independent but caucuses R; counted as I in HOUSE_I.",
+    "senate_overlap": "The two independents caucus D and are counted INSIDE SENATE_D. SENATE_R + SENATE_D == 100; the overlap sum SENATE_R + SENATE_D + SENATE_I == 102 is correct."
+  },
+  "constant_asserts": {"SENATE_I": 2},
+  "drift_patterns": [
+    {"name": "three-independents", "regex": "three\\s+(senate\\s+)?independents", "why": "There are two Senate independents (Sanders, King); Murkowski is R."},
+    {"name": "murkowski-independent", "regex": "Murkowski[^.\\n]{0,40}\\bindependent", "why": "Murkowski is a registered Republican, not an independent."},
+    {"name": "senate-i-3-prose", "regex": "SENATE_I[^\\n]{0,6}\\b3\\b", "why": "SENATE_I must be 2 (Murkowski is R); corrected 2026-08-03."},
+    {"name": "senate-sum-103", "regex": "SENATE_R\\s*\\+\\s*SENATE_D\\s*\\+\\s*SENATE_I\\s*=+\\s*103", "why": "With SENATE_I=2 the overlap sum is 102, not 103."}
+  ],
+  "exempt_line_contains": ["corrected", "wrong", "not an independent", "-> 2", "→ 2", "3 -> 2", "3 → 2", "previously", "no longer", "de facto"],
+  "exclude_dirs": [".git", "attic", "state-media-pipeline", "skills/electoral-dashboard-updater-workspace", "__pycache__"],
+  "exclude_globs": ["constants_patch.applied_*.json", "weekly_briefing_*.md", "history.json", "AUDIT_*.md", "verification_report.json", "sentiment_history.json", "news_analysis.json", "corrections.json", "decisions.json", "facts.json", "check_consistency.py"]
+}

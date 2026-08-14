@@ -181,6 +181,14 @@ House, and Governors tabs. Extract current chamber values and current ratings, a
 the sheet lags forecaster consensus. **Never attempt a direct sheet write** — all writes flow
 through `constants_patch.json`.
 
+> **Cell-vs-note check (added 2026-08-12).** While reading each ratings tab, watch for a Rating
+> cell that disagrees with a forecaster move written in its own **Notes** — e.g. the cell says
+> "Lean D" but the note says "Sabato moved → Likely D". That is a silent lag. Reconcile it per
+> §2.3a (Cook/Sabato drive the cell); if the lag is a genuine Cook-vs-Sabato disagreement you
+> cannot settle by rule, log a `decisions.json` entry rather than guessing. The Monday `--sheet`
+> run also flags these automatically as **S5-cellnote** (WARN), so an unattended run will surface
+> one even if you miss it — but catch it here when you can, before the stale cell ships.
+
 ### 2.3 Invariants (must always hold)
 
 - **HOUSE (exclusive):** `HOUSE_R + HOUSE_D + HOUSE_I + HOUSE_VACANCIES == 435`.
@@ -209,6 +217,12 @@ through `constants_patch.json`.
 > but they are not permanent: 435 is statutory, the others are people who can change their minds.
 > **Re-verify them against a primary source at least quarterly**, and when one turns out to be
 > wrong, open a `decisions.json` entry rather than either silently changing it or ignoring it.
+> The canonical static values now live in **`facts.json`** (the single source of truth), and the
+> **L13** consistency check (`check_consistency.py`, run by `verify_dashboard.py --local`) FAILS
+> the run if any live file's structural constant disagrees with it and WARNs on stale prose — so a
+> corrected fact can no longer rot in a forgotten copy (the `SENATE_I` correction of 2026-08-03,
+> whose last stragglers — including a seed script — were only swept 2026-08-12). When you change a
+> static fact, change it in `facts.json` and let L13 point you at every file that still disagrees.
 - **Kevin Kiley (CA-03)** is Independent but caucuses R → counts as **I** in `HOUSE_I`, not R.
   His sheet Party cell should be "I". (Same shape of edge case: a member who caucuses with a
   party is still counted as their registered affiliation.)
@@ -654,7 +668,17 @@ Do NOT consider the run complete until both pass:
    rule (2.3a); it does NOT re-check that IE stayed out of the Rating cell, so keep that
    discipline yourself.
 
-Only after all eight checks pass do you tell the user the weekly cycle is done.
+9. **Check cross-file fact consistency (L13, added 2026-08-12).** `verify_dashboard.py --local`
+   runs `check_consistency.py`, which reads **`facts.json`** (the single source of truth for
+   static facts) and emits two lines: **L13a-facts** FAILs if any live `.py`/`.json` file's
+   structural constant assignment (e.g. `"SENATE_I": N`) disagrees with the canonical value —
+   this is the backstop for the 2026-08-03 `SENATE_I` correction that left five stale copies,
+   one of them an executable seed script; **L13b-drift** WARNs on stale prose patterns (a
+   mis-stated Senate independents count, a mislabeled Murkowski, an out-of-date Senate overlap
+   sum). Historical artifacts and eval fixtures are excluded. Fix any L13a FAIL by editing to match
+   `facts.json` — never the other way around.
+
+Only after all nine checks pass do you tell the user the weekly cycle is done.
 
 ---
 

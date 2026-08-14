@@ -458,6 +458,15 @@ def check_local(max_age_days: int, refresh_window_days: int = 10):
     # L12 — IE Tilt Watch log integrity (route 3; see SKILL.md 2.3a)
     check_ie_watch()
 
+    # L13 — cross-file fact consistency (static drift FAIL + prose drift WARN)
+    try:
+        sys.path.insert(0, str(HERE))
+        import check_consistency  # noqa: PLC0415
+        for cid, status, msg in check_consistency.check(HERE):
+            record(cid, status, msg)
+    except Exception as e:  # noqa: BLE001
+        record("L13-consistency", "WARN", f"consistency check skipped: {e}")
+
 
 # ────────────────────────────── SHEET MODE ──────────────────────────────
 
@@ -517,6 +526,28 @@ def check_sheet(sheet_id: str, max_age_days: int):
                 bad.append(f"{r.get('State')}:{rating!r}")
         record(f"S3-{tab.lower()}", "FAIL" if bad else "PASS",
                f"invalid ratings: {bad[:5]}" if bad else f"{tab} ratings all valid")
+
+    # S5 — a rating cell must not silently contradict a forecaster move written
+    # in its own Notes (the GA-Sen 2026-08-12 cell/note lag). WARN not FAIL: note
+    # prose is heuristic, and 'Tilt' targets are ignored per route 3 (SKILL 2.3a).
+    try:
+        from check_consistency import note_target_rating  # noqa: PLC0415
+        lags = []
+        for tab, flag_col in [("Senate", "Up in 2026"), ("Governors", "Election 2026"), ("House", None)]:
+            for r in as_dicts(tab):
+                if flag_col and str(r.get(flag_col, "")).strip().upper() != "YES":
+                    continue
+                cell = str(r.get("Rating", "")).strip()
+                target = note_target_rating(str(r.get("Notes", r.get("Note", ""))))
+                if cell and target and cell != target:
+                    dist = str(r.get("District", "")).strip()
+                    tag = f"{r.get('State', '?')}-{dist}" if dist else r.get("State", "?")
+                    lags.append(f"{tab} {tag}: cell {cell!r} vs note move to {target!r}")
+        record("S5-cellnote", "WARN" if lags else "PASS",
+               ("cell/note lags: " + "; ".join(lags[:6])) if lags
+               else "no rating cell contradicts its own note")
+    except Exception as e:  # noqa: BLE001
+        record("S5-cellnote", "WARN", f"cell/note check skipped: {e}")
 
     # S4 — latest applied patch actually landed
     applied = sorted(glob.glob(str(HERE / "constants_patch.applied_*.json")))

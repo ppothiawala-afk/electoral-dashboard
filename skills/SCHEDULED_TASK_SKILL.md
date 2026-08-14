@@ -95,6 +95,11 @@ House, and Governors tabs. Extract current chamber values and current ratings, a
 the sheet lags forecaster consensus. **Never attempt a direct sheet write** — all writes flow
 through `constants_patch.json`.
 
+> **Cell-vs-note (added 2026-08-12).** Flag any Rating cell that disagrees with a forecaster move
+> written in its own Notes — cell "Lean D" but note "Sabato moved → Likely D". Reconcile per §2.3a
+> (Cook/Sabato drive the cell); if it is a Cook-vs-Sabato split you cannot settle by rule, log a
+> `decisions.json` entry. The Monday `--sheet` run also flags these as **S5-cellnote**.
+
 ### 2.3 Invariants (must always hold)
 
 - **HOUSE (exclusive):** `HOUSE_R + HOUSE_D + HOUSE_I + HOUSE_VACANCIES == 435`.
@@ -109,6 +114,15 @@ through `constants_patch.json`.
 - **Kevin Kiley (CA-03)** is Independent but caucuses R → counts as **I** in `HOUSE_I`, not R.
   His sheet Party cell should be "I". (Same shape of edge case: a member who caucuses with a
   party is still counted as their registered affiliation.)
+
+### 2.3a Inside Elections "Tilt" (route 3 — resolved 2026-08-12)
+
+The Rating cell tracks **Cook and Sabato** only. **Never import a bare IE rating** — Inside
+Elections uses a finer scale with a "Tilt" tier between Lean and Toss-up. Log an IE divergence
+(a Tilt, or any tier disagreement) to `ie_watch.json` — status `open` → `confirmed` when
+Cook/Sabato later move to match (fill `confirmed_by`), → `faded` when IE reverts — and surface
+open entries in the briefing's IE Tilt Watch section. `verify_dashboard.py` L12-iewatch checks
+the log. The canonical static facts live in **`facts.json`** (single source of truth); L13 (Contract 4) fails the run if any live file disagrees with it.
 
 ### 2.4 `constants_patch.json` schema
 
@@ -227,6 +241,10 @@ fails otherwise), resync the `DEMO_NEWS` article blocks in `index.html`, and upd
 `news_config.json` candidate lists if a primary resolved. Then run
 `python3 append_sentiment_history.py`. See the canonical skill's CONTRACT 3.9 for full detail.
 
+Also refresh **`ie_watch.json`** (IE Tilt Watch, §2.3a): reconcile open entries against the
+current Cook/Sabato ratings (mark `confirmed`/`faded`), add any new IE divergence, and bump
+`generated` to today. Surface open entries in the briefing's IE Tilt Watch section.
+
 ### Required sections (template)
 
 ```markdown
@@ -255,6 +273,13 @@ Senate: XR / XD / XI — [Sanders-VT, King-ME, Murkowski-AK counted inside caucu
 - **[Forecaster] ([date](url)):** [moves with sheet status]
 ### Governors
 - **[State]** — ([Forecaster, date](url)) moved **[Old] → [New]**. [✅ / ⚠]
+
+---
+
+## IE Tilt Watch
+[Open `ie_watch.json` divergences — leading indicators only; per §2.3a these do NOT move the cell.]
+- **[Race]** — IE **[ie_rating]** ([date](url)) vs. sheet **[sheet_rating]**. [⏳ open / ✅ confirmed / ⤵ faded]
+[If none: "No open IE divergences."]
 
 ---
 
@@ -298,7 +323,12 @@ Do NOT consider the run complete until both pass:
    untouched (this is the step that was silently skipped on 2026-06-29). Confirm the file still
    parses as JSON.
 
-Only after both checks pass do you tell the user the weekly cycle is done.
+3. **Run the local verifier.** `python3 verify_dashboard.py --local` — must pass. It includes
+   `L10-links` (deep links), `L12-iewatch` (IE Tilt Watch log), and `L13` fact-consistency:
+   **L13a-facts FAILs** if any live `.py`/`.json` constant disagrees with `facts.json` — fix the
+   offending file, never `facts.json`; **L13b-drift** WARNs on stale prose. Fix any ❌ before finishing.
+
+Only after all three checks pass do you tell the user the weekly cycle is done.
 
 ---
 
