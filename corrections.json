@@ -144,6 +144,15 @@
       "caught_by": "Surfaced by the State News pass and flagged in decisions.json (2026-08-10-mt-senate-matchup); confirmed 2026-08-12 by an independent web-search verification pass (Fox News, Daily Montanan, KRTV, Montana Free Press) at P-funk's direction, then rewritten.",
       "impact": "Senate tab Incumbent-status/Challenger/Notes cells; the matchup was stale from Daines's exit until the 2026-08-12 fix. Rating never mis-set - Solid R throughout (Sabato Safe R, Inside Elections Solid R); the split anti-R vote keeps the open seat safely R.",
       "source": "https://montanafreepress.org/2026/08/10/bankhead-still-in-the-running/"
+    },
+    {
+      "date": "2026-08-16",
+      "area": "Senate - Minnesota",
+      "wrong": "Senate tab listed the Republican challenger for the open Minnesota seat (Tina Smith's) as Adam Schwarze, the state-party endorsee.",
+      "right": "Michele Tafoya (former NBC Sports sideline reporter) won the Aug 11, 2026 GOP primary over Adam Schwarze and Royce White, so she - not Schwarze - is the Republican nominee. On the DFL side Lt. Gov. Peggy Flanagan won ~59-40 over Rep. Angie Craig. The general-election matchup is Flanagan (D) vs. Tafoya (R).",
+      "caught_by": "Weekly candidate-matchup verification subagent (Contract 3.5), 2026-08-16 run - flagged while confirming the Aug 11 primary results.",
+      "impact": "Senate tab Challenger cell; corrected the week the primary resolved. No rating mis-set - MN Senate stays Likely D throughout.",
+      "source": "https://www.mprnews.org/story/2026/08/11/michele-tafoya-wins-republican-nomination-for-senate"
     }
   ]
 }

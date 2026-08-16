@@ -1,5 +1,5 @@
 {
-  "_comment": "Config for fetch_news.py. States = competitive/flip states shown on the dashboard. Candidates verified 2026-07-20 via web search; update as primaries resolve (AZ Jul 21, MI/KS Aug 4, WI/MN Aug 11, SC special Aug 11, AK/FL Aug 18, NH Sep 8). outlet_lean: -2 left, -1 lean left, 0 center, +1 lean right, +2 right (AllSides-style). Unknown outlets are kept for mention counts but excluded from the lean scatter. ME Senate: Troy Jackson presumptive D nominee (won most pledged delegates; convention Jul 25). MI Senate: McMorrow withdrew Jul 5. SC Senate: GOP special primary Aug 11 for Graham's seat (not yet a tracked state). WI Governor: Rodriguez out Jul 17; Crowley re-entered Jul 17 w/ Evers endorsement.",
+  "_comment": "Config for fetch_news.py. States = competitive/flip states shown on the dashboard. Candidates re-verified 2026-08-16 after the Aug 4/11 primaries: WI-Gov Crowley(D) vs Tiffany(R); MN-Sen Flanagan(D) vs Tafoya(R); MN-Gov Klobuchar(D) vs Demuth(R); KS-Gov Masterson(R) vs Holscher(D); NH-Gov Ayotte(R) vs Warmington(D). Still ahead: AK/FL primaries Aug 18, NH Sep 8. outlet_lean: -2 left .. +2 right (AllSides-style); unknown outlets kept for mention counts but excluded from the lean scatter.",
   "max_articles_per_race": 20,
   "lookback_days": 21,
   "states": {
@@ -284,34 +284,13 @@
       "races": [
         {
           "type": "Governor",
-          "query": "Wisconsin governor primary 2026 Hong Crowley Roys Brennan Tiffany",
+          "query": "Wisconsin governor race 2026 Crowley Tiffany",
           "candidates": [
-            {
-              "name": "Francesca Hong",
-              "party": "D",
-              "aliases": [
-                "Hong"
-              ]
-            },
             {
               "name": "David Crowley",
               "party": "D",
               "aliases": [
                 "Crowley"
-              ]
-            },
-            {
-              "name": "Kelda Roys",
-              "party": "D",
-              "aliases": [
-                "Roys"
-              ]
-            },
-            {
-              "name": "Joel Brennan",
-              "party": "D",
-              "aliases": [
-                "Brennan"
               ]
             },
             {
@@ -380,13 +359,20 @@
         },
         {
           "type": "Governor",
-          "query": "New Hampshire governor race Ayotte 2026",
+          "query": "New Hampshire governor race Ayotte Warmington 2026",
           "candidates": [
             {
               "name": "Kelly Ayotte",
               "party": "R",
               "aliases": [
                 "Ayotte"
+              ]
+            },
+            {
+              "name": "Cinde Warmington",
+              "party": "D",
+              "aliases": [
+                "Warmington"
               ]
             }
           ]
@@ -397,7 +383,7 @@
       "races": [
         {
           "type": "Senate",
-          "query": "Minnesota senate race Flanagan Craig Schwarze 2026",
+          "query": "Minnesota senate race Flanagan Tafoya 2026",
           "candidates": [
             {
               "name": "Peggy Flanagan",
@@ -407,17 +393,10 @@
               ]
             },
             {
-              "name": "Angie Craig",
-              "party": "D",
-              "aliases": [
-                "Craig"
-              ]
-            },
-            {
-              "name": "Adam Schwarze",
+              "name": "Michele Tafoya",
               "party": "R",
               "aliases": [
-                "Schwarze"
+                "Tafoya"
               ]
             }
           ]
@@ -528,20 +507,13 @@
       "races": [
         {
           "type": "Governor",
-          "query": "Kansas governor race 2026 Masterson",
+          "query": "Kansas governor race 2026 Masterson Holscher",
           "candidates": [
             {
               "name": "Ty Masterson",
               "party": "R",
               "aliases": [
                 "Masterson"
-              ]
-            },
-            {
-              "name": "Scott Schwab",
-              "party": "R",
-              "aliases": [
-                "Schwab"
               ]
             },
             {

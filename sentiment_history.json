@@ -3551,6 +3551,587 @@
      }
     ]
    }
+  },
+  {
+   "date": "2026-08-16",
+   "states": {
+    "ME": [
+     {
+      "type": "Senate",
+      "sentiment": 58,
+      "baseline": false,
+      "candidates": {
+       "Susan Collins": 43,
+       "Troy Jackson": 57
+      }
+     },
+     {
+      "type": "Governor",
+      "sentiment": 68,
+      "baseline": false,
+      "candidates": {
+       "Hannah Pingree": 72,
+       "Bobby Charles": 40,
+       "Rick Bennett": 49
+      }
+     }
+    ],
+    "MI": [
+     {
+      "type": "Senate",
+      "sentiment": 42,
+      "baseline": false,
+      "candidates": {
+       "Abdul El-Sayed": 40,
+       "Mike Rogers": 53
+      }
+     },
+     {
+      "type": "Governor",
+      "sentiment": 53,
+      "baseline": false,
+      "candidates": {
+       "Jocelyn Benson": 56,
+       "John James": 49
+      }
+     }
+    ],
+    "OH": [
+     {
+      "type": "Senate",
+      "sentiment": 62,
+      "baseline": false,
+      "candidates": {
+       "Sherrod Brown": 60,
+       "Jon Husted": 44
+      }
+     },
+     {
+      "type": "Governor",
+      "sentiment": 55,
+      "baseline": false,
+      "candidates": {
+       "Vivek Ramaswamy": 47,
+       "Amy Acton": 58
+      }
+     }
+    ],
+    "NC": [
+     {
+      "type": "Senate",
+      "sentiment": 68,
+      "baseline": false,
+      "candidates": {
+       "Roy Cooper": 64,
+       "Michael Whatley": 40
+      }
+     }
+    ],
+    "GA": [
+     {
+      "type": "Senate",
+      "sentiment": 60,
+      "baseline": false,
+      "candidates": {
+       "Jon Ossoff": 58,
+       "Mike Collins": 38
+      }
+     },
+     {
+      "type": "Governor",
+      "sentiment": 51,
+      "baseline": false,
+      "candidates": {
+       "Rick Jackson": 50,
+       "Keisha Lance Bottoms": 52
+      }
+     }
+    ],
+    "IA": [
+     {
+      "type": "Senate",
+      "sentiment": 47,
+      "baseline": false,
+      "candidates": {
+       "Ashley Hinson": 52,
+       "Josh Turek": 50
+      }
+     },
+     {
+      "type": "Governor",
+      "sentiment": 57,
+      "baseline": false,
+      "candidates": {
+       "Rob Sand": 60,
+       "Zach Lahn": 45
+      }
+     }
+    ],
+    "NV": [
+     {
+      "type": "Governor",
+      "sentiment": 48,
+      "baseline": false,
+      "candidates": {
+       "Joe Lombardo": 52,
+       "Aaron Ford": 48
+      }
+     }
+    ],
+    "WI": [
+     {
+      "type": "Governor",
+      "sentiment": 60,
+      "baseline": false,
+      "candidates": {
+       "David Crowley": 60,
+       "Tom Tiffany": 44
+      }
+     }
+    ],
+    "AZ": [
+     {
+      "type": "Governor",
+      "sentiment": 58,
+      "baseline": false,
+      "candidates": {
+       "Katie Hobbs": 60,
+       "Andy Biggs": 42
+      }
+     }
+    ],
+    "NH": [
+     {
+      "type": "Senate",
+      "sentiment": 54,
+      "baseline": false,
+      "candidates": {
+       "Chris Pappas": 56,
+       "John E. Sununu": 49
+      }
+     },
+     {
+      "type": "Governor",
+      "sentiment": 39,
+      "baseline": false,
+      "candidates": {
+       "Kelly Ayotte": 43,
+       "Cinde Warmington": 36
+      }
+     }
+    ],
+    "KS": [
+     {
+      "type": "Governor",
+      "sentiment": 47,
+      "baseline": false,
+      "candidates": {
+       "Ty Masterson": 51,
+       "Cindy Holscher": 49
+      }
+     }
+    ],
+    "MT": [
+     {
+      "type": "Senate",
+      "sentiment": 41,
+      "baseline": false,
+      "candidates": {
+       "Kurt Alme": 62,
+       "Alani Bankhead": 39,
+       "Seth Bodnar": 54
+      }
+     }
+    ],
+    "AK": [
+     {
+      "type": "Senate",
+      "sentiment": 56,
+      "baseline": false,
+      "candidates": {
+       "Dan Sullivan": 47,
+       "Mary Peltola": 60
+      }
+     }
+    ],
+    "NE": [
+     {
+      "type": "Senate",
+      "sentiment": 52,
+      "baseline": false,
+      "candidates": {
+       "Pete Ricketts": 47,
+       "Dan Osborn": 55
+      }
+     }
+    ],
+    "TX": [
+     {
+      "type": "Senate",
+      "sentiment": 64,
+      "baseline": false,
+      "candidates": {
+       "Ken Paxton": 38,
+       "James Talarico": 64
+      }
+     },
+     {
+      "type": "Governor",
+      "sentiment": 54,
+      "baseline": false,
+      "candidates": {
+       "Greg Abbott": 48,
+       "Gina Hinojosa": 56
+      }
+     }
+    ],
+    "AL": [
+     {
+      "type": "Senate",
+      "sentiment": 25,
+      "baseline": true,
+      "candidates": {}
+     },
+     {
+      "type": "Governor",
+      "sentiment": 25,
+      "baseline": true,
+      "candidates": {}
+     }
+    ],
+    "AR": [
+     {
+      "type": "Senate",
+      "sentiment": 25,
+      "baseline": true,
+      "candidates": {}
+     },
+     {
+      "type": "Governor",
+      "sentiment": 25,
+      "baseline": true,
+      "candidates": {}
+     }
+    ],
+    "CA": [
+     {
+      "type": "Governor",
+      "sentiment": 56,
+      "baseline": false,
+      "candidates": {
+       "Xavier Becerra": 57,
+       "Steve Hilton": 46
+      }
+     }
+    ],
+    "CO": [
+     {
+      "type": "Senate",
+      "sentiment": 75,
+      "baseline": true,
+      "candidates": {}
+     },
+     {
+      "type": "Governor",
+      "sentiment": 75,
+      "baseline": true,
+      "candidates": {}
+     }
+    ],
+    "CT": [
+     {
+      "type": "Governor",
+      "sentiment": 75,
+      "baseline": true,
+      "candidates": {}
+     }
+    ],
+    "FL": [
+     {
+      "type": "Senate",
+      "sentiment": 43,
+      "baseline": false,
+      "candidates": {
+       "Ashley Moody": 53,
+       "Alex Vindman": 47,
+       "Angie Nixon": 46
+      }
+     }
+    ],
+    "HI": [
+     {
+      "type": "Governor",
+      "sentiment": 75,
+      "baseline": true,
+      "candidates": {}
+     }
+    ],
+    "ID": [
+     {
+      "type": "Senate",
+      "sentiment": 25,
+      "baseline": true,
+      "candidates": {}
+     },
+     {
+      "type": "Governor",
+      "sentiment": 25,
+      "baseline": true,
+      "candidates": {}
+     }
+    ],
+    "IL": [
+     {
+      "type": "Senate",
+      "sentiment": 75,
+      "baseline": true,
+      "candidates": {}
+     },
+     {
+      "type": "Governor",
+      "sentiment": 75,
+      "baseline": true,
+      "candidates": {}
+     }
+    ],
+    "KY": [
+     {
+      "type": "Senate",
+      "sentiment": 25,
+      "baseline": true,
+      "candidates": {}
+     }
+    ],
+    "LA": [
+     {
+      "type": "Senate",
+      "sentiment": 29,
+      "baseline": false,
+      "candidates": {
+       "Julia Letlow": 62,
+       "Jamie Davis": 41
+      }
+     }
+    ],
+    "MA": [
+     {
+      "type": "Governor",
+      "sentiment": 75,
+      "baseline": true,
+      "candidates": {}
+     }
+    ],
+    "MD": [
+     {
+      "type": "Governor",
+      "sentiment": 75,
+      "baseline": true,
+      "candidates": {}
+     }
+    ],
+    "MN": [
+     {
+      "type": "Senate",
+      "sentiment": 51,
+      "baseline": false,
+      "candidates": {
+       "Peggy Flanagan": 53,
+       "Michele Tafoya": 50
+      }
+     },
+     {
+      "type": "Governor",
+      "sentiment": 62,
+      "baseline": false,
+      "candidates": {
+       "Amy Klobuchar": 65,
+       "Lisa Demuth": 50
+      }
+     }
+    ],
+    "MS": [
+     {
+      "type": "Senate",
+      "sentiment": 25,
+      "baseline": true,
+      "candidates": {}
+     }
+    ],
+    "NJ": [
+     {
+      "type": "Senate",
+      "sentiment": 75,
+      "baseline": true,
+      "candidates": {}
+     }
+    ],
+    "NM": [
+     {
+      "type": "Senate",
+      "sentiment": 75,
+      "baseline": true,
+      "candidates": {}
+     },
+     {
+      "type": "Governor",
+      "sentiment": 65,
+      "baseline": true,
+      "candidates": {}
+     }
+    ],
+    "NY": [
+     {
+      "type": "Governor",
+      "sentiment": 75,
+      "baseline": true,
+      "candidates": {}
+     }
+    ],
+    "OK": [
+     {
+      "type": "Senate",
+      "sentiment": 25,
+      "baseline": true,
+      "candidates": {}
+     },
+     {
+      "type": "Governor",
+      "sentiment": 25,
+      "baseline": true,
+      "candidates": {}
+     }
+    ],
+    "OR": [
+     {
+      "type": "Senate",
+      "sentiment": 75,
+      "baseline": true,
+      "candidates": {}
+     },
+     {
+      "type": "Governor",
+      "sentiment": 65,
+      "baseline": true,
+      "candidates": {}
+     }
+    ],
+    "PA": [
+     {
+      "type": "Governor",
+      "sentiment": 65,
+      "baseline": true,
+      "candidates": {}
+     }
+    ],
+    "RI": [
+     {
+      "type": "Senate",
+      "sentiment": 75,
+      "baseline": true,
+      "candidates": {}
+     },
+     {
+      "type": "Governor",
+      "sentiment": 75,
+      "baseline": true,
+      "candidates": {}
+     }
+    ],
+    "SC": [
+     {
+      "type": "Senate",
+      "sentiment": 25,
+      "baseline": true,
+      "candidates": {}
+     },
+     {
+      "type": "Governor",
+      "sentiment": 25,
+      "baseline": true,
+      "candidates": {}
+     }
+    ],
+    "SD": [
+     {
+      "type": "Senate",
+      "sentiment": 25,
+      "baseline": true,
+      "candidates": {}
+     },
+     {
+      "type": "Governor",
+      "sentiment": 25,
+      "baseline": true,
+      "candidates": {}
+     }
+    ],
+    "TN": [
+     {
+      "type": "Senate",
+      "sentiment": 25,
+      "baseline": true,
+      "candidates": {}
+     },
+     {
+      "type": "Governor",
+      "sentiment": 25,
+      "baseline": true,
+      "candidates": {}
+     }
+    ],
+    "VA": [
+     {
+      "type": "Senate",
+      "sentiment": 75,
+      "baseline": true,
+      "candidates": {}
+     }
+    ],
+    "VT": [
+     {
+      "type": "Senate",
+      "sentiment": 75,
+      "baseline": true,
+      "candidates": {}
+     },
+     {
+      "type": "Governor",
+      "sentiment": 35,
+      "baseline": true,
+      "candidates": {}
+     }
+    ],
+    "WA": [
+     {
+      "type": "House",
+      "sentiment": 58,
+      "baseline": true,
+      "candidates": {}
+     }
+    ],
+    "WV": [
+     {
+      "type": "Senate",
+      "sentiment": 25,
+      "baseline": true,
+      "candidates": {}
+     }
+    ],
+    "WY": [
+     {
+      "type": "Senate",
+      "sentiment": 25,
+      "baseline": true,
+      "candidates": {}
+     },
+     {
+      "type": "Governor",
+      "sentiment": 25,
+      "baseline": true,
+      "candidates": {}
+     }
+    ]
+   }
   }
  ]
 }

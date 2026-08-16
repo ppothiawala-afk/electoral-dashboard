@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-29",
+  "generated": "2026-08-16",
   "weeks": [
     {
       "date": "2026-05-26",
@@ -842,6 +842,45 @@
           "from": "Solid R",
           "to": "Likely R",
           "source": "Inside Elections, Aug 6 2026"
+        }
+      ],
+      "snapshot": {}
+    },
+    {
+      "date": "2026-08-16",
+      "label": "Aug 16",
+      "briefing": "weekly_briefing_2026-08-16.md",
+      "chamber": {
+        "house_r": 218,
+        "house_d": 212,
+        "house_i": 1,
+        "house_vacancies": 4,
+        "senate_r": 53,
+        "senate_d": 47,
+        "senate_i": 2,
+        "notes": "No membership changes. Four House vacancies hold (CA-14, FL-20, GA-13, TX-23); CA-14 special Aug 18, GA-13 runoff Aug 25. SC special GOP primary Aug 11 sent appointed Sen. Darline Graham Nordone (R) and Rep. Ralph Norman to an Aug 25 runoff (no House vacancy)."
+      },
+      "rating_changes": [
+        {
+          "tab": "House",
+          "race": "OH-10 - Turner (R)",
+          "from": "Solid R",
+          "to": "Likely R",
+          "source": "Cook Political Report, Aug 13 2026"
+        },
+        {
+          "tab": "House",
+          "race": "OH-15 - Carey (R)",
+          "from": "Solid R",
+          "to": "Likely R",
+          "source": "Cook Political Report, Aug 13 2026"
+        },
+        {
+          "tab": "House",
+          "race": "CO-03 - Hurd (R)",
+          "from": "Solid R",
+          "to": "Likely R",
+          "source": "Cook Political Report, Aug 13 2026"
         }
       ],
       "snapshot": {}

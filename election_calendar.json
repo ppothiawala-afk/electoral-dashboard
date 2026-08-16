@@ -1,6 +1,6 @@
 {
  "_comment": "Upcoming election events rendered on the Overview tab. Maintained by the weekly Cowork routine — the candidate-matchup verifier should confirm dates and add/remove events as primaries resolve. Past events are auto-hidden by the UI (kept here for the record). kind: primary | runoff | special | convention | general.",
- "updated": "2026-08-10",
+ "updated": "2026-08-16",
  "events": [
   {
    "date": "2026-06-16",
@@ -49,21 +49,21 @@
    "state": "WI",
    "kind": "primary",
    "title": "Wisconsin primaries",
-   "note": "Open seat (Evers retiring). Mandela Barnes suspended Jul 30, leaving four active D candidates: Hong, Crowley (Evers-endorsed), Roys, Brennan — Hong led the Jul 29 Marquette poll at 38%. Tiffany is the Trump- and state-party-endorsed R front-runner (67% in the same poll) over Andy Manske."
+   "note": "Resolved: David Crowley (Milwaukee County Executive, Evers-endorsed) won the Democratic primary in a photo finish over democratic socialist state Rep. Francesca Hong (~39.8-39.4%); faces Trump-backed Rep. Tom Tiffany Nov 3. Sabato moved the open race Toss-up->Leans D on Aug 13."
   },
   {
    "date": "2026-08-11",
    "state": "MN",
    "kind": "primary",
    "title": "Minnesota primaries",
-   "note": "DFL Senate: Flanagan (DFL-endorsed) vs. Craig; Adam Schwarze is the GOP-endorsed Senate candidate. Governor is open after Walz ended his re-election bid in Jan — Amy Klobuchar took the DFL endorsement May 30."
+   "note": "Resolved: DFL Senate - Lt. Gov. Peggy Flanagan won ~59-40 over Rep. Angie Craig; faces Republican Michele Tafoya (won the GOP primary over Adam Schwarze and Royce White). Governor - Sen. Amy Klobuchar took the DFL nod ~90%; House Speaker Lisa Demuth won the GOP nod, setting a historic all-women general election. Both seats general Nov 3."
   },
   {
    "date": "2026-08-11",
    "state": "SC",
    "kind": "special",
    "title": "SC Senate special GOP primary",
-   "note": "Special GOP primary for the late Lindsey Graham's seat, held under SC Code 7-11-55. Filing closed noon Jul 28: 9 certified of 12 filed, incl. appointed Sen. Darline Graham Nordone (Trump-endorsed), Reps. Ralph Norman and Russell Fry, and Mark Sanford. Early voting Aug 5-7. Runoff Aug 25 if no one clears 50%; winner faces Annie Andrews (D) Nov 3."
+   "note": "Resolved: no majority. Appointed Sen. Darline Graham Nordone and Rep. Ralph Norman advanced to the Aug 25 runoff (Rep. Russell Fry finished third and was eliminated); nominee faces Annie Andrews (D) Nov 3. Norman and Fry keep their House seats - no vacancy."
   },
   {
    "date": "2026-08-18",

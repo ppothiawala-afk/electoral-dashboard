@@ -74,7 +74,7 @@
       ],
       "resolution": null,
       "source": "https://centerforpolitics.org/crystalball/2026-rating-changes/",
-      "carryover": "FOLD INTO the 2026-08-16 Sunday run: the ratings verifier must pull the CURRENT Cook and Sabato GA-Sen ratings (not just changes since last Monday - the Sabato move is Jul-30, older than the weekly window), then reconcile the cell per whichever option P-funk picks. Do not leave the cell/note contradiction standing for another week without at least surfacing the fresh Cook value."
+      "carryover": "UPDATED 2026-08-16 with fresh forecaster values (ratings verifier, primary sources): Cook rates GA-Sen LEAN D (cookpolitical.com Senate page, dateline Aug 5 2026) - NOT Toss-up as a garbled search summary suggested; Sabato rates it LIKELY D (Jul 30 2026). The sheet cell (Lean D) therefore already equals Cook's current rating, and under BOTH the most-competitive and the consensus options the cell is correct as-is, so it was held unchanged this week. TWO more instances of the same Cook/Sabato-split question surfaced 2026-08-16 and were also HELD pending this rule: (a) WI-Gov - Sabato moved Toss-up->Leans D on Aug 13, but Cook still rates it Toss-up (confirmed), cell held at Toss-up; (b) OH-07 House - Sabato moved Lean R->Toss-up on Aug 13, cell held at Lean R. Once P-funk picks the standing rule (most-competitive / most-recent / consensus), apply it to all three held cells at once. No cell was moved on any lone-forecaster split this run."
     }
   ]
 }
