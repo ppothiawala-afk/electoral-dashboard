@@ -2369,6 +2369,15 @@ ReactDOM.render(<App/>, document.getElementById("root"));
   var framed = window.self !== window.top;
   if (EMBED_ONLY && !framed) { window.location.replace(FRONT_DOOR); return; }
   if (!framed) return;
+  // When embedded, drop the full-viewport min-heights so the page reports its
+  // true content height — otherwise min-height:100vh inflates scrollHeight and
+  // the host iframe over-sizes (blank space below the content).
+  document.documentElement.classList.add("is-embedded");
+  var mh = document.createElement("style");
+  mh.textContent =
+    "html.is-embedded,html.is-embedded body,html.is-embedded #root," +
+    "html.is-embedded #root>div{min-height:0!important}";
+  (document.head || document.documentElement).appendChild(mh);
   var last = 0;
   var post = function () {
     var h = document.documentElement.scrollHeight;
