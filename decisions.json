@@ -63,7 +63,7 @@
     {
       "id": "2026-08-12-ga-sen-cell-note-lag",
       "date": "2026-08-12",
-      "status": "open",
+      "status": "resolved",
       "area": "Senate - Georgia (rating cell vs its own note)",
       "question": "The GA-Sen Rating cell reads 'Lean D' while its own Notes record a Sabato Jul-30 move Leans D -> Likely D. Either the cell is stale (should be Likely D) or it is intentionally tracking the MORE COMPETITIVE of Cook/Sabato (if Cook is still Lean D). Route 3 (SKILL.md 2.3a) named Cook+Sabato as the cell's drivers but did NOT specify how to reconcile when Cook and Sabato disagree with each other. Establish that standing rule and apply it to GA-Sen.",
       "why_not_autonomous": "This is a standing methodology choice (how the cell resolves a Cook/Sabato split - most-competitive, most-recent, or consensus), not a one-off data fix, and it needs BOTH forecasters' CURRENT GA-Sen ratings verified fresh before the cell moves. Picking a rule unilaterally would silently change how every future Cook/Sabato disagreement is handled across the whole sheet.",
@@ -72,7 +72,7 @@
         "Cell tracks the MOST RECENT forecaster move (move GA-Sen to Likely D per Sabato Jul-30)",
         "Cell requires a Cook+Sabato CONSENSUS; a lone mover stays in the note until the other follows"
       ],
-      "resolution": null,
+      "resolution": "Resolved 2026-08-18 at P-funk's direction: CONSENSUS rule. The Rating cell moves only when Cook AND Sabato agree on the new rating; a lone mover (only one has moved, or the two sit at different tiers) does NOT move the cell but is logged in the cell's Notes until the second forecaster confirms (then move the cell) or the mover reverts (then drop the note). Most-competitive and most-recent were both rejected: most-recent churns the cell on every single move and is ambiguous across differing forecaster datelines; most-competitive silently biases every unresolved split toward the more competitive tier. Consensus mirrors the IE Tilt Watch discipline (2.3a) and keeps the 7-point cell stable. Applied to all three held cells, all of which stay put under consensus and are already correct: GA-Sen Lean D (Cook Lean D vs Sabato Likely D), WI-Gov Toss-up (Cook Toss-up vs Sabato Leans D), OH-07 Lean R (Cook Lean R vs Sabato Toss-up). No sheet write results. Encoded in SKILL.md new section 2.3b (and the 2026-08-12 cell-vs-note check note updated to point at it).",
       "source": "https://centerforpolitics.org/crystalball/2026-rating-changes/",
       "carryover": "UPDATED 2026-08-16 with fresh forecaster values (ratings verifier, primary sources): Cook rates GA-Sen LEAN D (cookpolitical.com Senate page, dateline Aug 5 2026) - NOT Toss-up as a garbled search summary suggested; Sabato rates it LIKELY D (Jul 30 2026). The sheet cell (Lean D) therefore already equals Cook's current rating, and under BOTH the most-competitive and the consensus options the cell is correct as-is, so it was held unchanged this week. TWO more instances of the same Cook/Sabato-split question surfaced 2026-08-16 and were also HELD pending this rule: (a) WI-Gov - Sabato moved Toss-up->Leans D on Aug 13, but Cook still rates it Toss-up (confirmed), cell held at Toss-up; (b) OH-07 House - Sabato moved Lean R->Toss-up on Aug 13, cell held at Lean R. Once P-funk picks the standing rule (most-competitive / most-recent / consensus), apply it to all three held cells at once. No cell was moved on any lone-forecaster split this run."
     }

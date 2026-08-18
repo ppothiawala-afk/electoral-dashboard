@@ -184,8 +184,10 @@ through `constants_patch.json`.
 > **Cell-vs-note check (added 2026-08-12).** While reading each ratings tab, watch for a Rating
 > cell that disagrees with a forecaster move written in its own **Notes** — e.g. the cell says
 > "Lean D" but the note says "Sabato moved → Likely D". That is a silent lag. Reconcile it per
-> §2.3a (Cook/Sabato drive the cell); if the lag is a genuine Cook-vs-Sabato disagreement you
-> cannot settle by rule, log a `decisions.json` entry rather than guessing. The Monday `--sheet`
+> §2.3a (Cook/Sabato drive the cell) and §2.3b (a lone Cook-vs-Sabato mover does **not** move the
+> cell — the **consensus rule**). Since §2.3b now settles every Cook-vs-Sabato split by rule, a new
+> `decisions.json` entry is needed only if the split is genuinely outside §2.3b's shape (e.g. the
+> two forecasters use incompatible labels). Do not guess. The Monday `--sheet`
 > run also flags these automatically as **S5-cellnote** (WARN), so an unattended run will surface
 > one even if you miss it — but catch it here when you can, before the stale cell ships.
 
@@ -247,6 +249,33 @@ The **Rating** column tracks **Cook** and **Sabato**, which share the dashboard'
 
 Resolves `decisions.json` `2026-08-10-inside-elections-tilt-mapping`. Weekly refresh: Contract 3.9
 step 7. Machine check: `verify_dashboard.py` L12-iewatch.
+
+### 2.3b Cook-vs-Sabato disagreement (consensus rule — route 3, resolved 2026-08-18)
+
+§2.3a establishes that **Cook and Sabato are the only forecasters that move the Rating cell.** This
+section governs what happens when **they disagree with each other.**
+
+> ✅ **Consensus rule. The Rating cell moves only when Cook _and_ Sabato agree on the new rating.**
+> A **lone mover** — only one of the two has changed, or the two simply sit at different tiers — does
+> **NOT** move the cell. The cell holds at the rating the two forecasters **last agreed on** (the
+> standing consensus). The lone mover is recorded in the cell's **Notes**, not the cell itself.
+
+This is the same discipline as the IE Tilt Watch (§2.3a): do not chase a lone mover; wait for the
+second forecaster to confirm. Resolution of a held split:
+
+- **Confirmed** — the second forecaster later moves to match: now both agree, so **move the cell**
+  and update the note.
+- **Faded** — the lone mover reverts to the consensus rating: **drop the note**, cell never moved.
+
+Do **not** use "most competitive" or "most recent" — both were considered and rejected on
+2026-08-18: most-recent churns the cell on every single forecaster move (and is ambiguous when the
+two forecasters carry different datelines), and most-competitive silently biases every unresolved
+split toward the more competitive tier. Consensus keeps the 7-point cell stable and auditable.
+
+Resolves `decisions.json` `2026-08-12-ga-sen-cell-note-lag` (opened 2026-08-12, resolved 2026-08-18).
+Three cells were held pending this rule; under consensus all three stay put and are already correct:
+**GA-Sen** Lean D (Cook Lean D vs Sabato Likely D), **WI-Gov** Toss-up (Cook Toss-up vs Sabato Leans D),
+**OH-07** Lean R (Cook Lean R vs Sabato Toss-up). No sheet write results from adopting the rule.
 
 ### 2.4 `constants_patch.json` schema
 
