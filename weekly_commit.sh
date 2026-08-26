@@ -176,6 +176,7 @@ for p in \
   news_analysis.json \
   sentiment_history.json \
   decisions.json \
+  ie_watch.json \
   index.html \
   methodology.html \
   'weekly_briefing_*.md' \

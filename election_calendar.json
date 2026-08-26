@@ -1,6 +1,6 @@
 {
  "_comment": "Upcoming election events rendered on the Overview tab. Maintained by the weekly Cowork routine — the candidate-matchup verifier should confirm dates and add/remove events as primaries resolve. Past events are auto-hidden by the UI (kept here for the record). kind: primary | runoff | special | convention | general.",
- "updated": "2026-08-16",
+ "updated": "2026-08-25",
  "events": [
   {
    "date": "2026-06-16",
@@ -77,7 +77,7 @@
    "state": "FL",
    "kind": "primary",
    "title": "Florida primaries",
-   "note": "D Senate-special primary resolves: Alex Vindman vs. Angie Nixon. Appointed Sen. Ashley Moody (R) also faces a nominal primary (Gleason, Taneja Perry, Rivera) the same day; general Nov 3."
+   "note": "Resolved: state Rep. Angie Nixon (progressive) upset Alex Vindman in the Democratic Senate-special primary despite being outspent ~$16M to <$1M; Nixon faces appointed Sen. Ashley Moody (R) on Nov 3. Moody won the nominal GOP primary the same day."
   },
   {
    "date": "2026-08-18",
@@ -91,14 +91,14 @@
    "state": "GA",
    "kind": "runoff",
    "title": "GA-13 special runoff",
-   "note": "Confirmed and required — no one cleared 50% on Jul 28. Marcye Scott vs. Everton Blair Jr., both Democrats. Winner serves the remainder of the late David Scott's term."
+   "note": "Held Aug 25 (result pending final count as of this run). Marcye Scott vs. Everton Blair Jr., both Democrats — safe-D seat, so the winner is a Democrat either way. Winner serves the remainder of the late David Scott's term and is not immediately sworn in, so the House vacancy count is unchanged for now."
   },
   {
    "date": "2026-08-25",
    "state": "SC",
    "kind": "runoff",
-   "title": "SC Senate special GOP primary runoff (if needed)",
-   "note": "Set by the state Election Commission for Tue Aug 25 if no candidate clears 50% on Aug 11; early voting Aug 19-21. Nominee goes on the Nov 3 general-election ballot against Annie Andrews (D)."
+   "title": "SC Senate special GOP primary runoff",
+   "note": "Held Aug 25 (result pending final count as of this run): appointed Sen. Darline Graham Nordone (R) vs. Rep. Ralph Norman (R). Nominee faces Annie Andrews (D) on Nov 3. Neither Norman nor Fry vacated a US House seat, so no House vacancy results."
   },
   {
    "date": "2026-09-08",

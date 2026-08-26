@@ -1,0 +1,32 @@
+{
+  "notes": "Weekly 2026-08-25: chamber unchanged (218R/212D/1I/4V House; 53R/47D/2I Senate). Three consensus (Cook+Sabato) House rating moves toward Democrats: OH-07 Lean R -> Toss-up (Cook Aug 10, Sabato Aug 13; Miller stayed in despite abuse allegations), MI-08 Lean D -> Likely D (Cook & Sabato Aug 2026), MI-10 Lean R -> Toss-up (Cook Aug 25 joins Sabato's long-standing Toss-up; open seat, James running for Gov). Note-only: FL-14 gains Cook consensus at Toss-up (Aug 25); TX-Sen & IA-Sen notes record Cook's Aug 20 move to Toss-up while Sabato holds Lean R (split, cell held Toss-up pending decisions.json 2026-08-25-tx-ia-sen-consensus). Data fix: FL-Sen challenger updated to Angie Nixon (D), who won the Aug 18 primary over Alex Vindman.",
+  "updates": {
+    "HOUSE_R": 218, "HOUSE_D": 212, "HOUSE_I": 1, "HOUSE_VACANCIES": 4,
+    "SENATE_R": 53, "SENATE_D": 47, "SENATE_I": 2,
+    "LAST_UPDATED": "2026-08-25",
+    "NOTES": "Kiley (CA-03) is Independent but caucuses R. Vacancies (4): CA-14 (Swalwell-D resigned Apr 14; Aisha Wahab (D) won the Aug 18 special runoff over Melissa Hernandez but is not yet sworn in - seat still vacant), FL-20 (Cherfilus-McCormick-D resigned Apr 21; no separate special called, filled at the Nov 3 general), GA-13 (Scott-D died Apr 22; Aug 25 runoff Marcye Scott vs Everton Blair Jr., both D - winner not yet sworn in), TX-23 (Gonzales-R resigned Apr 14; no special called by Abbott, filled Nov 3). House Clerk and Press Gallery both show 4 vacancies and 218R. Senate 53R/47D/2I; Sanders-VT and King-ME are the two independents counted inside the D caucus, Murkowski-AK is R."
+  },
+  "row_updates": {
+    "Senate": {
+      "key_cols": ["State", "Up in 2026"],
+      "rating_col": "Rating",
+      "extra_col_map": {"Challenger": "challenger", "Notes": "notes"},
+      "changes": [
+        {"key": ["FL", "YES"], "rating": "Solid R", "challenger": "Angie Nixon (D)", "notes": "Aug 18 Dem primary RESOLVED: state Rep. Angie Nixon (progressive) upset Alex Vindman despite being outspent ~$16M to <$1M; Nixon faces appointed Sen. Ashley Moody (R) on Nov 3. Special election for Rubio's seat; Moody appointed. Rating stays Solid R (UNF Jul 20 had Moody 50-42 over Nixon)."},
+        {"key": ["TX", "YES"], "rating": "Toss-up", "challenger": "James Talarico (D)", "notes": "SPLIT: Cook moved Lean R -> Toss-up on Aug 20, 2026; Sabato still rates it Leans R. Under the consensus rule the cell is held at Toss-up pending review (decisions.json 2026-08-25-tx-ia-sen-consensus). Paxton beat Cornyn in the May 26 GOP runoff; Talarico (D) won the Mar 3 primary with 53% and holds a fundraising edge."},
+        {"key": ["IA", "YES"], "rating": "Toss-up", "challenger": "Josh Turek (D)", "notes": "SPLIT: Cook moved Lean R -> Toss-up on Aug 20, 2026; Sabato still rates it Leans R. Cell held at Toss-up pending review (decisions.json 2026-08-25-tx-ia-sen-consensus). Open seat, Ernst retiring; Hinson (R) vs Turek (D). IE had flagged Tilt R on Aug 6."}
+      ]
+    },
+    "House": {
+      "key_cols": ["State", "District"],
+      "rating_col": "Rating",
+      "extra_col_map": {"Note": "note"},
+      "changes": [
+        {"key": ["OH", "07"], "rating": "Toss-up", "note": "Cook (Aug 10) and Sabato (Aug 13) both moved to Toss-up after Rep. Max Miller stayed in the race despite domestic-abuse allegations; a co/efficient poll had Democrat Brian Poindexter +14. Consensus reached; cell moved Lean R -> Toss-up."},
+        {"key": ["MI", "08"], "rating": "Likely D", "note": "Cook (Aug 25) and Sabato both moved Lean D -> Likely D. Rep. Kristen McDonald Rivet strengthening in a Trump+2 seat. Consensus; cell moved Lean D -> Likely D."},
+        {"key": ["MI", "10"], "rating": "Toss-up", "note": "Open seat - Rep. John James (R) is running for Governor; Democrat Christina Hines is the nominee. Cook moved Lean R -> Toss-up on Aug 25, joining Sabato's long-standing Toss-up. Consensus; cell moved Lean R -> Toss-up."},
+        {"key": ["FL", "14"], "rating": "Toss-up", "note": "Cook moved Lean R -> Toss-up on Aug 25, joining Sabato (Toss-up since ~Jul 30). Castor-D seat drawn more R in redistricting. Consensus now aligned at Toss-up (cell unchanged)."}
+      ]
+    }
+  }
+}

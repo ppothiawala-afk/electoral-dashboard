@@ -2,6 +2,15 @@
   "_comment": "Public corrections log, rendered on methodology.html. Every substantive data error gets an entry when fixed — no silent corrections. Fields: date fixed, what was wrong, what it should have been, how it was caught, scope of impact.",
   "corrections": [
     {
+      "date": "2026-08-25",
+      "area": "House — OH-07",
+      "wrong": "Published OH-07 (Max Miller) as 'Lean R'. The 2026-08-18 consensus-rule resolution held it at Lean R on the premise that Cook still rated it Lean R while only Sabato had moved to Toss-up.",
+      "right": "Cook and Sabato had BOTH rated OH-07 'Toss-up' since mid-August: Cook moved Likely R -> Toss-up on Aug 10, 2026 (after Miller stayed in the race despite domestic-abuse allegations; a co/efficient poll had Democrat Brian Poindexter +14), and Sabato moved Lean R -> Toss-up on Aug 13. The cell should have been Toss-up under the consensus rule; the 'Cook Lean R' premise was factually stale.",
+      "caught_by": "Weekly ratings verification subagent (Contract 3.5), 2026-08-25 run — confirmed against Cook Political Report's own article, not a search summary.",
+      "impact": "House tab OH-07 rating; moved Lean R -> Toss-up this run. Stale ~12 days (Aug 13 consensus -> Aug 25 fix).",
+      "source": "https://www.cookpolitical.com/analysis/house/ohio-house/ohio-rep-max-millers-district-moves-likely-republican-toss"
+    },
+    {
       "date": "2026-07-03",
       "area": "Governors — Texas",
       "wrong": "Listed the TX governorship as 'Open (Abbott term-limited)'.",
