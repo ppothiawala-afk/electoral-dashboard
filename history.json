@@ -923,6 +923,23 @@
     }
    ],
    "snapshot": {}
+  },
+  {
+   "date": "2026-08-31",
+   "label": "Aug 31",
+   "briefing": "weekly_briefing_2026-08-31.md",
+   "chamber": {
+    "house_r": 218,
+    "house_d": 212,
+    "house_i": 1,
+    "house_vacancies": 4,
+    "senate_r": 53,
+    "senate_d": 47,
+    "senate_i": 2,
+    "notes": "No membership changes. Four House vacancies hold (CA-14, FL-20, GA-13, TX-23); GA-13 won by Everton Blair Jr. (D) Aug 25 and CA-14 by Aisha Wahab (D), both awaiting swearing-in. Pipeline-alert week: last week's 2026-08-25 patch was still pending and left untouched for today's apply; no new patch written."
+   },
+   "rating_changes": [],
+   "snapshot": {}
   }
  ]
 }

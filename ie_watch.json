@@ -1,6 +1,6 @@
 {
   "_comment": "IE Tilt Watch — the leading-indicator log for Inside Elections divergences. Resolves decisions.json 2026-08-10-inside-elections-tilt-mapping via route 3. RULE: the Rating column on the sheet tracks Cook and Sabato on the shared 7-point enum (Solid/Likely/Lean D · Toss-up · Lean/Likely/Solid R). Inside Elections uses a finer scale with a 'Tilt' tier between Lean and Toss-up; a bare IE 'Tilt' (or ANY IE rating that diverges from the sheet cell) is NEVER imported into the Rating cell. It is logged here and surfaced in the weekly briefing's 'IE Tilt Watch' section as an early-mover signal. An entry is closed when Cook or Sabato move to match it (status -> 'confirmed', record confirmed_by) or IE reverts to the sheet's rating (status -> 'faded'). Managed by the weekly skill (Contract 3.9) and checked by verify_dashboard.py (L12-iewatch). See SKILL.md 2.3a.",
-  "generated": "2026-08-25",
+  "generated": "2026-08-31",
   "scale_note": "IE tiers, most-to-least competitive per side: Toss-up · Tilt · Lean · Likely · Solid. The dashboard has no 'Tilt', so an IE Tilt sits between the sheet's Lean and Toss-up. 'nearest_7pt' is informational only — it is deliberately NOT written to the sheet.",
   "watch": [
     {
