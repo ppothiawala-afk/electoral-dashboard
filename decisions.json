@@ -5,7 +5,7 @@
       "id": "2026-08-03-senate-i",
       "date": "2026-08-03",
       "status": "resolved",
-      "area": "Constants — SENATE_I",
+      "area": "Constants \u2014 SENATE_I",
       "question": "SKILL.md hard-coded SENATE_I = 3, counting Murkowski as an independent. senate.gov lists 2 (Sanders, King) and carries Murkowski as R, as does this dashboard's own Senate tab. Change the value and the skill, or keep 3?",
       "why_not_autonomous": "Contradicting an explicit hard-coded value in the canonical skill is a scope change, not a data update. The invariant SENATE_R + SENATE_D == 100 held either way, so nothing was blocked by deferring it.",
       "options": [
@@ -19,7 +19,7 @@
       "id": "2026-08-03-mo-05",
       "date": "2026-08-03",
       "status": "resolved",
-      "area": "House — MO-05",
+      "area": "House \u2014 MO-05",
       "question": "The MO-05 row carries Party 'D' (Cleaver) with Rating 'Solid R' and a Note saying the Solid R label 'was sheet error'. Post-redistricting Solid R may be correct for the new seat, but the note and the cell contradict each other. Which is right?",
       "why_not_autonomous": "Resolving it means deciding whether the note or the rating is the stale artifact. I found no primary source settling it, and guessing would either restore a real error or erase a real correction.",
       "options": [
@@ -34,8 +34,8 @@
       "id": "2026-08-10-inside-elections-tilt-mapping",
       "date": "2026-08-10",
       "status": "resolved",
-      "area": "Methodology — rating scale",
-      "question": "Inside Elections uses a finer scale than the dashboard: it has a 'Tilt' tier between 'Lean' and 'Toss-up' (Toss-up / Tilt / Lean / Likely / Solid). The dashboard's 7-point enum has no 'Tilt'. On Aug 6, 2026 Inside Elections moved several races to a 'Tilt' rating (NC-Sen and GA-Sen to Tilt D, IA-Sen to Tilt R, KS-Gov to Tilt R, IA-Gov to Tilt D). How should an IE 'Tilt D/R' be represented on the 7-point sheet when it is the mover — collapse to 'Toss-up', collapse to 'Lean', or keep tracking Cook/Sabato (which share the 7-point scale) and treat IE only as corroboration?",
+      "area": "Methodology \u2014 rating scale",
+      "question": "Inside Elections uses a finer scale than the dashboard: it has a 'Tilt' tier between 'Lean' and 'Toss-up' (Toss-up / Tilt / Lean / Likely / Solid). The dashboard's 7-point enum has no 'Tilt'. On Aug 6, 2026 Inside Elections moved several races to a 'Tilt' rating (NC-Sen and GA-Sen to Tilt D, IA-Sen to Tilt R, KS-Gov to Tilt R, IA-Gov to Tilt D). How should an IE 'Tilt D/R' be represented on the 7-point sheet when it is the mover \u2014 collapse to 'Toss-up', collapse to 'Lean', or keep tracking Cook/Sabato (which share the 7-point scale) and treat IE only as corroboration?",
       "why_not_autonomous": "This is a standing methodology choice about which forecaster(s) the Rating column tracks and how to collapse a 5-gradation scale into 7 points, not a one-off data update. Picking a rule unilaterally would silently change how every future IE 'Tilt' move is handled.",
       "options": [
         "Keep tracking Cook/Sabato on the 7-point scale; use IE only as corroboration (never import a bare 'Tilt')",
@@ -49,7 +49,7 @@
       "id": "2026-08-10-mt-senate-matchup",
       "date": "2026-08-10",
       "status": "resolved",
-      "area": "Senate — Montana",
+      "area": "Senate \u2014 Montana",
       "question": "The Senate ratings tab lists MT as incumbent Steve Daines (R) vs. Reilly Neill (D), Solid R. The State News pass (Montana Free Press, Daily Montanan) and news_config.json both indicate Daines did NOT seek re-election, Neill lost the June 2 Democratic primary to Alani Bankhead, and the November matchup is Kurt Alme (R) vs. Alani Bankhead (D) vs. independent Seth Bodnar. Should the Senate row's Incumbent/Challenger cells be rewritten to the Alme/Bankhead/Bodnar matchup (with Daines removed as incumbent)?",
       "why_not_autonomous": "This is a member-level/incumbent correction surfaced only by a news-gathering subagent, not the gating Contract 3.5 membership verifier. Rewriting the Incumbent cell (a field outside the normal rating row_update) on a single unverified pass risks a half-correct row. The rating is Solid R either way, so nothing is blocked by deferring; the State News tab already shows the correct current matchup.",
       "options": [
@@ -79,17 +79,18 @@
     {
       "id": "2026-08-25-tx-ia-sen-consensus",
       "date": "2026-08-25",
-      "status": "open",
+      "status": "resolved",
       "area": "Senate - Texas and Iowa (cell ahead of the Cook/Sabato consensus)",
-      "question": "The TX-Sen and IA-Sen Rating cells both read 'Toss-up', but the Cook/Sabato standing consensus is Lean R: Cook only just moved both from Lean R -> Toss-up on Aug 20 2026, while Sabato still rates BOTH 'Leans R'. This is the mirror image of the §2.3b examples - there the cell sat at the LESS competitive last-agreed value (e.g. OH-07 held at Lean R), but here the cell already sits MORE competitive than either forecaster's standing agreement. Strict consensus (§2.3b) would revert both cells to Lean R until Sabato follows Cook to Toss-up. Do we revert TX-Sen and IA-Sen to Lean R to conform to the rule, or hold them at Toss-up?",
+      "question": "The TX-Sen and IA-Sen Rating cells both read 'Toss-up', but the Cook/Sabato standing consensus is Lean R: Cook only just moved both from Lean R -> Toss-up on Aug 20 2026, while Sabato still rates BOTH 'Leans R'. This is the mirror image of the \u00a72.3b examples - there the cell sat at the LESS competitive last-agreed value (e.g. OH-07 held at Lean R), but here the cell already sits MORE competitive than either forecaster's standing agreement. Strict consensus (\u00a72.3b) would revert both cells to Lean R until Sabato follows Cook to Toss-up. Do we revert TX-Sen and IA-Sen to Lean R to conform to the rule, or hold them at Toss-up?",
       "why_not_autonomous": "Reverting two seats Toss-up -> Lean R is a consequential R-direction move that shrinks the Toss-up column, and the cells have carried Toss-up across many prior runs (likely set on the competitive narrative - Paxton nomination, Ernst retirement, strong D fundraising/polling - before the forecasters caught up). Applying a strict revert unilaterally on an unattended run could erase a deliberate editorial call. The conservative branch (hold) changes least and is trivially reversible.",
       "options": [
         "Hold both at Toss-up (conservative; matches Cook's current Aug 20 rating and the competitive polling)",
-        "Revert both to Lean R per strict §2.3b consensus until Sabato moves to Toss-up",
+        "Revert both to Lean R per strict \u00a72.3b consensus until Sabato moves to Toss-up",
         "Hold, but treat Sabato moving either to Toss-up as the trigger to formally confirm the cell"
       ],
-      "resolution": null,
-      "source": "https://www.cookpolitical.com/analysis/senate/senate-overview/texas-and-iowa-senate-races-move-toss-races-governor-also-move"
+      "resolution": "Resolved 2026-09-03 by P-funk (reviewer): option 2 - revert BOTH TX-Sen and IA-Sen Toss-up -> Lean R per strict \u00a72.3b consensus, aligning the cells with Sabato (Leans R) until Cook rejoins. Applied via constants_patch.json 2026-09-03.",
+      "source": "https://www.cookpolitical.com/analysis/senate/senate-overview/texas-and-iowa-senate-races-move-toss-races-governor-also-move",
+      "resolved_date": "2026-09-03"
     }
   ]
 }
