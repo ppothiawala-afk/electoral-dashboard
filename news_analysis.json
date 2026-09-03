@@ -85,55 +85,55 @@
     {
      "type": "Governor",
      "matchup": "Hannah Pingree (D) vs. Bobby Charles (R) vs. Rick Bennett (I)",
-     "sentiment": 57,
-     "summary": "Coverage of the open-seat race to succeed term-limited Gov. Janet Mills was limited and older in this window, dominated by polling that showed Democrat Hannah Pingree with a comfortable double-digit lead over Republican Bobby Charles, with independent Rick Bennett in single digits. Additional reporting covered debate negotiations, with Pingree and Bennett agreeing to four televised debates while Charles pushed for a larger town-hall series. Tone leaned Democratic, driven mainly by Pingree's polling advantage.",
+     "sentiment": 56,
+     "summary": "Coverage in this window centered on the fall debate calendar: on Sept. 1 Republican Bobby Charles agreed to join the four televised debates that Democrat Hannah Pingree and independent Rick Bennett had already accepted, locking in an Oct. 1-14 schedule (a fifth WABI/WAGM debate on Oct. 20 has Charles and Bennett in but not Pingree). Fundamentals were unchanged: Pingree continues to lead in polling and fundraising, having raised more than $3M as of the July filing - more than Charles and Bennett combined. Tone leaned modestly Democratic on Pingree's structural advantages.",
      "candidates": [
       {
        "name": "Hannah Pingree",
        "party": "D",
        "mentions": 5,
-       "sentiment": 58
+       "sentiment": 57
       },
       {
        "name": "Bobby Charles",
        "party": "R",
-       "mentions": 5,
-       "sentiment": 44
+       "mentions": 4,
+       "sentiment": 46
       },
       {
        "name": "Rick Bennett",
        "party": "I",
-       "mentions": 4,
+       "mentions": 3,
        "sentiment": 48
       }
      ],
      "outlets": [
       {
-       "source": "Bangor Daily News",
+       "source": "Central Maine",
        "lean": null,
-       "sentiment": 57,
-       "articles": 2
+       "sentiment": 55,
+       "articles": 1
       },
       {
        "source": "Press Herald",
        "lean": null,
-       "sentiment": 52,
-       "articles": 1
-      },
-      {
-       "source": "Central Maine",
-       "lean": null,
-       "sentiment": 52,
-       "articles": 1
-      },
-      {
-       "source": "Maine Public",
-       "lean": null,
        "sentiment": 53,
+       "articles": 1
+      },
+      {
+       "source": "Bangor Daily News",
+       "lean": null,
+       "sentiment": 57,
        "articles": 1
       }
      ],
      "articles": [
+      {
+       "headline": "Maine governor candidates agree to 4 debates ahead of election",
+       "url": "https://www.centralmaine.com/2026/09/01/maine-governor-candidates-agree-to-4-debates-ahead-of-election/",
+       "source": "Central Maine",
+       "date": "2026-09-01"
+      },
       {
        "headline": "Pingree, Bennett agree to 4 debates in Maine governor's race. Bobby Charles wants more.",
        "url": "https://www.pressherald.com/2026/07/21/pingree-bennett-agree-to-four-debates-in-maine-governors-race-bobby-charles-wants-more/",
@@ -141,28 +141,10 @@
        "date": "2026-07-21"
       },
       {
-       "headline": "Pingree, Bennett agree to 4 debates in Maine governor's race. Bobby Charles wants more.",
-       "url": "https://www.centralmaine.com/2026/07/21/pingree-bennett-agree-to-four-debates-in-maine-governors-race-bobby-charles-wants-more/",
-       "source": "Central Maine",
-       "date": "2026-07-21"
-      },
-      {
        "headline": "Hannah Pingree leads Bobby Charles in Maine governor's race poll",
        "url": "https://www.bangordailynews.com/2026/07/01/politics/elections/maine-governor-race-poll-hannah-pingree-bobby-charles-rick-bennett/",
        "source": "Bangor Daily News",
        "date": "2026-07-01"
-      },
-      {
-       "headline": "Maine Governor Race: Bobby Charles, Hannah Pingree, Rick Bennett to face off",
-       "url": "https://www.bangordailynews.com/2026/06/20/politics/maine-governor-race-analysis/",
-       "source": "Bangor Daily News",
-       "date": "2026-06-20"
-      },
-      {
-       "headline": "Bobby Charles, Hannah Pingree win nominations in Maine race for governor",
-       "url": "https://www.mainepublic.org/politics/2026-06-19/bobby-charles-hannah-pingree-win-nominations-in-maine-race-for-governor",
-       "source": "Maine Public",
-       "date": "2026-06-19"
       }
      ]
     }
