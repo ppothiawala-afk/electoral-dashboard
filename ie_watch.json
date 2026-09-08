@@ -1,6 +1,6 @@
 {
   "_comment": "IE Tilt Watch — the leading-indicator log for Inside Elections divergences. Resolves decisions.json 2026-08-10-inside-elections-tilt-mapping via route 3. RULE: the Rating column on the sheet tracks Cook and Sabato on the shared 7-point enum (Solid/Likely/Lean D · Toss-up · Lean/Likely/Solid R). Inside Elections uses a finer scale with a 'Tilt' tier between Lean and Toss-up; a bare IE 'Tilt' (or ANY IE rating that diverges from the sheet cell) is NEVER imported into the Rating cell. It is logged here and surfaced in the weekly briefing's 'IE Tilt Watch' section as an early-mover signal. An entry is closed when Cook or Sabato move to match it (status -> 'confirmed', record confirmed_by) or IE reverts to the sheet's rating (status -> 'faded'). Managed by the weekly skill (Contract 3.9) and checked by verify_dashboard.py (L12-iewatch). See SKILL.md 2.3a.",
-  "generated": "2026-08-31",
+  "generated": "2026-09-08",
   "scale_note": "IE tiers, most-to-least competitive per side: Toss-up · Tilt · Lean · Likely · Solid. The dashboard has no 'Tilt', so an IE Tilt sits between the sheet's Lean and Toss-up. 'nearest_7pt' is informational only — it is deliberately NOT written to the sheet.",
   "watch": [
     {
@@ -67,6 +67,58 @@
       "status": "confirmed",
       "confirmed_by": "Cook Political Report moved IA-Gov Toss-up -> Lean D on 2026-08-20 (https://thehill.com/homenews/campaign/6041925-cook-report-iowa-texas-democrat-governor-edge/); matches IE's Aug 6 Tilt D lean. Rob Sand (D) opened a consistent lead over Zach Lahn (R).",
       "source": "https://www.270towin.com/2026-governors-election/inside-elections-2026-governor-ratings"
+    },
+    {
+      "race": "AK-Sen",
+      "tab": "Senate",
+      "sheet_rating": "Toss-up",
+      "ie_rating": "Tilt R",
+      "nearest_7pt": "Lean R",
+      "divergence": "IE moved Lean R -> Tilt R on Sep 3, one tier toward R from the sheet's Toss-up. IE now sees it slightly more R than the cell; watch whether Cook/Sabato hold Toss-up or drift to Lean R.",
+      "ie_moved": "2026-09-03",
+      "first_logged": "2026-09-08",
+      "status": "open",
+      "confirmed_by": null,
+      "source": "https://www.270towin.com/2026-senate-election/inside-elections-2026-senate-ratings"
+    },
+    {
+      "race": "NH-Sen",
+      "tab": "Senate",
+      "sheet_rating": "Lean D",
+      "ie_rating": "Toss-up",
+      "nearest_7pt": "Toss-up",
+      "divergence": "IE moved Tilt D -> Toss-up on Sep 2, one tier more competitive than the sheet's Lean D (toward Sununu). Watch for Cook/Sabato to follow toward Toss-up.",
+      "ie_moved": "2026-09-02",
+      "first_logged": "2026-09-08",
+      "status": "open",
+      "confirmed_by": null,
+      "source": "https://www.270towin.com/2026-senate-election/inside-elections-2026-senate-ratings"
+    },
+    {
+      "race": "FL-14",
+      "tab": "House",
+      "sheet_rating": "Toss-up",
+      "ie_rating": "Tilt R",
+      "nearest_7pt": "Lean R",
+      "divergence": "IE moved Lean R -> Tilt R on Sep 3, one tier toward R from the sheet's Toss-up (Castor-D seat drawn more R). Cook+Sabato consensus already sits at Toss-up; watch whether they drift to Lean R.",
+      "ie_moved": "2026-09-03",
+      "first_logged": "2026-09-08",
+      "status": "open",
+      "confirmed_by": null,
+      "source": "https://www.270towin.com/2026-house-election/inside-elections-2026-house-ratings"
+    },
+    {
+      "race": "TX-15",
+      "tab": "House",
+      "sheet_rating": "Lean R",
+      "ie_rating": "Tilt R",
+      "nearest_7pt": "Toss-up",
+      "divergence": "IE moved Lean R -> Tilt R on Sep 3, one tier more competitive than the sheet's Lean R (De La Cruz-R). Watch for Cook/Sabato to follow toward Toss-up.",
+      "ie_moved": "2026-09-03",
+      "first_logged": "2026-09-08",
+      "status": "open",
+      "confirmed_by": null,
+      "source": "https://www.270towin.com/2026-house-election/inside-elections-2026-house-ratings"
     }
   ]
 }

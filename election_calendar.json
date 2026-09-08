@@ -1,6 +1,6 @@
 {
  "_comment": "Upcoming election events rendered on the Overview tab. Maintained by the weekly Cowork routine — the candidate-matchup verifier should confirm dates and add/remove events as primaries resolve. Past events are auto-hidden by the UI (kept here for the record). kind: primary | runoff | special | convention | general.",
- "updated": "2026-08-25",
+ "updated": "2026-09-08",
  "events": [
   {
    "date": "2026-06-16",
@@ -84,14 +84,14 @@
    "state": "CA",
    "kind": "special",
    "title": "CA-14 special runoff",
-   "note": "Formally a special runoff under the Apr 14 proclamation: Aisha Wahab vs. Melissa Hernandez, both D. Filling Swalwell's seat."
+   "note": "Resolved: Aisha Wahab (D) won the Aug 18 runoff over Melissa Hernandez and was sworn in Sep 2 2026, ending the CA-14 vacancy (Swalwell-D). First Afghan American in Congress."
   },
   {
    "date": "2026-08-25",
    "state": "GA",
    "kind": "runoff",
    "title": "GA-13 special runoff",
-   "note": "Held Aug 25 (result pending final count as of this run). Marcye Scott vs. Everton Blair Jr., both Democrats — safe-D seat, so the winner is a Democrat either way. Winner serves the remainder of the late David Scott's term and is not immediately sworn in, so the House vacancy count is unchanged for now."
+   "note": "Resolved: Everton Blair Jr. (D) defeated Marcye Scott 53.2-46.8 and was sworn in Sep 1 2026, ending the GA-13 vacancy (Scott-D, d. Apr 22). Georgia's first openly gay member of Congress."
   },
   {
    "date": "2026-08-25",
@@ -105,7 +105,7 @@
    "state": "NH",
    "kind": "primary",
    "title": "New Hampshire primaries",
-   "note": "Last primary of the cycle: former Sen. John E. Sununu (Trump-endorsed, led Brown 48-25 in UNH polling) vs. Scott Brown for the R Senate nod. Chris Pappas is the heavy D favorite."
+   "note": "Primary day (today). Rep. Chris Pappas (D) and former Sen. John E. Sununu (R) are the heavy favorites for the open Senate seat (Shaheen retiring); Cinde Warmington (D) favored to face Gov. Kelly Ayotte (R). Results pending as of this run; confirm winners next week."
   },
   {
    "date": "2026-11-03",

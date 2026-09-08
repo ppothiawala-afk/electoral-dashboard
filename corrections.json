@@ -1,167 +1,176 @@
 {
-  "_comment": "Public corrections log, rendered on methodology.html. Every substantive data error gets an entry when fixed — no silent corrections. Fields: date fixed, what was wrong, what it should have been, how it was caught, scope of impact.",
-  "corrections": [
-    {
-      "date": "2026-08-25",
-      "area": "House — OH-07",
-      "wrong": "Published OH-07 (Max Miller) as 'Lean R'. The 2026-08-18 consensus-rule resolution held it at Lean R on the premise that Cook still rated it Lean R while only Sabato had moved to Toss-up.",
-      "right": "Cook and Sabato had BOTH rated OH-07 'Toss-up' since mid-August: Cook moved Likely R -> Toss-up on Aug 10, 2026 (after Miller stayed in the race despite domestic-abuse allegations; a co/efficient poll had Democrat Brian Poindexter +14), and Sabato moved Lean R -> Toss-up on Aug 13. The cell should have been Toss-up under the consensus rule; the 'Cook Lean R' premise was factually stale.",
-      "caught_by": "Weekly ratings verification subagent (Contract 3.5), 2026-08-25 run — confirmed against Cook Political Report's own article, not a search summary.",
-      "impact": "House tab OH-07 rating; moved Lean R -> Toss-up this run. Stale ~12 days (Aug 13 consensus -> Aug 25 fix).",
-      "source": "https://www.cookpolitical.com/analysis/house/ohio-house/ohio-rep-max-millers-district-moves-likely-republican-toss"
-    },
-    {
-      "date": "2026-07-03",
-      "area": "Governors — Texas",
-      "wrong": "Listed the TX governorship as 'Open (Abbott term-limited)'.",
-      "right": "Texas has no gubernatorial term limits. Gov. Greg Abbott is seeking a fourth term against Gina Hinojosa (D).",
-      "caught_by": "Independent research pass while building the State News feature; confirmed via Texas Tribune coverage of the general-election campaign.",
-      "impact": "Governors tab incumbent/open fields; race was never mis-rated (Solid R throughout).",
-      "source": "https://www.texastribune.org/2026/06/03/texas-governor-race-gina-hinojosa-ad-greg-abbott-nba-finals-spurs-2026-midterms/"
-    },
-    {
-      "date": "2026-07-03",
-      "area": "Governors — Minnesota",
-      "wrong": "Listed Gov. Tim Walz as running for re-election ('Post-VP run name ID boost').",
-      "right": "Walz withdrew from the race on Jan 5, 2026 amid criticism of the state's handling of child-care fraud. Amy Klobuchar is the DFL-endorsed nominee.",
-      "caught_by": "News collection surfaced the exit; verified across CBS, NBC, NPR, and Axios before the fix was applied.",
-      "impact": "Governors tab incumbent/open/notes fields; rating unchanged (Likely D) pending forecaster moves. Stale for ~6 months — the class of error the weekly candidate-matchup verification (added July 2026) now targets.",
-      "source": "https://www.cbsnews.com/minnesota/news/tim-walz-drop-out-of-gubernatorial-race-2026/"
-    },
-    {
-      "date": "2026-07-06",
-      "area": "Governors — Georgia",
-      "wrong": "Notes described the GOP field as unsettled/led by Burt Jones after the May 19 primary.",
-      "right": "Rick Jackson (R) defeated Burt Jones in the June 16 GOP runoff; the general is Jackson (R) vs. Keisha Lance Bottoms (D).",
-      "caught_by": "Weekly candidate-matchup verification subagent (Contract 3.5), 2026-07-06 run — the mechanism added July 2026 after the Abbott/Walz misses.",
-      "impact": "Governors tab notes only; rating never mis-set (Toss-up throughout). Stale ~3 weeks.",
-      "source": "https://www.newsnationnow.com/politics/2026-midterm-elections/georgia-governor-primary-runoff-election-results-2026/amp/"
-    },
-    {
-      "date": "2026-07-14",
-      "area": "Senate — Maine",
-      "wrong": "Listed Janet Mills (D) as Susan Collins' challenger.",
-      "right": "Mills suspended her campaign Apr 30; Graham Platner won the Jun 9 Democratic primary with >50%. Platner then withdrew Jul 10; the Democratic nominee will be chosen by a party convention by Jul 27.",
-      "caught_by": "Weekly candidate-matchup verification subagent (Contract 3.5), 2026-07-14 run.",
-      "impact": "Senate tab challenger/notes fields; rating never mis-set (Toss-up throughout). Challenger stale ~5 weeks (Jun 9 - Jul 14).",
-      "source": "https://ballotpedia.org/United_States_Senate_election_in_Maine,_2026_(June_9_Democratic_primary)"
-    },
-    {
-      "date": "2026-07-20",
-      "area": "Senate tab — LA row",
-      "wrong": "Row still described Cassidy as 'facing an R primary challenge' from Julia Letlow, implying a pending primary",
-      "right": "Cassidy lost the May 16 primary (3rd, 25%); Letlow won the Jun 27 runoff and is the R nominee vs Jamie Davis (D)",
-      "caught_by": "Weekly Cowork routine 2026-07-20 (state-news refresh cross-check)",
-      "impact": "Stale matchup displayed on Senate tab for ~3 weeks; rating (Solid R) unaffected",
-      "source": "https://www.washingtonpost.com/elections/2026/06/27/letlow-wins-louisiana-senate-runoff-succeed-cassidy-who-lost-his-primary/"
-    },
-    {
-      "date": "2026-07-29",
-      "area": "Senate — South Carolina",
-      "wrong": "Row and Constants notes described appointed Sen. Darline Graham Nordone as 'interim, not running', and listed the special-primary field as Norman, Lynch, Buckner.",
-      "right": "Nordone announced Jul 20 that she IS running, with Trump's endorsement. Filing closed Jul 28 with 12 filed and 9 certified by the SC GOP: Buckner, Fry, Graham (Nordone), Lynch, McBride, Norman, Parker, Sanford, Shepherd.",
-      "caught_by": "Weekly verification subagents (Contract 3.5), 2026-07-29 run — flagged independently by both the membership verifier and the candidate/matchup verifier.",
-      "impact": "Senate tab SC notes and Constants NOTES; published wrong for ~9 days (Jul 20-29). Rating never mis-set (Solid R throughout).",
-      "source": "https://www.axios.com/2026/07/20/trump-backed-nordone-enters-senate-race"
-    },
-    {
-      "date": "2026-07-29",
-      "area": "Senate — Florida (special)",
-      "wrong": "Challenger listed as 'Alan Grayson (D)'.",
-      "right": "Grayson is not in the field. The Aug 18 Democratic primary is Alex Vindman vs. state Rep. Angie Nixon, against appointed Sen. Ashley Moody (R). Note also that the candidate is Alex Vindman, not his twin brother Rep. Eugene Vindman (VA-01).",
-      "caught_by": "Weekly candidate-matchup verification subagent (Contract 3.5), 2026-07-29 run.",
-      "impact": "Senate tab challenger field; stale since at least the Apr 22 Vindman announcement — roughly three months. Rating never mis-set (Solid R throughout).",
-      "source": "https://floridaphoenix.com/2026/04/22/its-official-alex-vindman-is-running-for-the-u-s-senate-seat/"
-    },
-    {
-      "date": "2026-07-29",
-      "area": "Election Calendar — Michigan",
-      "wrong": "Aug 4 Michigan entry described the Democratic Senate field as 'McMorrow / El-Sayed / Stevens'.",
-      "right": "Mallory McMorrow suspended her campaign Jul 5, 2026. The active primary is Stevens vs. El-Sayed; McMorrow's name remains printed on the ballot.",
-      "caught_by": "Weekly candidate-matchup verification subagent (Contract 3.5), 2026-07-29 run.",
-      "impact": "Overview tab Election Calendar note only; stale ~3 weeks. No rating or chamber effect.",
-      "source": "https://www.nbcnews.com/politics/2026-election/mallory-mcmorrow-ends-bid-democratic-senate-nomination-michigan-rcna353053"
-    },
-    {
-      "date": "2026-08-03",
-      "area": "Senate - Georgia",
-      "wrong": "Senate tab listed the Georgia challenger to Jon Ossoff as Buddy Carter (R).",
-      "right": "The Republican nominee is Rep. Mike Collins, who won the Jun 16, 2026 runoff over Derek Dooley roughly 55-45. Buddy Carter did not make the runoff.",
-      "caught_by": "Weekly candidate-matchup verification subagent (Contract 3.5), 2026-08-03 run.",
-      "impact": "Senate tab Challenger cell and any GA Senate card wrong since the Jun 16 runoff - roughly seven weeks. No rating effect; the rating moved separately this week on Sabato's Jul 30 call.",
-      "source": "https://www.ajc.com/politics/2026/06/collins-defeats-dooley-for-gop-us-senate-nomination/"
-    },
-    {
-      "date": "2026-08-03",
-      "area": "Senate - New Hampshire",
-      "wrong": "Senate tab listed the New Hampshire Republican candidate as Scott Brown.",
-      "right": "Former Sen. John E. Sununu is the Trump-endorsed front-runner and leads Brown 59-20 among likely GOP primary voters ahead of the Sep 8 primary. Brown is still running but is not the front-runner.",
-      "caught_by": "Weekly candidate-matchup verification subagent (Contract 3.5), 2026-08-03 run.",
-      "impact": "Senate tab Challenger cell wrong since Sununu entered the race. Rating (Lean D) unaffected.",
-      "source": "https://ballotpedia.org/United_States_Senate_election_in_New_Hampshire,_2026_(September_8_Republican_primary)"
-    },
-    {
-      "date": "2026-08-03",
-      "area": "Senate - Minnesota",
-      "wrong": "Senate tab listed the Minnesota Republican challenger as Royce White.",
-      "right": "The Minnesota GOP endorsed Adam Schwarze for U.S. Senate. The Aug 11 DFL primary is Peggy Flanagan vs. Angie Craig.",
-      "caught_by": "Weekly candidate-matchup verification subagent (Contract 3.5), 2026-08-03 run.",
-      "impact": "Senate tab Challenger cell and the MN entry in news_config.json. Rating (Likely D) unaffected.",
-      "source": "https://www.fox9.com/news/klobuchar-endorsed-governor-state-dfl-convention-gop-endorses-schwarze-us-senate"
-    },
-    {
-      "date": "2026-08-03",
-      "area": "Senate - Texas (source date)",
-      "wrong": "Senate tab note said Cook Political Report shifted Texas from Likely R to Lean R on June 26, 2026.",
-      "right": "Cook made that move on May 26, 2026, the day Ken Paxton won the GOP runoff against John Cornyn. There is also a similarly titled Cook article from Oct 1, 2024 about the 2024 Cruz race - citing it would misdate the move by 19 months.",
-      "caught_by": "Weekly ratings verification subagent (Contract 3.5), 2026-08-03 run.",
-      "impact": "Citation date only, in the Senate tab Notes cell. No rating or chamber effect.",
-      "source": "https://www.cookpolitical.com/analysis/senate/texas-senate/texas-senate-moves-lean-republican-after-paxton-runoff-win"
-    },
-    {
-      "date": "2026-08-03",
-      "area": "Constants - SENATE_I",
-      "wrong": "Constants tab published SENATE_I = 3, counting Lisa Murkowski (AK) as an independent alongside Bernie Sanders (VT) and Angus King (ME).",
-      "right": "There are 2 independents. senate.gov's official party division lists 53 R / 45 D / 2 I; Murkowski is a Republican, which is also how this dashboard's own Senate tab has always carried her. She has publicly floated leaving the GOP but has not done so.",
-      "caught_by": "Weekly membership and balance verification subagent (Contract 3.5), 2026-08-03 run. The value was hard-coded in SKILL.md and had never been re-checked against the primary source.",
-      "impact": "Constants tab SENATE_I cell and any Senate summary line rendering it, wrong for several months. No invariant effect: SENATE_I is a subset of the caucus totals, not an addend, so SENATE_R + SENATE_D == 100 held throughout and no rating or seat count was affected. SKILL.md corrected in the same commit.",
-      "source": "https://www.senate.gov/history/partydiv.htm"
-    },
-    {
-      "date": "2026-08-03",
-      "area": "House - MO-05",
-      "wrong": "The MO-05 row carried a note reading 'Incumbent Emanuel Cleaver is D; prior Solid R label was sheet error', implying the Solid R rating was a mistake to be undone.",
-      "right": "Solid R is correct. The note confused the incumbent's party with the seat's lean. Cleaver is indeed a Democrat and the Party cell D is right, but Missouri's mid-decade map turned MO-05 from Harris +24 into Trump 58-40 (Cook PVI R+9), and Inside Elections (Sep 29 2025), Sabato (Oct 2 2025) and Cook (May 13 2026) all rate it Safe/Solid R. Note replaced with the sourced rationale plus the referendum contingency.",
-      "caught_by": "Logged as an open question in decisions.json during the 2026-08-03 run, then resolved by a dedicated verification subagent at P-funk's request the same day.",
-      "impact": "House tab Note cell only - the published rating was correct throughout, so no rating, chamber count or forecast was ever wrong. The risk was the reverse: the note invited a future run to 'fix' a correct Solid R rating to something D-favorable.",
-      "source": "https://insideelections.com/a-detailed-analysis-of-missouris-new-congressional-map/"
-    },
-    {
-      "date": "2026-08-10",
-      "area": "Senate - Kansas",
-      "wrong": "Senate tab listed the Kansas Democratic challenger to Sen. Roger Marshall as Christy Davis (D).",
-      "right": "The Democratic nominee is Rev. Adam Hamilton, a United Methodist pastor, who won the Aug 4, 2026 Democratic primary; Christy Davis finished well back (~14%). Marshall (R) won the GOP primary ~79%.",
-      "caught_by": "Weekly candidate-matchup verification subagent (Contract 3.5), 2026-08-10 run - flagged as a partial contradiction while confirming the KS primary field.",
-      "impact": "Senate tab Challenger cell; corrected the day the primary resolved. No rating mis-set - KS Senate moved Solid R -> Likely R the same week (Cook Aug 4, Sabato Aug 5), which is a separate, sourced change.",
-      "source": "https://kansasreflector.com/2026/08/04/u-s-sen-roger-marshall-united-methodist-pastor-adam-hamilton-to-compete-in-november/"
-    },
-    {
-      "date": "2026-08-12",
-      "area": "Senate - Montana",
-      "wrong": "Senate tab listed MT as incumbent Steve Daines (R) vs. Reilly Neill (D), with Open = false.",
-      "right": "Daines did not seek re-election - he withdrew from the GOP primary at the June filing deadline and endorsed U.S. Attorney Kurt Alme, so the seat is open (Open = true). Alani Bankhead won the Jun 2, 2026 Democratic primary over Reilly Neill (~12k margin); ex-University of Montana president Seth Bodnar is running as an independent. November field: Kurt Alme (R) vs. Alani Bankhead (D) vs. Seth Bodnar (I).",
-      "caught_by": "Surfaced by the State News pass and flagged in decisions.json (2026-08-10-mt-senate-matchup); confirmed 2026-08-12 by an independent web-search verification pass (Fox News, Daily Montanan, KRTV, Montana Free Press) at P-funk's direction, then rewritten.",
-      "impact": "Senate tab Incumbent-status/Challenger/Notes cells; the matchup was stale from Daines's exit until the 2026-08-12 fix. Rating never mis-set - Solid R throughout (Sabato Safe R, Inside Elections Solid R); the split anti-R vote keeps the open seat safely R.",
-      "source": "https://montanafreepress.org/2026/08/10/bankhead-still-in-the-running/"
-    },
-    {
-      "date": "2026-08-16",
-      "area": "Senate - Minnesota",
-      "wrong": "Senate tab listed the Republican challenger for the open Minnesota seat (Tina Smith's) as Adam Schwarze, the state-party endorsee.",
-      "right": "Michele Tafoya (former NBC Sports sideline reporter) won the Aug 11, 2026 GOP primary over Adam Schwarze and Royce White, so she - not Schwarze - is the Republican nominee. On the DFL side Lt. Gov. Peggy Flanagan won ~59-40 over Rep. Angie Craig. The general-election matchup is Flanagan (D) vs. Tafoya (R).",
-      "caught_by": "Weekly candidate-matchup verification subagent (Contract 3.5), 2026-08-16 run - flagged while confirming the Aug 11 primary results.",
-      "impact": "Senate tab Challenger cell; corrected the week the primary resolved. No rating mis-set - MN Senate stays Likely D throughout.",
-      "source": "https://www.mprnews.org/story/2026/08/11/michele-tafoya-wins-republican-nomination-for-senate"
-    }
-  ]
+ "_comment": "Public corrections log, rendered on methodology.html. Every substantive data error gets an entry when fixed — no silent corrections. Fields: date fixed, what was wrong, what it should have been, how it was caught, scope of impact.",
+ "corrections": [
+  {
+   "date": "2026-08-25",
+   "area": "House — OH-07",
+   "wrong": "Published OH-07 (Max Miller) as 'Lean R'. The 2026-08-18 consensus-rule resolution held it at Lean R on the premise that Cook still rated it Lean R while only Sabato had moved to Toss-up.",
+   "right": "Cook and Sabato had BOTH rated OH-07 'Toss-up' since mid-August: Cook moved Likely R -> Toss-up on Aug 10, 2026 (after Miller stayed in the race despite domestic-abuse allegations; a co/efficient poll had Democrat Brian Poindexter +14), and Sabato moved Lean R -> Toss-up on Aug 13. The cell should have been Toss-up under the consensus rule; the 'Cook Lean R' premise was factually stale.",
+   "caught_by": "Weekly ratings verification subagent (Contract 3.5), 2026-08-25 run — confirmed against Cook Political Report's own article, not a search summary.",
+   "impact": "House tab OH-07 rating; moved Lean R -> Toss-up this run. Stale ~12 days (Aug 13 consensus -> Aug 25 fix).",
+   "source": "https://www.cookpolitical.com/analysis/house/ohio-house/ohio-rep-max-millers-district-moves-likely-republican-toss"
+  },
+  {
+   "date": "2026-07-03",
+   "area": "Governors — Texas",
+   "wrong": "Listed the TX governorship as 'Open (Abbott term-limited)'.",
+   "right": "Texas has no gubernatorial term limits. Gov. Greg Abbott is seeking a fourth term against Gina Hinojosa (D).",
+   "caught_by": "Independent research pass while building the State News feature; confirmed via Texas Tribune coverage of the general-election campaign.",
+   "impact": "Governors tab incumbent/open fields; race was never mis-rated (Solid R throughout).",
+   "source": "https://www.texastribune.org/2026/06/03/texas-governor-race-gina-hinojosa-ad-greg-abbott-nba-finals-spurs-2026-midterms/"
+  },
+  {
+   "date": "2026-07-03",
+   "area": "Governors — Minnesota",
+   "wrong": "Listed Gov. Tim Walz as running for re-election ('Post-VP run name ID boost').",
+   "right": "Walz withdrew from the race on Jan 5, 2026 amid criticism of the state's handling of child-care fraud. Amy Klobuchar is the DFL-endorsed nominee.",
+   "caught_by": "News collection surfaced the exit; verified across CBS, NBC, NPR, and Axios before the fix was applied.",
+   "impact": "Governors tab incumbent/open/notes fields; rating unchanged (Likely D) pending forecaster moves. Stale for ~6 months — the class of error the weekly candidate-matchup verification (added July 2026) now targets.",
+   "source": "https://www.cbsnews.com/minnesota/news/tim-walz-drop-out-of-gubernatorial-race-2026/"
+  },
+  {
+   "date": "2026-07-06",
+   "area": "Governors — Georgia",
+   "wrong": "Notes described the GOP field as unsettled/led by Burt Jones after the May 19 primary.",
+   "right": "Rick Jackson (R) defeated Burt Jones in the June 16 GOP runoff; the general is Jackson (R) vs. Keisha Lance Bottoms (D).",
+   "caught_by": "Weekly candidate-matchup verification subagent (Contract 3.5), 2026-07-06 run — the mechanism added July 2026 after the Abbott/Walz misses.",
+   "impact": "Governors tab notes only; rating never mis-set (Toss-up throughout). Stale ~3 weeks.",
+   "source": "https://www.newsnationnow.com/politics/2026-midterm-elections/georgia-governor-primary-runoff-election-results-2026/amp/"
+  },
+  {
+   "date": "2026-07-14",
+   "area": "Senate — Maine",
+   "wrong": "Listed Janet Mills (D) as Susan Collins' challenger.",
+   "right": "Mills suspended her campaign Apr 30; Graham Platner won the Jun 9 Democratic primary with >50%. Platner then withdrew Jul 10; the Democratic nominee will be chosen by a party convention by Jul 27.",
+   "caught_by": "Weekly candidate-matchup verification subagent (Contract 3.5), 2026-07-14 run.",
+   "impact": "Senate tab challenger/notes fields; rating never mis-set (Toss-up throughout). Challenger stale ~5 weeks (Jun 9 - Jul 14).",
+   "source": "https://ballotpedia.org/United_States_Senate_election_in_Maine,_2026_(June_9_Democratic_primary)"
+  },
+  {
+   "date": "2026-07-20",
+   "area": "Senate tab — LA row",
+   "wrong": "Row still described Cassidy as 'facing an R primary challenge' from Julia Letlow, implying a pending primary",
+   "right": "Cassidy lost the May 16 primary (3rd, 25%); Letlow won the Jun 27 runoff and is the R nominee vs Jamie Davis (D)",
+   "caught_by": "Weekly Cowork routine 2026-07-20 (state-news refresh cross-check)",
+   "impact": "Stale matchup displayed on Senate tab for ~3 weeks; rating (Solid R) unaffected",
+   "source": "https://www.washingtonpost.com/elections/2026/06/27/letlow-wins-louisiana-senate-runoff-succeed-cassidy-who-lost-his-primary/"
+  },
+  {
+   "date": "2026-07-29",
+   "area": "Senate — South Carolina",
+   "wrong": "Row and Constants notes described appointed Sen. Darline Graham Nordone as 'interim, not running', and listed the special-primary field as Norman, Lynch, Buckner.",
+   "right": "Nordone announced Jul 20 that she IS running, with Trump's endorsement. Filing closed Jul 28 with 12 filed and 9 certified by the SC GOP: Buckner, Fry, Graham (Nordone), Lynch, McBride, Norman, Parker, Sanford, Shepherd.",
+   "caught_by": "Weekly verification subagents (Contract 3.5), 2026-07-29 run — flagged independently by both the membership verifier and the candidate/matchup verifier.",
+   "impact": "Senate tab SC notes and Constants NOTES; published wrong for ~9 days (Jul 20-29). Rating never mis-set (Solid R throughout).",
+   "source": "https://www.axios.com/2026/07/20/trump-backed-nordone-enters-senate-race"
+  },
+  {
+   "date": "2026-07-29",
+   "area": "Senate — Florida (special)",
+   "wrong": "Challenger listed as 'Alan Grayson (D)'.",
+   "right": "Grayson is not in the field. The Aug 18 Democratic primary is Alex Vindman vs. state Rep. Angie Nixon, against appointed Sen. Ashley Moody (R). Note also that the candidate is Alex Vindman, not his twin brother Rep. Eugene Vindman (VA-01).",
+   "caught_by": "Weekly candidate-matchup verification subagent (Contract 3.5), 2026-07-29 run.",
+   "impact": "Senate tab challenger field; stale since at least the Apr 22 Vindman announcement — roughly three months. Rating never mis-set (Solid R throughout).",
+   "source": "https://floridaphoenix.com/2026/04/22/its-official-alex-vindman-is-running-for-the-u-s-senate-seat/"
+  },
+  {
+   "date": "2026-07-29",
+   "area": "Election Calendar — Michigan",
+   "wrong": "Aug 4 Michigan entry described the Democratic Senate field as 'McMorrow / El-Sayed / Stevens'.",
+   "right": "Mallory McMorrow suspended her campaign Jul 5, 2026. The active primary is Stevens vs. El-Sayed; McMorrow's name remains printed on the ballot.",
+   "caught_by": "Weekly candidate-matchup verification subagent (Contract 3.5), 2026-07-29 run.",
+   "impact": "Overview tab Election Calendar note only; stale ~3 weeks. No rating or chamber effect.",
+   "source": "https://www.nbcnews.com/politics/2026-election/mallory-mcmorrow-ends-bid-democratic-senate-nomination-michigan-rcna353053"
+  },
+  {
+   "date": "2026-08-03",
+   "area": "Senate - Georgia",
+   "wrong": "Senate tab listed the Georgia challenger to Jon Ossoff as Buddy Carter (R).",
+   "right": "The Republican nominee is Rep. Mike Collins, who won the Jun 16, 2026 runoff over Derek Dooley roughly 55-45. Buddy Carter did not make the runoff.",
+   "caught_by": "Weekly candidate-matchup verification subagent (Contract 3.5), 2026-08-03 run.",
+   "impact": "Senate tab Challenger cell and any GA Senate card wrong since the Jun 16 runoff - roughly seven weeks. No rating effect; the rating moved separately this week on Sabato's Jul 30 call.",
+   "source": "https://www.ajc.com/politics/2026/06/collins-defeats-dooley-for-gop-us-senate-nomination/"
+  },
+  {
+   "date": "2026-08-03",
+   "area": "Senate - New Hampshire",
+   "wrong": "Senate tab listed the New Hampshire Republican candidate as Scott Brown.",
+   "right": "Former Sen. John E. Sununu is the Trump-endorsed front-runner and leads Brown 59-20 among likely GOP primary voters ahead of the Sep 8 primary. Brown is still running but is not the front-runner.",
+   "caught_by": "Weekly candidate-matchup verification subagent (Contract 3.5), 2026-08-03 run.",
+   "impact": "Senate tab Challenger cell wrong since Sununu entered the race. Rating (Lean D) unaffected.",
+   "source": "https://ballotpedia.org/United_States_Senate_election_in_New_Hampshire,_2026_(September_8_Republican_primary)"
+  },
+  {
+   "date": "2026-08-03",
+   "area": "Senate - Minnesota",
+   "wrong": "Senate tab listed the Minnesota Republican challenger as Royce White.",
+   "right": "The Minnesota GOP endorsed Adam Schwarze for U.S. Senate. The Aug 11 DFL primary is Peggy Flanagan vs. Angie Craig.",
+   "caught_by": "Weekly candidate-matchup verification subagent (Contract 3.5), 2026-08-03 run.",
+   "impact": "Senate tab Challenger cell and the MN entry in news_config.json. Rating (Likely D) unaffected.",
+   "source": "https://www.fox9.com/news/klobuchar-endorsed-governor-state-dfl-convention-gop-endorses-schwarze-us-senate"
+  },
+  {
+   "date": "2026-08-03",
+   "area": "Senate - Texas (source date)",
+   "wrong": "Senate tab note said Cook Political Report shifted Texas from Likely R to Lean R on June 26, 2026.",
+   "right": "Cook made that move on May 26, 2026, the day Ken Paxton won the GOP runoff against John Cornyn. There is also a similarly titled Cook article from Oct 1, 2024 about the 2024 Cruz race - citing it would misdate the move by 19 months.",
+   "caught_by": "Weekly ratings verification subagent (Contract 3.5), 2026-08-03 run.",
+   "impact": "Citation date only, in the Senate tab Notes cell. No rating or chamber effect.",
+   "source": "https://www.cookpolitical.com/analysis/senate/texas-senate/texas-senate-moves-lean-republican-after-paxton-runoff-win"
+  },
+  {
+   "date": "2026-08-03",
+   "area": "Constants - SENATE_I",
+   "wrong": "Constants tab published SENATE_I = 3, counting Lisa Murkowski (AK) as an independent alongside Bernie Sanders (VT) and Angus King (ME).",
+   "right": "There are 2 independents. senate.gov's official party division lists 53 R / 45 D / 2 I; Murkowski is a Republican, which is also how this dashboard's own Senate tab has always carried her. She has publicly floated leaving the GOP but has not done so.",
+   "caught_by": "Weekly membership and balance verification subagent (Contract 3.5), 2026-08-03 run. The value was hard-coded in SKILL.md and had never been re-checked against the primary source.",
+   "impact": "Constants tab SENATE_I cell and any Senate summary line rendering it, wrong for several months. No invariant effect: SENATE_I is a subset of the caucus totals, not an addend, so SENATE_R + SENATE_D == 100 held throughout and no rating or seat count was affected. SKILL.md corrected in the same commit.",
+   "source": "https://www.senate.gov/history/partydiv.htm"
+  },
+  {
+   "date": "2026-08-03",
+   "area": "House - MO-05",
+   "wrong": "The MO-05 row carried a note reading 'Incumbent Emanuel Cleaver is D; prior Solid R label was sheet error', implying the Solid R rating was a mistake to be undone.",
+   "right": "Solid R is correct. The note confused the incumbent's party with the seat's lean. Cleaver is indeed a Democrat and the Party cell D is right, but Missouri's mid-decade map turned MO-05 from Harris +24 into Trump 58-40 (Cook PVI R+9), and Inside Elections (Sep 29 2025), Sabato (Oct 2 2025) and Cook (May 13 2026) all rate it Safe/Solid R. Note replaced with the sourced rationale plus the referendum contingency.",
+   "caught_by": "Logged as an open question in decisions.json during the 2026-08-03 run, then resolved by a dedicated verification subagent at P-funk's request the same day.",
+   "impact": "House tab Note cell only - the published rating was correct throughout, so no rating, chamber count or forecast was ever wrong. The risk was the reverse: the note invited a future run to 'fix' a correct Solid R rating to something D-favorable.",
+   "source": "https://insideelections.com/a-detailed-analysis-of-missouris-new-congressional-map/"
+  },
+  {
+   "date": "2026-08-10",
+   "area": "Senate - Kansas",
+   "wrong": "Senate tab listed the Kansas Democratic challenger to Sen. Roger Marshall as Christy Davis (D).",
+   "right": "The Democratic nominee is Rev. Adam Hamilton, a United Methodist pastor, who won the Aug 4, 2026 Democratic primary; Christy Davis finished well back (~14%). Marshall (R) won the GOP primary ~79%.",
+   "caught_by": "Weekly candidate-matchup verification subagent (Contract 3.5), 2026-08-10 run - flagged as a partial contradiction while confirming the KS primary field.",
+   "impact": "Senate tab Challenger cell; corrected the day the primary resolved. No rating mis-set - KS Senate moved Solid R -> Likely R the same week (Cook Aug 4, Sabato Aug 5), which is a separate, sourced change.",
+   "source": "https://kansasreflector.com/2026/08/04/u-s-sen-roger-marshall-united-methodist-pastor-adam-hamilton-to-compete-in-november/"
+  },
+  {
+   "date": "2026-08-12",
+   "area": "Senate - Montana",
+   "wrong": "Senate tab listed MT as incumbent Steve Daines (R) vs. Reilly Neill (D), with Open = false.",
+   "right": "Daines did not seek re-election - he withdrew from the GOP primary at the June filing deadline and endorsed U.S. Attorney Kurt Alme, so the seat is open (Open = true). Alani Bankhead won the Jun 2, 2026 Democratic primary over Reilly Neill (~12k margin); ex-University of Montana president Seth Bodnar is running as an independent. November field: Kurt Alme (R) vs. Alani Bankhead (D) vs. Seth Bodnar (I).",
+   "caught_by": "Surfaced by the State News pass and flagged in decisions.json (2026-08-10-mt-senate-matchup); confirmed 2026-08-12 by an independent web-search verification pass (Fox News, Daily Montanan, KRTV, Montana Free Press) at P-funk's direction, then rewritten.",
+   "impact": "Senate tab Incumbent-status/Challenger/Notes cells; the matchup was stale from Daines's exit until the 2026-08-12 fix. Rating never mis-set - Solid R throughout (Sabato Safe R, Inside Elections Solid R); the split anti-R vote keeps the open seat safely R.",
+   "source": "https://montanafreepress.org/2026/08/10/bankhead-still-in-the-running/"
+  },
+  {
+   "date": "2026-08-16",
+   "area": "Senate - Minnesota",
+   "wrong": "Senate tab listed the Republican challenger for the open Minnesota seat (Tina Smith's) as Adam Schwarze, the state-party endorsee.",
+   "right": "Michele Tafoya (former NBC Sports sideline reporter) won the Aug 11, 2026 GOP primary over Adam Schwarze and Royce White, so she - not Schwarze - is the Republican nominee. On the DFL side Lt. Gov. Peggy Flanagan won ~59-40 over Rep. Angie Craig. The general-election matchup is Flanagan (D) vs. Tafoya (R).",
+   "caught_by": "Weekly candidate-matchup verification subagent (Contract 3.5), 2026-08-16 run - flagged while confirming the Aug 11 primary results.",
+   "impact": "Senate tab Challenger cell; corrected the week the primary resolved. No rating mis-set - MN Senate stays Likely D throughout.",
+   "source": "https://www.mprnews.org/story/2026/08/11/michele-tafoya-wins-republican-nomination-for-senate"
+  },
+  {
+   "date": "2026-09-08",
+   "area": "House - FL-20 (vacant seat)",
+   "wrong": "The House tab listed the vacant FL-20 seat as Party 'R' with Rating 'Solid R'.",
+   "right": "FL-20 is Sheila Cherfilus-McCormick's (D) former seat - a majority-Black, heavily Democratic Broward/Palm Beach district she resigned from Apr 21, 2026. It is Solid D. Corrected the vacant row to Party 'D' / Rating 'Solid D'. The seat stays vacant (no special called) and is filled at the Nov 3 general.",
+   "caught_by": "Weekly membership/balance verification subagent (Contract 3.5), 2026-09-08",
+   "impact": "Cosmetic on a vacant row (not counted in R/D totals, which use HOUSE_VACANCIES), but the party/rating label misrepresented a safe-D seat as safe-R on the House map.",
+   "source": "https://news.ballotpedia.org/2026/04/22/sheila-cherfilus-mccormicks-resignation-leaves-floridas-20th-congressional-district-vacant/"
+  }
+ ]
 }

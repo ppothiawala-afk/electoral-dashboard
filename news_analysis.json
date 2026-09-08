@@ -1,5 +1,5 @@
 {
- "generated": "2026-08-31",
+ "generated": "2026-09-08",
  "method": "Headlines collected via web search (fetch_news.py collector blocked in sandbox; use it for local/Actions runs). Entity sentiment scored by Claude during the weekly Cowork routine. sentiment = 0-100 D-favorability of coverage tone (matches existing dashboard sentimentScore semantics: >55 leans D, <45 leans R). candidateSentiment = 0-100 favorability of coverage toward that candidate personally. outletLean: -2 left ... +2 right (AllSides-style); null = unrated outlet, excluded from scatter.",
  "states": {
   "ME": {
@@ -7,60 +7,54 @@
     {
      "type": "Senate",
      "matchup": "Susan Collins (R, inc.) vs. Troy Jackson (D)",
-     "sentiment": 58,
-     "summary": "Jackson (D) holds a narrow lead over incumbent Collins (R) in an increasingly competitive, high-spending race, with Fox News showing Jackson +2 (Aug. 6-10) and an Abacus poll +9 in late August, though Collins overcame similar 2020 deficits. Late-August coverage centers on a debate dispute (Collins accepted four local TV debates but declined a CNN/BDN one) and a wave of misleading attack ads from both sides. Cook Political Report rates the race a toss-up.",
+     "sentiment": 56,
+     "summary": "A top-tier competitive race in which coverage frames five-term incumbent Susan Collins as vulnerable while Democrat Troy Jackson holds a narrow lead. Recent polling shows Jackson ahead: Fox News (Aug 6-10) had him +2, and an Abacus survey (Aug 28) put him up 52-43. Latest news (Sept 4) covers the two agreeing to four October debates. Cook rates the race a toss-up.",
      "candidates": [
       {
        "name": "Susan Collins",
        "party": "R",
-       "mentions": 28,
-       "sentiment": 46
+       "mentions": 8,
+       "sentiment": 42
       },
       {
        "name": "Troy Jackson",
        "party": "D",
-       "mentions": 26,
+       "mentions": 7,
        "sentiment": 58
       }
      ],
      "outlets": [
       {
-       "source": "Bangor Daily News",
+       "source": "Portland Press Herald",
        "lean": null,
-       "sentiment": 57,
-       "articles": 2
+       "sentiment": 54,
+       "articles": 1
       },
       {
        "source": "Axios",
        "lean": -1,
-       "sentiment": 58,
+       "sentiment": 52,
        "articles": 1
       },
       {
-       "source": "Newsweek",
-       "lean": 0,
-       "sentiment": 60,
+       "source": "NPR",
+       "lean": -1,
+       "sentiment": 55,
        "articles": 1
       },
       {
-       "source": "WGME",
+       "source": "Bangor Daily News",
        "lean": null,
-       "sentiment": 58,
+       "sentiment": 55,
        "articles": 1
       }
      ],
      "articles": [
       {
-       "headline": "Susan Collins agrees to 4 debates with Troy Jackson",
-       "url": "https://www.bangordailynews.com/2026/08/27/politics/susan-collins-troy-jackson-debates/",
-       "source": "Bangor Daily News",
-       "date": "2026-08-27"
-      },
-      {
-       "headline": "Ad on Troy Jackson and Social Security joins wave of misleading claims in Maine Senate race",
-       "url": "https://www.bangordailynews.com/2026/08/19/politics/elections/misleading-attack-ad-troy-jackson-social-security/",
-       "source": "Bangor Daily News",
-       "date": "2026-08-19"
+       "headline": "Troy Jackson agrees to 4 debates against Susan Collins in Maine Senate race",
+       "url": "https://www.pressherald.com/2026/09/04/troy-jackson-agrees-to-4-debates-against-susan-collins-in-maine-senate-race/",
+       "source": "Portland Press Herald",
+       "date": "2026-09-04"
       },
       {
        "headline": "Where things stand in the Susan Collins-Troy Jackson Maine Senate race",
@@ -69,36 +63,36 @@
        "date": "2026-08-14"
       },
       {
-       "headline": "New Maine Senate Poll Shows Susan Collins Slipping as Midterms Loom",
-       "url": "https://www.newsweek.com/new-maine-senate-poll-shows-susan-collins-slipping-as-midterms-loom-12316806",
-       "source": "Newsweek",
-       "date": "2026-08-12"
+       "headline": "In a competitive Maine Senate race, women voters could be the deciders",
+       "url": "https://www.npr.org/2026/08/10/nx-s1-5925349/maine-senate-race-susan-collins-troy-jackson-women-voters",
+       "source": "NPR",
+       "date": "2026-08-10"
       },
       {
-       "headline": "Troy Jackson edges Susan Collins in new Maine Senate poll",
-       "url": "https://wgme.com/news/local/troy-jackson-edges-susan-collins-in-new-maine-senate-poll",
-       "source": "WGME",
-       "date": "2026-08-06"
+       "headline": "Maine voters have strong feelings about Susan Collins, new poll finds",
+       "url": "https://www.bangordailynews.com/2026/08/12/politics/elections/new-poll-maine-us-senate-race/",
+       "source": "Bangor Daily News",
+       "date": "2026-08-12"
       }
      ]
     },
     {
      "type": "Governor",
-     "matchup": "Hannah Pingree (D) vs. Bobby Charles (R) vs. Rick Bennett (I)",
-     "sentiment": 56,
-     "summary": "Coverage in this window centered on the fall debate calendar: on Sept. 1 Republican Bobby Charles agreed to join the four televised debates that Democrat Hannah Pingree and independent Rick Bennett had already accepted, locking in an Oct. 1-14 schedule (a fifth WABI/WAGM debate on Oct. 20 has Charles and Bennett in but not Pingree). Fundamentals were unchanged: Pingree continues to lead in polling and fundraising, having raised more than $3M as of the July filing - more than Charles and Bennett combined. Tone leaned modestly Democratic on Pingree's structural advantages.",
+     "matchup": "Bobby Charles (R) vs. Hannah Pingree (D)",
+     "sentiment": 62,
+     "summary": "Open-seat race (Gov. Janet Mills term-limited) that coverage consistently frames as Democrat Hannah Pingree's to lose. A UNH poll had Pingree 49% to Charles's 35% and independent Rick Bennett's 6%; Pingree also dominates fundraising ($3M+). Most datable coverage in the window is a Sept 1 report on the candidates agreeing to four debates.",
      "candidates": [
       {
        "name": "Hannah Pingree",
        "party": "D",
-       "mentions": 5,
-       "sentiment": 57
+       "mentions": 8,
+       "sentiment": 62
       },
       {
        "name": "Bobby Charles",
        "party": "R",
-       "mentions": 4,
-       "sentiment": 46
+       "mentions": 6,
+       "sentiment": 42
       },
       {
        "name": "Rick Bennett",
@@ -109,42 +103,54 @@
      ],
      "outlets": [
       {
-       "source": "Central Maine",
+       "source": "Sun Journal",
        "lean": null,
        "sentiment": 55,
        "articles": 1
       },
       {
-       "source": "Press Herald",
+       "source": "Bangor Daily News",
        "lean": null,
-       "sentiment": 53,
+       "sentiment": 58,
        "articles": 1
       },
       {
-       "source": "Bangor Daily News",
+       "source": "Maine Public",
        "lean": null,
-       "sentiment": 57,
+       "sentiment": 58,
+       "articles": 1
+      },
+      {
+       "source": "Portland Press Herald",
+       "lean": null,
+       "sentiment": 62,
        "articles": 1
       }
      ],
      "articles": [
       {
        "headline": "Maine governor candidates agree to 4 debates ahead of election",
-       "url": "https://www.centralmaine.com/2026/09/01/maine-governor-candidates-agree-to-4-debates-ahead-of-election/",
-       "source": "Central Maine",
+       "url": "https://www.sunjournal.com/2026/09/01/maine-governor-candidates-agree-to-4-debates-ahead-of-election/",
+       "source": "Sun Journal",
        "date": "2026-09-01"
-      },
-      {
-       "headline": "Pingree, Bennett agree to 4 debates in Maine governor's race. Bobby Charles wants more.",
-       "url": "https://www.pressherald.com/2026/07/21/pingree-bennett-agree-to-four-debates-in-maine-governors-race-bobby-charles-wants-more/",
-       "source": "Press Herald",
-       "date": "2026-07-21"
       },
       {
        "headline": "Hannah Pingree leads Bobby Charles in Maine governor's race poll",
        "url": "https://www.bangordailynews.com/2026/07/01/politics/elections/maine-governor-race-poll-hannah-pingree-bobby-charles-rick-bennett/",
        "source": "Bangor Daily News",
        "date": "2026-07-01"
+      },
+      {
+       "headline": "Poll of Maine governor's race gives Hannah Pingree comfortable lead over Bobby Charles",
+       "url": "https://www.mainepublic.org/maine/2026-06-30/poll-of-maine-governors-race-gives-hannah-pingree-comfortable-lead-over-bobby-charles",
+       "source": "Maine Public",
+       "date": "2026-06-30"
+      },
+      {
+       "headline": "Hannah Pingree dominates fundraising in Maine governor's race",
+       "url": "https://www.pressherald.com/2026/07/22/hannah-pingree-dominates-fundraising-in-maine-governors-race/",
+       "source": "Portland Press Herald",
+       "date": "2026-07-22"
       }
      ]
     }
@@ -154,46 +160,46 @@
    "races": [
     {
      "type": "Senate",
-     "matchup": "Abdul El-Sayed (D) vs. Mike Rogers (R)",
-     "sentiment": 54,
-     "summary": "Coverage in late August focused on a string of polls showing Democrat Abdul El-Sayed with narrow leads over Republican Mike Rogers in the open race for retiring Sen. Gary Peters's seat, with margins ranging from a dead heat to seven points. Reporting also covered heavy Republican outside spending to boost Rogers and the candidates' contrasting positions on data centers. Tone leaned modestly Democratic on favorable polling, though outlets stressed the race remains a genuine toss-up.",
+     "matchup": "Mike Rogers (R) vs. Abdul El-Sayed (D)",
+     "sentiment": 56,
+     "summary": "Open-seat toss-up with Democrat Abdul El-Sayed holding a slight edge in most recent polling: MSU had him 50-45, Forbes' roundup ~+4, while a Fox News poll gave Rogers 51-47. A dominant storyline is debate scheduling, with El-Sayed hammering Rogers as 'Mike Dodgers' for not committing to more debates.",
      "candidates": [
       {
        "name": "Abdul El-Sayed",
        "party": "D",
-       "mentions": 5,
-       "sentiment": 54
+       "mentions": 9,
+       "sentiment": 57
       },
       {
        "name": "Mike Rogers",
        "party": "R",
-       "mentions": 5,
-       "sentiment": 46
+       "mentions": 8,
+       "sentiment": 44
       }
      ],
      "outlets": [
       {
        "source": "Forbes",
        "lean": 0,
+       "sentiment": 54,
+       "articles": 1
+      },
+      {
+       "source": "Washington Times",
+       "lean": 2,
+       "sentiment": 50,
+       "articles": 1
+      },
+      {
+       "source": "The Detroit News",
+       "lean": null,
        "sentiment": 55,
        "articles": 1
       },
       {
        "source": "Arab American News",
        "lean": null,
-       "sentiment": 57,
-       "articles": 1
-      },
-      {
-       "source": "Detroit News",
-       "lean": null,
-       "sentiment": 49,
-       "articles": 2
-      },
-      {
-       "source": "NBC News",
-       "lean": -1,
-       "sentiment": 55,
+       "sentiment": 56,
        "articles": 1
       }
      ],
@@ -205,88 +211,76 @@
        "date": "2026-08-31"
       },
       {
-       "headline": "El-Sayed holds narrow lead over Rogers in pivotal Michigan Senate race",
-       "url": "https://arabamericannews.com/2026/08/28/el-sayed-holds-narrow-lead-over-rogers-in-pivotal-michigan-senate-race/",
+       "headline": "El-Sayed, Rogers to face off in Michigan Senate debate",
+       "url": "https://www.washingtontimes.com/news/2026/aug/25/abdul-el-sayed-mike-rogers-face-michigan-senate-debate/",
+       "source": "Washington Times",
+       "date": "2026-08-25"
+      },
+      {
+       "headline": "Abdul El-Sayed, Mike Rogers plan second debate in Detroit TV market",
+       "url": "https://www.detroitnews.com/story/news/politics/2026/09/02/abdul-el-sayed-mike-rogers-michigan-senate-tv-debate-wxyz-wood-wjbk/91584213007/",
+       "source": "The Detroit News",
+       "date": "2026-09-02"
+      },
+      {
+       "headline": "Benson leads James by four points; El-Sayed holds similar edge over Rogers in Senate contest",
+       "url": "https://arabamericannews.com/2026/08/29/poll-benson-leads-james-by-four-points-el-sayed-holds-similar-edge-over-rogers-in-closely-watched-senate-contest/",
        "source": "Arab American News",
-       "date": "2026-08-28"
-      },
-      {
-       "headline": "Republican U.S. Senate candidate backs one-year data center moratorium",
-       "url": "https://www.detroitnews.com/story/news/politics/2026/08/20/data-center-politics-michigan-senate-mike-rogers-abdul-el-sayed/91385736007/",
-       "source": "Detroit News",
-       "date": "2026-08-20"
-      },
-      {
-       "headline": "Republicans to spend $6M more to help Mike Rogers' Senate campaign",
-       "url": "https://www.detroitnews.com/story/news/politics/2026/08/11/senate-leadership-fund-mike-rogers-abdul-el-sayed-michigan-senate-race/91263630007/",
-       "source": "Detroit News",
-       "date": "2026-08-11"
-      },
-      {
-       "headline": "Abdul El-Sayed wins Michigan's Democratic Senate primary, notching a Midwest victory for the left",
-       "url": "https://www.nbcnews.com/politics/2026-election/abdul-el-sayed-wins-michigans-democratic-senate-primary-notching-midwe-rcna589750",
-       "source": "NBC News",
-       "date": "2026-08-04"
+       "date": "2026-08-29"
       }
      ]
     },
     {
      "type": "Governor",
-     "matchup": "Jocelyn Benson (D) vs. John James (R)",
-     "sentiment": 59,
-     "summary": "Benson (D) holds narrow, within-margin leads over James (R) in the open-seat governor's race, 45-41 in a late-August EPIC-MRA poll (fielded Aug. 22-28) and 47-38 in an early-August EPIC-MRA survey. Both candidates won their Aug. 4 primaries; James carries Trump's endorsement. Coverage frames the contest as competitive but tilting slightly Democratic amid weak Trump approval and economic pessimism among Michigan voters.",
+     "matchup": "John James (R) vs. Jocelyn Benson (D)",
+     "sentiment": 58,
+     "summary": "Open-seat race (Gov. Whitmer term-limited) between Democrat Jocelyn Benson and Trump-endorsed Rep. John James. Polling favors Benson: MSU had her 52-43, an EPIC-MRA poll (Aug 22-28) 45-41; forecasters give her ~79% win probability. Coverage in the window is largely local candidate profiles and head-to-head framing.",
      "candidates": [
       {
        "name": "Jocelyn Benson",
        "party": "D",
-       "mentions": 22,
-       "sentiment": 61
+       "mentions": 8,
+       "sentiment": 58
       },
       {
        "name": "John James",
        "party": "R",
-       "mentions": 20,
-       "sentiment": 45
+       "mentions": 7,
+       "sentiment": 46
       }
      ],
      "outlets": [
       {
+       "source": "ClickOnDetroit (WDIV)",
+       "lean": null,
+       "sentiment": 52,
+       "articles": 3
+      },
+      {
        "source": "Arab American News",
        "lean": null,
-       "sentiment": 62,
-       "articles": 1
-      },
-      {
-       "source": "ClickOnDetroit",
-       "lean": null,
-       "sentiment": 55,
-       "articles": 1
-      },
-      {
-       "source": "Breitbart",
-       "lean": 2,
-       "sentiment": 40,
+       "sentiment": 56,
        "articles": 1
       }
      ],
      "articles": [
       {
-       "headline": "Poll: Benson leads James by four points; El-Sayed holds similar edge over Rogers in closely watched Senate contest",
-       "url": "https://arabamericannews.com/2026/08/29/poll-benson-leads-james-by-four-points-el-sayed-holds-similar-edge-over-rogers-in-closely-watched-senate-contest/",
-       "source": "Arab American News",
-       "date": "2026-08-29"
+       "headline": "Full interviews: Hear from Benson, James as they face off in Michigan gubernatorial race",
+       "url": "https://www.clickondetroit.com/news/local/2026/08/16/full-interviews-hear-from-benson-james-as-they-face-off-in-michigan-gubernatorial-race/",
+       "source": "ClickOnDetroit (WDIV)",
+       "date": "2026-08-16"
       },
       {
        "headline": "Michigan governor's race enters general election after Benson, James primary wins",
        "url": "https://www.clickondetroit.com/news/local/2026/08/12/michigan-governors-race-enters-general-election-after-benson-james-primary-wins/",
-       "source": "ClickOnDetroit",
+       "source": "ClickOnDetroit (WDIV)",
        "date": "2026-08-12"
       },
       {
-       "headline": "Poll: Democrat Jocelyn Benson Gains over Republican John James in Michigan Governor's Race",
-       "url": "https://www.breitbart.com/midterm-election/2026/08/02/poll-democrat-jocelyn-benson-gains-over-republican-john-james-in-michigan-governors-race/",
-       "source": "Breitbart",
-       "date": "2026-08-02"
+       "headline": "Poll: Benson leads James by four points in closely watched governor contest",
+       "url": "https://arabamericannews.com/2026/08/29/poll-benson-leads-james-by-four-points-el-sayed-holds-similar-edge-over-rogers-in-closely-watched-senate-contest/",
+       "source": "Arab American News",
+       "date": "2026-08-29"
       }
      ]
     }
@@ -297,74 +291,68 @@
     {
      "type": "Senate",
      "matchup": "Jon Husted (R, inc.) vs. Sherrod Brown (D)",
-     "sentiment": 57,
-     "summary": "Coverage was dominated by data centers as a defining issue, with reporting on Democrat Sherrod Brown's ad campaign hammering appointed GOP Sen. Jon Husted over tax breaks he backed as lieutenant governor, and on Husted recalibrating his stance and pushing ratepayer-protection legislation. National coverage highlighted a leaked NRSC memo warning that data-center backlash is endangering the GOP's hold on the seat, alongside polling and fundraising advantages for Brown. Tone leaned Democratic, framing the issue landscape and momentum in Brown's favor.",
+     "sentiment": 54,
+     "summary": "Competitive special election (to finish JD Vance's term) between appointed GOP Sen. Jon Husted and Democratic former Sen. Sherrod Brown. Polling is mixed: a Fox News poll (Aug 6-10) had Brown +8 and an Abacus survey (Aug 28) +6, while Emerson showed Husted narrowly ahead. Brown is pressing a data-center/economic offensive; Husted countered with a $1.2M ad.",
      "candidates": [
-      {
-       "name": "Jon Husted",
-       "party": "R",
-       "mentions": 5,
-       "sentiment": 44
-      },
       {
        "name": "Sherrod Brown",
        "party": "D",
-       "mentions": 5,
-       "sentiment": 57
+       "mentions": 8,
+       "sentiment": 56
+      },
+      {
+       "name": "Jon Husted",
+       "party": "R",
+       "mentions": 8,
+       "sentiment": 45
       }
      ],
      "outlets": [
       {
-       "source": "Spectrum News 1",
-       "lean": null,
-       "sentiment": 55,
+       "source": "Washington Times",
+       "lean": 2,
+       "sentiment": 50,
        "articles": 1
       },
       {
-       "source": "Axios",
-       "lean": -1,
-       "sentiment": 57,
-       "articles": 2
+       "source": "Fox News",
+       "lean": 2,
+       "sentiment": 48,
+       "articles": 1
       },
       {
-       "source": "The Statehouse News Bureau",
+       "source": "The New Republic",
        "lean": null,
-       "sentiment": 52,
+       "sentiment": 60,
        "articles": 1
       }
      ],
      "articles": [
       {
-       "headline": "Republicans concerned over the role data centers play in Ohio's elections",
-       "url": "https://spectrumnews1.com/oh/columbus/Capital-This-Week/2026/08/27/republicans-role-data-centers-ohio-s-elections",
-       "source": "Spectrum News 1",
-       "date": "2026-08-27"
+       "headline": "Brown's offensive on data centers defines his Ohio Senate fight with Husted",
+       "url": "https://www.washingtontimes.com/news/2026/sep/3/sherrod-browns-offensive-data-centers-defines-ohio-senate-fight-jon/",
+       "source": "Washington Times",
+       "date": "2026-09-03"
       },
       {
-       "headline": "Exclusive: GOP warns AI companies that data centers are politically radioactive",
-       "url": "https://www.axios.com/2026/08/19/gop-data-center-memo-ai-election",
-       "source": "Axios",
-       "date": "2026-08-19"
+       "headline": "Sherrod Brown leads Husted by 8 as inflation tops Ohio Senate poll",
+       "url": "https://www.foxnews.com/politics/fox-news-poll-economic-anxiety-candidate-concerns-define-ohio-senate-race",
+       "source": "Fox News",
+       "date": "2026-08-13"
       },
       {
-       "headline": "Ohio's US Senate candidates recalibrate their stances on data centers",
-       "url": "https://www.statenews.org/government-politics/2026-08-17/ohios-u-s-senate-candidates-recalibrate-their-stances-on-data-centers",
-       "source": "The Statehouse News Bureau",
-       "date": "2026-08-17"
-      },
-      {
-       "headline": "Reliably red Ohio suddenly a red-hot mess for GOP",
-       "url": "https://www.axios.com/2026/08/04/ohio-gop-mess-2026-elections",
-       "source": "Axios",
-       "date": "2026-08-04"
+       "headline": "What Sherrod Brown Has to Do to Beat Jon Husted in Ohio",
+       "url": "https://newrepublic.com/post/214227/sherrod-brown-beat-jon-husted-ohio",
+       "source": "The New Republic",
+       "date": "2026-08-12"
       }
      ]
     },
     {
      "type": "Governor",
      "matchup": "Vivek Ramaswamy (R) vs. Amy Acton (D)",
-     "sentiment": 51,
-     "summary": "The Ohio governor's race remains a dead heat entering September, with dueling August polls showing Ramaswamy up 50-48 (Fox News) and Acton up 47-46 (Wedgewood). Coverage centers on the record-breaking spending gap (Ramaswamy has spent roughly $21M to Acton's $5.5M) and sharp messaging: Ramaswamy's ads cast him as a business innovator while Democratic groups, including the DGA, brand him a self-funding 'conman' out of touch with Ohioans. Recent reporting focused on how the two are defining themselves and each other on issues like immigration enforcement and property taxes.",
+     "sentiment": 52,
+     "summary": "The open-seat race to succeed Mike DeWine is one of the nation's closest, with the RCP average roughly Acton 47 / Ramaswamy 47. Recent coverage centered on Acton's refusal to debate Ramaswamy (Sept 3) and a Sept 6-7 incident in which an armed GOP voter charged at Acton at a county fair. Ramaswamy retains a large cash advantage aided by a ~$25M personal loan.",
      "candidates": [
       {
        "name": "Vivek Ramaswamy",
@@ -375,54 +363,54 @@
       {
        "name": "Amy Acton",
        "party": "D",
-       "mentions": 8,
+       "mentions": 9,
        "sentiment": 54
       }
      ],
      "outlets": [
       {
-       "source": "WOSU",
+       "source": "Signal Ohio",
        "lean": null,
-       "sentiment": 50,
-       "articles": 1
+       "sentiment": 55,
+       "articles": 2
       },
       {
-       "source": "WVXU",
+       "source": "Mercer County Outlook",
        "lean": null,
-       "sentiment": 50,
+       "sentiment": 42,
        "articles": 1
       },
       {
        "source": "Ohio Capital Journal",
        "lean": null,
-       "sentiment": 52,
-       "articles": 2
+       "sentiment": 55,
+       "articles": 1
       }
      ],
      "articles": [
       {
-       "headline": "Candidates for Ohio governor work to define themselves and their opponents",
-       "url": "https://www.wosu.org/2026-08-29/candidates-for-ohio-governor-work-to-define-themselves-and-their-opponents",
-       "source": "WOSU",
-       "date": "2026-08-29"
+       "headline": "Amy Acton refuses to debate Vivek Ramaswamy in Ohio governor's race",
+       "url": "https://signalohio.org/amy-acton-refuses-to-debate-vivek-ramaswamy-in-ohio-governors-race/",
+       "source": "Signal Ohio",
+       "date": "2026-09-03"
       },
       {
-       "headline": "Candidates for Ohio governor work to define themselves and their opponents",
-       "url": "https://www.wvxu.org/2026-08-29/candidates-for-ohio-governor-work-to-define-themselves-and-their-opponents",
-       "source": "WVXU",
-       "date": "2026-08-29"
+       "headline": "Armed man charged toward Democratic candidate for Ohio governor at fair, law enforcement says",
+       "url": "https://signalohio.org/armed-man-charged-toward-democratic-candidate-ohio-governor-amy-acton/",
+       "source": "Signal Ohio",
+       "date": "2026-09-07"
       },
       {
-       "headline": "Democrat Acton supports ICE collaboration, as GOP Ramaswamy concerned about Flock cameras",
-       "url": "https://ohiocapitaljournal.com/2026/08/28/party-flip-democrat-acton-supports-ice-collaboration-as-gop-ramaswamy-concerned-about-flock-cameras/",
+       "headline": "Acton Refuses Debate With Ramaswamy",
+       "url": "https://mercercountyoutlook.net/2026/09/03/acton-refuses-debate-with-ramaswamy/",
+       "source": "Mercer County Outlook",
+       "date": "2026-09-03"
+      },
+      {
+       "headline": "Massive spending gap in Ohio governor race: Ramaswamy drops $9M on ads, Acton spends just $100K",
+       "url": "https://ohiocapitaljournal.com/2026/07/21/massive-spending-gap-in-ohio-governor-race-ramaswamy-drops-9m-on-ads-acton-spends-just-100k/",
        "source": "Ohio Capital Journal",
-       "date": "2026-08-28"
-      },
-      {
-       "headline": "Game on: Ramaswamy, Acton race to become Ohio governor",
-       "url": "https://ohiocapitaljournal.com/2026/05/08/game-on-ramaswamy-acton-race-to-become-ohio-governor/",
-       "source": "Ohio Capital Journal",
-       "date": "2026-05-08"
+       "date": "2026-07-21"
       }
      ]
     }
@@ -432,61 +420,61 @@
    "races": [
     {
      "type": "Senate",
-     "matchup": "Roy Cooper (D) vs. Michael Whatley (R)",
-     "sentiment": 64,
-     "summary": "Cooper (D) leads Whatley (R) across August polling, ranging from +5 in a High Point University poll (released Aug. 21) to +11 in the Elon University poll (Aug. 12). Coverage tone favors Cooper but increasingly flags a tightening race as Whatley, Trump's endorsed candidate and former RNC chair, gains name recognition. Cook Political Report rates the open Tillis seat Lean Democrat.",
+     "matchup": "Michael Whatley (R) vs. Roy Cooper (D)",
+     "sentiment": 62,
+     "summary": "In the open-seat race for Thom Tillis's retiring seat, former Democratic Gov. Roy Cooper holds a consistent double-digit lead: the Carolina Journal/Harper poll (Aug 9-10) put Cooper up 52-39, and Elon showed +11. Cooper leads among independents by ~20 points and has out-raised Whatley more than 2-to-1. September coverage focused on the affordability ad war.",
      "candidates": [
-      {
-       "name": "Roy Cooper",
-       "party": "D",
-       "mentions": 28,
-       "sentiment": 68
-      },
       {
        "name": "Michael Whatley",
        "party": "R",
-       "mentions": 24,
-       "sentiment": 44
+       "mentions": 9,
+       "sentiment": 40
+      },
+      {
+       "name": "Roy Cooper",
+       "party": "D",
+       "mentions": 9,
+       "sentiment": 62
       }
      ],
      "outlets": [
       {
-       "source": "Newsweek",
-       "lean": 0,
-       "sentiment": 58,
-       "articles": 1
-      },
-      {
-       "source": "WLOS",
-       "lean": null,
-       "sentiment": 66,
-       "articles": 1
-      },
-      {
        "source": "Elon University",
        "lean": null,
-       "sentiment": 66,
+       "sentiment": 60,
+       "articles": 1
+      },
+      {
+       "source": "Carolina Journal",
+       "lean": null,
+       "sentiment": 55,
+       "articles": 1
+      },
+      {
+       "source": "FactCheck.org",
+       "lean": null,
+       "sentiment": 48,
        "articles": 1
       }
      ],
      "articles": [
       {
-       "headline": "Whatley Within Striking Distance of Defeating Roy Cooper in North Carolina",
-       "url": "https://www.newsweek.com/whatley-within-striking-distance-of-defeating-roy-cooper-in-north-carolina-12354446",
-       "source": "Newsweek",
-       "date": "2026-08-21"
-      },
-      {
-       "headline": "Roy Cooper holds lead over Michael Whatley in Senate race: new poll",
-       "url": "https://wlos.com/news/local/roy-cooper-11-points-lead-michael-whatley-us-senate-race-new-poll-north-carolina-us-government-democrat-former-governor-gop-republican-rnc-elon-university-election-voters",
-       "source": "WLOS",
-       "date": "2026-08-17"
-      },
-      {
        "headline": "Elon Poll: Cooper continues to lead in North Carolina U.S. Senate race",
        "url": "https://www.elon.edu/u/news/2026/08/12/elon-poll-cooper-continues-to-lead-in-north-carolina-u-s-senate-race/",
        "source": "Elon University",
        "date": "2026-08-12"
+      },
+      {
+       "headline": "CJ poll: Cooper stretches lead over Whatley in US Senate race",
+       "url": "https://www.carolinajournal.com/cj-poll-cooper-stretches-lead-over-whatley-in-us-senate-race/",
+       "source": "Carolina Journal",
+       "date": "2026-08-13"
+      },
+      {
+       "headline": "Ad Attacking N.C. Republican Senate Candidate Uses His Own (Dated) Words Against Him",
+       "url": "https://www.factcheck.org/2026/09/ad-attacking-n-c-republican-senate-candidate-uses-his-own-dated-words-against-him/",
+       "source": "FactCheck.org",
+       "date": "2026-09-04"
       }
      ]
     }
@@ -496,40 +484,46 @@
    "races": [
     {
      "type": "Senate",
-     "matchup": "Jon Ossoff (D, inc.) vs. Mike Collins (R)",
-     "sentiment": 61,
-     "summary": "Democratic incumbent Jon Ossoff holds a steady lead over Trump-backed Rep. Mike Collins, with August polls ranging from +7 (InsiderAdvantage, Aug 16-17) to +13 (Fox News). Coverage highlights Ossoff's rallies attacking Trump and Collins on affordability and the Iran war, his cash-on-hand advantage, and a trio of Republican endorsements he has secured. Collins drew negative attention over a former campaign staffer who posed in a KKK uniform and posted a swastika online, and over a Savannah exchange about compensating Jan. 6 defendants.",
+     "matchup": "Mike Collins (R) vs. Jon Ossoff (D, inc.)",
+     "sentiment": 60,
+     "summary": "Democratic incumbent Jon Ossoff leads Republican Rep. Mike Collins, though the margin has narrowed: an InsiderAdvantage poll (Aug 16-17) showed Ossoff up 50-43, down from +13 in July. Ossoff enters the fall with a large cash advantage (~$25M). Coverage highlighted stark policy contrasts and dueling attack ads.",
      "candidates": [
-      {
-       "name": "Jon Ossoff",
-       "party": "D",
-       "mentions": 4,
-       "sentiment": 62
-      },
       {
        "name": "Mike Collins",
        "party": "R",
-       "mentions": 4,
-       "sentiment": 39
+       "mentions": 9,
+       "sentiment": 43
+      },
+      {
+       "name": "Jon Ossoff",
+       "party": "D",
+       "mentions": 10,
+       "sentiment": 58
       }
      ],
      "outlets": [
       {
        "source": "Atlanta News First",
        "lean": null,
-       "sentiment": 57,
-       "articles": 2
+       "sentiment": 58,
+       "articles": 1
       },
       {
-       "source": "CBS News",
-       "lean": -1,
-       "sentiment": 60,
+       "source": "Savannah Business Journal",
+       "lean": null,
+       "sentiment": 57,
        "articles": 1
       },
       {
        "source": "Breitbart",
        "lean": 2,
-       "sentiment": 45,
+       "sentiment": 35,
+       "articles": 1
+      },
+      {
+       "source": "Atlanta Journal-Constitution",
+       "lean": -1,
+       "sentiment": 55,
        "articles": 1
       }
      ],
@@ -541,106 +535,94 @@
        "date": "2026-08-18"
       },
       {
-       "headline": "Ossoff rallies Atlanta, targets Trump and Collins as Georgia U.S. Senate race intensifies",
-       "url": "https://www.cbsnews.com/atlanta/news/sen-jon-ossoff-rally-atlanta-georgia-senate-race-mike-collins/",
-       "source": "CBS News",
-       "date": "2026-08-17"
+       "headline": "Aug. 29 - Latest Polls show Sen. Jon Ossoff holds his lead over Rep. Mike Collins",
+       "url": "https://www.savannahbusinessjournal.com/news/elections/aug-29-latest-polls-show-sen-jon-ossoff-holds-his-lead-over-rep-mike-collins/article_25d3f88b-00de-46e6-9760-76dc49049990.html",
+       "source": "Savannah Business Journal",
+       "date": "2026-08-29"
       },
       {
-       "headline": "Poll Shows Far-Left Sen. Jon Ossoff Leading Rep. Mike Collins in Georgia Senate Race",
+       "headline": "Poll: Far-Left Ossoff Leading Collins in Georgia Senate Race",
        "url": "https://www.breitbart.com/politics/2026/08/18/poll-shows-far-left-sen-jon-ossoff-leading-rep-mike-collins-in-georgia-senate-race/",
        "source": "Breitbart",
        "date": "2026-08-18"
       },
       {
-       "headline": "Ex-staffer on Collins Senate campaign posed in KKK uniform, posted swastika online",
-       "url": "https://www.atlantanewsfirst.com/2026/08/28/ex-staffer-collins-senate-campaign-posed-kkk-uniform-posted-swastika-online/",
-       "source": "Atlanta News First",
-       "date": "2026-08-28"
+       "headline": "Mike Collins vs. Jon Ossoff: The key issues dividing Georgia's Senate race",
+       "url": "https://www.ajc.com/politics/2026/09/mike-collins-vs-jon-ossoff-key-issues-dividing-georgias-senate-race/",
+       "source": "Atlanta Journal-Constitution",
+       "date": "2026-09-04"
       }
      ]
     },
     {
      "type": "Governor",
      "matchup": "Rick Jackson (R) vs. Keisha Lance Bottoms (D)",
-     "sentiment": 50,
-     "summary": "The open-seat race to succeed term-limited Gov. Brian Kemp is effectively tied, with an InsiderAdvantage poll showing Jackson at 46.3% and Bottoms at 46.2%. Coverage was dominated by an intensifying character fight: Bottoms confronted Jackson in person over an ad referencing her family ('stay away from my family'), while Jackson and Kemp sharpened attacks on her record as Atlanta mayor over spending and crime. Both candidates centered 'character' in weekend campaign events, and Jackson launched a large ad blitz focused on affordability and Bottoms's mayoral tenure.",
+     "sentiment": 53,
+     "summary": "The open-seat race to succeed term-limited Brian Kemp is essentially tied ('dead even' per the mid-August InsiderAdvantage poll). GOP healthcare executive Rick Jackson, who spent $100M+ to win the runoff, is running heavy ads against former Atlanta Mayor Keisha Lance Bottoms; recent coverage was dominated by a debate-schedule feud and Bottoms rolling out a grocery-tax-relief and Medicaid agenda (Sept 2 AJC interview).",
      "candidates": [
       {
        "name": "Rick Jackson",
        "party": "R",
-       "mentions": 6,
-       "sentiment": 49
+       "mentions": 9,
+       "sentiment": 45
       },
       {
        "name": "Keisha Lance Bottoms",
        "party": "D",
-       "mentions": 6,
-       "sentiment": 50
+       "mentions": 10,
+       "sentiment": 55
       }
      ],
      "outlets": [
       {
-       "source": "The Atlanta Journal-Constitution",
-       "lean": null,
-       "sentiment": 51,
+       "source": "Atlanta Journal-Constitution",
+       "lean": -1,
+       "sentiment": 55,
        "articles": 1
       },
       {
-       "source": "Georgia Public Broadcasting",
+       "source": "Georgia Recorder",
        "lean": null,
-       "sentiment": 50,
+       "sentiment": 56,
        "articles": 1
       },
       {
-       "source": "WCTV",
+       "source": "Rough Draft Atlanta",
        "lean": null,
-       "sentiment": 50,
+       "sentiment": 55,
        "articles": 1
       },
       {
-       "source": "WRDW",
+       "source": "TheGrio",
        "lean": null,
-       "sentiment": 52,
-       "articles": 1
-      },
-      {
-       "source": "The Current",
-       "lean": null,
-       "sentiment": 49,
+       "sentiment": 60,
        "articles": 1
       }
      ],
      "articles": [
       {
-       "headline": "A rare face-to-face clash jolts Georgia governor's race",
-       "url": "https://www.ajc.com/politics/2026/08/georgia-governor-rivals-bottoms-jackson-spar-in-atlanta-encounter/",
-       "source": "The Atlanta Journal-Constitution",
-       "date": "2026-08-22"
+       "headline": "AJC Interview: From grocery taxes to Trump, Bottoms sketches her agenda",
+       "url": "https://www.ajc.com/politics/2026/09/ajc-interview-georgia-gubernatorial-candidate-keisha-lance-bottoms-sketches-her-agenda/",
+       "source": "Atlanta Journal-Constitution",
+       "date": "2026-09-02"
       },
       {
-       "headline": "Both candidates for Georgia governor emphasize character in weekend events",
-       "url": "https://www.gpb.org/news/2026/08/24/both-candidates-for-georgia-governor-emphasize-character-in-weekend-events",
-       "source": "Georgia Public Broadcasting",
-       "date": "2026-08-24"
+       "headline": "Bottoms ups the ante in feud over debates in race for Georgia governor",
+       "url": "https://georgiarecorder.com/2026/08/31/bottoms-ups-the-ante-in-feud-over-debates-in-race-for-georgia-governor/",
+       "source": "Georgia Recorder",
+       "date": "2026-08-31"
       },
       {
-       "headline": "Poll shows Georgia governor's race effectively tied between Jackson, Bottoms",
-       "url": "https://www.wctv.tv/2026/08/22/poll-shows-georgia-governors-race-effectively-tied-between-jackson-bottoms/",
-       "source": "WCTV",
-       "date": "2026-08-22"
+       "headline": "Bottoms demands more debates against Republican Jackson",
+       "url": "https://roughdraftatlanta.com/2026/09/01/jackson-bottoms-election-debates/",
+       "source": "Rough Draft Atlanta",
+       "date": "2026-09-01"
       },
       {
-       "headline": "'Stay away from my family': Bottoms calls out Jackson on campaign ad",
-       "url": "https://www.wrdw.com/2026/08/25/stay-away-my-family-bottoms-calls-out-jackson-campaign-ad/",
-       "source": "WRDW",
-       "date": "2026-08-25"
-      },
-      {
-       "headline": "It's about character, Rick Jackson says",
-       "url": "https://thecurrentga.org/2026/08/29/its-about-character-rick-jackson-says/",
-       "source": "The Current",
-       "date": "2026-08-29"
+       "headline": "'Stay away from my family': Keisha Lance Bottoms confronts GOP opponent over comments about husband",
+       "url": "https://thegrio.com/2026/08/21/keisha-lance-bottoms-confronts-rick-jackson-over-comments-about-husband/",
+       "source": "TheGrio",
+       "date": "2026-08-21"
       }
      ]
     }
@@ -651,42 +633,48 @@
     {
      "type": "Senate",
      "matchup": "Ashley Hinson (R) vs. Josh Turek (D)",
-     "sentiment": 48,
-     "summary": "The race for retiring Sen. Joni Ernst's seat has become surprisingly competitive: a late-August Suffolk University poll showed Hinson leading Turek 45-41, within the margin of error, and Cook Political Report shifted the race from 'leans Republican' to 'toss-up.' Coverage featured Hinson attacking Turek's Iowa House attendance and immigration record, Sen. Ted Cruz headlining a Hinson fundraiser where he called Democrats 'Marxists and Islamists,' and Democrats hitting Hinson over her handling of the Epstein-files votes. Turek, a Paralympian, has leaned on cancer-advocacy and bipartisan messaging.",
+     "sentiment": 42,
+     "summary": "Republican Rep. Ashley Hinson leads Democratic state Rep. Josh Turek in the open-seat race, with the September Emerson/Nexstar poll (Aug 31-Sep 1) showing Hinson up 50-45. The RCP average shows Hinson ahead by ~4. Turek narrowly leads among independents, and there is notable ticket-splitting as Democrat Rob Sand leads the concurrent governor's race.",
      "candidates": [
       {
        "name": "Ashley Hinson",
        "party": "R",
-       "mentions": 4,
-       "sentiment": 49
+       "mentions": 8,
+       "sentiment": 55
       },
       {
        "name": "Josh Turek",
        "party": "D",
-       "mentions": 4,
-       "sentiment": 48
+       "mentions": 7,
+       "sentiment": 46
       }
      ],
      "outlets": [
       {
-       "source": "Radio Iowa",
+       "source": "Emerson College Polling",
        "lean": null,
-       "sentiment": 47,
+       "sentiment": 45,
        "articles": 1
       },
       {
        "source": "Iowa Capital Dispatch",
        "lean": null,
-       "sentiment": 49,
-       "articles": 3
+       "sentiment": 48,
+       "articles": 1
+      },
+      {
+       "source": "Breitbart",
+       "lean": 2,
+       "sentiment": 32,
+       "articles": 1
       }
      ],
      "articles": [
       {
-       "headline": "U.S. Senate candidate Hinson questions opponent's Iowa House voting record",
-       "url": "https://www.radioiowa.com/2026/08/17/u-s-senate-candidate-hinson-questions-opponents-iowa-house-voting-record/",
-       "source": "Radio Iowa",
-       "date": "2026-08-17"
+       "headline": "Iowa 2026 Poll: Hinson Leads Turek for U.S. Senate, Sand Maintains Edge over Lahn for Governor",
+       "url": "https://emersoncollegepolling.com/iowa-2026-poll-hinson-leads-turek/",
+       "source": "Emerson College Polling",
+       "date": "2026-09-03"
       },
       {
        "headline": "New poll shows tight races for Iowa governor, U.S. Senate in 2026",
@@ -695,64 +683,52 @@
        "date": "2026-08-26"
       },
       {
-       "headline": "Turek highlights cancer advocacy, pledges support if elected to U.S. Senate",
-       "url": "https://iowacapitaldispatch.com/2026/08/26/turek-highlights-cancer-advocacy-pledges-support-if-elected-to-u-s-senate/",
-       "source": "Iowa Capital Dispatch",
-       "date": "2026-08-26"
-      },
-      {
-       "headline": "Sen. Ted Cruz criticizes Democrats as 'Marxists and Islamists' at Hinson event in Iowa",
-       "url": "https://iowacapitaldispatch.com/2026/08/29/sen-ted-cruz-criticizes-democrats-as-marxists-and-islamists-at-hinson-event-in-iowa/",
-       "source": "Iowa Capital Dispatch",
-       "date": "2026-08-29"
+       "headline": "Poll: Ashley Hinson Leads Democrat Opponent Josh Turek in Iowa Senate Race",
+       "url": "https://www.breitbart.com/politics/2026/09/04/poll-ashley-hinson-leads-democrat-opponent-josh-turek-in-iowa-senate-race/",
+       "source": "Breitbart",
+       "date": "2026-09-04"
       }
      ]
     },
     {
      "type": "Governor",
-     "matchup": "Rob Sand (D) vs. Zach Lahn (R)",
-     "sentiment": 58,
-     "summary": "Coverage in the back half of August framed Rob Sand as the front-runner after an Emerson College/Nexstar poll put him up 48-43 and Cook Political Report shifted the race from toss-up to Lean Democratic. Much of the reporting centered on the campaign turning negative, with GOP nominee Zach Lahn accusing Sand of personal attacks over his residency and family and Sand publicly calling for civility. National profiles emphasized Sand's attempt to run as a nonpartisan independent-minded Democrat, while Lahn leaned into an anti-establishment message after upsetting Trump-endorsed Rep. Randy Feenstra in the primary.",
+     "matchup": "Zach Lahn (R) vs. Rob Sand (D)",
+     "sentiment": 61,
+     "summary": "Open-seat race (Gov. Reynolds retiring). Democrat Rob Sand leads Republican Zach Lahn, who won an upset primary over Trump-backed Randy Feenstra. A Sept 3 Emerson/Nexstar poll had Sand up 49-46; Sand carries independents by ~26 points. Coverage tilts favorable to Sand, who posts the field's best favorability while Lahn faces scrutiny over his Kansas residency.",
      "candidates": [
       {
        "name": "Rob Sand",
        "party": "D",
-       "mentions": 22,
-       "sentiment": 60
+       "mentions": 9,
+       "sentiment": 63
       },
       {
        "name": "Zach Lahn",
        "party": "R",
-       "mentions": 18,
-       "sentiment": 45
+       "mentions": 7,
+       "sentiment": 39
       }
      ],
      "outlets": [
+      {
+       "source": "Emerson College Polling",
+       "lean": null,
+       "sentiment": 58,
+       "articles": 1
+      },
       {
        "source": "Iowa Capital Dispatch",
        "lean": null,
        "sentiment": 54,
        "articles": 2
-      },
-      {
-       "source": "The Washington Post",
-       "lean": -1,
-       "sentiment": 50,
-       "articles": 1
-      },
-      {
-       "source": "CNN",
-       "lean": -1,
-       "sentiment": 60,
-       "articles": 1
       }
      ],
      "articles": [
       {
-       "headline": "Lahn criticizes 'personal attacks' on residency, family in Iowa governor race",
-       "url": "https://iowacapitaldispatch.com/2026/08/14/lahn-criticizes-personal-attacks-on-residency-family-in-iowa-governor-race/",
-       "source": "Iowa Capital Dispatch",
-       "date": "2026-08-14"
+       "headline": "Iowa 2026 Poll: Hinson Leads Turek for U.S. Senate, Sand Maintains Edge over Lahn for Governor",
+       "url": "https://emersoncollegepolling.com/iowa-2026-poll-hinson-leads-turek/",
+       "source": "Emerson College Polling",
+       "date": "2026-09-03"
       },
       {
        "headline": "Democrat Rob Sand calls for civility in contentious Iowa governor race",
@@ -761,16 +737,10 @@
        "date": "2026-08-15"
       },
       {
-       "headline": "In Republican-led Iowa, the GOP nominee for governor introduces an anti-establishment message",
-       "url": "https://www.washingtonpost.com/politics/2026/08/14/iowa-governor-zach-lahn-rob-sand/8a9534d6-9795-11f1-9ef9-1be722184483_story.html",
-       "source": "The Washington Post",
+       "headline": "Lahn criticizes 'personal attacks' on residency, family in Iowa governor race",
+       "url": "https://iowacapitaldispatch.com/2026/08/14/lahn-criticizes-personal-attacks-on-residency-family-in-iowa-governor-race/",
+       "source": "Iowa Capital Dispatch",
        "date": "2026-08-14"
-      },
-      {
-       "headline": "Iowa Democrat tries to strike an independent path in governor's race",
-       "url": "https://www.cnn.com/2026/08/29/politics/iowa-democrat-rob-sand",
-       "source": "CNN",
-       "date": "2026-08-29"
       }
      ]
     }
@@ -781,60 +751,54 @@
     {
      "type": "Governor",
      "matchup": "Joe Lombardo (R, inc.) vs. Aaron Ford (D)",
-     "sentiment": 45,
-     "summary": "August coverage leaned toward an incumbent-momentum narrative: three GOP-affiliated polls showed Gov. Joe Lombardo opening a 7-12 point lead, and reporting stressed his roughly $13 million advertising advantage over AG Aaron Ford, who only went on air late in the month. A running story line was a bitter fight over misrepresented law-enforcement and Democratic endorsements between the two campaigns. Ford's messaging tied Lombardo to a 'Lombardo-Trump economy' and affordability concerns, but nonpartisan aggregates still rated the contest a near dead-heat toss-up.",
+     "sentiment": 50,
+     "summary": "As of early September the race is defined by a sharp split over data centers: Ford (D) says they are 'jacking up' utility bills and draining water while Lombardo (R) backs them as economic growth with guardrails. Lombardo is running ads tying Ford to Gavin Newsom; Ford has challenged Lombardo to three televised debates. Public polling has ranged from a dead heat to single-digit GOP-commissioned leads.",
      "candidates": [
       {
        "name": "Joe Lombardo",
        "party": "R",
-       "mentions": 24,
-       "sentiment": 54
+       "mentions": 9,
+       "sentiment": 52
       },
       {
        "name": "Aaron Ford",
        "party": "D",
-       "mentions": 22,
-       "sentiment": 45
+       "mentions": 9,
+       "sentiment": 50
       }
      ],
      "outlets": [
       {
-       "source": "California Globe",
+       "source": "Las Vegas Sun",
        "lean": null,
-       "sentiment": 30,
-       "articles": 1
+       "sentiment": 50,
+       "articles": 2
       },
       {
-       "source": "Las Vegas Review-Journal",
+       "source": "Las Vegas Weekly",
        "lean": null,
-       "sentiment": 48,
-       "articles": 1
-      },
-      {
-       "source": "Nevada Current",
-       "lean": null,
-       "sentiment": 60,
+       "sentiment": 50,
        "articles": 1
       }
      ],
      "articles": [
       {
-       "headline": "Three New Polls Show Lombardo Expanding Lead Over Ford in Nevada Governor's Race",
-       "url": "https://californiaglobe.com/fr/three-new-polls-show-lombardo-expanding-lead-over-ford-in-nevada-governors-race/",
-       "source": "California Globe",
-       "date": "2026-08-05"
+       "headline": "Joe Lombardo and Aaron Ford split over economic and environmental impact of data centers",
+       "url": "https://lasvegassun.com/news/2026/sep/06/joe-lombardo-and-aaron-ford-split-over-economic-an/",
+       "source": "Las Vegas Sun",
+       "date": "2026-09-06"
       },
       {
-       "headline": "Campaigns of Joe Lombardo, Aaron Ford trade allegations of misrepresenting endorsements",
-       "url": "https://www.reviewjournal.com/news/politics-and-government/nevada/campaigns-of-nevada-governor-candidates-trade-allegations-over-endorsements-3862659/",
-       "source": "Las Vegas Review-Journal",
-       "date": "2026-08-12"
+       "headline": "Nevada Governor's race: Sorting through the candidates' campaign ads and appearances",
+       "url": "https://lasvegasweekly.com/news/2026/aug/13/nevada-governors-race-sorting-through-candidates/",
+       "source": "Las Vegas Weekly",
+       "date": "2026-08-13"
       },
       {
-       "headline": "Ford banking on the 'many' to beat the 'money' in November",
-       "url": "https://nevadacurrent.com/2026/08/27/ford-banking-on-the-many-to-beat-the-money-in-november/",
-       "source": "Nevada Current",
-       "date": "2026-08-27"
+       "headline": "Lombardo, Ford tied in Nevada governor's race, Dem poll shows",
+       "url": "https://thenevadaindependent.com/article/lombardo-ford-tied-in-nevada-governors-race-dem-poll-shows",
+       "source": "The Nevada Independent",
+       "date": "2026-07-22"
       }
      ]
     }
@@ -844,55 +808,61 @@
    "races": [
     {
      "type": "Governor",
-     "matchup": "David Crowley (D) vs. Tom Tiffany (R)",
-     "sentiment": 57,
-     "summary": "With the general election set after Crowley's razor-thin Aug. 11 primary win over Francesca Hong, coverage gave Democrat David Crowley a modest early edge: a Marquette Law School poll had him up 49-44 among likely voters (tied among registered) and a separate Badger Battleground poll showed a four-point lead with stronger favorability than Republican Rep. Tom Tiffany, whose numbers ran underwater. Reporting repeatedly tied Tiffany to Trump's sagging approval while noting Crowley's need to unify progressives and build name recognition. Both sides launched seven-figure attack-ad campaigns, and analysts stressed Wisconsin's tradition of razor-close statewide races.",
+     "matchup": "Tom Tiffany (R) vs. David Crowley (D)",
+     "sentiment": 52,
+     "summary": "Open-seat contest between Democrat David Crowley (Milwaukee County executive), who narrowly won an Aug 11 primary over Francesca Hong, and Republican Rep. Tom Tiffany. A Democratic-affiliated poll (Aug 12) showed Crowley up 3, within the margin. Public education and data centers are early flashpoints; Tiffany is on the attack over Crowley's data-center stance.",
      "candidates": [
       {
        "name": "David Crowley",
        "party": "D",
-       "mentions": 26,
-       "sentiment": 58
+       "mentions": 8,
+       "sentiment": 53
       },
       {
        "name": "Tom Tiffany",
        "party": "R",
-       "mentions": 24,
-       "sentiment": 45
+       "mentions": 7,
+       "sentiment": 48
       }
      ],
      "outlets": [
       {
-       "source": "Associated Press",
-       "lean": 0,
-       "sentiment": 52,
+       "source": "Washington Examiner",
+       "lean": 1,
+       "sentiment": 51,
        "articles": 1
       },
       {
-       "source": "WPR",
+       "source": "WTMJ",
        "lean": null,
-       "sentiment": 57,
-       "articles": 2
+       "sentiment": 50,
+       "articles": 1
+      },
+      {
+       "source": "Civic Media",
+       "lean": null,
+       "sentiment": 52,
+       "articles": 1
       }
      ],
      "articles": [
       {
-       "headline": "Crowley's victory sets up a general election match with Tiffany in Wisconsin's 2026 race for governor",
-       "url": "https://pbswisconsin.org/news-item/crowleys-victory-sets-up-a-general-election-match-with-tiffany-in-wisconsins-2026-race-for-governor/",
-       "source": "Associated Press",
+       "headline": "Wisconsin Governor's race remains quiet as Crowley, Tiffany introduce themselves to voters",
+       "url": "https://wtmj.com/shows/point-taken/2026/09/04/cowley-tiffany-introduce-themselves-to-voters/",
+       "source": "WTMJ",
+       "date": "2026-09-04"
+      },
+      {
+       "headline": "Crowley, Tiffany put public education at center of Wisconsin governor's race",
+       "url": "https://civicmediatoday.substack.com/p/september-2-2026",
+       "source": "Civic Media",
+       "date": "2026-09-02"
+      },
+      {
+       "headline": "Wisconsin polling has David Crowley up against Tom Tiffany in gubernatorial race",
+       "url": "https://www.washingtonexaminer.com/news/campaigns/state/4685231/wisconsin-poll-david-crowley-tom-tiffany-governor/",
+       "source": "Washington Examiner",
        "date": "2026-08-12"
-      },
-      {
-       "headline": "Crowley leads Tiffany by 4 points in new head-to-head poll of likely voters",
-       "url": "https://www.wpr.org/news/crowley-leading-tiffany-four-points-new-poll",
-       "source": "WPR",
-       "date": "2026-08-16"
-      },
-      {
-       "headline": "Crowley leading Tiffany in first Marquette head-to-head poll of governor's race",
-       "url": "https://www.wpr.org/news/governors-race-poll-tiffany-crowley-marquette",
-       "source": "WPR",
-       "date": "2026-08-26"
       }
      ]
     }
@@ -902,73 +872,61 @@
    "races": [
     {
      "type": "Governor",
-     "matchup": "Katie Hobbs (D, inc.) vs. Andy Biggs (R)",
-     "sentiment": 62,
-     "summary": "August coverage was dominated by polls showing Democratic Gov. Katie Hobbs with a comfortable lead over Republican Rep. Andy Biggs, ranging from an 8-point AARP-commissioned margin to 13- and 15-point leads in HighGround and Noble Predictive Insights surveys, powered by a wide advantage among independents. Reporting noted Biggs still needed to consolidate GOP voters after his July primary. Coverage also framed the contest as immediately negative and attack-filled, with both candidates targeting the other's long-standing vulnerabilities.",
+     "matchup": "Andy Biggs (R) vs. Katie Hobbs (D, inc.)",
+     "sentiment": 61,
+     "summary": "Incumbent Gov. Katie Hobbs (D) holds consistent polling leads over Trump-backed Rep. Andy Biggs (R), from about 8 points (AARP, early Aug) to roughly 15 points (HighGround, late Aug), fueled by strong margins with independents and women. Hobbs has launched a multi-million-dollar ad campaign hitting Biggs on inflation and a federal-sales-tax proposal, while the two clash over water policy. Republicans are working to make a pay-to-play investigation into Hobbs a central issue.",
      "candidates": [
       {
        "name": "Katie Hobbs",
        "party": "D",
-       "mentions": 28,
-       "sentiment": 62
+       "mentions": 11,
+       "sentiment": 61
       },
       {
        "name": "Andy Biggs",
        "party": "R",
-       "mentions": 24,
-       "sentiment": 40
+       "mentions": 8,
+       "sentiment": 42
       }
      ],
      "outlets": [
       {
-       "source": "Arizona Capitol Times",
+       "source": "KJZZ",
        "lean": null,
-       "sentiment": 50,
-       "articles": 1
+       "sentiment": 58,
+       "articles": 3
       },
       {
        "source": "Axios",
        "lean": -1,
        "sentiment": 60,
        "articles": 1
-      },
-      {
-       "source": "azfamily",
-       "lean": null,
-       "sentiment": 62,
-       "articles": 1
-      },
-      {
-       "source": "KJZZ",
-       "lean": null,
-       "sentiment": 62,
-       "articles": 1
       }
      ],
      "articles": [
       {
-       "headline": "Hobbs, Biggs launch attack-filled Arizona governor's race",
-       "url": "https://azcapitoltimes.com/news/2026/08/04/hobbs-biggs-launch-attack-filled-arizona-governors-race/",
-       "source": "Arizona Capitol Times",
-       "date": "2026-08-04"
+       "headline": "Hobbs, Biggs have wildly different water plans. Voters will choose conservation or augmentation",
+       "url": "https://www.kjzz.org/elections/2026-09-08/hobbs-biggs-have-wildly-different-water-plans-voters-will-choose-conservation-or-augmentation",
+       "source": "KJZZ",
+       "date": "2026-09-08"
       },
       {
-       "headline": "Arizona Gov. Katie Hobbs leads Andy Biggs in new poll",
-       "url": "https://www.axios.com/local/phoenix/2026/08/06/aarp-poll-hobbs-biggs",
-       "source": "Axios",
-       "date": "2026-08-06"
-      },
-      {
-       "headline": "New poll shows double-digit lead for Hobbs over Biggs in Arizona governor's race",
-       "url": "https://www.azfamily.com/2026/08/24/new-poll-shows-double-digit-lead-hobbs-over-biggs-arizona-governors-race/",
-       "source": "azfamily",
-       "date": "2026-08-24"
+       "headline": "Republicans scramble to make Hobbs pay-to-play investigation a top election issue",
+       "url": "https://www.kjzz.org/podcast/kjzzs-the-show-friday-newscap/2026-09-04/republicans-scramble-to-make-hobbs-pay-to-play-investigation-a-top-election-issue",
+       "source": "KJZZ",
+       "date": "2026-09-04"
       },
       {
        "headline": "Poll: Hobbs leading Biggs by 15 points in Arizona governor's race",
        "url": "https://www.kjzz.org/politics/2026-08-24/poll-hobbs-leading-biggs-by-15-points-in-arizona-governors-race",
        "source": "KJZZ",
        "date": "2026-08-24"
+      },
+      {
+       "headline": "Arizona Gov. Katie Hobbs leads Andy Biggs in new poll",
+       "url": "https://www.axios.com/local/phoenix/2026/08/06/aarp-poll-hobbs-biggs",
+       "source": "Axios",
+       "date": "2026-08-06"
       }
      ]
     }
@@ -978,59 +936,59 @@
    "races": [
     {
      "type": "Senate",
-     "matchup": "Chris Pappas (D) vs. John E. Sununu (R)",
-     "sentiment": 47,
-     "summary": "Coverage of the open Shaheen seat trended slightly toward a Republican-momentum story in late August, as a UNH Survey Center poll (Aug. 20-24) showed former Sen. John E. Sununu narrowly edging Democratic Rep. Chris Pappas 45-43, a reversal from Pappas's earlier lead. Conservative outlets highlighted the seat as an under-the-radar GOP flip opportunity backed by heavy national super PAC spending, while other reporting stressed the race's relative lack of extremes and its persistent toss-up status. Both remain their parties' clear front-runners ahead of the Sept. 8 primary.",
+     "matchup": "John Sununu (R) vs. Chris Pappas (D)",
+     "sentiment": 48,
+     "summary": "Open-seat race (Sen. Shaheen retiring); primaries are today, Sept 8. Rep. Chris Pappas is the heavy Democratic favorite (UNH ~61% vs Manzur), and Trump-endorsed former Sen. John Sununu leads the GOP field (~56-60% over Scott Brown). The general is a toss-up and appears to be tightening: a late-August UNH poll showed Pappas's support sliding; surveys split between a narrow Sununu edge and a Pappas 49-42 lead.",
      "candidates": [
       {
        "name": "Chris Pappas",
        "party": "D",
-       "mentions": 20,
+       "mentions": 9,
        "sentiment": 48
       },
       {
-       "name": "John E. Sununu",
+       "name": "John Sununu",
        "party": "R",
-       "mentions": 20,
-       "sentiment": 50
+       "mentions": 8,
+       "sentiment": 52
       }
      ],
      "outlets": [
       {
-       "source": "WBUR",
+       "source": "Concord Monitor",
        "lean": null,
-       "sentiment": 52,
+       "sentiment": 46,
        "articles": 1
       },
       {
-       "source": "RedState",
+       "source": "Semafor",
        "lean": null,
-       "sentiment": 28,
+       "sentiment": 51,
        "articles": 1
       },
       {
        "source": "UNH Survey Center",
        "lean": null,
-       "sentiment": 45,
+       "sentiment": 50,
        "articles": 1
       }
      ],
      "articles": [
       {
-       "headline": "New Hampshire has a key U.S. Senate race — without the extremes of other states",
-       "url": "https://www.wbur.org/news/2026/08/11/new-hampshire-senate-pappas-sununu",
-       "source": "WBUR",
-       "date": "2026-08-11"
+       "headline": "Support for Pappas dwindles in U.S. Senate race as GOP, progressive challengers climb in the polls",
+       "url": "https://www.concordmonitor.com/2026/08/31/nh-senate-pappas-sununu-poll/",
+       "source": "Concord Monitor",
+       "date": "2026-08-31"
       },
       {
-       "headline": "The GOP's Big Senate Seat Flip Opportunity That Is Flying Under the Radar",
-       "url": "https://redstate.com/sister-toldjah/2026/08/26/the-gop-senate-flip-opportunity-that-few-people-are-talking-about-n2206115",
-       "source": "RedState",
-       "date": "2026-08-26"
+       "headline": "Poll: Pappas holds commanding lead in N.H. Democratic primary",
+       "url": "https://www.semafor.com/article/08/28/2026/poll-pappas-holds-commanding-lead-in-nh-democratic-primary",
+       "source": "Semafor",
+       "date": "2026-08-28"
       },
       {
        "headline": "Pappas Support Slides, CD1 Primaries Down to the Wire",
-       "url": "https://scholars.unh.edu/cgi/viewcontent.cgi?article=1987&context=survey_center_polls",
+       "url": "https://scholars.unh.edu/survey_center_polls/988/",
        "source": "UNH Survey Center",
        "date": "2026-08-26"
       }
@@ -1040,7 +998,7 @@
      "type": "Governor",
      "matchup": "Kelly Ayotte (R, inc.) vs. Cinde Warmington (D)",
      "sentiment": 42,
-     "summary": "Coverage over the last two weeks was dominated by a UNH Survey Center poll released Aug. 27 showing Gov. Kelly Ayotte leading presumptive Democratic nominee Cinde Warmington 49%-39%, with her job approval improving. Reporting framed Ayotte as strengthening her position while Warmington, who still faces a Sept. 8 primary as the presumptive nominee, campaigns on affordability. Tone was largely factual and poll-driven, tilting favorable to the Republican incumbent.",
+     "summary": "Incumbent GOP Gov. Kelly Ayotte leads Democrat Cinde Warmington in the latest UNH poll, 49-39 (late August), with job approval improving to 49%. Warmington was expected to win the Sept 8 Democratic primary and is running on attacks over Ayotte's education-freedom-account program and property taxes. Coverage is largely poll-driven and tilts modestly toward Ayotte.",
      "candidates": [
       {
        "name": "Kelly Ayotte",
@@ -1051,17 +1009,11 @@
       {
        "name": "Cinde Warmington",
        "party": "D",
-       "mentions": 7,
-       "sentiment": 43
+       "mentions": 8,
+       "sentiment": 44
       }
      ],
      "outlets": [
-      {
-       "source": "InDepthNH",
-       "lean": null,
-       "sentiment": 45,
-       "articles": 1
-      },
       {
        "source": "WCAX",
        "lean": null,
@@ -1069,19 +1021,25 @@
        "articles": 1
       },
       {
-       "source": "The Boston Globe",
+       "source": "InDepthNH",
        "lean": null,
+       "sentiment": 45,
+       "articles": 1
+      },
+      {
+       "source": "New Hampshire Public Radio",
+       "lean": null,
+       "sentiment": 50,
+       "articles": 1
+      },
+      {
+       "source": "Boston Globe",
+       "lean": -1,
        "sentiment": 48,
        "articles": 1
       }
      ],
      "articles": [
-      {
-       "headline": "Ayotte's Approval Improves, Lead Over Warmington Grows in NH Gubernatorial Race",
-       "url": "https://indepthnh.org/2026/08/27/ayottes-approval-improves-lead-over-warmington-grows-in-new-hampshire-gubernatorial-race/",
-       "source": "InDepthNH",
-       "date": "2026-08-27"
-      },
       {
        "headline": "UNH poll shows Ayotte leads Warmington in NH governor's race",
        "url": "https://www.wcax.com/2026/08/28/unh-poll-shows-ayotte-leads-warmington-nh-governors-race/",
@@ -1089,9 +1047,21 @@
        "date": "2026-08-28"
       },
       {
+       "headline": "Ayotte's Approval Improves, Lead Over Warmington Grows in New Hampshire Gubernatorial Race",
+       "url": "https://indepthnh.org/2026/08/27/ayottes-approval-improves-lead-over-warmington-grows-in-new-hampshire-gubernatorial-race/",
+       "source": "InDepthNH",
+       "date": "2026-08-27"
+      },
+      {
+       "headline": "NH governor's race: The sleepiest state primary?",
+       "url": "https://www.nhpr.org/politics/2026-09-02/governor-primary-ayotte-warmington-candidates-whos-running-republican-democrat",
+       "source": "New Hampshire Public Radio",
+       "date": "2026-09-02"
+      },
+      {
        "headline": "Republican Kelly Ayotte and Democrat Cinde Warmington file for N.H. governor's race, trade barbs",
        "url": "https://www.bostonglobe.com/2026/06/05/metro/ayotte-warmington-nh-governor-barbs/",
-       "source": "The Boston Globe",
+       "source": "Boston Globe",
        "date": "2026-06-05"
       }
      ]
@@ -1103,43 +1073,37 @@
     {
      "type": "Governor",
      "matchup": "Ty Masterson (R) vs. Cindy Holscher (D)",
-     "sentiment": 53,
-     "summary": "With term-limited Gov. Laura Kelly departing, coverage framed this as one of Republicans' best gubernatorial pickup opportunities but noted the general is shaping up close. Trump-endorsed state Senate President Ty Masterson and Democratic state Sen. Cindy Holscher emerged from their Aug. 4 primaries. A late-August poll (published Aug. 28) showed Holscher edging Masterson 47-46, within the margin of error, with Holscher strong among unaffiliated and moderate voters. Tone is roughly neutral with a slight D tilt reflecting the early polling lead.",
+     "sentiment": 55,
+     "summary": "Open-seat race (Gov. Laura Kelly term-limited) between GOP Senate President Ty Masterson, who won the Aug 4 primary on a Trump endorsement, and Democratic state Sen. Cindy Holscher. A late-August Holscher internal poll showed a dead heat (47-46), and on Sept 4 Holscher picked up the Kansas AFL-CIO endorsement even as Masterson courts several trade unions. The contest is shaping up as a genuine toss-up.",
      "candidates": [
       {
        "name": "Ty Masterson",
        "party": "R",
-       "mentions": 5,
-       "sentiment": 48
+       "mentions": 9,
+       "sentiment": 50
       },
       {
        "name": "Cindy Holscher",
        "party": "D",
-       "mentions": 5,
-       "sentiment": 54
+       "mentions": 9,
+       "sentiment": 59
       }
      ],
      "outlets": [
       {
-       "source": "KWCH",
+       "source": "Sunflower State Journal",
        "lean": null,
-       "sentiment": 53,
+       "sentiment": 58,
+       "articles": 2
+      },
+      {
+       "source": "KCUR",
+       "lean": null,
+       "sentiment": 52,
        "articles": 1
       },
       {
        "source": "Kansas Reflector",
-       "lean": null,
-       "sentiment": 52,
-       "articles": 1
-      },
-      {
-       "source": "The Lawrence Times",
-       "lean": null,
-       "sentiment": 52,
-       "articles": 1
-      },
-      {
-       "source": "HPPR",
        "lean": null,
        "sentiment": 52,
        "articles": 1
@@ -1147,28 +1111,28 @@
      ],
      "articles": [
       {
-       "headline": "Poll shows tight race for Kansas governor",
-       "url": "https://www.kwch.com/2026/08/28/poll-shows-tight-race-kansas-governor/",
-       "source": "KWCH",
+       "headline": "Holscher wins endorsement from AFL-CIO",
+       "url": "https://sunflowerstatejournal.com/holscher-wins-endorsement-from-afl-cio/",
+       "source": "Sunflower State Journal",
+       "date": "2026-09-04"
+      },
+      {
+       "headline": "UPDATED: A battle of polls: What is state of the Kansas governor's race?",
+       "url": "https://sunflowerstatejournal.com/a-battle-of-polls-what-is-state-of-the-kansas-governors-race/",
+       "source": "Sunflower State Journal",
        "date": "2026-08-28"
+      },
+      {
+       "headline": "In Kansas governor's race, Republican Ty Masterson will face Democrat Cindy Holscher",
+       "url": "https://www.kcur.org/2026-08-04/in-kansas-governors-race-republican-ty-masterson-will-face-democrat-cindy-holscher",
+       "source": "KCUR",
+       "date": "2026-08-04"
       },
       {
        "headline": "Masterson scores win in GOP primary for Kansas governor; Holscher prevails in Democratic race",
        "url": "https://kansasreflector.com/2026/08/04/masterson-scores-win-in-gop-primary-for-kansas-governor-holscher-prevails-in-democratic-race/",
        "source": "Kansas Reflector",
        "date": "2026-08-04"
-      },
-      {
-       "headline": "Masterson scores win in GOP primary for Kansas governor; Holscher prevails in Democratic race",
-       "url": "https://lawrencekstimes.com/2026/08/04/kr-masterson-holscher-gov/",
-       "source": "The Lawrence Times",
-       "date": "2026-08-04"
-      },
-      {
-       "headline": "Masterson scores win in GOP primary for Kansas governor; Holscher prevails in Democratic race",
-       "url": "https://www.hppr.org/hppr-news/2026-08-06/masterson-scores-win-in-gop-primary-for-kansas-governor-holscher-prevails-in-democratic-race",
-       "source": "HPPR",
-       "date": "2026-08-06"
       }
      ]
     }
@@ -1179,65 +1143,65 @@
     {
      "type": "Senate",
      "matchup": "Kurt Alme (R) vs. Alani Bankhead (D) vs. Seth Bodnar (I)",
-     "sentiment": 40,
-     "summary": "Coverage centered on Democratic disarray ahead of the Aug. 10 ballot-withdrawal deadline: Democratic nominee Alani Bankhead defied intense pressure to exit, declaring she will stay through Nov. 3, while party figures including Jon Tester and Max Baucus rallied behind independent Seth Bodnar, the former University of Montana president who leads all candidates in fundraising. Reporting stressed that a Bankhead-Bodnar split of the anti-MAGA vote likely clears a path for Republican Kurt Alme, with polls showing Alme winning comfortably in three- or four-way scenarios. Tone is unfavorable toward Democrats given the emphasis on intra-party dysfunction.",
+     "sentiment": 32,
+     "summary": "Montana's open Senate seat (Daines retired and endorsed Alme) is a three-way race in which Republican Kurt Alme holds a comfortable lead. Decision Desk HQ's Sept 4 average puts Alme at 44%, independent Seth Bodnar at 26%, and Democrat Alani Bankhead at 21%, with a forecast giving Alme ~9-in-10 odds. Coverage centers on Democratic infighting after Bankhead refused to exit before the Aug 10 withdrawal deadline, a split most analysts say benefits Alme.",
      "candidates": [
       {
        "name": "Kurt Alme",
        "party": "R",
-       "mentions": 4,
-       "sentiment": 55
+       "mentions": 8,
+       "sentiment": 62
       },
       {
        "name": "Alani Bankhead",
        "party": "D",
-       "mentions": 6,
-       "sentiment": 42
+       "mentions": 9,
+       "sentiment": 30
       },
       {
        "name": "Seth Bodnar",
        "party": "I",
-       "mentions": 6,
-       "sentiment": 50
+       "mentions": 8,
+       "sentiment": 46
       }
      ],
      "outlets": [
       {
+       "source": "Decision Desk HQ",
+       "lean": null,
+       "sentiment": 35,
+       "articles": 1
+      },
+      {
        "source": "Montana Free Press",
        "lean": null,
-       "sentiment": 47,
-       "articles": 2
+       "sentiment": 40,
+       "articles": 1
       },
       {
        "source": "Daily Montanan",
        "lean": null,
-       "sentiment": 45,
-       "articles": 2
+       "sentiment": 42,
+       "articles": 1
       },
       {
        "source": "Flathead Beacon",
        "lean": null,
-       "sentiment": 47,
+       "sentiment": 38,
        "articles": 1
       }
      ],
      "articles": [
       {
-       "headline": "As Withdrawal Deadline Comes to a Close in Senate Race, Bankhead and Bodnar Both Commit to Staying the Course",
-       "url": "https://flatheadbeacon.com/2026/08/10/as-withdrawal-deadline-comes-to-a-close-in-senate-race-bankhead-and-bodnar-both-commit-to-staying-the-course/",
-       "source": "Flathead Beacon",
-       "date": "2026-08-10"
+       "headline": "GOP holds big edge in Montana's Senate race",
+       "url": "https://decisiondeskhq.substack.com/p/montana-senate-alme-bodnar-bankhead-trump-approval-generic-ballot-forecast-midterm",
+       "source": "Decision Desk HQ",
+       "date": "2026-09-04"
       },
       {
        "headline": "Alani Bankhead stays in Montana U.S. Senate race",
        "url": "https://montanafreepress.org/2026/08/10/bankhead-still-in-the-running/",
        "source": "Montana Free Press",
-       "date": "2026-08-10"
-      },
-      {
-       "headline": "Bankhead staying in Senate race, setting up a four-way battle",
-       "url": "https://dailymontanan.com/2026/08/10/bankhead-staying-in-senate-race-setting-up-a-four-way-battle/",
-       "source": "Daily Montanan",
        "date": "2026-08-10"
       },
       {
@@ -1247,10 +1211,10 @@
        "date": "2026-08-07"
       },
       {
-       "headline": "Montana Democrats roiled by Bankhead-or-Bodnar question",
-       "url": "https://montanafreepress.org/2026/08/03/democratic-party-weighs-legal-options-in-turbulent-senate-race/",
-       "source": "Montana Free Press",
-       "date": "2026-08-03"
+       "headline": "Behind the Push to Clear the Field in Montana's Senate Race",
+       "url": "https://flatheadbeacon.com/2026/08/05/behind-the-push-to-clear-the-field-in-montanas-senate-race/",
+       "source": "Flathead Beacon",
+       "date": "2026-08-05"
       }
      ]
     }
@@ -1261,72 +1225,72 @@
     {
      "type": "Senate",
      "matchup": "Dan Sullivan (R, inc.) vs. Mary Peltola (D)",
-     "sentiment": 58,
-     "summary": "After the Aug. 18 all-party primary, Sen. Dan Sullivan and Democrat Mary Peltola advanced to a November ranked-choice showdown that most coverage frames as a genuine battleground and a Democratic pickup opportunity. Recent polls and betting markets give Peltola a narrow but consistent edge, and reporting leans toward her as the early front-runner. Coverage is dominated by the chaos of a second candidate named Dan Sullivan on the ballot, which GOP allies call a plot to confuse voters and which is now under federal investigation. Sullivan has gone on the attack in the first post-primary faceoff as he tries to close a small polling gap.",
+     "sentiment": 60,
+     "summary": "Alaska's ranked-choice Senate race is rated a toss-up, with Democrat Mary Peltola holding a narrow, consistent polling edge over Republican incumbent Dan Sullivan; she led the August primary field and DDHQ's average has her up about 50-48. On Sept 2-3 news broke that President Trump will travel to Alaska about a month out to campaign for Sullivan. A complicating wrinkle is a second Republican named Dan J. Sullivan on the ballot, which the GOP fears could siphon votes and help Peltola clear 50%.",
      "candidates": [
-      {
-       "name": "Mary Peltola",
-       "party": "D",
-       "mentions": 4,
-       "sentiment": 62
-      },
       {
        "name": "Dan Sullivan",
        "party": "R",
-       "mentions": 4,
-       "sentiment": 44
+       "mentions": 10,
+       "sentiment": 45
+      },
+      {
+       "name": "Mary Peltola",
+       "party": "D",
+       "mentions": 11,
+       "sentiment": 62
       }
      ],
      "outlets": [
       {
-       "source": "Alaska Public Media",
+       "source": "Bloomberg",
+       "lean": -1,
+       "sentiment": 42,
+       "articles": 1
+      },
+      {
+       "source": "Native News Online",
        "lean": null,
-       "sentiment": 55,
+       "sentiment": 66,
        "articles": 1
       },
       {
        "source": "Washington Examiner",
        "lean": 1,
-       "sentiment": 48,
+       "sentiment": 46,
        "articles": 1
       },
       {
-       "source": "Newsweek",
-       "lean": 0,
-       "sentiment": 62,
-       "articles": 1
-      },
-      {
-       "source": "Alaska Beacon",
+       "source": "Alaska Public Media",
        "lean": null,
-       "sentiment": 50,
+       "sentiment": 55,
        "articles": 1
       }
      ],
      "articles": [
       {
+       "headline": "Alaska Senate Race: Doubts About Democrats Are Republicans' Best Asset",
+       "url": "https://www.bloomberg.com/opinion/articles/2026-09-07/alaska-senate-race-doubts-about-democrats-are-republicans-best-asset",
+       "source": "Bloomberg",
+       "date": "2026-09-07"
+      },
+      {
+       "headline": "Trump to Campaign for Sullivan as Peltola Gains Ground in Alaska Senate Race",
+       "url": "https://nativenewsonline.net/currents/trump-to-campaign-for-sullivan-as-peltola-gains-ground-in-alaska-senate-race/",
+       "source": "Native News Online",
+       "date": "2026-09-03"
+      },
+      {
+       "headline": "Trump previews trip to Alaska to campaign for Dan Sullivan, ripping into the other Dan Sullivan",
+       "url": "https://www.washingtonexaminer.com/news/campaigns/congressional/4710205/trump-alaska-trip-preview-dan-sullivan/",
+       "source": "Washington Examiner",
+       "date": "2026-09-02"
+      },
+      {
        "headline": "U.S. Senate race will likely have two Dan Sullivans and a Mary Peltola",
        "url": "https://alaskapublic.org/news/politics/elections/2026-08-18/u-s-senate-race-will-likely-have-two-dan-sullivans-and-a-mary-peltola",
        "source": "Alaska Public Media",
        "date": "2026-08-18"
-      },
-      {
-       "headline": "Alaska Senate election polls show nail-biter race between Mary Peltola and Dan Sullivan",
-       "url": "https://www.washingtonexaminer.com/news/campaigns/congressional/4690943/alaska-senate-election-poll-mary-peltola-dan-sullivan/",
-       "source": "Washington Examiner",
-       "date": "2026-08-18"
-      },
-      {
-       "headline": "Mary Peltola's Chances of Beating the Dan Sullivans in Alaska",
-       "url": "https://www.newsweek.com/mary-peltola-chances-beating-dan-sullivans-alaska-12369384",
-       "source": "Newsweek",
-       "date": "2026-08-26"
-      },
-      {
-       "headline": "Sullivan goes on attack in first post-primary faceoff for Alaska's U.S. Senate race",
-       "url": "https://alaskabeacon.com/2026/08/28/sullivan-goes-on-attack-in-first-post-primary-faceoff-for-alaskas-u-s-senate-race/",
-       "source": "Alaska Beacon",
-       "date": "2026-08-28"
       }
      ]
     }
@@ -1337,66 +1301,78 @@
     {
      "type": "Senate",
      "matchup": "Pete Ricketts (R, inc.) vs. Dan Osborn (I)",
-     "sentiment": 47,
-     "summary": "Republican Sen. Pete Ricketts leads independent Dan Osborn by roughly five to six points in polling averages, though Osborn, who took 47% against Sen. Deb Fischer in 2024, is again treated as a serious challenger in a race described as heated. Much of the recent coverage centers on ballot and legal drama, including a court fight over whether Nebraska Democrats must field a replacement Senate candidate. The two are set to meet Sept. 1 in the only scheduled debate, at the Nebraska State Fair. Conservative commentary has attacked Osborn's independent label as a Democratic front, keeping the partisan framing sharp.",
+     "sentiment": 53,
+     "summary": "A genuine tossup on the numbers: a Democratic-aligned Impact Research internal (Aug 9-13) showed Ricketts and Osborn tied at 47%, though forecasters still rate it Likely Republican and markets give Ricketts ~70%. The two met Sept 1 in their first debate at the Nebraska State Fair, clashing over cost of living, tariffs and immigration, with Ricketts branding his independent opponent 'Democrat Dan.'",
      "candidates": [
       {
        "name": "Pete Ricketts",
        "party": "R",
-       "mentions": 4,
-       "sentiment": 52
+       "mentions": 6,
+       "sentiment": 44
       },
       {
        "name": "Dan Osborn",
        "party": "I",
-       "mentions": 4,
-       "sentiment": 48
+       "mentions": 6,
+       "sentiment": 58
       }
      ],
      "outlets": [
       {
-       "source": "Nebraska Examiner",
-       "lean": null,
-       "sentiment": 50,
-       "articles": 2
+       "source": "Newsweek",
+       "lean": 0,
+       "sentiment": 62,
+       "articles": 1
       },
       {
-       "source": "RedState",
+       "source": "Nebraska Examiner",
        "lean": null,
-       "sentiment": 26,
+       "sentiment": 51,
        "articles": 1
       },
       {
        "source": "WOWT",
        "lean": null,
        "sentiment": 50,
+       "articles": 1
+      },
+      {
+       "source": "KWIT",
+       "lean": null,
+       "sentiment": 50,
+       "articles": 1
+      },
+      {
+       "source": "RedState",
+       "lean": null,
+       "sentiment": 24,
        "articles": 1
       }
      ],
      "articles": [
       {
-       "headline": "Nebraska State Fair will host US Senate debate between Osborn, Ricketts",
-       "url": "https://nebraskaexaminer.com/2026/08/04/nebraska-state-fair-will-host-us-senate-debate-between-osborn-ricketts/",
-       "source": "Nebraska Examiner",
-       "date": "2026-08-04"
-      },
-      {
-       "headline": "District judge won't force Nebraska Democrats to replace Senate candidate",
-       "url": "https://nebraskaexaminer.com/2026/08/26/district-judge-wont-force-nebraska-democrats-to-replace-senate-candidate/",
-       "source": "Nebraska Examiner",
+       "headline": "Republican's Chances of Losing to Dan Osborn in Nebraska Senate Race",
+       "url": "https://www.newsweek.com/republicans-chances-of-losing-to-dan-osborn-in-nebraska-senate-race-12370545",
+       "source": "Newsweek",
        "date": "2026-08-26"
       },
       {
-       "headline": "Dan Osborn Further Exposes His 'Independent' Label Scam in Contentious Interview",
-       "url": "https://redstate.com/wardclark/2026/08/23/exposed-dan-osborns-independent-label-is-a-democrat-scam-n2205970",
-       "source": "RedState",
-       "date": "2026-08-23"
+       "headline": "Ricketts, Osborn talk tariffs, Iran war during Nebraska State Fair debate",
+       "url": "https://nebraskaexaminer.com/2026/09/01/ricketts-osborn-talk-tariffs-iran-war-during-nebraska-state-fair-debate/",
+       "source": "Nebraska Examiner",
+       "date": "2026-09-01"
       },
       {
-       "headline": "Election 2026: Nebraska Senate race tangled in ballot drama",
-       "url": "https://www.wowt.com/2026/07/31/election-2026-nebraska-senate-candidates-campaign-amid-unusual-controversies/",
+       "headline": "Nebraska's U.S. Senate candidates face off in State Fair debate Tuesday evening",
+       "url": "https://www.wowt.com/2026/09/01/nebraskas-us-senate-candidates-face-off-state-fair-debate-tuesday-evening/",
        "source": "WOWT",
-       "date": "2026-07-31"
+       "date": "2026-09-01"
+      },
+      {
+       "headline": "Osborn, Ricketts debate issues as seek U.S. Senate seat in Nebraska",
+       "url": "https://www.kwit.org/podcast/spm-news/2026-09-02/osborn-ricketts-debate-issues-as-seek-u-s-senate-seat-in-nebraska",
+       "source": "KWIT",
+       "date": "2026-09-02"
       }
      ]
     }
@@ -1407,66 +1383,42 @@
     {
      "type": "Senate",
      "matchup": "Ken Paxton (R) vs. James Talarico (D)",
-     "sentiment": 64,
-     "summary": "Coverage of the Texas Senate race turned decisively toward Democrat James Talarico in late August after the Cook Political Report moved the contest from lean Republican to toss-up on Aug. 20, citing Attorney General Ken Paxton's scandals and underwater favorability. Multiple polls show Talarico narrowly leading or tied, and reporting emphasizes his fundraising advantage and strong support among Black and Latino voters. Even right-leaning outlets describe Paxton as deeply flawed and underperforming a generic Republican, while his campaign insists Texas will stay red. Paxton beat incumbent John Cornyn in the May 26 GOP runoff, and the general election is now among the most closely watched in the country.",
+     "sentiment": 60,
+     "summary": "A pure tossup (Cook; Sabato leans-R): the Overton Insights poll (Aug 24-26) had Talarico 44 to Paxton 43.4, while an Aug 9-11 Emerson/Nexstar survey had Paxton 47-46. Paxton is the challenger, having ousted John Cornyn in the May GOP primary. Coverage skews favorable to Talarico on his fundraising edge (~$30M vs ~$9M) and a viral Paxton 'made with AI' data-center plan; Trump's MAGA Inc. disclosed a $10M IE for Paxton.",
      "candidates": [
       {
        "name": "Ken Paxton",
        "party": "R",
-       "mentions": 5,
-       "sentiment": 38
+       "mentions": 9,
+       "sentiment": 32
       },
       {
        "name": "James Talarico",
        "party": "D",
-       "mentions": 5,
+       "mentions": 8,
        "sentiment": 66
       }
      ],
      "outlets": [
       {
-       "source": "Washington Examiner",
-       "lean": 1,
-       "sentiment": 58,
-       "articles": 1
-      },
-      {
-       "source": "Longview News-Journal",
-       "lean": null,
-       "sentiment": 62,
-       "articles": 1
+       "source": "Newsweek",
+       "lean": 0,
+       "sentiment": 63,
+       "articles": 2
       },
       {
        "source": "Houston Public Media",
        "lean": null,
-       "sentiment": 66,
-       "articles": 1
-      },
-      {
-       "source": "The Texas Tribune",
-       "lean": null,
-       "sentiment": 64,
-       "articles": 1
-      },
-      {
-       "source": "WBUR",
-       "lean": null,
-       "sentiment": 63,
+       "sentiment": 58,
        "articles": 1
       }
      ],
      "articles": [
       {
-       "headline": "Texas and Iowa Senate races shift toward Democrats: Cook Political Report",
-       "url": "https://www.washingtonexaminer.com/news/campaigns/congressional/4694781/texas-iowa-senate-races-shift-democrat-cook-political-report/",
-       "source": "Washington Examiner",
-       "date": "2026-08-20"
-      },
-      {
-       "headline": "Paxton-Talarico Senate race is a toss-up, Cook Report says",
-       "url": "https://news-journal.com/2026/08/22/paxton-talarico-senate-race-is-a-toss-up-cook-report-says/",
-       "source": "Longview News-Journal",
-       "date": "2026-08-22"
+       "headline": "James Talarico Blasts Ken Paxton for 'Made With AI' Texas Data Center Plan",
+       "url": "https://www.newsweek.com/james-talarico-ken-paxton-texas-ai-data-center-plan-12360637",
+       "source": "Newsweek",
+       "date": "2026-08-24"
       },
       {
        "headline": "James Talarico continues to edge out Ken Paxton in Texas' U.S. Senate race, new poll finds",
@@ -1475,16 +1427,10 @@
        "date": "2026-08-25"
       },
       {
-       "headline": "Senate poll: Black Texas voters stick with Talarico over Paxton",
-       "url": "https://www.texastribune.org/2026/08/04/texas-senate-race-black-voters-james-talarico-ken-paxton-jasmine-crockett/",
-       "source": "The Texas Tribune",
-       "date": "2026-08-04"
-      },
-      {
-       "headline": "Checking in on Texas' tossup Senate race",
-       "url": "https://www.wbur.org/hereandnow/2026/08/26/texas-senate-race",
-       "source": "WBUR",
-       "date": "2026-08-26"
+       "headline": "RNC Comes to Texas as Trump Stronghold Under Threat",
+       "url": "https://www.newsweek.com/rnc-comes-texas-trump-stronghold-under-threat-12397561",
+       "source": "Newsweek",
+       "date": "2026-09-06"
       }
      ]
     },
@@ -1492,71 +1438,53 @@
      "type": "Governor",
      "matchup": "Greg Abbott (R, inc.) vs. Gina Hinojosa (D)",
      "sentiment": 54,
-     "summary": "Gov. Greg Abbott continues to lead Democrat Gina Hinojosa, but by a narrowing margin of roughly four to seven points, and the Cook Political Report shifted the race from solid Republican to likely Republican, calling Hinojosa surprisingly competitive. Coverage highlights Hinojosa's rising favorability and momentum as more voters learn who she is, alongside Abbott's slipping job approval. Reporting also notes Abbott's enormous fundraising and cash-on-hand advantage over Hinojosa's comparatively small war chest. Some pieces spotlight Texas conservatives breaking ranks, though most analysts still rate Abbott the clear favorite for a fourth term.",
+     "summary": "Abbott is seeking a fourth term and remains the clear favorite (Cook rates it Likely Republican; markets ~81-82%), but coverage centers on an unexpectedly tight contest. An Overton Insights poll (Aug 24-26) had Abbott up just 1 point, 46.9-45.8, and most surveys show a smaller lead than his 11-point 2022 win. Hinojosa runs on public schools and affordability but faces a massive resource gap (~$67M vs ~$3M cash).",
      "candidates": [
       {
        "name": "Greg Abbott",
        "party": "R",
-       "mentions": 4,
+       "mentions": 8,
        "sentiment": 50
       },
       {
        "name": "Gina Hinojosa",
        "party": "D",
-       "mentions": 4,
-       "sentiment": 56
+       "mentions": 6,
+       "sentiment": 60
       }
      ],
      "outlets": [
       {
-       "source": "CBS News",
-       "lean": -1,
-       "sentiment": 57,
-       "articles": 1
-      },
-      {
-       "source": "The Detroit News",
-       "lean": null,
-       "sentiment": 58,
-       "articles": 1
-      },
-      {
        "source": "Newsweek",
        "lean": 0,
-       "sentiment": 52,
-       "articles": 1
+       "sentiment": 57,
+       "articles": 2
       },
       {
-       "source": "Houston Public Media",
+       "source": "Daily Kos",
        "lean": null,
-       "sentiment": 56,
+       "sentiment": 78,
        "articles": 1
       }
      ],
      "articles": [
       {
-       "headline": "Gina Hinojosa focuses on kitchen table issues as polls show the Texas Governor's race within five percentage points",
-       "url": "https://www.cbsnews.com/texas/news/gina-hinojosa-governor-race-8-29-2026/",
-       "source": "CBS News",
-       "date": "2026-08-29"
-      },
-      {
-       "headline": "Some Texas conservatives are breaking ranks and pledging to vote Democrat",
-       "url": "https://www.detroitnews.com/story/news/politics/2026/08/24/some-texas-conservatives-breaking-ranks-pledging-vote-democrat/91439868007/",
-       "source": "The Detroit News",
-       "date": "2026-08-24"
-      },
-      {
-       "headline": "Greg Abbott Just Single Digits Ahead of Democrat in Texas, Polling Shows",
-       "url": "https://www.newsweek.com/greg-abbott-just-single-digits-ahead-democrat-texas-poll-gina-hinojosa-12288679",
+       "headline": "Greg Abbott Leads by 1 Point in New Texas Governor Race Poll",
+       "url": "https://www.newsweek.com/greg-abbott-leads-by-1-point-in-new-texas-governor-race-poll-12396310",
        "source": "Newsweek",
-       "date": "2026-08-05"
+       "date": "2026-09-02"
       },
       {
-       "headline": "Democratic candidate Gina Hinojosa calls Texas governor race 'most important in America' at Houston rally",
-       "url": "https://www.houstonpublicmedia.org/articles/news/politics/election-2026/2026/08/06/558728/gina-hinojosa-texas-governor-greg-abbott-election-2026-rally-houston/",
-       "source": "Houston Public Media",
-       "date": "2026-08-06"
+       "headline": "New Poll has Gina Hinojosa Within 1 Point of Greg Abbott in Texas Gov Race",
+       "url": "https://www.dailykos.com/stories/2026/9/3/800093649/community/new-poll-has-gina-hinojosa/",
+       "source": "Daily Kos",
+       "date": "2026-09-03"
+      },
+      {
+       "headline": "RNC Comes to Texas as Trump Stronghold Under Threat",
+       "url": "https://www.newsweek.com/rnc-comes-texas-trump-stronghold-under-threat-12397561",
+       "source": "Newsweek",
+       "date": "2026-09-06"
       }
      ]
     }
@@ -1616,61 +1544,61 @@
    "races": [
     {
      "type": "Governor",
-     "matchup": "Xavier Becerra (D) vs. Steve Hilton (R)",
-     "sentiment": 60,
-     "summary": "Coverage over the last two weeks was dominated by dueling polls in the race to succeed term-limited Gov. Gavin Newsom. A UC Berkeley IGS/L.A. Times poll (Aug. 3-9) showed Democrat Xavier Becerra up 55-37 over Republican Steve Hilton, while a mid-August survey touted by Hilton's side showed the gap narrowing to 49-41, with Becerra dipping below 50% for the first time. Tone remains favorable to Becerra given his durable lead in a heavily Democratic state, though conservative outlets emphasized a tightening trend.",
+     "matchup": "Steve Hilton (R) vs. Xavier Becerra (D)",
+     "sentiment": 62,
+     "summary": "Open-seat race (Gov. Newsom termed out) in which Democrat Xavier Becerra holds a commanding, stable lead over Republican Steve Hilton. A September poll had it roughly Becerra 49 / Hilton 41, while summer polling showed Becerra up 55-37. Recent coverage centers on issue contrasts (notably AI regulation) and Hilton's campaign swings into Democratic strongholds; rated safe/likely Democratic.",
      "candidates": [
-      {
-       "name": "Xavier Becerra",
-       "party": "D",
-       "mentions": 6,
-       "sentiment": 60
-      },
       {
        "name": "Steve Hilton",
        "party": "R",
-       "mentions": 5,
+       "mentions": 3,
        "sentiment": 45
+      },
+      {
+       "name": "Xavier Becerra",
+       "party": "D",
+       "mentions": 3,
+       "sentiment": 62
       }
      ],
      "outlets": [
       {
-       "source": "ABC News",
-       "lean": -1,
-       "sentiment": 62,
-       "articles": 1
-      },
-      {
-       "source": "Washington Examiner",
-       "lean": 1,
-       "sentiment": 43,
-       "articles": 1
-      },
-      {
-       "source": "GV Wire",
+       "source": "RedState",
        "lean": null,
-       "sentiment": 48,
+       "sentiment": 32,
+       "articles": 1
+      },
+      {
+       "source": "Tech Times",
+       "lean": null,
+       "sentiment": 50,
+       "articles": 1
+      },
+      {
+       "source": "The Press Democrat",
+       "lean": null,
+       "sentiment": 52,
        "articles": 1
       }
      ],
      "articles": [
       {
-       "headline": "Becerra maintains commanding lead over Hilton in California governor's race, poll shows",
-       "url": "https://abc7.com/post/xavier-becerra-maintains-commanding-lead-over-steve-hilton-california-governor-race-poll-shows/19674942/",
-       "source": "ABC News",
-       "date": "2026-08-14"
+       "headline": "Hilton Cruises Into Becerra's Neighborhood Like a Boss As CA Gubernatorial Campaign Rolls On",
+       "url": "https://redstate.com/sister-toldjah/2026/09/06/hilton-cruises-into-becerras-neighborhood-like-a-boss-as-ca-gubernatorial-campaign-rolls-on-n2206598",
+       "source": "RedState",
+       "date": "2026-09-06"
       },
       {
-       "headline": "Steve Hilton catches up to Xavier Becerra in race for California governor: Poll",
-       "url": "https://www.washingtonexaminer.com/news/campaigns/state/4698062/steve-hilton-catches-xavier-becerra-race-california-governor-poll/",
-       "source": "Washington Examiner",
-       "date": "2026-08-24"
+       "headline": "California Governor Race 2026: Becerra and Hilton Split Sharply on AI Regulation",
+       "url": "https://www.techtimes.com/articles/324610/20260815/california-governor-race-2026-becerra-hilton-split-sharply-ai-regulation.htm",
+       "source": "Tech Times",
+       "date": "2026-08-15"
       },
       {
-       "headline": "Hilton Commissioned Poll Shows a Tightening CA Governor's Race",
-       "url": "https://gvwire.com/2026/08/24/hilton-commissioned-poll-shows-a-tightening-ca-governors-race/",
-       "source": "GV Wire",
-       "date": "2026-08-24"
+       "headline": "It's official: Becerra, Hilton move onto November governor's election",
+       "url": "https://www.pressdemocrat.com/2026/06/09/its-official-becerra-hilton-move-onto-november-governors-election/",
+       "source": "The Press Democrat",
+       "date": "2026-06-09"
       }
      ]
     }
@@ -1720,67 +1648,61 @@
    "races": [
     {
      "type": "Senate",
-     "matchup": "Ashley Moody (R, appointed inc.) vs. Angie Nixon (D)",
-     "sentiment": 50,
-     "summary": "Democrat Angie Nixon, a democratic-socialist state representative, upset better-funded Alex Vindman in the Aug. 18 primary and now faces appointed GOP Sen. Ashley Moody. Late-August coverage centered on a leaked grand-jury report tying Moody to the Hope Florida controversy, which Nixon used to demand Moody's resignation, plus a Bernie Sanders endorsement. Despite the attention, pre-primary polling (UNF: Moody +8) and forecasters still rate the seat Solid/Safe R.",
+     "matchup": "Ashley Moody (R, inc.) vs. Angie Nixon (D)",
+     "sentiment": 68,
+     "summary": "Coverage is dominated by the Hope Florida scandal: a leaked Leon County grand-jury report found the state 'misappropriated' $10M of a Medicaid settlement into political causes and faulted appointed Sen. Ashley Moody's (R) office for failing due diligence, though no charges were brought. Democratic nominee Angie Nixon has repeatedly called on Moody to resign and is filing Bar complaints, putting the GOP on defense. Polls still favor Moody by mid-to-high single digits but have been tightening as the scandal fuels Democratic attacks.",
      "candidates": [
       {
        "name": "Ashley Moody",
        "party": "R",
-       "mentions": 6,
-       "sentiment": 48
+       "mentions": 10,
+       "sentiment": 30
       },
       {
        "name": "Angie Nixon",
        "party": "D",
-       "mentions": 6,
-       "sentiment": 54
+       "mentions": 9,
+       "sentiment": 66
       }
      ],
      "outlets": [
       {
-       "source": "Newsweek",
-       "lean": 0,
-       "sentiment": 55,
-       "articles": 1
-      },
-      {
        "source": "Florida Phoenix",
        "lean": null,
-       "sentiment": 52,
-       "articles": 2
+       "sentiment": 78,
+       "articles": 3
       },
       {
-       "source": "News4Jax",
+       "source": "Tampa Bay Times",
        "lean": null,
-       "sentiment": 48,
+       "sentiment": 62,
        "articles": 1
       }
      ],
      "articles": [
       {
-       "headline": "Nixon Hits Hard as GOP Rival Linked to Florida Scandal—What Polls Show",
-       "url": "https://www.newsweek.com/nixon-hits-hard-ashley-moody-10m-florida-scandal-polls-12375702",
-       "source": "Newsweek",
+       "headline": "Hit dogs holler over Hope Florida disclosure",
+       "url": "https://floridaphoenix.com/2026/09/08/hit-dogs-holler-over-hope-florida-disclosure/",
+       "source": "Florida Phoenix",
+       "date": "2026-09-08"
+      },
+      {
+       "headline": "Hope Florida, DeSantis, Uthmeier and the grand jury (viewpoints)",
+       "url": "https://www.tampabay.com/viewpoints/2026/09/02/hope-florida-desantis-uthmeier-grand-jury/",
+       "source": "Tampa Bay Times",
+       "date": "2026-09-02"
+      },
+      {
+       "headline": "David Jolly: First lady Casey DeSantis, Hope Florida 'were used in a sinister plan'",
+       "url": "https://floridaphoenix.com/2026/08/28/david-jolly-first-lady-casey-desantis-hope-florida-were-used-in-a-sinister-plan/",
+       "source": "Florida Phoenix",
+       "date": "2026-08-28"
+      },
+      {
+       "headline": "Democrats go on the offense, Republicans play defense after Hope Florida grand jury report leak",
+       "url": "https://floridaphoenix.com/2026/08/27/democrats-fired-up-republicans-on-the-defense-after-hope-florida-grand-jury-report-leaked-to-the-press/",
+       "source": "Florida Phoenix",
        "date": "2026-08-27"
-      },
-      {
-       "headline": "Bernie Sanders endorses Angie Nixon for U.S. Senate in Florida",
-       "url": "https://floridaphoenix.com/2026/08/20/bernie-sanders-endorses-angie-nixon-for-u-s-senate-in-florida/",
-       "source": "Florida Phoenix",
-       "date": "2026-08-20"
-      },
-      {
-       "headline": "Angie Nixon wins Florida Democratic Senate nomination, setting up November race against Ashley Moody",
-       "url": "https://www.news4jax.com/news/local/2026/08/19/angie-nixon-wins-florida-democratic-senate-nomination-setting-up-november-race-against-ashley-moody/",
-       "source": "News4Jax",
-       "date": "2026-08-19"
-      },
-      {
-       "headline": "Nixon advances to face Moody in U.S. Senate race with decisive win over Vindman",
-       "url": "https://floridaphoenix.com/2026/08/18/nixon-advances-to-face-moody-in-u-s-senate-race-with-decisive-win-over-vindman/",
-       "source": "Florida Phoenix",
-       "date": "2026-08-18"
       }
      ]
     }
@@ -1871,54 +1793,42 @@
     {
      "type": "Senate",
      "matchup": "Julia Letlow (R) vs. Jamie Davis (D)",
-     "sentiment": 48,
-     "summary": "Recent coverage centered on a new Public Policy Polling survey showing Rep. Julia Letlow leading Democratic farmer Jamie Davis by just four points (41%-37%) with about one in five voters undecided, prompting stories that the race for Bill Cassidy's seat could be closer than expected. Reporting noted Letlow's Trump endorsement and roughly $6 million fundraising advantage against Davis's grassroots campaign. The tone was competitive and slightly favorable to the Democratic underdog narrative, though Letlow remained the clear front-runner.",
+     "sentiment": 46,
+     "summary": "For the open seat vacated by primary-defeated Sen. Bill Cassidy, Trump-endorsed Rep. Julia Letlow (R) is the well-funded frontrunner facing Democrat Jamie Davis, a Tensas Parish farmer and the first Black candidate to reach a Louisiana U.S. Senate general election since Reconstruction. Davis is pushing a rural, working-class message and must expand far beyond the Democratic base in a Trump+22 state. An August PPP survey showed Letlow up just 41-37, but she vastly outraises Davis and remains favored.",
      "candidates": [
       {
        "name": "Julia Letlow",
        "party": "R",
-       "mentions": 10,
-       "sentiment": 52
+       "mentions": 8,
+       "sentiment": 55
       },
       {
        "name": "Jamie Davis",
        "party": "D",
        "mentions": 8,
-       "sentiment": 50
+       "sentiment": 48
       }
      ],
      "outlets": [
       {
-       "source": "WWNO",
+       "source": "BRWeeklyPress",
        "lean": null,
-       "sentiment": 50,
+       "sentiment": 55,
        "articles": 1
       },
       {
        "source": "Louisiana Radio Network",
        "lean": null,
-       "sentiment": 49,
-       "articles": 1
-      },
-      {
-       "source": "Big Easy Magazine",
-       "lean": null,
-       "sentiment": 53,
-       "articles": 1
-      },
-      {
-       "source": "Louisiana Illuminator",
-       "lean": null,
-       "sentiment": 49,
-       "articles": 1
+       "sentiment": 48,
+       "articles": 2
       }
      ],
      "articles": [
       {
-       "headline": "Poll shows 4-point difference between Letlow and Davis for U.S. Senate; 1 in 5 undecided",
-       "url": "https://www.wwno.org/2026-08-19/poll-shows-4-point-difference-between-letlow-and-davis-for-u-s-senate-1-in-5-undecided",
-       "source": "WWNO",
-       "date": "2026-08-19"
+       "headline": "Davis' Democratic Endorsement Becomes Test of Party's Statewide Strategy",
+       "url": "https://www.brweeklypress.com/davis-democratic-endorsement-becomes-test-of-partys-statewide-strategy/",
+       "source": "BRWeeklyPress",
+       "date": "2026-09-02"
       },
       {
        "headline": "Initial poll has Julia Letlow leading Jamie Davis by a small margin in U.S. Senate general election",
@@ -1927,16 +1837,10 @@
        "date": "2026-08-20"
       },
       {
-       "headline": "A New Poll Has Jamie Davis Within Four Points of Julia Letlow. Here's What the Numbers Actually Show.",
-       "url": "https://bigeasymagazine.com/2026/08/15/a-new-poll-has-jamie-davis-within-four-points-of-julia-letlow-heres-what-the-numbers-actually-show/",
-       "source": "Big Easy Magazine",
-       "date": "2026-08-15"
-      },
-      {
-       "headline": "Letlow rides Trump endorsement to US Senate GOP ticket win; Davis cinches Democratic bid",
-       "url": "https://lailluminator.com/2026/06/27/letlow-senate-4/",
-       "source": "Louisiana Illuminator",
-       "date": "2026-06-27"
+       "headline": "Latest campaign finance reports show Julia Letlow far ahead of Jamie Davis",
+       "url": "https://louisianaradionetwork.com/2026/07/24/47505/",
+       "source": "Louisiana Radio Network",
+       "date": "2026-07-24"
       }
      ]
     }
@@ -1976,132 +1880,108 @@
    "races": [
     {
      "type": "Senate",
-     "matchup": "Peggy Flanagan (D) vs. Michele Tafoya (R)",
-     "sentiment": 49,
-     "summary": "Progressive Lt. Gov. Peggy Flanagan won the Aug. 11 DFL primary over Rep. Angie Craig and faces Republican former sportscaster Michele Tafoya for the open seat of retiring Sen. Tina Smith. Late-August coverage was dominated by conservative outlets framing Flanagan as a vulnerable far-left nominee and hammering Minnesota fraud scandals, though the RCP average still showed Flanagan ahead roughly 46.5-41. Transgender policy, immigration and government fraud emerged as central fault lines.",
+     "matchup": "Michele Tafoya (R) vs. Peggy Flanagan (D)",
+     "sentiment": 53,
+     "summary": "For the open seat vacated by retiring Sen. Tina Smith, DFL Lt. Gov. Peggy Flanagan (who beat Rep. Angie Craig 59-41 on Aug 11) faces Republican former NBC sideline reporter Michele Tafoya. Forecasters favor Flanagan (~84% D), though coverage flags her ties to the Walz-era state fraud scandal. Early-September coverage centered on Tafoya's newly disclosed wealth.",
      "candidates": [
       {
        "name": "Peggy Flanagan",
        "party": "D",
-       "mentions": 6,
-       "sentiment": 49
+       "mentions": 8,
+       "sentiment": 55
       },
       {
        "name": "Michele Tafoya",
        "party": "R",
-       "mentions": 5,
+       "mentions": 7,
        "sentiment": 46
       }
      ],
      "outlets": [
       {
-       "source": "RedState",
+       "source": "Minnesota Reformer",
        "lean": null,
-       "sentiment": 25,
-       "articles": 2
-      },
-      {
-       "source": "Axios",
-       "lean": -1,
-       "sentiment": 45,
+       "sentiment": 50,
        "articles": 1
       },
       {
        "source": "MPR News",
        "lean": null,
-       "sentiment": 52,
+       "sentiment": 51,
        "articles": 2
       }
      ],
      "articles": [
       {
-       "headline": "Big News in the Battle for the Senate Leaves the GOP Still on Top",
-       "url": "https://redstate.com/adam-turner/2026/08/24/big-news-in-the-battle-for-the-senate-leaves-the-gop-still-on-top-n2205969",
-       "source": "RedState",
-       "date": "2026-08-24"
-      },
-      {
-       "headline": "Minnesota Was Ground Zero for Fraud; Amy Klobuchar Appears Not to Have Noticed",
-       "url": "https://redstate.com/wardclark/2026/08/22/minnesota-was-ground-zero-for-fraud-amy-klobuchar-appears-not-to-have-noticed-n2205929",
-       "source": "RedState",
-       "date": "2026-08-22"
-      },
-      {
-       "headline": "GOP finds its next progressive target in Minnesota",
-       "url": "https://www.axios.com/2026/08/14/gop-progressive-target-flanagan-minnesota",
-       "source": "Axios",
-       "date": "2026-08-14"
-      },
-      {
-       "headline": "Ticket-leading women in both major races set Minnesota apart on a national level",
-       "url": "https://www.mprnews.org/story/2026/08/13/women-in-both-major-races-sets-minnesota-apart",
-       "source": "MPR News",
-       "date": "2026-08-13"
+       "headline": "GOP Senate candidate Michele Tafoya reports assets totaling $10.7M to $37.9M",
+       "url": "https://minnesotareformer.com/2026/09/03/gop-senate-candidate-michele-tafoya-reports-assets-totaling-10-7m-to-37-9m/",
+       "source": "Minnesota Reformer",
+       "date": "2026-09-03"
       },
       {
        "headline": "In Senate race, Flanagan and Tafoya bring different politics, styles, approaches",
        "url": "https://www.mprnews.org/story/2026/08/12/peggy-flanagan-michele-tafoya-bring-different-politics-experience",
        "source": "MPR News",
        "date": "2026-08-12"
+      },
+      {
+       "headline": "Flanagan wins DFL duel in Senate race, Tafoya claims GOP nod for open seat",
+       "url": "https://www.mprnews.org/story/2026/08/11/heated-contests-settle-nominations-for-dfl-republican-parties-in-us-senate-race",
+       "source": "MPR News",
+       "date": "2026-08-11"
       }
      ]
     },
     {
      "type": "Governor",
-     "matchup": "Amy Klobuchar (D) vs. Lisa Demuth (R)",
-     "sentiment": 58,
-     "summary": "In the Aug. 11 primary, Sen. Amy Klobuchar romped to the DFL nomination while state House Speaker Lisa Demuth defeated Trump-endorsed Mike Lindell for the GOP nod, setting up a race to succeed Gov. Tim Walz, who is not seeking reelection amid a fraud scandal. Coverage emphasized the historic nature of the contest (Minnesota will elect its first woman governor) and cast Klobuchar as a heavy favorite. The tone leaned Democratic, reflecting Klobuchar's dominant polling position.",
+     "matchup": "Lisa Demuth (R) vs. Amy Klobuchar (D)",
+     "sentiment": 60,
+     "summary": "Democratic Sen. Amy Klobuchar, who entered after Gov. Tim Walz withdrew amid a state social-services fraud scandal, holds a wide lead over Republican state House Speaker Lisa Demuth. An Aug 17 KSTP/SurveyUSA poll had Klobuchar up 51-36, and forecasters give her ~95% odds. Early-September coverage focused on State Fair campaigning and a shared housing message.",
      "candidates": [
       {
        "name": "Amy Klobuchar",
        "party": "D",
-       "mentions": 11,
-       "sentiment": 61
+       "mentions": 8,
+       "sentiment": 62
       },
       {
        "name": "Lisa Demuth",
        "party": "R",
-       "mentions": 9,
-       "sentiment": 48
+       "mentions": 7,
+       "sentiment": 43
       }
      ],
      "outlets": [
       {
-       "source": "MPR News",
+       "source": "Minnesota Reformer",
        "lean": null,
-       "sentiment": 56,
-       "articles": 3
+       "sentiment": 58,
+       "articles": 2
       },
       {
-       "source": "The Washington Post",
+       "source": "Washington Post",
        "lean": -1,
-       "sentiment": 55,
+       "sentiment": 52,
        "articles": 1
       }
      ],
      "articles": [
       {
-       "headline": "Amy Klobuchar will face off against Lisa Demuth in Minnesota governor's race",
-       "url": "https://www.mprnews.org/story/2026/08/11/amy-klobuchar-kendall-qualls-lisa-demuth-mike-lindell-seek-nods-in-minnesota-governors-race",
-       "source": "MPR News",
-       "date": "2026-08-11"
+       "headline": "Klobuchar, Demuth pound pavement at the Minnesota State Fair in campaign for governor",
+       "url": "https://minnesotareformer.com/2026/09/05/klobuchar-demuth-pound-pavement-at-the-minnesota-state-fair-in-campaign-for-governor/",
+       "source": "Minnesota Reformer",
+       "date": "2026-09-05"
       },
       {
-       "headline": "Amy Klobuchar, Lisa Demuth, Michele Tafoya, Peggy Flanagan top Minnesota fall tickets",
-       "url": "https://www.mprnews.org/story/2026/08/12/amy-klobuchar-lisa-demuth-michele-tafoya-peggy-flanagan-top-minnesota-fall-tickets",
-       "source": "MPR News",
-       "date": "2026-08-12"
-      },
-      {
-       "headline": "Klobuchar, Demuth, Qualls, Lindell tangle in Farmfest debate as they vie to be next governor",
-       "url": "https://www.mprnews.org/story/2026/08/05/klobuchar-demuth-qualls-lindell-tangle-in-farmfest-debate-as-the-vie-to-be-next-governor",
-       "source": "MPR News",
-       "date": "2026-08-05"
+       "headline": "Klobuchar, Demuth pledge to boost housing construction though neither commits to zoning reform",
+       "url": "https://minnesotareformer.com/2026/09/02/klobuchar-demuth-want-fewer-building-regulations-neither-commits-to-zoning-reform/",
+       "source": "Minnesota Reformer",
+       "date": "2026-09-02"
       },
       {
        "headline": "Minnesota Governor primary election results 2026 live updates",
        "url": "https://www.washingtonpost.com/elections/results/2026/08/11/minnesota-governor-primary-election-results-2026-live-updates/",
-       "source": "The Washington Post",
+       "source": "Washington Post",
        "date": "2026-08-11"
       }
      ]

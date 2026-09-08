@@ -940,6 +940,55 @@
    },
    "rating_changes": [],
    "snapshot": {}
+  },
+  {
+   "date": "2026-09-07",
+   "label": "Sep 7",
+   "briefing": "weekly_briefing_2026-09-08.md",
+   "chamber": {
+    "house_r": 218,
+    "house_d": 212,
+    "house_i": 1,
+    "house_vacancies": 4,
+    "senate_r": 53,
+    "senate_d": 47,
+    "senate_i": 2,
+    "notes": "Reviewer patch applied out-of-band (Mon Sep 7): P-funk resolved decisions.json 2026-08-25-tx-ia-sen-consensus on Sep 3 (option 2), reverting TX-Sen and IA-Sen Toss-up -> Lean R under the strict SKILL 2.3b consensus rule (Sabato Lean R; Cook's Aug 20 Toss-up unmatched). No chamber-composition change. This entry backfilled 2026-09-08 - the out-of-band apply had no standalone briefing/history entry."
+   },
+   "rating_changes": [
+    {
+     "tab": "Senate",
+     "race": "TX - Paxton (R) vs Talarico (D)",
+     "from": "Toss-up",
+     "to": "Lean R",
+     "source": "Reviewer resolution (SKILL 2.3b consensus), decisions.json 2026-08-25-tx-ia-sen-consensus, 2026-09-03"
+    },
+    {
+     "tab": "Senate",
+     "race": "IA - Hinson (R) vs Turek (D)",
+     "from": "Toss-up",
+     "to": "Lean R",
+     "source": "Reviewer resolution (SKILL 2.3b consensus), decisions.json 2026-08-25-tx-ia-sen-consensus, 2026-09-03"
+    }
+   ],
+   "snapshot": {}
+  },
+  {
+   "date": "2026-09-08",
+   "label": "Sep 8",
+   "briefing": "weekly_briefing_2026-09-08.md",
+   "chamber": {
+    "house_r": 218,
+    "house_d": 214,
+    "house_i": 1,
+    "house_vacancies": 2,
+    "senate_r": 53,
+    "senate_d": 47,
+    "senate_i": 2,
+    "notes": "Two House vacancies filled by Democrats: CA-14 (Aisha Wahab, sworn Sep 2, over Swalwell-D) and GA-13 (Everton Blair Jr., sworn Sep 1, over Scott-D). HOUSE_D 212->214, vacancies 4->2 (FL-20, TX-23 remain; both filled Nov 3). Senate unchanged 53R/47D/2I; Murkowski-AK is R. No consensus Cook+Sabato Rating-cell moves; AK-Gov held Likely R (Sabato lone-moved to Toss-up Sep 3, Cook still Likely R). Data fix: FL-20 vacant row R/Solid R -> D/Solid D. 4 new IE Tilt Watch entries (AK-Sen, NH-Sen, FL-14, TX-15)."
+   },
+   "rating_changes": [],
+   "snapshot": {}
   }
  ]
 }
