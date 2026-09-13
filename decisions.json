@@ -1,96 +1,110 @@
 {
-  "_comment": "Judgment calls an unattended run must NOT make on its own, and must NOT block on either. Contract 3.6 appends here instead of halting; the run ships everything else and surfaces these in the briefing. P-funk reviews at leisure and resolves by editing the entry's status to 'resolved' with a note. Nothing in this file gates the pipeline. See SKILL.md Contract 3.6.",
-  "decisions": [
-    {
-      "id": "2026-08-03-senate-i",
-      "date": "2026-08-03",
-      "status": "resolved",
-      "area": "Constants \u2014 SENATE_I",
-      "question": "SKILL.md hard-coded SENATE_I = 3, counting Murkowski as an independent. senate.gov lists 2 (Sanders, King) and carries Murkowski as R, as does this dashboard's own Senate tab. Change the value and the skill, or keep 3?",
-      "why_not_autonomous": "Contradicting an explicit hard-coded value in the canonical skill is a scope change, not a data update. The invariant SENATE_R + SENATE_D == 100 held either way, so nothing was blocked by deferring it.",
-      "options": [
-        "Correct to 2 and fix SKILL.md",
-        "Keep 3 pending confirmation"
-      ],
-      "resolution": "Corrected to 2 on 2026-08-03 at P-funk's direction. SKILL.md 2.3 rewritten, corrections.json entry added, patch updated before the apply job ran.",
-      "source": "https://www.senate.gov/history/partydiv.htm"
-    },
-    {
-      "id": "2026-08-03-mo-05",
-      "date": "2026-08-03",
-      "status": "resolved",
-      "area": "House \u2014 MO-05",
-      "question": "The MO-05 row carries Party 'D' (Cleaver) with Rating 'Solid R' and a Note saying the Solid R label 'was sheet error'. Post-redistricting Solid R may be correct for the new seat, but the note and the cell contradict each other. Which is right?",
-      "why_not_autonomous": "Resolving it means deciding whether the note or the rating is the stale artifact. I found no primary source settling it, and guessing would either restore a real error or erase a real correction.",
-      "options": [
-        "Rating is right, delete the note",
-        "Note is right, rating should be D-favorable",
-        "Re-research the post-redistricting MO-05 partisan lean"
-      ],
-      "resolution": "Resolved 2026-08-03: the RATING was right and the NOTE was wrong. The note assumed a Democratic incumbent implies a Democratic-leaning rating, but a rating describes the seat. Missouri's mid-decade map turned MO-05 from Harris +24 into Trump 58-40 (Cook PVI R+9; Inside Elections Baseline R+17), and all three forecasters independently moved it to Safe/Solid R. Party cell stays D, Rating stays Solid R, note replaced with sourced reasoning. One live contingency recorded: a People Not Politicians referendum (~300k signatures, certification decision expected around the Aug 4 primary) could suspend the map, in which case the old lines would make this Solid D again.",
-      "source": "https://insideelections.com/a-detailed-analysis-of-missouris-new-congressional-map/"
-    },
-    {
-      "id": "2026-08-10-inside-elections-tilt-mapping",
-      "date": "2026-08-10",
-      "status": "resolved",
-      "area": "Methodology \u2014 rating scale",
-      "question": "Inside Elections uses a finer scale than the dashboard: it has a 'Tilt' tier between 'Lean' and 'Toss-up' (Toss-up / Tilt / Lean / Likely / Solid). The dashboard's 7-point enum has no 'Tilt'. On Aug 6, 2026 Inside Elections moved several races to a 'Tilt' rating (NC-Sen and GA-Sen to Tilt D, IA-Sen to Tilt R, KS-Gov to Tilt R, IA-Gov to Tilt D). How should an IE 'Tilt D/R' be represented on the 7-point sheet when it is the mover \u2014 collapse to 'Toss-up', collapse to 'Lean', or keep tracking Cook/Sabato (which share the 7-point scale) and treat IE only as corroboration?",
-      "why_not_autonomous": "This is a standing methodology choice about which forecaster(s) the Rating column tracks and how to collapse a 5-gradation scale into 7 points, not a one-off data update. Picking a rule unilaterally would silently change how every future IE 'Tilt' move is handled.",
-      "options": [
-        "Keep tracking Cook/Sabato on the 7-point scale; use IE only as corroboration (never import a bare 'Tilt')",
-        "Map IE 'Tilt D/R' to 'Toss-up' (Tilt is the most competitive non-tossup tier)",
-        "Map IE 'Tilt D/R' to 'Lean D/R' (nearest same-direction label)"
-      ],
-      "resolution": "Resolved 2026-08-12 at P-funk's direction: OPTION 1. The Rating column tracks Cook and Sabato on the shared 7-point scale; an Inside Elections 'Tilt' (or any IE rating that diverges from the sheet) is NEVER imported into the cell. IE divergences are instead logged to ie_watch.json and surfaced in the weekly briefing's new 'IE Tilt Watch' section as a leading indicator, then closed when Cook or Sabato move to match (confirmed) or IE reverts (faded). This keeps the 7-point enum clean while preserving IE's early-mover signal. Seeded with the five Aug 6 2026 IE moves (NC-Sen, GA-Sen -> Tilt D; IA-Sen, KS-Gov -> Tilt R; IA-Gov -> Tilt D). Encoded in SKILL.md (methodology 2.3a + Contract 3 briefing section + Contract 3.9/4 wiring) and checked by verify_dashboard.py (L12-iewatch).",
-      "source": "https://www.270towin.com/2026-senate-election/inside-elections-2026-senate-ratings"
-    },
-    {
-      "id": "2026-08-10-mt-senate-matchup",
-      "date": "2026-08-10",
-      "status": "resolved",
-      "area": "Senate \u2014 Montana",
-      "question": "The Senate ratings tab lists MT as incumbent Steve Daines (R) vs. Reilly Neill (D), Solid R. The State News pass (Montana Free Press, Daily Montanan) and news_config.json both indicate Daines did NOT seek re-election, Neill lost the June 2 Democratic primary to Alani Bankhead, and the November matchup is Kurt Alme (R) vs. Alani Bankhead (D) vs. independent Seth Bodnar. Should the Senate row's Incumbent/Challenger cells be rewritten to the Alme/Bankhead/Bodnar matchup (with Daines removed as incumbent)?",
-      "why_not_autonomous": "This is a member-level/incumbent correction surfaced only by a news-gathering subagent, not the gating Contract 3.5 membership verifier. Rewriting the Incumbent cell (a field outside the normal rating row_update) on a single unverified pass risks a half-correct row. The rating is Solid R either way, so nothing is blocked by deferring; the State News tab already shows the correct current matchup.",
-      "options": [
-        "Have next week's membership verifier confirm Daines retired, then rewrite Incumbent + Challenger together",
-        "Rewrite the matchup now to Alme (R) / Bankhead (D) / Bodnar (I)",
-        "Leave as-is pending a primary source"
-      ],
-      "resolution": "Resolved 2026-08-12 at P-funk's direction via OPTION 1 (verify, then rewrite). An independent web-search pass confirmed all three facts: Daines withdrew from the GOP primary and endorsed Kurt Alme (Fox News); Bankhead beat Neill in the Jun 2 Democratic primary by ~12k (Daily Montanan, KRTV); the November field is Alme (R) / Bankhead (D) / Bodnar (I) (Montana Free Press, Aug 10). Following sheet house-style for a not-running incumbent, Daines stays in the Incumbent cell with Open=true and the Challenger cell now carries the three-way field. Rating stays Solid R (Sabato Safe R, Inside Elections Solid R; the split anti-R vote keeps the open seat safely R). Applied via constants_patch.json (2026-08-12) and logged in corrections.json.",
-      "source": "https://montanafreepress.org/2026/07/30/bankhead-bodnar-and-the-battle-over-bowing-out/"
-    },
-    {
-      "id": "2026-08-12-ga-sen-cell-note-lag",
-      "date": "2026-08-12",
-      "status": "resolved",
-      "area": "Senate - Georgia (rating cell vs its own note)",
-      "question": "The GA-Sen Rating cell reads 'Lean D' while its own Notes record a Sabato Jul-30 move Leans D -> Likely D. Either the cell is stale (should be Likely D) or it is intentionally tracking the MORE COMPETITIVE of Cook/Sabato (if Cook is still Lean D). Route 3 (SKILL.md 2.3a) named Cook+Sabato as the cell's drivers but did NOT specify how to reconcile when Cook and Sabato disagree with each other. Establish that standing rule and apply it to GA-Sen.",
-      "why_not_autonomous": "This is a standing methodology choice (how the cell resolves a Cook/Sabato split - most-competitive, most-recent, or consensus), not a one-off data fix, and it needs BOTH forecasters' CURRENT GA-Sen ratings verified fresh before the cell moves. Picking a rule unilaterally would silently change how every future Cook/Sabato disagreement is handled across the whole sheet.",
-      "options": [
-        "Cell tracks the MOST COMPETITIVE of Cook/Sabato (keep Lean D here if Cook is still Lean D); log the other forecaster in the note",
-        "Cell tracks the MOST RECENT forecaster move (move GA-Sen to Likely D per Sabato Jul-30)",
-        "Cell requires a Cook+Sabato CONSENSUS; a lone mover stays in the note until the other follows"
-      ],
-      "resolution": "Resolved 2026-08-18 at P-funk's direction: CONSENSUS rule. The Rating cell moves only when Cook AND Sabato agree on the new rating; a lone mover (only one has moved, or the two sit at different tiers) does NOT move the cell but is logged in the cell's Notes until the second forecaster confirms (then move the cell) or the mover reverts (then drop the note). Most-competitive and most-recent were both rejected: most-recent churns the cell on every single move and is ambiguous across differing forecaster datelines; most-competitive silently biases every unresolved split toward the more competitive tier. Consensus mirrors the IE Tilt Watch discipline (2.3a) and keeps the 7-point cell stable. Applied to all three held cells, all of which stay put under consensus and are already correct: GA-Sen Lean D (Cook Lean D vs Sabato Likely D), WI-Gov Toss-up (Cook Toss-up vs Sabato Leans D), OH-07 Lean R (Cook Lean R vs Sabato Toss-up). No sheet write results. Encoded in SKILL.md new section 2.3b (and the 2026-08-12 cell-vs-note check note updated to point at it).",
-      "source": "https://centerforpolitics.org/crystalball/2026-rating-changes/",
-      "carryover": "UPDATED 2026-08-16 with fresh forecaster values (ratings verifier, primary sources): Cook rates GA-Sen LEAN D (cookpolitical.com Senate page, dateline Aug 5 2026) - NOT Toss-up as a garbled search summary suggested; Sabato rates it LIKELY D (Jul 30 2026). The sheet cell (Lean D) therefore already equals Cook's current rating, and under BOTH the most-competitive and the consensus options the cell is correct as-is, so it was held unchanged this week. TWO more instances of the same Cook/Sabato-split question surfaced 2026-08-16 and were also HELD pending this rule: (a) WI-Gov - Sabato moved Toss-up->Leans D on Aug 13, but Cook still rates it Toss-up (confirmed), cell held at Toss-up; (b) OH-07 House - Sabato moved Lean R->Toss-up on Aug 13, cell held at Lean R. Once P-funk picks the standing rule (most-competitive / most-recent / consensus), apply it to all three held cells at once. No cell was moved on any lone-forecaster split this run. RESOLVED-BY-FACT 2026-08-25: OH-07 was NOT actually a live split - the 2026-08-18 snapshot's premise ('Cook Lean R') was wrong. Cook's own article shows Cook moved OH-07 Likely R -> Toss-up on Aug 10 2026, and Sabato moved Lean R -> Toss-up Aug 13, so both forecasters have agreed at Toss-up since mid-August. Under the consensus rule the cell should have been Toss-up; it was moved Lean R -> Toss-up this run (2026-08-25) and logged in corrections.json. WI-Gov and GA-Sen remain correct as-is under consensus."
-    },
-    {
-      "id": "2026-08-25-tx-ia-sen-consensus",
-      "date": "2026-08-25",
-      "status": "resolved",
-      "area": "Senate - Texas and Iowa (cell ahead of the Cook/Sabato consensus)",
-      "question": "The TX-Sen and IA-Sen Rating cells both read 'Toss-up', but the Cook/Sabato standing consensus is Lean R: Cook only just moved both from Lean R -> Toss-up on Aug 20 2026, while Sabato still rates BOTH 'Leans R'. This is the mirror image of the \u00a72.3b examples - there the cell sat at the LESS competitive last-agreed value (e.g. OH-07 held at Lean R), but here the cell already sits MORE competitive than either forecaster's standing agreement. Strict consensus (\u00a72.3b) would revert both cells to Lean R until Sabato follows Cook to Toss-up. Do we revert TX-Sen and IA-Sen to Lean R to conform to the rule, or hold them at Toss-up?",
-      "why_not_autonomous": "Reverting two seats Toss-up -> Lean R is a consequential R-direction move that shrinks the Toss-up column, and the cells have carried Toss-up across many prior runs (likely set on the competitive narrative - Paxton nomination, Ernst retirement, strong D fundraising/polling - before the forecasters caught up). Applying a strict revert unilaterally on an unattended run could erase a deliberate editorial call. The conservative branch (hold) changes least and is trivially reversible.",
-      "options": [
-        "Hold both at Toss-up (conservative; matches Cook's current Aug 20 rating and the competitive polling)",
-        "Revert both to Lean R per strict \u00a72.3b consensus until Sabato moves to Toss-up",
-        "Hold, but treat Sabato moving either to Toss-up as the trigger to formally confirm the cell"
-      ],
-      "resolution": "Resolved 2026-09-03 by P-funk (reviewer): option 2 - revert BOTH TX-Sen and IA-Sen Toss-up -> Lean R per strict \u00a72.3b consensus, aligning the cells with Sabato (Leans R) until Cook rejoins. Applied via constants_patch.json 2026-09-03.",
-      "source": "https://www.cookpolitical.com/analysis/senate/senate-overview/texas-and-iowa-senate-races-move-toss-races-governor-also-move",
-      "resolved_date": "2026-09-03"
-    }
-  ]
+ "_comment": "Judgment calls an unattended run must NOT make on its own, and must NOT block on either. Contract 3.6 appends here instead of halting; the run ships everything else and surfaces these in the briefing. P-funk reviews at leisure and resolves by editing the entry's status to 'resolved' with a note. Nothing in this file gates the pipeline. See SKILL.md Contract 3.6.",
+ "decisions": [
+  {
+   "id": "2026-08-03-senate-i",
+   "date": "2026-08-03",
+   "status": "resolved",
+   "area": "Constants — SENATE_I",
+   "question": "SKILL.md hard-coded SENATE_I = 3, counting Murkowski as an independent. senate.gov lists 2 (Sanders, King) and carries Murkowski as R, as does this dashboard's own Senate tab. Change the value and the skill, or keep 3?",
+   "why_not_autonomous": "Contradicting an explicit hard-coded value in the canonical skill is a scope change, not a data update. The invariant SENATE_R + SENATE_D == 100 held either way, so nothing was blocked by deferring it.",
+   "options": [
+    "Correct to 2 and fix SKILL.md",
+    "Keep 3 pending confirmation"
+   ],
+   "resolution": "Corrected to 2 on 2026-08-03 at P-funk's direction. SKILL.md 2.3 rewritten, corrections.json entry added, patch updated before the apply job ran.",
+   "source": "https://www.senate.gov/history/partydiv.htm"
+  },
+  {
+   "id": "2026-08-03-mo-05",
+   "date": "2026-08-03",
+   "status": "resolved",
+   "area": "House — MO-05",
+   "question": "The MO-05 row carries Party 'D' (Cleaver) with Rating 'Solid R' and a Note saying the Solid R label 'was sheet error'. Post-redistricting Solid R may be correct for the new seat, but the note and the cell contradict each other. Which is right?",
+   "why_not_autonomous": "Resolving it means deciding whether the note or the rating is the stale artifact. I found no primary source settling it, and guessing would either restore a real error or erase a real correction.",
+   "options": [
+    "Rating is right, delete the note",
+    "Note is right, rating should be D-favorable",
+    "Re-research the post-redistricting MO-05 partisan lean"
+   ],
+   "resolution": "Resolved 2026-08-03: the RATING was right and the NOTE was wrong. The note assumed a Democratic incumbent implies a Democratic-leaning rating, but a rating describes the seat. Missouri's mid-decade map turned MO-05 from Harris +24 into Trump 58-40 (Cook PVI R+9; Inside Elections Baseline R+17), and all three forecasters independently moved it to Safe/Solid R. Party cell stays D, Rating stays Solid R, note replaced with sourced reasoning. One live contingency recorded: a People Not Politicians referendum (~300k signatures, certification decision expected around the Aug 4 primary) could suspend the map, in which case the old lines would make this Solid D again.",
+   "source": "https://insideelections.com/a-detailed-analysis-of-missouris-new-congressional-map/"
+  },
+  {
+   "id": "2026-08-10-inside-elections-tilt-mapping",
+   "date": "2026-08-10",
+   "status": "resolved",
+   "area": "Methodology — rating scale",
+   "question": "Inside Elections uses a finer scale than the dashboard: it has a 'Tilt' tier between 'Lean' and 'Toss-up' (Toss-up / Tilt / Lean / Likely / Solid). The dashboard's 7-point enum has no 'Tilt'. On Aug 6, 2026 Inside Elections moved several races to a 'Tilt' rating (NC-Sen and GA-Sen to Tilt D, IA-Sen to Tilt R, KS-Gov to Tilt R, IA-Gov to Tilt D). How should an IE 'Tilt D/R' be represented on the 7-point sheet when it is the mover — collapse to 'Toss-up', collapse to 'Lean', or keep tracking Cook/Sabato (which share the 7-point scale) and treat IE only as corroboration?",
+   "why_not_autonomous": "This is a standing methodology choice about which forecaster(s) the Rating column tracks and how to collapse a 5-gradation scale into 7 points, not a one-off data update. Picking a rule unilaterally would silently change how every future IE 'Tilt' move is handled.",
+   "options": [
+    "Keep tracking Cook/Sabato on the 7-point scale; use IE only as corroboration (never import a bare 'Tilt')",
+    "Map IE 'Tilt D/R' to 'Toss-up' (Tilt is the most competitive non-tossup tier)",
+    "Map IE 'Tilt D/R' to 'Lean D/R' (nearest same-direction label)"
+   ],
+   "resolution": "Resolved 2026-08-12 at P-funk's direction: OPTION 1. The Rating column tracks Cook and Sabato on the shared 7-point scale; an Inside Elections 'Tilt' (or any IE rating that diverges from the sheet) is NEVER imported into the cell. IE divergences are instead logged to ie_watch.json and surfaced in the weekly briefing's new 'IE Tilt Watch' section as a leading indicator, then closed when Cook or Sabato move to match (confirmed) or IE reverts (faded). This keeps the 7-point enum clean while preserving IE's early-mover signal. Seeded with the five Aug 6 2026 IE moves (NC-Sen, GA-Sen -> Tilt D; IA-Sen, KS-Gov -> Tilt R; IA-Gov -> Tilt D). Encoded in SKILL.md (methodology 2.3a + Contract 3 briefing section + Contract 3.9/4 wiring) and checked by verify_dashboard.py (L12-iewatch).",
+   "source": "https://www.270towin.com/2026-senate-election/inside-elections-2026-senate-ratings"
+  },
+  {
+   "id": "2026-08-10-mt-senate-matchup",
+   "date": "2026-08-10",
+   "status": "resolved",
+   "area": "Senate — Montana",
+   "question": "The Senate ratings tab lists MT as incumbent Steve Daines (R) vs. Reilly Neill (D), Solid R. The State News pass (Montana Free Press, Daily Montanan) and news_config.json both indicate Daines did NOT seek re-election, Neill lost the June 2 Democratic primary to Alani Bankhead, and the November matchup is Kurt Alme (R) vs. Alani Bankhead (D) vs. independent Seth Bodnar. Should the Senate row's Incumbent/Challenger cells be rewritten to the Alme/Bankhead/Bodnar matchup (with Daines removed as incumbent)?",
+   "why_not_autonomous": "This is a member-level/incumbent correction surfaced only by a news-gathering subagent, not the gating Contract 3.5 membership verifier. Rewriting the Incumbent cell (a field outside the normal rating row_update) on a single unverified pass risks a half-correct row. The rating is Solid R either way, so nothing is blocked by deferring; the State News tab already shows the correct current matchup.",
+   "options": [
+    "Have next week's membership verifier confirm Daines retired, then rewrite Incumbent + Challenger together",
+    "Rewrite the matchup now to Alme (R) / Bankhead (D) / Bodnar (I)",
+    "Leave as-is pending a primary source"
+   ],
+   "resolution": "Resolved 2026-08-12 at P-funk's direction via OPTION 1 (verify, then rewrite). An independent web-search pass confirmed all three facts: Daines withdrew from the GOP primary and endorsed Kurt Alme (Fox News); Bankhead beat Neill in the Jun 2 Democratic primary by ~12k (Daily Montanan, KRTV); the November field is Alme (R) / Bankhead (D) / Bodnar (I) (Montana Free Press, Aug 10). Following sheet house-style for a not-running incumbent, Daines stays in the Incumbent cell with Open=true and the Challenger cell now carries the three-way field. Rating stays Solid R (Sabato Safe R, Inside Elections Solid R; the split anti-R vote keeps the open seat safely R). Applied via constants_patch.json (2026-08-12) and logged in corrections.json.",
+   "source": "https://montanafreepress.org/2026/07/30/bankhead-bodnar-and-the-battle-over-bowing-out/"
+  },
+  {
+   "id": "2026-08-12-ga-sen-cell-note-lag",
+   "date": "2026-08-12",
+   "status": "resolved",
+   "area": "Senate - Georgia (rating cell vs its own note)",
+   "question": "The GA-Sen Rating cell reads 'Lean D' while its own Notes record a Sabato Jul-30 move Leans D -> Likely D. Either the cell is stale (should be Likely D) or it is intentionally tracking the MORE COMPETITIVE of Cook/Sabato (if Cook is still Lean D). Route 3 (SKILL.md 2.3a) named Cook+Sabato as the cell's drivers but did NOT specify how to reconcile when Cook and Sabato disagree with each other. Establish that standing rule and apply it to GA-Sen.",
+   "why_not_autonomous": "This is a standing methodology choice (how the cell resolves a Cook/Sabato split - most-competitive, most-recent, or consensus), not a one-off data fix, and it needs BOTH forecasters' CURRENT GA-Sen ratings verified fresh before the cell moves. Picking a rule unilaterally would silently change how every future Cook/Sabato disagreement is handled across the whole sheet.",
+   "options": [
+    "Cell tracks the MOST COMPETITIVE of Cook/Sabato (keep Lean D here if Cook is still Lean D); log the other forecaster in the note",
+    "Cell tracks the MOST RECENT forecaster move (move GA-Sen to Likely D per Sabato Jul-30)",
+    "Cell requires a Cook+Sabato CONSENSUS; a lone mover stays in the note until the other follows"
+   ],
+   "resolution": "Resolved 2026-08-18 at P-funk's direction: CONSENSUS rule. The Rating cell moves only when Cook AND Sabato agree on the new rating; a lone mover (only one has moved, or the two sit at different tiers) does NOT move the cell but is logged in the cell's Notes until the second forecaster confirms (then move the cell) or the mover reverts (then drop the note). Most-competitive and most-recent were both rejected: most-recent churns the cell on every single move and is ambiguous across differing forecaster datelines; most-competitive silently biases every unresolved split toward the more competitive tier. Consensus mirrors the IE Tilt Watch discipline (2.3a) and keeps the 7-point cell stable. Applied to all three held cells, all of which stay put under consensus and are already correct: GA-Sen Lean D (Cook Lean D vs Sabato Likely D), WI-Gov Toss-up (Cook Toss-up vs Sabato Leans D), OH-07 Lean R (Cook Lean R vs Sabato Toss-up). No sheet write results. Encoded in SKILL.md new section 2.3b (and the 2026-08-12 cell-vs-note check note updated to point at it).",
+   "source": "https://centerforpolitics.org/crystalball/2026-rating-changes/",
+   "carryover": "UPDATED 2026-08-16 with fresh forecaster values (ratings verifier, primary sources): Cook rates GA-Sen LEAN D (cookpolitical.com Senate page, dateline Aug 5 2026) - NOT Toss-up as a garbled search summary suggested; Sabato rates it LIKELY D (Jul 30 2026). The sheet cell (Lean D) therefore already equals Cook's current rating, and under BOTH the most-competitive and the consensus options the cell is correct as-is, so it was held unchanged this week. TWO more instances of the same Cook/Sabato-split question surfaced 2026-08-16 and were also HELD pending this rule: (a) WI-Gov - Sabato moved Toss-up->Leans D on Aug 13, but Cook still rates it Toss-up (confirmed), cell held at Toss-up; (b) OH-07 House - Sabato moved Lean R->Toss-up on Aug 13, cell held at Lean R. Once P-funk picks the standing rule (most-competitive / most-recent / consensus), apply it to all three held cells at once. No cell was moved on any lone-forecaster split this run. RESOLVED-BY-FACT 2026-08-25: OH-07 was NOT actually a live split - the 2026-08-18 snapshot's premise ('Cook Lean R') was wrong. Cook's own article shows Cook moved OH-07 Likely R -> Toss-up on Aug 10 2026, and Sabato moved Lean R -> Toss-up Aug 13, so both forecasters have agreed at Toss-up since mid-August. Under the consensus rule the cell should have been Toss-up; it was moved Lean R -> Toss-up this run (2026-08-25) and logged in corrections.json. WI-Gov and GA-Sen remain correct as-is under consensus."
+  },
+  {
+   "id": "2026-08-25-tx-ia-sen-consensus",
+   "date": "2026-08-25",
+   "status": "resolved",
+   "area": "Senate - Texas and Iowa (cell ahead of the Cook/Sabato consensus)",
+   "question": "The TX-Sen and IA-Sen Rating cells both read 'Toss-up', but the Cook/Sabato standing consensus is Lean R: Cook only just moved both from Lean R -> Toss-up on Aug 20 2026, while Sabato still rates BOTH 'Leans R'. This is the mirror image of the §2.3b examples - there the cell sat at the LESS competitive last-agreed value (e.g. OH-07 held at Lean R), but here the cell already sits MORE competitive than either forecaster's standing agreement. Strict consensus (§2.3b) would revert both cells to Lean R until Sabato follows Cook to Toss-up. Do we revert TX-Sen and IA-Sen to Lean R to conform to the rule, or hold them at Toss-up?",
+   "why_not_autonomous": "Reverting two seats Toss-up -> Lean R is a consequential R-direction move that shrinks the Toss-up column, and the cells have carried Toss-up across many prior runs (likely set on the competitive narrative - Paxton nomination, Ernst retirement, strong D fundraising/polling - before the forecasters caught up). Applying a strict revert unilaterally on an unattended run could erase a deliberate editorial call. The conservative branch (hold) changes least and is trivially reversible.",
+   "options": [
+    "Hold both at Toss-up (conservative; matches Cook's current Aug 20 rating and the competitive polling)",
+    "Revert both to Lean R per strict §2.3b consensus until Sabato moves to Toss-up",
+    "Hold, but treat Sabato moving either to Toss-up as the trigger to formally confirm the cell"
+   ],
+   "resolution": "Resolved 2026-09-03 by P-funk (reviewer): option 2 - revert BOTH TX-Sen and IA-Sen Toss-up -> Lean R per strict §2.3b consensus, aligning the cells with Sabato (Leans R) until Cook rejoins. Applied via constants_patch.json 2026-09-03.",
+   "source": "https://www.cookpolitical.com/analysis/senate/senate-overview/texas-and-iowa-senate-races-move-toss-races-governor-also-move",
+   "resolved_date": "2026-09-03"
+  },
+  {
+   "id": "2026-09-13-mo-02-cook-tier",
+   "date": "2026-09-13",
+   "status": "open",
+   "area": "House / MO-02 Rating (Ann Wagner)",
+   "question": "After Missouri reverted to the 2022 map, both Cook and Sabato moved MO-02 off Solid R, but Cook's new tier is reported inconsistently across Cook-sourced descriptions: the article slug reads 'Likely R -> Lean R' while the roundup prose reads 'Solid R -> Likely R'. Sabato is at Likely R. Should the cell move Solid R -> Likely R (a consensus, if Cook=Likely R) or hold (a Cook/Sabato tier split, if Cook=Lean R)?",
+   "why_not_autonomous": "Cook's exact current tier could not be settled against a readable primary — the client-rendered race page shows a stale Feb-2025 'Solid R' card, and the two Cook-sourced descriptions conflict. Per Contract 3.5, an unsettled/contradicted claim is DROPPED, not shipped with a caveat.",
+   "options": [
+    "Move MO-02 Solid R -> Likely R (if Cook is confirmed at Likely R — matches Sabato, a consensus)",
+    "Hold at Solid R until Cook's tier is confirmed against the article body"
+   ],
+   "resolution": null,
+   "source": "https://www.cookpolitical.com/analysis/house/missouri-house/two-missouri-house-race-ratings-change-after-redistricting-roller"
+  }
+ ]
 }

@@ -989,6 +989,31 @@
    },
    "rating_changes": [],
    "snapshot": {}
+  },
+  {
+   "date": "2026-09-13",
+   "label": "Sep 13",
+   "briefing": "weekly_briefing_2026-09-13.md",
+   "chamber": {
+    "house_r": 218,
+    "house_d": 214,
+    "house_i": 1,
+    "house_vacancies": 2,
+    "senate_r": 53,
+    "senate_d": 47,
+    "senate_i": 2,
+    "notes": "No membership change since Sep 8 (CA-14 Wahab-D sworn Sep 2, GA-13 Blair-D sworn Sep 1 remain the latest; FL-20 & TX-23 vacant). Senate 53R/47D/2I; Murkowski-AK is R. Rating move: MO-05 Solid R -> Solid D after the MO Supreme Court restored the 2022 map (Cook Sep 11 + Sabato Sep 10). NH-Sen & SC-Sen matchup notes refreshed post-primary/runoff. MO-02 change dropped pending Cook-tier confirmation (decisions.json)."
+   },
+   "rating_changes": [
+    {
+     "tab": "House",
+     "race": "MO-05 — Cleaver (D), Kansas City",
+     "from": "Solid R",
+     "to": "Solid D",
+     "source": "Cook Political Report (Sep 11 2026) & Sabato's Crystal Ball (Sep 10 2026) — MO map reverted to 2022 lines"
+    }
+   ],
+   "snapshot": {}
   }
  ]
 }

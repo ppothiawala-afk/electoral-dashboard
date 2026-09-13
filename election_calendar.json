@@ -1,6 +1,6 @@
 {
  "_comment": "Upcoming election events rendered on the Overview tab. Maintained by the weekly Cowork routine — the candidate-matchup verifier should confirm dates and add/remove events as primaries resolve. Past events are auto-hidden by the UI (kept here for the record). kind: primary | runoff | special | convention | general.",
- "updated": "2026-09-08",
+ "updated": "2026-09-13",
  "events": [
   {
    "date": "2026-06-16",
@@ -98,14 +98,14 @@
    "state": "SC",
    "kind": "runoff",
    "title": "SC Senate special GOP primary runoff",
-   "note": "Held Aug 25 (result pending final count as of this run): appointed Sen. Darline Graham Nordone (R) vs. Rep. Ralph Norman (R). Nominee faces Annie Andrews (D) on Nov 3. Neither Norman nor Fry vacated a US House seat, so no House vacancy results."
+   "note": "Resolved: appointed Sen. Darline Graham Nordone (R) defeated Rep. Ralph Norman ~52.5% in the GOP special-primary runoff; faces Annie Andrews (D) on Nov 3. Neither Norman (SC-05) nor Fry (SC-07) vacated a U.S. House seat, so no House vacancy results."
   },
   {
    "date": "2026-09-08",
    "state": "NH",
    "kind": "primary",
    "title": "New Hampshire primaries",
-   "note": "Primary day (today). Rep. Chris Pappas (D) and former Sen. John E. Sununu (R) are the heavy favorites for the open Senate seat (Shaheen retiring); Cinde Warmington (D) favored to face Gov. Kelly Ayotte (R). Results pending as of this run; confirm winners next week."
+   "note": "Resolved: Rep. Chris Pappas (D) won the Democratic Senate nomination (~62-36 over Karishma Manzur) and former Sen. John E. Sununu (R) won the GOP nod (~70-25 over Scott Brown, Trump-endorsed); Nov 3 Senate general is Pappas vs Sununu (Shaheen retiring). Governor: Gov. Kelly Ayotte (R) won her primary and faces Cinde Warmington (D). Confirmed via NBC/NHPR/Boston Globe race calls Sep 8."
   },
   {
    "date": "2026-11-03",
