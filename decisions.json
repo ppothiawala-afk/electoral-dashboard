@@ -95,7 +95,7 @@
   {
    "id": "2026-09-13-mo-02-cook-tier",
    "date": "2026-09-13",
-   "status": "open",
+   "status": "resolved",
    "area": "House / MO-02 Rating (Ann Wagner)",
    "question": "After Missouri reverted to the 2022 map, both Cook and Sabato moved MO-02 off Solid R, but Cook's new tier is reported inconsistently across Cook-sourced descriptions: the article slug reads 'Likely R -> Lean R' while the roundup prose reads 'Solid R -> Likely R'. Sabato is at Likely R. Should the cell move Solid R -> Likely R (a consensus, if Cook=Likely R) or hold (a Cook/Sabato tier split, if Cook=Lean R)?",
    "why_not_autonomous": "Cook's exact current tier could not be settled against a readable primary — the client-rendered race page shows a stale Feb-2025 'Solid R' card, and the two Cook-sourced descriptions conflict. Per Contract 3.5, an unsettled/contradicted claim is DROPPED, not shipped with a caveat.",
@@ -103,7 +103,7 @@
     "Move MO-02 Solid R -> Likely R (if Cook is confirmed at Likely R — matches Sabato, a consensus)",
     "Hold at Solid R until Cook's tier is confirmed against the article body"
    ],
-   "resolution": null,
+   "resolution": "Resolved 2026-09-13 by P-funk: move MO-02 Solid R -> Likely R. Cook confirmed at Likely R, matching Sabato's Likely R — a Cook+Sabato consensus. Applied to constants_patch.json and recorded in history.json rating_changes.",
    "source": "https://www.cookpolitical.com/analysis/house/missouri-house/two-missouri-house-race-ratings-change-after-redistricting-roller"
   }
  ]

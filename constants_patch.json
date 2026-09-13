@@ -1,5 +1,5 @@
 {
-  "notes": "Weekly 2026-09-13 (superset — carries forward the still-unapplied 2026-09-08 patch, which the Monday apply job had not yet reached). Chamber unchanged 218R/214D/1I/2V House, 53R/47D/2I Senate. Sworn-in House members retained: CA-14 (Aisha Wahab, D, Sep 2) and GA-13 (Everton Blair Jr., D, Sep 1); FL-20 data fix (R/Solid R -> D/Solid D) retained. NEW this week: MO-05 (Cleaver, D) Solid R -> Solid D — the MO Supreme Court (Sep 3) blocked the 2025 GOP map and ordered the 2022 lines used in November, and BOTH Cook (Solid D, Sep 11) and Sabato (Safe D, Sep 10) moved the seat, a clean consensus. NH-Sen and SC-Sen notes refreshed post-primary/runoff (Pappas vs Sununu; Nordone won SC runoff) — ratings unchanged. MO-02 (Wagner) DROPPED per Contract 3.5 (Cook's new tier unsettled — slug says Lean R, roundup says Likely R; can't confirm against a readable primary) — see decisions.json 2026-09-13-mo-02-cook-tier. AK-Gov (Sabato Toss-up Sep 3, Cook Likely R), AL-02, TX-34 are lone Sabato movers — cells hold per SKILL 2.3b consensus. IE Tilt Watch refreshed (no Cook/Sabato follows this week).",
+  "notes": "Weekly 2026-09-13 (superset — carries forward the still-unapplied 2026-09-08 patch, which the Monday apply job had not yet reached). Chamber unchanged 218R/214D/1I/2V House, 53R/47D/2I Senate. Sworn-in House members retained: CA-14 (Aisha Wahab, D, Sep 2) and GA-13 (Everton Blair Jr., D, Sep 1); FL-20 data fix (R/Solid R -> D/Solid D) retained. NEW this week: MO-05 (Cleaver, D) Solid R -> Solid D — the MO Supreme Court (Sep 3) blocked the 2025 GOP map and ordered the 2022 lines used in November, and BOTH Cook (Solid D, Sep 11) and Sabato (Safe D, Sep 10) moved the seat, a clean consensus. NH-Sen and SC-Sen notes refreshed post-primary/runoff (Pappas vs Sununu; Nordone won SC runoff) — ratings unchanged. MO-02 (Wagner) Solid R -> Likely R (Cook Sep 11 + Sabato Sep 10 consensus at Likely R; Cook tier confirmed by user resolution of decisions.json 2026-09-13-mo-02-cook-tier). AK-Gov (Sabato Toss-up Sep 3, Cook Likely R), AL-02, TX-34 are lone Sabato movers — cells hold per SKILL 2.3b consensus. IE Tilt Watch refreshed (no Cook/Sabato follows this week).",
   "updates": {
     "HOUSE_R": 218,
     "HOUSE_D": 214,
@@ -13,23 +13,91 @@
   },
   "row_updates": {
     "House": {
-      "key_cols": ["State", "District"],
+      "key_cols": [
+        "State",
+        "District"
+      ],
       "rating_col": "Rating",
-      "extra_col_map": {"Incumbent": "incumbent", "Party": "party", "Note": "note"},
+      "extra_col_map": {
+        "Incumbent": "incumbent",
+        "Party": "party",
+        "Note": "note"
+      },
       "changes": [
-        {"key": ["CA", "14"], "rating": "Solid D", "incumbent": "Aisha Wahab", "note": "Aisha Wahab (D) sworn in Sep 2 2026, ending the vacancy (Swalwell-D resigned Apr 14). Won the Aug 18 special runoff over Melissa Hernandez; serves through Jan 2027. Seat remains Solid D."},
-        {"key": ["GA", "13"], "rating": "Solid D", "incumbent": "Everton Blair Jr.", "note": "Everton Blair Jr. (D) sworn in Sep 1 2026, ending the vacancy (Scott-D died Apr 22). Won the Aug 25 runoff over Marcye Scott 53-47; serves out Scott's term. Seat remains Solid D."},
-        {"key": ["FL", "20"], "rating": "Solid D", "party": "D", "note": "VACANT — Cherfilus-McCormick (D) resigned Apr 21 2026; special-election date TBD per House Clerk. Data fix 2026-09-08: Party/Rating corrected R/Solid R -> D/Solid D. FL-20 is a majority-Black, heavily Democratic Broward/Palm Beach seat; the prior R label was a published error (corrections.json)."},
-        {"key": ["MO", "05"], "rating": "Solid D", "note": "Solid R -> Solid D 2026-09-13. The Missouri Supreme Court (Sep 3 2026) blocked the 2025 GOP congressional map and ordered the 2022 lines used in November, restoring MO-05 as a safe Kansas City Democratic seat. Cook moved it Solid R -> Solid D (Sep 11) and Sabato moved it Safe R -> Safe D (Sep 10) — Cook+Sabato consensus. Resolves the prior CONTINGENT note (2022 lines now in use). Rep. Emanuel Cleaver (D) heavily favored for a 12th term."}
+        {
+          "key": [
+            "CA",
+            "14"
+          ],
+          "rating": "Solid D",
+          "incumbent": "Aisha Wahab",
+          "note": "Aisha Wahab (D) sworn in Sep 2 2026, ending the vacancy (Swalwell-D resigned Apr 14). Won the Aug 18 special runoff over Melissa Hernandez; serves through Jan 2027. Seat remains Solid D."
+        },
+        {
+          "key": [
+            "GA",
+            "13"
+          ],
+          "rating": "Solid D",
+          "incumbent": "Everton Blair Jr.",
+          "note": "Everton Blair Jr. (D) sworn in Sep 1 2026, ending the vacancy (Scott-D died Apr 22). Won the Aug 25 runoff over Marcye Scott 53-47; serves out Scott's term. Seat remains Solid D."
+        },
+        {
+          "key": [
+            "FL",
+            "20"
+          ],
+          "rating": "Solid D",
+          "party": "D",
+          "note": "VACANT — Cherfilus-McCormick (D) resigned Apr 21 2026; special-election date TBD per House Clerk. Data fix 2026-09-08: Party/Rating corrected R/Solid R -> D/Solid D. FL-20 is a majority-Black, heavily Democratic Broward/Palm Beach seat; the prior R label was a published error (corrections.json)."
+        },
+        {
+          "key": [
+            "MO",
+            "05"
+          ],
+          "rating": "Solid D",
+          "note": "Solid R -> Solid D 2026-09-13. The Missouri Supreme Court (Sep 3 2026) blocked the 2025 GOP congressional map and ordered the 2022 lines used in November, restoring MO-05 as a safe Kansas City Democratic seat. Cook moved it Solid R -> Solid D (Sep 11) and Sabato moved it Safe R -> Safe D (Sep 10) — Cook+Sabato consensus. Resolves the prior CONTINGENT note (2022 lines now in use). Rep. Emanuel Cleaver (D) heavily favored for a 12th term."
+        },
+        {
+          "key": [
+            "MO",
+            "02"
+          ],
+          "rating": "Likely R",
+          "note": "Solid R -> Likely R 2026-09-13. Missouri reverted to the 2022 congressional map (MO Supreme Court, Sep 3), making the suburban St. Louis seat more competitive. Cook moved it to Likely R (Sep 11) and Sabato moved Safe R -> Likely R (Sep 10) — Cook+Sabato consensus at Likely R. Resolves decisions.json 2026-09-13-mo-02-cook-tier. Rep. Ann Wagner (R)."
+        }
       ]
     },
     "Senate": {
-      "key_cols": ["State", "Up in 2026"],
+      "key_cols": [
+        "State",
+        "Up in 2026"
+      ],
       "rating_col": "Rating",
-      "extra_col_map": {"Challenger": "challenger", "Notes": "notes"},
+      "extra_col_map": {
+        "Challenger": "challenger",
+        "Notes": "notes"
+      },
       "changes": [
-        {"key": ["NH", "YES"], "rating": "Lean D", "challenger": "John E. Sununu (R)", "notes": "Sep 8 2026 primary resolved: Rep. Chris Pappas (D) won the Democratic nomination (~62-36 over Karishma Manzur) and former Sen. John E. Sununu (R, Trump-endorsed) won the GOP nod (~70-25 over Scott Brown). Open seat (Shaheen retiring). Pre-primary UNH poll (Aug) had Sununu 45-43; race remains competitive. Rating unchanged Lean D (IE moved to Toss-up Sep 2 — logged in IE Tilt Watch, not a Rating-cell mover)."},
-        {"key": ["SC", "YES"], "rating": "Solid R", "challenger": "Annie Andrews (D)", "notes": "Aug 25 2026 GOP special-primary runoff resolved: appointed Sen. Darline Graham Nordone (R) defeated Rep. Ralph Norman ~52.5%; faces Annie Andrews (D) on Nov 3. Neither Norman (SC-05) nor Fry (SC-07) vacated a U.S. House seat, so no House vacancy. Rating unchanged Solid R (heavily R state)."}
+        {
+          "key": [
+            "NH",
+            "YES"
+          ],
+          "rating": "Lean D",
+          "challenger": "John E. Sununu (R)",
+          "notes": "Sep 8 2026 primary resolved: Rep. Chris Pappas (D) won the Democratic nomination (~62-36 over Karishma Manzur) and former Sen. John E. Sununu (R, Trump-endorsed) won the GOP nod (~70-25 over Scott Brown). Open seat (Shaheen retiring). Pre-primary UNH poll (Aug) had Sununu 45-43; race remains competitive. Rating unchanged Lean D (IE moved to Toss-up Sep 2 — logged in IE Tilt Watch, not a Rating-cell mover)."
+        },
+        {
+          "key": [
+            "SC",
+            "YES"
+          ],
+          "rating": "Solid R",
+          "challenger": "Annie Andrews (D)",
+          "notes": "Aug 25 2026 GOP special-primary runoff resolved: appointed Sen. Darline Graham Nordone (R) defeated Rep. Ralph Norman ~52.5%; faces Annie Andrews (D) on Nov 3. Neither Norman (SC-05) nor Fry (SC-07) vacated a U.S. House seat, so no House vacancy. Rating unchanged Solid R (heavily R state)."
+        }
       ]
     }
   }
